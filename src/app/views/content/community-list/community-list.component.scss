@@ -1,0 +1,16 @@
+.coop {
+	border-bottom: 1px solid #eee;
+	padding-bottom: 5px;
+	margin-bottom: 20px;
+	&-content {
+		display: flex;
+	}
+	&-logo {
+		img {
+			max-width: 100px;
+		}
+	}
+	&-contact {
+		text-align: right;
+	}
+}

@@ -1,0 +1,20 @@
+<app-card>
+	<h2>Our Community</h2>
+	<div class="coop row" *ngFor="let coop of list">
+		<div class="col-md-6 coop-content">
+			<div class="coop-logo">
+				<img src={{coop.img}} alt={{coop.name}} />
+			</div>
+			<div class="">
+				<div>{{coop.name}}</div>
+				<div>{{coop.sector}}</div>
+				<div>Member Since: {{coop.subscription_date}}</div>
+			</div>
+		</div>
+		<div class="col-md-6 coop-contact">
+			<div>{{coop.email}}</div>
+			<div>{{coop.phone}}</div>
+			<div>{{coop.address}}</div>
+		</div>
+	</div>
+</app-card>
