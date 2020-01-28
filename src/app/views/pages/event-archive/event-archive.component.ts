@@ -4,11 +4,11 @@ import { LoadJsonService } from '../../../core/services/loadjson.service';
 import { Observable, of } from 'rxjs';
 
 @Component({
-  selector: 'app-events-list',
-  templateUrl: './events-list.component.html',
-  styleUrls: ['./events-list.component.scss']
+  selector: 'app-event-archive',
+  templateUrl: './event-archive.component.html',
+  styleUrls: ['./event-archive.component.scss']
 })
-export class EventsListComponent implements OnInit {
+export class EventArchiveComponent implements OnInit {
 	objectKeys = Object.keys;
 	list$: Observable<any>;
 	coops$: Observable<any>;

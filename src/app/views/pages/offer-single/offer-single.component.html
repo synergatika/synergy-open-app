@@ -1,0 +1,19 @@
+<app-card *ngIf="offer$ | async as offer;">
+	<div *ngIf="coop$ | async as coop;">
+		<h1>{{offer.title}}</h1>
+		<div class="offer row">
+			<div class="col-md-6 offer-content">
+				<div class="offer-logo">
+					<img [src]="coop.img" [alt]="coop.name" />
+				</div>
+				<div class="">
+					<div>{{coop.name}}</div>
+				</div>
+			</div>
+			<div class="col-md-6 offer-contact">
+				<div>Points: {{offer.points}}</div>
+				<div>Expires: {{offer.expires}}</div>
+			</div>
+		</div>
+	</div>
+</app-card>

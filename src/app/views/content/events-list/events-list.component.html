@@ -1,1 +1,25 @@
-<p>events-list works!</p>
+<app-card *ngIf="list$ | async as list;">
+<div *ngIf="coops$ | async as coops;">
+	<h2>Current events</h2>
+	<!--<div class="event row" *ngFor="let event of objectKeys(list)">-->
+	<div class="event row" *ngFor="let event of objectKeys(list)">
+		<div class="col-md-6 event-content">
+			<div class="event-logo">				
+				<img [src]="coops[list[event]['coop_id']]['img']" [alt]="list[event]['name']" />
+				
+			</div>
+			<div class="">
+				<a [routerLink]="['/event', event]">
+					{{list[event]['title']}}
+				</a>
+			</div>
+			
+		</div>
+		<div class="col-md-6 event-info">
+			<div>{{coops[list[event]['coop_id']]['name']}}</div>
+			<div>{{list[event]['date']}}</div>
+		</div>
+	</div>
+	</div>
+</app-card>
+

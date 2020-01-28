@@ -5,7 +5,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './views/layout/layout.component';
 import { HomeComponent } from './views/pages/home/home.component';
 import { ContactComponent } from './views/pages/contact/contact.component';
-import { EventsComponent } from './views/pages/events/events.component';
+import { EventArchiveComponent } from './views/pages/event-archive/event-archive.component';
+import { OfferSingleComponent } from './views/pages/offer-single/offer-single.component';
+import { CommunitySingleComponent } from './views/pages/community-single/community-single.component';
+import { NotFoundComponent } from './views/pages/not-found/not-found.component';
+import { EventSingleComponent } from './views/pages/event-single/event-single.component';
 
 const routes: Routes = [
 	{path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -17,13 +21,36 @@ const routes: Routes = [
 				path: 'home', component:HomeComponent
 			},
 			{
-				path: 'events', component:EventsComponent
+				path: 'events', component:EventArchiveComponent
 			},
 			{
 				path: 'contact', component:ContactComponent
 			},
+			{
+				path: 'coop', component:CommunitySingleComponent
+			},
+			{
+				path: 'coop/:id', component:CommunitySingleComponent
+			},
+			{
+				path: 'offer', component:OfferSingleComponent
+			},
+			{
+				path: 'offer/:id', component:OfferSingleComponent
+			},
+			{
+				path: 'event', component:EventSingleComponent
+			},
+			{
+				path: 'event/:id', component:EventSingleComponent
+			},
+			{
+				path: '**', component: NotFoundComponent
+			},
 		]
-	}
+	},
+	{path: '**', component: NotFoundComponent},
+	
 ];
 
 @NgModule({
