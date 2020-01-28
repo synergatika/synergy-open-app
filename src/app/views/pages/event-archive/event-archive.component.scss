@@ -1,0 +1,17 @@
+.event {
+	border-bottom: 1px solid #eee;
+	padding-bottom: 5px;
+	margin-bottom: 20px;
+	&-content {
+		display: flex;
+	}
+	&-logo {
+		padding: 0 10px;
+		img {
+			max-width: 50px;
+		}
+	}
+	&-info {
+		text-align: right;
+	}
+}

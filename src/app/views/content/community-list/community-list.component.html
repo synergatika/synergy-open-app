@@ -1,20 +1,24 @@
-<app-card>
+<app-card *ngIf="list$ | async as list;">
 	<h2>Our Community</h2>
-	<div class="coop row" *ngFor="let coop of list">
+	<!--<div class="coop row" *ngFor="let coop of objectKeys(list)">-->
+	<div class="coop row" *ngFor="let coop of objectKeys(list)">
 		<div class="col-md-6 coop-content">
 			<div class="coop-logo">
-				<img src={{coop.img}} alt={{coop.name}} />
+				<a [routerLink]="['/coop', coop]">
+					<img [src]="list[coop]['img']" [alt]="list[coop]['name']" />
+				</a>
 			</div>
 			<div class="">
-				<div>{{coop.name}}</div>
-				<div>{{coop.sector}}</div>
-				<div>Member Since: {{coop.subscription_date}}</div>
+
+				<div>{{list[coop]['name']}}</div>
+				<div>{{list[coop]['sector']}}</div>
+				<div>Member Since: {{list[coop]['subscription_date']}}</div>
 			</div>
 		</div>
 		<div class="col-md-6 coop-contact">
-			<div>{{coop.email}}</div>
-			<div>{{coop.phone}}</div>
-			<div>{{coop.address}}</div>
+			<div>{{list[coop]['email']}}</div>
+			<div>{{list[coop]['phone']}}</div>
+			<div>{{list[coop]['address']}}</div>
 		</div>
 	</div>
 </app-card>
