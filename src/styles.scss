@@ -7,7 +7,17 @@ html {
 		padding-top: 20px;
 		font-family: Roboto, "Helvetica Neue", sans-serif; 
 		background-color: #0c1a33;
-		
+		h1 {
+			margin-bottom: 2rem;
+		}
+		table {
+			width: 100%;
+		}
+		.card {
+			h2 {
+				margin-bottom: 2rem;
+			}
+		}
 	}
 	app-user-menu, app-language-switcher {
 		display: flex;

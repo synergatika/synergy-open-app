@@ -1,3 +1,23 @@
-
-<button class="btn btn-primary">English</button>
+<div ngbDropdown placement="bottom" class="language-switcher">
+	<div ngbDropdownToggle class="toggler">
+		<span class=""
+			[ngClass]="{ 'header_topbar-icon--brand' : iconType === 'brand' }">
+			<img class="" src="{{language?.flag}}" alt=""/>
+		</span>
+	</div>
+	<div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround">
+		<ul class="">
+			<ng-container *ngFor="let language of languages">
+				<li class="" [ngClass]="{'item-active': language.active}">
+					<a href="javascript:;" (click)="setLanguage(language.lang)" [ngClass]="{'lang-active': language.active}" class="">
+						<span class="">
+							<img src="{{language.flag}}">
+						</span>
+						<span class="">{{language.name}}</span>
+					</a>
+				</li>
+			</ng-container>
+		</ul>
+	</div>
+</div>
 

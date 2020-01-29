@@ -1,5 +1,6 @@
 {
 	"Commonspace2103606333" : {
+		"id":"Commonspace2103606333",
 		"name": "Commonspace",
 		"img": "./assets/media/images/uploaded/commonspace.webp",
 		"sector": "Recreation and Culture",
@@ -9,6 +10,7 @@
 		"address": "Akakiou 1 - 3 & Ipeirou 60, 10439, Athens"
 	},
 	"Allois2103606333" : {
+		"id":"Allois2103606333",
 		"name": "Syn Allois",
 		"img": "./assets/media/images/uploaded/synallois.jpg",
 		"sector": "Food",
@@ -18,6 +20,7 @@
 		"address": "Nileos 35, 11851, Athens"
 	},
 	"Sociality2103606333" : {
+		"id":"Sociality2103606333",
 		"name": "Sociality",
 		"img": "./assets/media/images/uploaded/sociallity.png",
 		"sector": "Durables (Technology)",

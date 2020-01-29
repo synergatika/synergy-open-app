@@ -10,6 +10,7 @@ import { OfferSingleComponent } from './views/pages/offer-single/offer-single.co
 import { CommunitySingleComponent } from './views/pages/community-single/community-single.component';
 import { NotFoundComponent } from './views/pages/not-found/not-found.component';
 import { EventSingleComponent } from './views/pages/event-single/event-single.component';
+import { MicrocreditSingleComponent } from './views/pages/microcredit-single/microcredit-single.component';
 
 const routes: Routes = [
 	{path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -43,6 +44,12 @@ const routes: Routes = [
 			},
 			{
 				path: 'event/:id', component:EventSingleComponent
+			},
+			{
+				path: 'microcredit', component:MicrocreditSingleComponent
+			},
+			{
+				path: 'microcredit/:id', component:MicrocreditSingleComponent
 			},
 			{
 				path: '**', component: NotFoundComponent

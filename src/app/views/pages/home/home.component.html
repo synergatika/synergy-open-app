@@ -1,18 +1,5 @@
-<div class="map-container">
-	<agm-map class="map" [latitude]='latitude' [longitude]='longitude' >
-		<agm-marker 
-		*ngFor="let m of markers; let i = index"
-		[latitude]="m.lat"
-		[longitude]="m.lng"
-		[label]="m.label"
-		[markerDraggable]="m.draggable"
-		(dragEnd)="markerDragEnd(m, $event)">
-			<agm-info-window>
-			<strong>InfoWindow content</strong>
-			</agm-info-window>
-		</agm-marker>
-	</agm-map>
-</div>
-<app-events-list></app-events-list>
+<app-map></app-map>
+<app-microcredit-list></app-microcredit-list>
 <app-community-list></app-community-list>
 <app-offer-list></app-offer-list>
+<app-events-list></app-events-list>
