@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Subject } from 'rxjs';
+import { tap, takeUntil, finalize } from 'rxjs/operators';
+
+import { OpenDataService } from '../../../core/services/open-data.service';
+import { Offer } from '../../../core/models/offer.model';
 
 @Component({
-  selector: 'app-offer-list',
-  templateUrl: './offer-list.component.html',
-  styleUrls: ['./offer-list.component.css']
+	selector: 'app-offer-list',
+	templateUrl: './offer-list.component.html',
+	styleUrls: ['./offer-list.component.css']
 })
 export class OfferListComponent implements OnInit {
-		list = [
+	list = [
 		{
 			name: 'Commonspace',
 			img: './assets/media/images/uploaded/commonspace.webp',
@@ -36,9 +41,44 @@ export class OfferListComponent implements OnInit {
 		},
 	]
 
-	constructor() { }
+	loading: boolean = false;
+	private unsubscribe: Subject<any>;
 
-	ngOnInit() {
+	offers: Offer[];
+
+	constructor(
+		private cdRef: ChangeDetectorRef,
+		private openDataService: OpenDataService
+	) {
+		this.unsubscribe = new Subject();
 	}
 
+	ngOnInit() {
+		this.fetchOffersData();
+	}
+
+	ngOnDestroy() {
+		this.unsubscribe.next();
+		this.unsubscribe.complete();
+		this.loading = false;
+	}
+
+	fetchOffersData() {
+		this.openDataService.readAllOffers()
+			.pipe(
+				tap(
+					data => {
+						this.offers = data;
+						console.log(this.offers)
+					},
+					error => {
+					}),
+				takeUntil(this.unsubscribe),
+				finalize(() => {
+					this.loading = false;
+					this.cdRef.markForCheck();
+				})
+			)
+			.subscribe();
+	}
 }
