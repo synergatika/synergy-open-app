@@ -1,11 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Subject } from 'rxjs';
+import { tap, takeUntil, finalize } from 'rxjs/operators';
+
+import { OpenDataService } from '../../../core/services/open-data.service';
+import { Merchant } from '../../../core/models/merchant.model';
 
 @Component({
-  selector: 'app-community-list',
-  templateUrl: './community-list.component.html',
-  styleUrls: ['./community-list.component.scss']
+	selector: 'app-community-list',
+	templateUrl: './community-list.component.html',
+	styleUrls: ['./community-list.component.scss']
 })
-export class CommunityListComponent implements OnInit {
+export class CommunityListComponent implements OnInit, OnDestroy {
+
+	loading: boolean = false;
+	private unsubscribe: Subject<any>;
+
+	merchants: Merchant[];
+
 	list = [
 		{
 			name: 'Commonspace',
@@ -35,10 +46,41 @@ export class CommunityListComponent implements OnInit {
 			address: 'Solonos 136, 10677, Athens'
 		},
 	]
-	
-	constructor() { }
+
+	constructor(
+		private cdRef: ChangeDetectorRef,
+		private openDataService: OpenDataService
+	) {
+		this.unsubscribe = new Subject();
+	}
 
 	ngOnInit() {
+		this.fetchMerchantsData();
+	}
+
+	ngOnDestroy() {
+		this.unsubscribe.next();
+		this.unsubscribe.complete();
+		this.loading = false;
+	}
+
+	fetchMerchantsData() {
+		this.openDataService.readMerchants()
+			.pipe(
+				tap(
+					data => {
+						this.merchants = data;
+						console.log(this.merchants)
+					},
+					error => {
+					}),
+				takeUntil(this.unsubscribe),
+				finalize(() => {
+					this.loading = false;
+					this.cdRef.markForCheck();
+				})
+			)
+			.subscribe();
 	}
 
 }

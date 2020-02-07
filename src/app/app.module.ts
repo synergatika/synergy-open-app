@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -44,10 +45,11 @@ import { OfferListComponent } from './views/content/offer-list/offer-list.compon
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-	AppRoutingModule,
-	NgbModule,
-	AgmCoreModule.forRoot({
-		//apiKey: '33zaSyAvcDy5ZYc2ujCS6TTtI3RYX5QmuoV8Ffw'
+    AppRoutingModule,
+    HttpClientModule,
+    NgbModule,
+    AgmCoreModule.forRoot({
+      //apiKey: '33zaSyAvcDy5ZYc2ujCS6TTtI3RYX5QmuoV8Ffw'
     })
   ],
   providers: [],
