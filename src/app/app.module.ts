@@ -41,6 +41,9 @@ import { MicrocreditListComponent } from './views/content/microcredit-list/micro
 import { MicrocreditSingleComponent } from './views/pages/microcredit-single/microcredit-single.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AboutComponent } from './views/pages/about/about.component';
+import { HomeHeroComponent } from './views/content/home-hero/home-hero.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -70,7 +73,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     EventArchiveComponent,
     MapComponent,
     MicrocreditListComponent,
-    MicrocreditSingleComponent
+    MicrocreditSingleComponent,
+    AboutComponent,
+    HomeHeroComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +98,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 	MatPaginatorModule,
 	MatSortModule,
 	MatProgressSpinnerModule,
-	NgxPaginationModule
+	NgxPaginationModule,
+	FormsModule,
+	ReactiveFormsModule
   ],
   providers: [
 	LoadJsonService,

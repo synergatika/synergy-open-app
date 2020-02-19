@@ -1,6 +1,28 @@
 {
-    "demo": {
-        "title": "Translation demo",
-        "text": "This is a simple demonstration app for ngx-translate"
-    }
+    "microcredit-list": {
+        "title": "Currrent microcredits"	
+    },
+	"community-list": {
+		"title": "Our Community"
+	},
+	"offer-list":  {
+		"title": "Currrent Offers",
+		"points": "Points",
+		"expires": "Expires"
+	},
+	"AUTH": {
+		"INPUT": {
+			"EMAIL": "E-mail"
+		},
+		"VALIDATION": {
+			"REQUIRED_FIELD": "This field is required",
+			"INVALID_FIELD": "Invalid Field",
+			"MIN_LENGTH_FIELD": "The minimum number of characters for the field is",
+			"MAX_LENGTH_FIELD": "The maximum number of characters for the field is"			
+		},
+		"GENERAL": {
+			"SUBMIT_BUTTON": "Submit"
+		}
+		
+	}
 }

@@ -1,6 +1,6 @@
 <app-card *ngIf="list$ | async as list;">
 <div *ngIf="coops$ | async as coops;">
-	<h2>Currrent microcredits</h2>
+	<h2>{{ 'microcredit-list.title' | translate }}</h2>
 	<!--<div class="microcredit row" *ngFor="let microcredit of objectKeys(list)">-->
 	<div class="microcredit row" *ngFor="let microcredit of objectKeys(list)">
 		<div class="col-md-6 microcredit-content">

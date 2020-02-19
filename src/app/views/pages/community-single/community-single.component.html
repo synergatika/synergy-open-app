@@ -8,12 +8,13 @@
 				<div>{{coop.name}}</div>
 				<div>{{coop.sector}}</div>
 				<div>Member Since: {{coop.subscription_date}}</div>
+				<div>{{coop.email}}</div>
+				<div>{{coop.phone}}</div>
+				<div>{{coop.address}}</div>
 			</div>
 		</div>
 		<div class="col-md-6 coop-contact">
-			<div>{{coop.email}}</div>
-			<div>{{coop.phone}}</div>
-			<div>{{coop.address}}</div>
+			<div><app-map></app-map></div>		
 		</div>
 	</div>
 	<div class="coop-offer" *ngIf="offers$ | async as list;">
