@@ -1,5 +1,5 @@
 <app-card *ngIf="list$ | async as list;">
-	<h2>Our Community</h2>
+	<h2>{{ 'community-list.title' | translate }}</h2>
 	<!--<div class="coop row" *ngFor="let coop of objectKeys(list)">-->
 	<div class="coop row" *ngFor="let coop of objectKeys(list)">
 		<div class="col-md-6 coop-content">

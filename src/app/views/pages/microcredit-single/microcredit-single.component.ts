@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadJsonService } from '../../../core/services/loadjson.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // RxJS
 import { Observable, of } from 'rxjs';
 // Translate
@@ -16,11 +17,14 @@ export class MicrocreditSingleComponent implements OnInit {
 	coopId: any;
 	microcredit$: Observable<any>;
 	coop$: Observable<any>;
+	microcreditForm: FormGroup;
 	private routeSubscription: any;
 	
-	constructor(private route: ActivatedRoute, private loadData : LoadJsonService, private translate: TranslateService,) { }
+	constructor(private route: ActivatedRoute, private loadData : LoadJsonService, private translate: TranslateService,private fb: FormBuilder,) { }
 
 	ngOnInit() {
+		this.initRegistrationForm();
+		
 		this.routeSubscription = this.route.params.subscribe(params => {
 			this.microcreditId = params['id'];
 			console.log(this.microcreditId);
@@ -37,6 +41,30 @@ export class MicrocreditSingleComponent implements OnInit {
 				});
 			});
 		});
+	}
+	
+	initRegistrationForm() {
+		this.microcreditForm = this.fb.group({
+			email: ['', Validators.compose([
+				Validators.required,
+				Validators.email,
+				Validators.minLength(3),
+				Validators.maxLength(320) // https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
+			])
+			]
+		});
+	}
+	
+	isControlHasError(controlName: string, validationType: string): boolean {
+		const control = this.microcreditForm.controls[controlName];
+		if (!control) {
+			return false;
+		}
+
+		const result =
+			control.hasError(validationType) &&
+			(control.dirty || control.touched);
+		return result;
 	}
 
 }

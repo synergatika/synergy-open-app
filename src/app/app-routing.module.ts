@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 // Components
 import { LayoutComponent } from './views/layout/layout.component';
 import { HomeComponent } from './views/pages/home/home.component';
+import { AboutComponent } from './views/pages/about/about.component';
 import { ContactComponent } from './views/pages/contact/contact.component';
 import { EventArchiveComponent } from './views/pages/event-archive/event-archive.component';
 import { OfferSingleComponent } from './views/pages/offer-single/offer-single.component';
@@ -23,6 +24,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'events', component:EventArchiveComponent
+			},
+			{
+				path: 'about', component:AboutComponent
 			},
 			{
 				path: 'contact', component:ContactComponent

@@ -23,12 +23,12 @@ export class LanguageSwitcherComponent implements OnInit {
 		{
 			lang: 'en',
 			name: 'English',
-			flag: './assets/media/images/flag-greek.png'
+			flag: './assets/media/images/flag-british.png'
 		},
 		{
 			lang: 'el',
 			name: 'Greek',
-			flag: './assets/media/images/flag-british.png'
+			flag: './assets/media/images/flag-greek.png'
 		},
 	];
 	

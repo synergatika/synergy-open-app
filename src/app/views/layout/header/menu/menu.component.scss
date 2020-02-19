@@ -1,0 +1,17 @@
+.nav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.nav-link {
+		color: #000;
+		font-size: 22px;
+		padding: 0.5rem;
+	}
+	.menu-divider:not(:last-child) {
+		width: 7px;
+		height: 7px;
+		background-color: #e4509e;
+		border-radius: 50%;
+		margin: 0 3px;
+	}
+}

@@ -1,6 +1,6 @@
 <app-card *ngIf="list$ | async as list;">
 <div *ngIf="coops$ | async as coops;">
-	<h2>Currrent Offers</h2>
+	<h2>{{ 'offer-list.title' | translate }}</h2>
 	<!--<div class="offer row" *ngFor="let offer of objectKeys(list)">-->
 	<div class="offer row" *ngFor="let offer of objectKeys(list)">
 		<div class="col-md-6 offer-content">
@@ -15,8 +15,8 @@
 		</div>
 		<div class="col-md-6 offer-info">
 			<div>{{coops[list[offer]['coop_id']]['name']}}</div>
-			<div>Points: {{list[offer]['points']}}</div>
-			<div>Expires: {{list[offer]['expires']}}</div>
+			<div>{{ 'offer-list.points' | translate }}: {{list[offer]['points']}}</div>
+			<div>{{ 'offer-list.expires' | translate }}: {{list[offer]['expires']}}</div>
 		</div>
 	</div>
 	</div>
