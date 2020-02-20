@@ -1,0 +1,29 @@
+{
+    "microcredit-list": {
+        "title": "Τρέχοντα microcredits"	
+    },
+	"community-list": {
+		"title": "Κοινότητά"
+	},
+	"offer-list": {
+		"title": "Τρέχουσες Προσφορές",
+		"points": "Πόντοι",
+		"expires": "Λήγει"
+	},
+	"AUTH": {
+		"INPUT": {
+			"EMAIL": "E-mail"
+		},
+		"VALIDATION": {
+			"REQUIRED_FIELD": "Το πεδίο είναι απαραίτητο",
+			"INVALID_FIELD": "Το πεδίο δεν είναι έγκυρο",
+			"MIN_LENGTH_FIELD": "Ο ελάχιστος αριθμός χαρακτήρων για το πεδίο είναι",
+			"MAX_LENGTH_FIELD": "Ο μέγιστος αριθμός χαρακτήρων για το πεδίο είναι"			
+		},
+		"GENERAL": {
+			"SUBMIT_BUTTON": "Υποβολή"
+		}
+		
+	}
+	
+}

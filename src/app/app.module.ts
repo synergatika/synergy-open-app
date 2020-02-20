@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http'; 
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,9 +21,36 @@ import { HomeComponent } from './views/pages/home/home.component';
 import { CommunityListComponent } from './views/content/community-list/community-list.component';
 import { CardComponent } from './views/layout/card/card.component';
 import { ContactComponent } from './views/pages/contact/contact.component';
-import { EventsComponent } from './views/pages/events/events.component';
 import { EventsListComponent } from './views/content/events-list/events-list.component';
 import { OfferListComponent } from './views/content/offer-list/offer-list.component';
+import { CommunitySingleComponent } from './views/pages/community-single/community-single.component';
+import { LoadJsonService } from './core/services/loadjson.service';
+import { LoadEventsService } from './core/services/loadEvents.service';
+import { LoadCommunityService } from './core/services/loadCommunity.service';
+import { TranslationService } from './core/services/translation.service';
+
+import { NotFoundComponent } from './views/pages/not-found/not-found.component';
+import { OfferSingleComponent } from './views/pages/offer-single/offer-single.component';
+import { PostsListComponent } from './views/content/posts-list/posts-list.component';
+import { EventSingleComponent } from './views/pages/event-single/event-single.component';
+import { EventArchiveComponent } from './views/pages/event-archive/event-archive.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from "@angular/material";
+import { MapComponent } from './views/content/map/map.component';
+import { MicrocreditListComponent } from './views/content/microcredit-list/microcredit-list.component';
+import { MicrocreditSingleComponent } from './views/pages/microcredit-single/microcredit-single.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AboutComponent } from './views/pages/about/about.component';
+import { HomeHeroComponent } from './views/content/home-hero/home-hero.component';
+import { ContainerComponent } from './views/layout/container/container.component';
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -38,21 +66,53 @@ import { OfferListComponent } from './views/content/offer-list/offer-list.compon
     CommunityListComponent,
     CardComponent,
     ContactComponent,
-    EventsComponent,
     EventsListComponent,
-    OfferListComponent
+    OfferListComponent,
+    CommunitySingleComponent,
+    NotFoundComponent,
+    OfferSingleComponent,
+    PostsListComponent,
+    EventSingleComponent,
+    EventArchiveComponent,
+    MapComponent,
+    MicrocreditListComponent,
+    MicrocreditSingleComponent,
+    AboutComponent,
+    HomeHeroComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgbModule,
-    AgmCoreModule.forRoot({
-      //apiKey: '33zaSyAvcDy5ZYc2ujCS6TTtI3RYX5QmuoV8Ffw'
-    })
+	AppRoutingModule,
+	NgbModule,
+	AgmCoreModule.forRoot({
+		//apiKey: '33zaSyAvcDy5ZYc2ujCS6TTtI3RYX5QmuoV8Ffw'
+    }),
+	HttpClientModule,
+	TranslateModule.forRoot({
+		loader: {
+			provide: TranslateLoader,
+			useFactory: HttpLoaderFactory,
+			deps: [HttpClient]
+		}
+	}),
+	MatInputModule,
+	MatTableModule,
+	MatPaginatorModule,
+	MatSortModule,
+	MatProgressSpinnerModule,
+	NgxPaginationModule,
+	FormsModule,
+	ReactiveFormsModule,
+	CarouselModule,
   ],
-  providers: [],
+  providers: [
+	LoadJsonService,
+	LoadEventsService,
+	LoadCommunityService,
+	TranslationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,24 @@
+<div class="map-container">
+	<agm-map class="map" [latitude]='latitude' [longitude]='longitude' >
+		<ng-template [ngIf]="list">
+			<agm-marker *ngFor="let coop of list; let i = index"
+				[latitude]="coop.lat"
+				[longitude]="coop.long"
+				[markerDraggable]="coop.draggable"
+			>
+				<agm-info-window>
+					<div class="info-container">
+						<img src={{coop.img}}>
+						<div>
+							<a [routerLink]="['/coop', coop.id]">
+								<strong>{{coop.name}}</strong>
+								<br>
+								<p>{{coop.address}}</p>
+							</a>
+						</div>
+					</div>
+				</agm-info-window>
+			</agm-marker>
+		</ng-template>
+	</agm-map>
+</div>

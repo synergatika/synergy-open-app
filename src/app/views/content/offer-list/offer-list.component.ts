@@ -5,12 +5,19 @@ import { tap, takeUntil, finalize } from 'rxjs/operators';
 import { OpenDataService } from '../../../core/services/open-data.service';
 import { Offer } from '../../../core/models/offer.model';
 
+import { LoadJsonService } from '../../../core/services/loadjson.service';
+// RxJS
+import { Observable, of } from 'rxjs';
+
 @Component({
 	selector: 'app-offer-list',
 	templateUrl: './offer-list.component.html',
 	styleUrls: ['./offer-list.component.css']
 })
 export class OfferListComponent implements OnInit {
+	objectKeys = Object.keys;
+	list$: Observable<any>;
+	coops$: Observable<any>;
 	list = [
 		{
 			name: 'Commonspace',
@@ -48,13 +55,25 @@ export class OfferListComponent implements OnInit {
 
 	constructor(
 		private cdRef: ChangeDetectorRef,
-		private openDataService: OpenDataService
+		private openDataService: OpenDataService,
+		private loadData : LoadJsonService
 	) {
 		this.unsubscribe = new Subject();
 	}
 
 	ngOnInit() {
 		this.fetchOffersData();
+		this.loadData.getJSON('offers').subscribe(data => {			
+			//console.log('getJSON data - offers');
+           // console.log(data);
+			this.list$ = of(data);
+			this.loadData.getJSON('coops').subscribe(coops => {			
+				//console.log('getJSON data - coops of offers');
+				//console.log(coops);
+				this.coops$ = of(coops);
+			});
+
+        });
 	}
 
 	ngOnDestroy() {

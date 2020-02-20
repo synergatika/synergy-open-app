@@ -1,5 +1,9 @@
-<ul class="nav">
-	<li *ngFor="let item of menu" class="nav-item">{{item.title}}
-		<a class="nav-link" [routerLink]="['/'+item.link]">{{item.title}}</a>
-	</li>
-</ul>
+<div class="nav">
+	<ng-container *ngFor="let item of menu">
+		<div class="nav-item">
+			<a class="nav-link" [routerLink]="['/'+item.link]">{{item.title}}</a>
+		</div>
+		<div class="menu-divider">
+		</div>
+	</ng-container>
+</div>

@@ -1,6 +1,6 @@
 .coop {
-	border-bottom: 1px solid #eee;
-	padding-bottom: 5px;
+	//border-bottom: 1px solid #eee;
+	padding: 40px 0 5px;
 	margin-bottom: 20px;
 	&-content {
 		display: flex;
@@ -12,5 +12,31 @@
 	}
 	&-contact {
 		text-align: right;
+	}
+	.card-content-coop {
+		max-width: 80%;
+		&-divider {
+			text-align: center;
+			margin-bottom: 10px;
+			span {
+				display: inline-block;
+				width: 10px;
+				height: 10px;
+				background-color: #e4509e;
+				margin-right: 3px;
+				border-radius: 50%;
+				&:nth-child(2) {
+					background-color: #415daa;
+				}
+				&:nth-child(3) {
+					background-color: #fdca27;
+				}
+			}
+		}
+	}
+}
+@media (min-width: 1200px) {
+	.coop {
+		padding: 80px 0 70px;
 	}
 }
