@@ -12,7 +12,7 @@ import { Observable, of } from 'rxjs';
 @Component({
 	selector: 'app-offer-list',
 	templateUrl: './offer-list.component.html',
-	styleUrls: ['./offer-list.component.css']
+	styleUrls: ['./offer-list.component.scss']
 })
 export class OfferListComponent implements OnInit {
 	objectKeys = Object.keys;

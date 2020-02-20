@@ -1,4 +1,4 @@
-<div class="map-container">
+<!--<div class="map-container">
 	<agm-map class="map" [latitude]='latitude' [longitude]='longitude'>
 		<agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.label, i)"
 			[latitude]="m.lat" [longitude]="m.lng" [label]="m.label" [markerDraggable]="m.draggable"
@@ -12,7 +12,7 @@
 		</agm-circle>
 	</agm-map>
 </div>
-
+-->
 <app-container>
 	<app-home-hero></app-home-hero>
 </app-container>
@@ -20,15 +20,19 @@
 	<h2 class="title-overlapping">{{ 'community-list.title' | translate }}</h2>
 	<app-community-list></app-community-list>
 </app-container>
-<div class="home-two-part-section bck-grey">
-	<div class="row">		
-		<div class="">
-		</div>
-		<div class="">
-			<app-offer-list></app-offer-list>
+<div class="container-wrapper home-two-part-section bck-grey primary">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2">
+				Προσφορές
+			</div>
+			<div class="col-md-10">
+				<app-offer-list></app-offer-list>
+			</div>
 		</div>
 	</div>
 </div>
+
 <app-microcredit-list></app-microcredit-list>
 
 
