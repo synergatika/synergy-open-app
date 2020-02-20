@@ -12,11 +12,12 @@ import { Merchant } from '../../../core/models/merchant.model';
 	styleUrls: ['./home.component.scss']
 })
 
-<<<<<<< HEAD
+
 export class HomeComponent implements OnInit, OnDestroy {
 	latitude = 38.262431;
 	longitude = 23.686613;
-	markers: marker[];
+	//markers: marker[];
+	markers;
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
 
@@ -45,7 +46,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 				tap(
 					data => {
 						this.merchants = data;
-						let x: marker[];
+						//let x: marker[];
+						let x;
 						this.markers = [{
 							lat: parseFloat(this.merchants[0].address.coordinates[0]),
 							lng: parseFloat(this.merchants[0].address.coordinates[1]),
