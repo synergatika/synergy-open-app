@@ -1,6 +1,28 @@
-<app-card *ngIf="list$ | async as list;">
-	<h2>{{ 'community-list.title' | translate }}</h2>
+<div class="coop" *ngIf="list$ | async as list;">
 	<!--<div class="coop row" *ngFor="let coop of objectKeys(list)">-->
+	<owl-carousel-o [options]="customOptions">
+		<ng-template carouselSlide *ngFor="let coop of objectKeys(list)">
+			<div class="carousel-card">
+				<div (mousedown)="mousedown()" (mousemove)="mousemove()" (mouseup)="mouseup(coop, 'coop')">
+					<div class="carousel-card-logo">
+						<div class="carousel-card-logo-container">
+							<img [src]="list[coop]['img']" [alt]="list[coop]['name']" />
+							<!--<a [routerLink]="['/coop', coop]"></a>-->
+						</div>
+					</div>
+					<div class="carousel-card-content row justify-content-md-center">
+						<div class="card-content-coop">
+							<div class="card-content-coop-divider"><span></span><span></span><span></span></div>
+							<div>{{list[coop]['email']}}</div>
+							<div>{{list[coop]['phone']}}</div>
+							<div>{{list[coop]['address']}}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ng-template>
+	</owl-carousel-o>
+<!--			
 	<div class="coop row" *ngFor="let coop of objectKeys(list)">
 		<div class="col-md-6 coop-content">
 			<div class="coop-logo">
@@ -21,4 +43,5 @@
 			<div>{{list[coop]['address']}}</div>
 		</div>
 	</div>
-</app-card>
+	-->
+</div>

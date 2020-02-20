@@ -34,6 +34,7 @@ import { PostsListComponent } from './views/content/posts-list/posts-list.compon
 import { EventSingleComponent } from './views/pages/event-single/event-single.component';
 import { EventArchiveComponent } from './views/pages/event-archive/event-archive.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from "@angular/material";
 import { MapComponent } from './views/content/map/map.component';
@@ -44,6 +45,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './views/pages/about/about.component';
 import { HomeHeroComponent } from './views/content/home-hero/home-hero.component';
+import { ContainerComponent } from './views/layout/container/container.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -75,7 +77,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MicrocreditListComponent,
     MicrocreditSingleComponent,
     AboutComponent,
-    HomeHeroComponent
+    HomeHeroComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +103,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 	MatProgressSpinnerModule,
 	NgxPaginationModule,
 	FormsModule,
-	ReactiveFormsModule
+	ReactiveFormsModule,
+	CarouselModule,
   ],
   providers: [
 	LoadJsonService,

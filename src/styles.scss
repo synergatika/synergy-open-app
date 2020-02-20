@@ -1,4 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+//Variables
+$primary: #e4509e;
+$secondary: #415daa;
+$tertiary: #fdca27;
+$grey: #eee;
+
+//Fonts
 @font-face{
 	font-family: 'NeutrafaceTwoTextGreek';
 	src: url('assets/fonts/NeutrafaceTwoTextGreek.woff') format('woff');
@@ -59,6 +65,45 @@ html {
 				margin-bottom: 2rem;
 			}
 		}
+		.carousel-card {
+			background-color: #fff;
+			border-radius: 40px;			
+			padding: 20px;
+			overflow: hidden;
+			&-logo {
+				position: relative;
+				height: auto;
+				overflow: hidden;
+				padding-top: 50%;
+				background-position: 50% 50%;
+				background-size: cover;
+				margin-bottom: 20px;
+				&-container {
+					padding:0;					
+				}
+				img {
+					right: 0;
+					width: 100%;
+					height: 100%;
+					bottom: 0;
+					left: 0;
+					top: 0;
+					position: absolute;
+					object-position: 50% 50%;
+					object-fit: contain;
+				}
+			}
+		}
+		.bck-light {
+			.container-wrapper {
+				background-color: $tertiary;
+			}
+		}
+		.bck-grey {
+			.container-wrapper {
+				background-color: $grey;
+			}
+		}
 	}
 	app-user-menu, app-language-switcher {
 		display: flex;
@@ -69,8 +114,8 @@ html {
 	}
 	//Bootstrap
 	.btn-primary {
-		background-color: #e4509e;
-		border-color: #e4509e;
+		background-color: $primary;
+		border-color: $primary;
 		box-shadow: 1px 2px 5px #dedbdb;
 		transition: 0.3s;
 		font-size: 1.2rem;		
@@ -88,7 +133,15 @@ html {
 }
 
 @media (min-width: 1200px) {
-	.container {
-		max-width: 1300px;	
+	html {
+		body { 
+			.container {
+				max-width: 1300px;	
+			}
+			.carousel-card {
+				border-radius: 60px;
+				margin: 0 15px;
+			}
+		}
 	}
 }
