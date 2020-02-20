@@ -1,1 +1,24 @@
-<p>offer-list works!</p>
+<app-card *ngIf="list$ | async as list;">
+<div *ngIf="coops$ | async as coops;">
+	<h2>{{ 'offer-list.title' | translate }}</h2>
+	<!--<div class="offer row" *ngFor="let offer of objectKeys(list)">-->
+	<div class="offer row" *ngFor="let offer of objectKeys(list)">
+		<div class="col-md-6 offer-content">
+			<div class="offer-logo">				
+				<img [src]="coops[list[offer]['coop_id']]['img']" [alt]="list[offer]['name']" />			
+			</div>
+			<div class="">
+				<a [routerLink]="['/offer', offer]">
+					{{list[offer]['title']}}
+				</a>
+			</div>			
+		</div>
+		<div class="col-md-6 offer-info">
+			<div>{{coops[list[offer]['coop_id']]['name']}}</div>
+			<div>{{ 'offer-list.points' | translate }}: {{list[offer]['points']}}</div>
+			<div>{{ 'offer-list.expires' | translate }}: {{list[offer]['expires']}}</div>
+		</div>
+	</div>
+	</div>
+</app-card>
+

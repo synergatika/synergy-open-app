@@ -1,0 +1,23 @@
+<app-card *ngIf="event$ | async as event;">
+	<div *ngIf="coop$ | async as coop;">
+		<h1>{{event.title}}</h1>
+		<div class="event row">
+			<div class="col-md-6 event-content">
+				<div class="event-logo">
+					<img [src]="coop.img" [alt]="coop.name" />
+				</div>
+				<div class="">
+					<div><a [routerLink]="['/coop', coopId]">{{coop.name}}</a></div>
+				</div>
+			</div>
+			<div class="col-md-6 event-contact">
+				<div>{{event.date}}</div>
+			</div>
+		</div>
+		<div class="">
+			<p>
+				{{event.content}}
+			</p>
+		</div>
+	</div>
+</app-card>

@@ -1,12 +1,20 @@
 app-home {
 	width: 100%;
-
 }
-.map-container {
-	margin-bottom: 5rem;
+.title-overlapping {
+	position: absolute;
+	top: -55px;
+	left: 0;
+	font-size: 2rem;
+    color: #415daa;
+    font-weight: 700;
+	background-color: #fff;
+	border-radius: 35px;
+	border: 3px solid #fdca27;
+	padding: 10px 20px;
 }
-.map {
-	width: 100%;
-	min-height: 500px;	
-	height: 500px;
+.home-two-part-section {
+	&.bck-grey {	
+		background-color: #eee;
+	}
 }

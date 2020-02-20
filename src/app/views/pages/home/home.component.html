@@ -7,12 +7,31 @@
 			<agm-info-window>
 				<strong>InfoWindow content</strong>
 			</agm-info-window>
-
-		</agm-marker>
-
-		<agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'"
+			<agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'"
 			[circleDraggable]="true" [editable]="true">
 		</agm-circle>
 	</agm-map>
 </div>
-<app-community-list></app-community-list>
+
+<app-container>
+	<app-home-hero></app-home-hero>
+</app-container>
+<app-container class="bck-light">
+	<h2 class="title-overlapping">{{ 'community-list.title' | translate }}</h2>
+	<app-community-list></app-community-list>
+</app-container>
+<div class="home-two-part-section bck-grey">
+	<div class="row">		
+		<div class="">
+		</div>
+		<div class="">
+			<app-offer-list></app-offer-list>
+		</div>
+	</div>
+</div>
+<app-microcredit-list></app-microcredit-list>
+
+
+<app-container class="">
+	<app-events-list></app-events-list>
+</app-container>
