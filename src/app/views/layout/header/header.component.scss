@@ -1,7 +1,8 @@
-.header__wrapper {
+.header-wrapper {
 	align-items: center;
     justify-content: space-between;
-	.header_right__wrapper {
+	&-right {
 		display: flex;
+		align-items: center;
 	}
 }
