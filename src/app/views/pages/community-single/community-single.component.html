@@ -1,47 +1,85 @@
-<app-card *ngIf="coop$ | async as coop;">
-	<div class="coop row">
-		<div class="col-md-6 coop-content">
-			<div class="coop-logo">
-				<img [src]="coop.img" [alt]="coop.name" />
+<div *ngIf="coop">
+	<div class="container coop-info-container">
+		<div class="coop row">
+			<div class="col-md-6 coop-info-content">
+				<div class="row">	
+					<div class="col-md-6">		
+						<div>
+							<h1 class="single-title">{{coop.name}}</h1>
+							<div>{{coop.sector}}</div>
+							<div>{{coop.email}}</div>
+							<div>{{coop.contact.websiteURL}}</div>
+							<div>{{coop.contact.phone}}</div>
+							<div>{{coop.address.street}}, {{coop.address.postCode}}, {{coop.address.city}}</div>
+						</div>
+					</div>
+					<div class="col-md-6 coop-content">
+						<div>
+							<div>Ωράριο</div>
+							<div>{{coop.email}}</div>
+							<div>{{coop.contact.websiteURL}}</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="">
-				<div>{{coop.name}}</div>
-				<div>{{coop.sector}}</div>
-				<div>Member Since: {{coop.subscription_date}}</div>
-				<div>{{coop.email}}</div>
-				<div>{{coop.phone}}</div>
-				<div>{{coop.address}}</div>
+			<div class="col-md-6 coop-logo-container">
+				<div class="coop-logo">
+					<img [src]="coop.imageURL" [alt]="coop.name" />
+				</div>	
 			</div>
 		</div>
-		<div class="col-md-6 coop-contact">
-			<div><app-map></app-map></div>		
+	</div>
+	<div class="gallery">
+		<owl-carousel-o [options]="customOptions">
+			<ng-template carouselSlide *ngFor="let galleryImg of gallery">
+				<div class="carousel-logo">
+					<div class="">						
+						<img src="assets/media/images/{{galleryImg}}">
+					</div>
+				</div>
+			</ng-template>
+		</owl-carousel-o>
+	</div>
+	<div class="container-wrapper two-part-section bck-asymmetry primary">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2 narrow">
+					<div class="narrow-title">
+						{{ 'HOME.offers-title' | translate }}
+					</div>
+				</div>
+				<div class="col-md-10 wide">
+					<div class="wide-container">
+						<div>
+							<app-offer-list></app-offer-list>
+						</div>
+					</div>			
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="coop-offer" *ngIf="offers$ | async as list;">
-		<h3>Offers</h3>		
-		<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-		  <ng-container matColumnDef="description">
-			<th mat-header-cell *matHeaderCellDef>Description</th>
-			<td mat-cell *matCellDef="let element"><a [routerLink]="['/offer', element.id]"> {{element.title}} </a></td>
-		  </ng-container>
-
-		  <ng-container matColumnDef="date_from">
-			<th mat-header-cell *matHeaderCellDef>From</th>
-			<td mat-cell *matCellDef="let element"> {{element.expires}} </td>
-		  </ng-container>
-
-		  <ng-container matColumnDef="date_to">
-			<th mat-header-cell *matHeaderCellDef>To</th>
-			<td mat-cell *matCellDef="let element"> {{element.expires}} </td>
-		  </ng-container>
-
-		  <ng-container matColumnDef="points">
-			<th mat-header-cell *matHeaderCellDef>Points Required</th>
-			<td mat-cell *matCellDef="let element" class="points"> {{element.points}} </td>
-		  </ng-container>
-
-		  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-		  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-		</table>
+	<div class="container-wrapper two-part-section bck-asymmetry secondary">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 wide">
+					<div class="wide-container">
+						<div>
+							<app-microcredit-list></app-microcredit-list>
+						</div>
+					</div>			
+				</div>
+				<div class="col-md-2 narrow">
+					<div class="narrow-title">
+						{{ 'HOME.campaigns-title' | translate }}
+					</div>
+				</div>
+				
+			</div>
+		</div>
 	</div>
-</app-card>
+	<app-container class="event-container">
+		<h2 class="news-title">{{ 'HOME.news-title' | translate }}</h2>
+		<app-events-list></app-events-list>
+	</app-container>
+	<div><app-map></app-map></div>
+</div>

@@ -1,3 +1,24 @@
+.footer-wrapper {
+	background-color: #415daa;
+	color: #fff;
+	padding: 40px 20px 30px;
+	.footer-menu-link {
+		display: block;
+		transition: color 0.3s;
+		&:hover {
+			color: #fff;
+		}
+		
+	}
+	.footer-logo {
+		display: flex;
+		align-items: center;
+	}
+	.footer-text {
+		margin-bottom: 30px;
+	}
+}
+
 .footer__wrapper {
 	color: #ccc;
 	display: flex;

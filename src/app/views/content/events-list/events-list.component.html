@@ -1,7 +1,6 @@
-<div *ngIf="list$ | async as list;">
+<!--<div *ngIf="list$ | async as list;">
 	<h2 class="events-title">Upcoming Events</h2>
 	<div class="row" *ngIf="coops$ | async as coops;">		
-		<!--<div class="event row" *ngFor="let event of objectKeys(list)">-->
 		<div class="event" *ngFor="let event of objectKeys(list)">
 			<div class="event-content">
 				<div class="event-logo">				
@@ -21,5 +20,46 @@
 			</div>
 		</div>
 	</div>
+</div>-->
+<div *ngIf="posts_events">
+	<owl-carousel-o [options]="customOptions">
+		<ng-template carouselSlide *ngFor="let post of posts_events">
+			<mat-card class="item-card post-card" *ngIf="post">
+			  <mat-card-content>
+					<!--begin::Content-->
+					<div class="wallet_post_wrapper">
+						<div class="item row" >
+							<div class="col-sm-12 item-img-container">
+								<div class="item-img">
+									<img src={{post.post_event_imageURL}} alt={{post.title}} />
+									<div *ngIf="post.dateTime" class="item-expires"><span class="white mdi mdi-calendar"></span> {{post.dateTime | date: 'd.M'}}</div>
+								</div>
+								
+							</div>
+							<div class="col-sm-12 item-amount">
+								<div class="item-heading">
+									<div class="item-title">{{post.title}}</div>
+									<div>
+										<span class="points">{{post.cost | currency:'EUR'}}</span>
+									</div>
+								</div>
+								<div class="item-description">
+									{{post.content}}
+								</div>
+								<div class="item-info">
+									<div class="">
+										<div class="item-subtitle"><!--<img src="../../../assets/media/images/Shop-Icon.png" alt="Shop" />--><span class="mdi mdi-shopping"></span>{{post.merchant_name}}</div>
+										<div *ngIf="post.location" class="item-subtitle"><!--<img src="../../../assets/media/images/Map-Icon.png" alt="Shop" />--><span class="mdi mdi-pin"></span>{{post.location}}</div>
+									</div>
+									<!--<app-share-icon></app-share-icon>-->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end::Content-->
+			  </mat-card-content>
+			</mat-card>
+		</ng-template>
+	</owl-carousel-o>
+	
 </div>
-

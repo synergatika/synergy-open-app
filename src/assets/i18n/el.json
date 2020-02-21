@@ -1,9 +1,9 @@
 {
-    "microcredit-list": {
-        "title": "Τρέχοντα microcredits"	
-    },
-	"community-list": {
-		"title": "Κοινότητά"
+	"HOME": {
+	    "campaigns-title": "καμπανιες",
+		"community-title":  "Κοινότητα",
+		"offers-title": "προσφορες",
+		"news-title": "Νέα"
 	},
 	"offer-list": {
 		"title": "Τρέχουσες Προσφορές",
