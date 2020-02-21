@@ -15,6 +15,7 @@ import { environment } from '../../../environments/environment';
 import { Merchant } from '../models/merchant.model'
 import { Offer } from '../models/offer.model'
 import { PostEvent } from '../models/post_event.model'
+import { MicrocreditCampaign } from '../models/microcredit-campaign.model';
 
 @Injectable({
   providedIn: 'root'
@@ -71,6 +72,16 @@ export class OpenDataService {
 
   readPublicPostsEventsByStore(merchant_id: string): Observable<PostEvent[]> {
     return this.http.get<any>(`${environment.apiUrl}/community/public/${merchant_id}`)
+      .pipe(map(response => {
+        return response.data;
+      }));
+  }
+  
+   /** 
+   * Microcredit Campaigns
+   */
+  readAllPublicMicrocreditCampaigns(): Observable<MicrocreditCampaign[]> {
+    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public`)
       .pipe(map(response => {
         return response.data;
       }));

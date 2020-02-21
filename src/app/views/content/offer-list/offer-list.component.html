@@ -1,7 +1,7 @@
-<app-card *ngIf="list$ | async as list;">
+<!--<app-card *ngIf="list$ | async as list;">
 <div *ngIf="coops$ | async as coops;">
 	<h2>{{ 'offer-list.title' | translate }}</h2>
-	<!--<div class="offer row" *ngFor="let offer of objectKeys(list)">-->
+	
 	<div class="offer row" *ngFor="let offer of objectKeys(list)">
 		<div class="col-md-6 offer-content">
 			<div class="offer-logo">				
@@ -20,5 +20,47 @@
 		</div>
 	</div>
 	</div>
-</app-card>
+</app-card>-->
+<div *ngIf="offers">
+	<owl-carousel-o [options]="customOptions">
+		<ng-template carouselSlide *ngFor="let offer of offers">
+			<mat-card class="item-card offer-card">
+			  <mat-card-content>
+					<!--begin::Content-->
+					<div class="wallet_offer_wrapper">
+						<div class="item row" >
+							<div class="col-sm-12 item-img-container">
+								<div class="item-img">
+									<img src={{offer.offer_imageURL}} alt={{offer.title}} />
+									<div class="item-expires">έως {{offer.expiresAt | date: 'd.M'}}</div>
+								</div>
+								
+							</div>
+							<div class="col-sm-12 item-amount">
+								<div class="item-heading">
+									<div class="item-title">{{offer.title}}</div>
+									<div>
+										<span class="points">{{offer.cost}}</span>
+									</div>
+								</div>
+								<div class="item-description">
+									{{offer.description}}
+								</div>
+								<div class="item-info">
+									<div class="" >
+										<div class="item-subtitle" *ngIf="type!='single'"><span class="mdi mdi-shopping"></span>{{offer.merchant_name}}</div>
+										<div class="item-subtitle" *ngIf="type!='single'"><span class="mdi mdi-pin"></span>{{offer.expiresAt}}</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end::Content-->
+			  </mat-card-content>
+			</mat-card>
+		</ng-template>
+	</owl-carousel-o>
+	
+</div>
 
