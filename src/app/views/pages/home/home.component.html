@@ -17,15 +17,15 @@
 	<app-home-hero></app-home-hero>
 </app-container>
 <app-container class="bck-light">
-	<h2 class="title-overlapping">{{ 'community-list.title' | translate }}</h2>
+	<h2 class="title-overlapping">{{ 'HOME.community-title' | translate }}</h2>
 	<app-community-list></app-community-list>
 </app-container>
-<div class="container-wrapper home-two-part-section bck-asymmetry primary">
+<div class="container-wrapper two-part-section bck-asymmetry primary">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2 narrow">
 				<div class="narrow-title">
-					προσφορές
+					{{ 'HOME.offers-title' | translate }}
 				</div>
 			</div>
 			<div class="col-md-10 wide">
@@ -38,7 +38,7 @@
 		</div>
 	</div>
 </div>
-<div class="container-wrapper home-two-part-section bck-asymmetry secondary">
+<div class="container-wrapper two-part-section bck-asymmetry secondary">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 wide">
@@ -50,7 +50,7 @@
 			</div>
 			<div class="col-md-2 narrow">
 				<div class="narrow-title">
-					καμπάνιες
+					{{ 'HOME.campaigns-title' | translate }}
 				</div>
 			</div>
 			
@@ -58,6 +58,11 @@
 	</div>
 </div>
 
-<app-container class="">
+<app-container class="event-container">
+	<h2 class="news-title">{{ 'HOME.news-title' | translate }}</h2>
 	<app-events-list></app-events-list>
+	<div class="text-center mt-4">
+		<a class="btn btn-primary" href="#">Περισσότερα</a>
+	</div>
 </app-container>
+<app-map></app-map>

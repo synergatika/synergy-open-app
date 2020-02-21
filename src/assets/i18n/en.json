@@ -1,9 +1,9 @@
 {
-    "microcredit-list": {
-        "title": "Currrent microcredits"	
-    },
-	"community-list": {
-		"title": "Our Community"
+	"HOME": {
+	    "campaigns-title": "campaigns",
+		"community-title":  "Community",
+		"offers-title": "offers",
+		"news-title": "News"
 	},
 	"offer-list":  {
 		"title": "Currrent Offers",

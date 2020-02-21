@@ -8,7 +8,7 @@ import { PostEvent } from '../../../core/models/post_event.model';
 import { LoadJsonService } from '../../../core/services/loadjson.service';
 // RxJS
 import { Observable, of } from 'rxjs';
-
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-events-list',
@@ -21,7 +21,25 @@ export class EventsListComponent implements OnInit, OnDestroy {
 	coops$: Observable<any>;
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
-
+	customOptions: OwlOptions = {
+		loop: true,
+		mouseDrag: true,
+		touchDrag: false,
+		pullDrag: false,
+		dots: true,
+		navSpeed: 700,
+		navText: ['', ''],
+		responsive: {
+		  0: {
+			items: 1
+		  },
+		  940: {
+			items: 3
+		  }
+		},
+		margin:80,
+		nav: true
+	}
 	posts_events: PostEvent[];
 
 	constructor(

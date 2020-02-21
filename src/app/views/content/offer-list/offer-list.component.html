@@ -27,32 +27,30 @@
 			<mat-card class="item-card offer-card">
 			  <mat-card-content>
 					<!--begin::Content-->
-					<div class="wallet_offer_wrapper">
-						<div class="item row" >
-							<div class="col-sm-12 item-img-container">
-								<div class="item-img">
-									<img src={{offer.offer_imageURL}} alt={{offer.title}} />
-									<div class="item-expires">έως {{offer.expiresAt | date: 'd.M'}}</div>
+					<div class="item row" >
+						<div class="col-sm-12 item-img-container">
+							<div class="item-img">
+								<img src={{offer.offer_imageURL}} alt={{offer.title}} />
+								<div class="item-expires">έως {{offer.expiresAt | date: 'd.M'}}</div>
+							</div>
+							
+						</div>
+						<div class="col-sm-12 item-amount">
+							<div class="item-heading">
+								<div class="item-title">{{offer.title}}</div>
+								<div>
+									<span class="points">{{offer.cost}}</span>
+								</div>
+							</div>
+							<div class="item-description">
+								{{offer.description}}
+							</div>
+							<div class="item-info">
+								<div class="" >
+									<div class="item-subtitle" *ngIf="type!='single'"><span class="mdi mdi-shopping"></span>{{offer.merchant_name}}</div>
+									<div class="item-subtitle" *ngIf="type!='single'"><span class="mdi mdi-pin"></span>{{offer.expiresAt}}</div>
 								</div>
 								
-							</div>
-							<div class="col-sm-12 item-amount">
-								<div class="item-heading">
-									<div class="item-title">{{offer.title}}</div>
-									<div>
-										<span class="points">{{offer.cost}}</span>
-									</div>
-								</div>
-								<div class="item-description">
-									{{offer.description}}
-								</div>
-								<div class="item-info">
-									<div class="" >
-										<div class="item-subtitle" *ngIf="type!='single'"><span class="mdi mdi-shopping"></span>{{offer.merchant_name}}</div>
-										<div class="item-subtitle" *ngIf="type!='single'"><span class="mdi mdi-pin"></span>{{offer.expiresAt}}</div>
-									</div>
-									
-								</div>
 							</div>
 						</div>
 					</div>

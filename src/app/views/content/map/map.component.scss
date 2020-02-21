@@ -1,13 +1,13 @@
 .map-container {
-	margin-bottom: 5rem;
-}
-.map {
-	width: 100%;
-	min-height: 500px;	
-	height: 500px;
-	.info-container {		
-		img {
-			max-width: 30px;
+	.map {
+		width: 100%;
+		min-height: 400px;	
+		height: 400px;
+		.info-container {
+			text-align: center;
+			img {
+				max-width: 60px;
+			}
 		}
 	}
 }

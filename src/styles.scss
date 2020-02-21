@@ -3,6 +3,8 @@ $primary: #e4509e;
 $secondary: #415daa;
 $tertiary: #fdca27;
 $grey: #eee;
+$secondary-dark: #283a6b;
+
 
 //Fonts
 @font-face{
@@ -56,6 +58,13 @@ html {
 		/*background-color: #0c1a33;*/
 		h1 {
 			margin-bottom: 2rem;
+		}
+		a {
+			color: $secondary-dark;
+			&:hover {
+				color: #03050a;
+				text-decoration: none;
+			}
 		}
 		table {
 			width: 100%;
@@ -118,7 +127,7 @@ html {
 		border-color: $primary;
 		box-shadow: 1px 2px 5px #dedbdb;
 		transition: 0.3s;
-		font-size: 1.2rem;		
+		font-size: 1.5rem;		
 		&:hover {
 			background-color: #e4509e;
 			border-color: #e4509e;
@@ -132,6 +141,68 @@ html {
 
 	
 }
+
+//Home
+.event-container {
+	.container-wrapper .container > .row {
+	    max-width: 1200px;
+		margin: 0 auto 40px;
+	}
+}
+
+//Single
+.single-title {
+	font-size: 2.7rem;
+	font-weight: 700;
+}
+
+//Full width offer/campaign Sections
+.two-part-section {
+	.narrow {
+		display: flex;
+		align-items: center;
+		&-title {
+			font-size: 5rem;
+			font-weight: 700;
+			max-width: 150px;
+			word-break: break-word;
+			opacity: 0.3;
+			line-height: 0.8;
+		}
+	}
+	&.bck-asymmetry.primary {	
+		//background-color: #eee;
+		background-image: linear-gradient( to right, #e4509e, #e4509e 50%, #fff 50%, #fff );
+		.narrow {
+			background-color: #e4509e;
+		}
+		.wide {
+			background-color: #fff;
+			&-container {
+				padding: 40px 0 30px 20px;
+			}
+		}
+	}
+	&.bck-asymmetry.secondary {	
+		//background-color: #eee;
+		background-image: linear-gradient( to right, #eee, #eee 50%, #415daa 50%, #415daa );
+		.narrow {
+			background-color: #415daa;
+		}
+		.wide {
+			background-color: #eee;
+		}
+	}
+
+}
+
+//News Section
+.news-title {
+	font-weight: 700;
+	text-align: center;
+	padding: 10px 0 30px;
+}
+
 //Owl carousel
 .owl-theme {
 	.owl-nav {
@@ -161,11 +232,23 @@ html {
 			font-family: "Material Design Icons";
 		}
 	}
+	.owl-dots {
+		.owl-dot {
+			&.active,  &:hover {
+				span {
+					background: $tertiary;
+				}
+			}
+		}
+	}
 }
 //Material Card
 .mat-card.item-card {
 	margin-bottom: 30px;
 	padding-top: 0;
+	box-shadow: 0 6px 21px -2px #d1cbcb;
+	border-radius: 9px;
+	overflow: hidden;
 	.item {
 		&-img {
 			position: relative;
@@ -195,7 +278,7 @@ html {
 			z-index: 1;
 			right: 0;
 			bottom: 20%;
-			background-color: #e6c615;
+			background-color: $tertiary;
 			color: #fff;
 			padding: 10px 22px;
 			font-size: 1.42rem;
@@ -249,6 +332,22 @@ html {
 			.carousel-card {
 				border-radius: 60px;
 				margin: 0 15px;
+			}
+		}
+	}
+	.two-part-section {
+		&.bck-asymmetry.primary {
+			.wide {
+				&-container {
+					padding: 80px 0 50px 40px;
+				}
+			}
+		}
+		&.bck-asymmetry.secondary {
+			.wide {
+				&-container {
+					padding: 80px 50px 0 40px;
+				}
 			}
 		}
 	}
