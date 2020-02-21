@@ -86,4 +86,11 @@ export class OpenDataService {
         return response.data;
       }));
   }
+  
+  readAllMicrocreditCampaignsByStore(merchant_id: string): Observable<MicrocreditCampaign[]> {
+    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public/${merchant_id}`)
+      .pipe(map(response => {
+        return response.data;
+      }));
+  }
 }

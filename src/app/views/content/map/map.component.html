@@ -1,6 +1,6 @@
 <div class="map-container">
 	<agm-map class="map" [latitude]='latitude' [longitude]='longitude' [styles]="mapStyle">
-		<ng-template [ngIf]="list">
+		<ng-template [ngIf]="markers">
 			<!--<agm-marker *ngFor="let coop of list; let i = index"
 				[latitude]="coop.lat"
 				[longitude]="coop.long"

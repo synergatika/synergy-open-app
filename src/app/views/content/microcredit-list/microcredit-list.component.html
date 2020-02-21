@@ -1,25 +1,3 @@
-<!--<app-card *ngIf="list$ | async as list;">
-<div *ngIf="coops$ | async as coops;">
-	<h2>{{ 'microcredit-list.title' | translate }}</h2>
-	<div class="microcredit row" *ngFor="let microcredit of objectKeys(list)">
-		<div class="col-md-6 microcredit-content">
-			<div class="microcredit-logo">				
-				<img [src]="coops[list[microcredit]['coop_id']]['img']" [alt]="list[microcredit]['name']" />			
-			</div>
-			<div class="">
-				<a [routerLink]="['/microcredit', microcredit]">
-					{{list[microcredit]['title']}}
-				</a>
-			</div>			
-		</div>
-		<div class="col-md-6 microcredit-info">
-			<div>{{coops[list[microcredit]['coop_id']]['name']}}</div>
-			<div>Points: {{list[microcredit]['points']}}</div>
-			<div>Expires: {{list[microcredit]['expires']}}</div>
-		</div>
-	</div>
-	</div>
-</app-card>-->
 <div *ngIf="campaigns">
 	<owl-carousel-o [options]="customOptions">
 		<ng-template carouselSlide *ngFor="let item of campaigns">

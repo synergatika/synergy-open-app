@@ -45,7 +45,7 @@
 							<div class="item-description">
 								{{offer.description}}
 							</div>
-							<div class="item-info">
+							<div *ngIf="!singleMerchant" class="item-info">
 								<div class="" >
 									<div class="item-subtitle" *ngIf="type!='single'"><span class="mdi mdi-shopping"></span>{{offer.merchant_name}}</div>
 									<div class="item-subtitle" *ngIf="type!='single'"><span class="mdi mdi-pin"></span>{{offer.expiresAt}}</div>
