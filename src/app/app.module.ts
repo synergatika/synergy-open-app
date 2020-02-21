@@ -36,7 +36,7 @@ import { EventArchiveComponent } from './views/pages/event-archive/event-archive
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
-import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from "@angular/material";
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule, MatCardModule } from "@angular/material";
 import { MapComponent } from './views/content/map/map.component';
 import { MicrocreditListComponent } from './views/content/microcredit-list/microcredit-list.component';
 import { MicrocreditSingleComponent } from './views/pages/microcredit-single/microcredit-single.component';
@@ -101,6 +101,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 	MatPaginatorModule,
 	MatSortModule,
 	MatProgressSpinnerModule,
+	MatCardModule,
 	NgxPaginationModule,
 	FormsModule,
 	ReactiveFormsModule,

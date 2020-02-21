@@ -8,6 +8,7 @@ import { Offer } from '../../../core/models/offer.model';
 import { LoadJsonService } from '../../../core/services/loadjson.service';
 // RxJS
 import { Observable, of } from 'rxjs';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
 	selector: 'app-offer-list',
@@ -18,6 +19,25 @@ export class OfferListComponent implements OnInit {
 	objectKeys = Object.keys;
 	list$: Observable<any>;
 	coops$: Observable<any>;
+	customOptions: OwlOptions = {
+		loop: true,
+		mouseDrag: true,
+		touchDrag: false,
+		pullDrag: false,
+		dots: true,
+		navSpeed: 700,
+		navText: ['', ''],
+		responsive: {
+		  0: {
+			items: 1
+		  },
+		  940: {
+			items: 3
+		  }
+		},
+		margin:30,
+		nav: true
+	}
 	list = [
 		{
 			name: 'Commonspace',

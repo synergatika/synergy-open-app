@@ -1,7 +1,6 @@
-<app-card *ngIf="list$ | async as list;">
+<!--<app-card *ngIf="list$ | async as list;">
 <div *ngIf="coops$ | async as coops;">
 	<h2>{{ 'microcredit-list.title' | translate }}</h2>
-	<!--<div class="microcredit row" *ngFor="let microcredit of objectKeys(list)">-->
 	<div class="microcredit row" *ngFor="let microcredit of objectKeys(list)">
 		<div class="col-md-6 microcredit-content">
 			<div class="microcredit-logo">				
@@ -20,5 +19,35 @@
 		</div>
 	</div>
 	</div>
-</app-card>
-
+</app-card>-->
+<div *ngIf="campaigns">
+	<owl-carousel-o [options]="customOptions">
+		<ng-template carouselSlide *ngFor="let item of campaigns">
+			<mat-card class="item-card microcredit-card">
+			  <mat-card-content>
+					<!--begin::Content-->
+					<div class="col-sm-12 item-img-container">
+						<div class="item-img">
+							<img *ngIf="item.campaign_imageURL" src={{item.campaign_imageURL}} alt={{item.title}} />	
+							<div class="item-expires">έως {{item.expiresAt | date: 'd.M'}}</div>					
+						</div>				
+					</div>
+					<div class="col-sm-12 item-details">				
+						<div class="item-heading">
+							<div class="item-title">{{item.title}}</div>
+							<div>
+								<span class="points">{{item.cost}}</span>
+							</div>
+						</div>
+						<div class="item-description">
+							{{item.description}}
+						</div>
+						<!--<button mat-raised-button routerLink="edit/{{item.campaign_id}}"> Edit Campaign</button>-->
+					</div>
+					<!--end::Content-->
+			  </mat-card-content>
+			</mat-card>
+		</ng-template>
+	</owl-carousel-o>
+	
+</div>
