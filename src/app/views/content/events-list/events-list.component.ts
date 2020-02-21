@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
 
@@ -16,9 +16,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./events-list.component.scss']
 })
 export class EventsListComponent implements OnInit, OnDestroy {
-	objectKeys = Object.keys;
-	list$: Observable<any>;
-	coops$: Observable<any>;
+	@Input() merchId?: string;
+	singleMerchant: boolean = false;
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
 	customOptions: OwlOptions = {
@@ -50,19 +49,15 @@ export class EventsListComponent implements OnInit, OnDestroy {
 		this.unsubscribe = new Subject();
 	}
 
-	ngOnInit() {
-		this.fetchPostsEventsData();
-		this.loadData.getJSON('events').subscribe(data => {			
-			//console.log('getJSON data - offers');
-		   // console.log(data);
-			this.list$ = of(data);
-			this.loadData.getJSON('coops').subscribe(coops => {			
-				//console.log('getJSON data - coops of offers');
-				//console.log(coops);
-				this.coops$ = of(coops);
-			});
-
-		});
+	ngOnInit() {	
+		if(this.merchId) {
+			console.log('single');
+			this.fetchMerchantPostsEventsData(this.merchId);
+			this.singleMerchant = true;
+		} else {
+			console.log('single not');
+			this.fetchPostsEventsData();
+		}
 	}
 
   ngOnDestroy() {
@@ -73,6 +68,24 @@ export class EventsListComponent implements OnInit, OnDestroy {
 
   fetchPostsEventsData() {
     this.openDataService.readAllPublicPostsEvents()
+      .pipe(
+        tap(
+          data => {
+            this.posts_events = data;
+            console.log(this.posts_events)
+          },
+          error => {
+          }),
+        takeUntil(this.unsubscribe),
+        finalize(() => {
+          this.loading = false;
+          this.cdRef.markForCheck();
+        })
+      )
+      .subscribe();
+  }
+  fetchMerchantPostsEventsData(id) {
+    this.openDataService.readPublicPostsEventsByStore(id)
       .pipe(
         tap(
           data => {

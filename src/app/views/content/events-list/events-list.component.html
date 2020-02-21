@@ -48,8 +48,12 @@
 								</div>
 								<div class="item-info">
 									<div class="">
-										<div class="item-subtitle"><!--<img src="../../../assets/media/images/Shop-Icon.png" alt="Shop" />--><span class="mdi mdi-shopping"></span>{{post.merchant_name}}</div>
-										<div *ngIf="post.location" class="item-subtitle"><!--<img src="../../../assets/media/images/Map-Icon.png" alt="Shop" />--><span class="mdi mdi-pin"></span>{{post.location}}</div>
+										<div *ngIf="!singleMerchant" class="item-subtitle">
+											<span class="mdi mdi-shopping"></span>{{post.merchant_name}}
+										</div>
+										<div *ngIf="post.location" class="item-subtitle">
+											<span class="mdi mdi-pin"></span>{{post.location}}
+										</div>
 									</div>
 									<!--<app-share-icon></app-share-icon>-->
 								</div>

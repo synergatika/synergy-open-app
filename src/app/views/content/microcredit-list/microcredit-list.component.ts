@@ -1,10 +1,9 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
 
 import { OpenDataService } from '../../../core/services/open-data.service';
-
-import { LoadJsonService } from '../../../core/services/loadjson.service';
+import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.model';
 // RxJS
 import { Observable, of } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -15,9 +14,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./microcredit-list.component.scss']
 })
 export class MicrocreditListComponent implements OnInit {
-	objectKeys = Object.keys;
-	list$: Observable<any>;
-	coops$: Observable<any>;
+	@Input() merchId?: string;
+	singleMerchant: boolean = false;
 	customOptions: OwlOptions = {
 		loop: true,
 		mouseDrag: true,
@@ -39,28 +37,21 @@ export class MicrocreditListComponent implements OnInit {
 	}
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;	
-	campaigns;
+	campaigns: MicrocreditCampaign[];
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
-		private loadData : LoadJsonService
 	) {
 		this.unsubscribe = new Subject();
 	}
 
 	ngOnInit() {
-		this.fetchCampaignsData();
-		this.loadData.getJSON('microcredit').subscribe(data => {			
-			//console.log('getJSON data - microcredit');
-           // console.log(data);
-			this.list$ = of(data);
-			this.loadData.getJSON('coops').subscribe(coops => {			
-				//console.log('getJSON data - coops of microcredit');
-				//console.log(coops);
-				this.coops$ = of(coops);
-			});
-
-        });
+		if(this.merchId){
+			this.fetchMerchantCampaignsData(this.merchId);
+			this.singleMerchant = true ;
+		} else {
+			this.fetchCampaignsData();
+		}
 	}
 	
 	fetchCampaignsData() {
@@ -81,6 +72,25 @@ export class MicrocreditListComponent implements OnInit {
 			)
 			.subscribe();
 	}
+	
+	fetchMerchantCampaignsData(id) {
+		this.openDataService.readAllMicrocreditCampaignsByStore(id)
+			.pipe(
+				tap(
+					data => {
+						this.campaigns = data;
+						console.log(this.campaigns)
+					},
+					error => {
+					}),
+				takeUntil(this.unsubscribe),
+				finalize(() => {
+					this.loading = false;
+					this.cdRef.markForCheck();
+				})
+			)
+			.subscribe();
+	}	
 	
 	ngOnDestroy() {
 		this.unsubscribe.next();

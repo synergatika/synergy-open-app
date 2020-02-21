@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 import { LoadJsonService } from '../../../core/services/loadjson.service';
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
@@ -20,6 +20,8 @@ export interface marker {
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+	@Input() merchId?: string;
+	singleMerchant: boolean = false;
 	list: any;
 	latitude = 38.262431;
 	longitude = 23.686613;
@@ -34,6 +36,7 @@ export class MapComponent implements OnInit {
 		}
 	};
 	merchants: Merchant[];
+	merchant: Merchant;
 	mapStyle = [{"featureType":"all","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"},{"visibility":"off"}]},{"featureType":"administrative.neighborhood","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"visibility":"on"},{"color":"#e0dfe0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#a8a9a8"},{"visibility":"on"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#5b5b5a"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#ffffff"},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]}];
 	
 	constructor(
@@ -45,18 +48,24 @@ export class MapComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.fetchMerchantsData();
-		this.loadData.getJSON('coops').subscribe(data => {
+		if(this.merchId) {
+			this.fetchMerchantData(this.merchId);
+			this.singleMerchant = true;
+		} else {
+			this.fetchMerchantsData();
+		}
+		/*this.loadData.getJSON('coops').subscribe(data => {
 			Object.keys(data).map((key, index) => {
 				data[key]['lat'] = 38.1608 + this.getRandomInteger(4);
 				data[key]['long'] = 23.2159 + this.getRandomInteger(2);
 				data[key]['draggable'] = false;
 			});
 			this.list = Object.values(data);
-			console.log(this.list);
-		});
+			//console.log(this.list);
+		});*/
 	  
 	}
+	
 	ngOnDestroy() {
 		this.unsubscribe.next();
 		this.unsubscribe.complete();
@@ -90,11 +99,42 @@ export class MapComponent implements OnInit {
 								//label: i.toString(),
 								draggable: false
 							}
-							console.log(y);
+							//console.log(y);
 							this.markers.push(y);
 						}
-						console.log(x);
+						//console.log(x);
 						console.log(this.markers);
+					},
+					error => {
+					}),
+				takeUntil(this.unsubscribe),
+				finalize(() => {
+					this.loading = false;
+					this.cdRef.markForCheck();
+				})
+			)
+			.subscribe();
+	}
+	
+	fetchMerchantData(id) {
+		this.openDataService.readMerchantInfo(id)
+			.pipe(
+				tap(
+					data => {
+						this.merchant = data;
+						//let x: marker[];
+						let x;
+						this.markers = [{
+							lat: parseFloat(this.merchant.address.coordinates[0]),
+							lng: parseFloat(this.merchant.address.coordinates[1]),
+							img: this.merchant.imageURL,
+							name: this.merchant.name,
+							address: this.merchant.address.street + ", " + this.merchant.address.city,
+							//label: '0',
+							draggable: false
+						}];
+						//console.log(x);
+						//console.log(this.markers);
 					},
 					error => {
 					}),
