@@ -5,7 +5,6 @@ import { tap, takeUntil, finalize } from 'rxjs/operators';
 import { OpenDataService } from '../../../core/services/open-data.service';
 import { PostEvent } from '../../../core/models/post_event.model';
 
-import { LoadJsonService } from '../../../core/services/loadjson.service';
 // RxJS
 import { Observable, of } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -44,7 +43,6 @@ export class EventsListComponent implements OnInit, OnDestroy {
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
-		private loadData : LoadJsonService
 	) {
 		this.unsubscribe = new Subject();
 	}

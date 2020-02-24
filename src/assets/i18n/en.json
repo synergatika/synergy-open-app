@@ -1,11 +1,18 @@
 {
-	"HOME": {
-	    "campaigns-title": "campaigns",
-		"community-title":  "Community",
+	"HOME": {   
+		"community-title":  "Community"	
+	},
+	"PAGE_TITLES": {
+		"offers-title": "προσφορές",
+		"campaigns-title": "καμπάνιες",
+		"news-title": "news"
+	},
+	"SECTIONS": {
+		"campaigns-title": "campaigns",
 		"offers-title": "offers",
 		"news-title": "News"
 	},
-	"offer-list":  {
+	"offer-list": {
 		"title": "Currrent Offers",
 		"points": "Points",
 		"expires": "Expires"

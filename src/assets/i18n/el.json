@@ -1,7 +1,14 @@
 {
 	"HOME": {
-	    "campaigns-title": "καμπανιες",
-		"community-title":  "Κοινότητα",
+		"community-title":  "Κοινότητα"
+	},
+	"PAGE_TITLES": {
+		"offers-title": "προσφορές",
+		"campaigns-title": "καμπάνιες",
+		"news-title": "νέα"
+	},
+	"SECTIONS": {
+		"campaigns-title": "καμπανιες",
 		"offers-title": "προσφορες",
 		"news-title": "Νέα"
 	},

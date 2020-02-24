@@ -61,6 +61,7 @@ html {
 		}
 		a {
 			color: $secondary-dark;
+			transition: color 0.3s;
 			&:hover {
 				color: #03050a;
 				text-decoration: none;
@@ -68,6 +69,23 @@ html {
 		}
 		table {
 			width: 100%;
+		}
+		.fullwidth-title {
+			background-color: $primary;
+			
+			margin-bottom: 30px;
+			.row {
+				justify-content: flex-end;
+				align-items: center;
+				min-height: 90px;
+			}
+			h1 {
+				font-size: 4rem;
+				font-weight: 700;
+				opacity: 0.3;
+				line-height: 1;
+				margin-bottom: 0;
+			}
 		}
 		.card {
 			h2 {
@@ -151,9 +169,16 @@ html {
 }
 
 //Single
-.single-title {
-	font-size: 2.7rem;
-	font-weight: 700;
+.single {
+	&-title {
+		font-size: 1.8rem;
+		font-weight: 700;
+		color: $primary;
+		margin-bottom: 10px;
+	}
+	p {
+		font-size: 24px;
+	}
 }
 
 //Full width offer/campaign Sections
@@ -193,7 +218,11 @@ html {
 			background-color: #eee;
 		}
 	}
-
+}
+.section-link-to-all {
+	margin: 0 20px 30px;
+	a:hover {
+	}
 }
 
 //News Section
@@ -249,6 +278,7 @@ html {
 	box-shadow: 0 6px 21px -2px #d1cbcb;
 	border-radius: 9px;
 	overflow: hidden;
+	max-width: 400px;
 	.item {
 		&-img {
 			position: relative;
@@ -319,6 +349,11 @@ html {
 			.share {
 				cursor: pointer;
 			}
+		}
+		.mdi {
+			margin-right: 8px;
+			font-size: 16px;
+			color: $secondary;
 		}
 	}
 }

@@ -23,8 +23,9 @@ export class MapComponent implements OnInit {
 	@Input() merchId?: string;
 	singleMerchant: boolean = false;
 	list: any;
-	latitude = 38.262431;
-	longitude = 23.686613;
+	latitude: number = 38.262431;
+	longitude: number = 23.686613;
+	zoom: number = 8;
 	markers;
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
@@ -133,6 +134,9 @@ export class MapComponent implements OnInit {
 							//label: '0',
 							draggable: false
 						}];
+						this.latitude = this.markers[0]['lat'];
+						this.longitude = this.markers[0]['lng'];
+						this.zoom = 15;
 						//console.log(x);
 						//console.log(this.markers);
 					},

@@ -5,7 +5,7 @@ import { tap, takeUntil, finalize } from 'rxjs/operators';
 import { OpenDataService } from '../../../core/services/open-data.service';
 import { Merchant } from '../../../core/models/merchant.model';
 
-import { LoadJsonService } from '../../../core/services/loadjson.service';
+//import { LoadJsonService } from '../../../core/services/loadjson.service';
 import { Router } from '@angular/router';
 // RxJS
 import { Observable, of } from 'rxjs';
@@ -19,8 +19,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 
 export class CommunityListComponent implements OnInit, OnDestroy {
 	moved: boolean;
-	objectKeys = Object.keys;
-	list$: Observable<any>;
+	//objectKeys = Object.keys;
+	//list$: Observable<any>;
 	customOptions: OwlOptions = {
 		loop: true,
 		mouseDrag: true,
@@ -79,19 +79,16 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
 		private router: Router, 
-		private loadData : LoadJsonService
+	//	private loadData : LoadJsonService
 	) {
 		this.unsubscribe = new Subject();
 	}
 
 	ngOnInit() {
 		this.fetchMerchantsData();
-		this.loadData.getJSON('coops').subscribe(data => {			
-			//console.log('getJSON data');
-           // console.log(data);
+		/*this.loadData.getJSON('coops').subscribe(data => {			
 			this.list$ = of(data);
-
-        });
+        });*/
 	}
 
 	ngOnDestroy() {
@@ -118,6 +115,7 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 			)
 			.subscribe();
 	}
+	
 	mousedown() {
 	  this.moved = false;
 	}

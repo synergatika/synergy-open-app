@@ -30,7 +30,7 @@ export class OpenDataService {
   * Merchants
   */
   readMerchants(): Observable<Merchant[]> {
-    return this.http.get<any>(`${environment.apiUrl}/merchants`)
+    return this.http.get<any>(`${environment.apiUrl}/merchants/public/0-0-0`)
       .pipe(map(response => {
         return response.data;
       }));
@@ -47,14 +47,21 @@ export class OpenDataService {
   * Offers
   */
   readAllOffers(): Observable<Offer[]> {
-    return this.http.get<any>(`${environment.apiUrl}/loyalty/offers/`)
+    return this.http.get<any>(`${environment.apiUrl}/loyalty/offers/public/0-0-0`)
       .pipe(map(response => {
         return response.data;
       }));
   }
 
   readOffersByStore(merchant_id: string): Observable<Offer[]> {
-    return this.http.get<any>(`${environment.apiUrl}/loyalty/offers/${merchant_id}`)
+    return this.http.get<any>(`${environment.apiUrl}/loyalty/offers/public/${merchant_id}/0-0-0`)
+      .pipe(map(response => {
+        return response.data;
+      }));
+  }
+  
+  readOffer(merchant_id: string, offer_id: string): Observable<Offer> {
+    return this.http.get<any>(`${environment.apiUrl}/loyalty/offers/${merchant_id}/${offer_id}`)
       .pipe(map(response => {
         return response.data;
       }));
@@ -64,7 +71,7 @@ export class OpenDataService {
    * Post & Events
    */
   readAllPublicPostsEvents(): Observable<PostEvent[]> {
-    return this.http.get<any>(`${environment.apiUrl}/community/public/`)
+    return this.http.get<any>(`${environment.apiUrl}/community/public/0-0-0`)
       .pipe(map(response => {
         return response.data;
       }));
@@ -81,7 +88,7 @@ export class OpenDataService {
    * Microcredit Campaigns
    */
   readAllPublicMicrocreditCampaigns(): Observable<MicrocreditCampaign[]> {
-    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public`)
+    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public/0-0-0`)
       .pipe(map(response => {
         return response.data;
       }));
