@@ -46,6 +46,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './views/pages/about/about.component';
 import { HomeHeroComponent } from './views/content/home-hero/home-hero.component';
 import { ContainerComponent } from './views/layout/container/container.component';
+import { SupportComponent } from './views/pages/support/support.component';
+import { ExploreComponent } from './views/pages/explore/explore.component';
+import { MicrocreditArchiveComponent } from './views/pages/microcredit-archive/microcredit-archive.component';
+import { OfferArchiveComponent } from './views/pages/offer-archive/offer-archive.component';
+import { CommunityArchiveComponent } from './views/pages/community-archive/community-archive.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -78,7 +83,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     MicrocreditSingleComponent,
     AboutComponent,
     HomeHeroComponent,
-    ContainerComponent
+    ContainerComponent,
+    SupportComponent,
+    ExploreComponent,
+    MicrocreditArchiveComponent,
+    OfferArchiveComponent,
+    CommunityArchiveComponent
   ],
   imports: [
     BrowserModule,

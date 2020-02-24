@@ -7,6 +7,9 @@
 		color: #000;
 		font-size: 22px;
 		padding: 0.5rem;
+		&:hover {
+			color: #415daa;
+		}
 	}
 	.menu-divider:not(:last-child) {
 		width: 7px;

@@ -20,49 +20,7 @@
 	<h2 class="title-overlapping">{{ 'HOME.community-title' | translate }}</h2>
 	<app-community-list></app-community-list>
 </app-container>
-<div class="container-wrapper two-part-section bck-asymmetry primary">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-2 narrow">
-				<div class="narrow-title">
-					{{ 'HOME.offers-title' | translate }}
-				</div>
-			</div>
-			<div class="col-md-10 wide">
-				<div class="wide-container">
-					<div>
-						<app-offer-list></app-offer-list>
-					</div>
-				</div>			
-			</div>
-		</div>
-	</div>
-</div>
-<div class="container-wrapper two-part-section bck-asymmetry secondary">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10 wide">
-				<div class="wide-container">
-					<div>
-						<app-microcredit-list></app-microcredit-list>
-					</div>
-				</div>			
-			</div>
-			<div class="col-md-2 narrow">
-				<div class="narrow-title">
-					{{ 'HOME.campaigns-title' | translate }}
-				</div>
-			</div>
-			
-		</div>
-	</div>
-</div>
-
-<app-container class="event-container">
-	<h2 class="news-title">{{ 'HOME.news-title' | translate }}</h2>
-	<app-events-list></app-events-list>
-	<div class="text-center mt-4">
-		<a class="btn btn-primary" href="#">Περισσότερα</a>
-	</div>
-</app-container>
+<app-offer-list></app-offer-list>
+<app-microcredit-list></app-microcredit-list>
+<app-events-list></app-events-list>
 <app-map></app-map>

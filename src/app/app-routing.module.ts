@@ -12,6 +12,8 @@ import { CommunitySingleComponent } from './views/pages/community-single/communi
 import { NotFoundComponent } from './views/pages/not-found/not-found.component';
 import { EventSingleComponent } from './views/pages/event-single/event-single.component';
 import { MicrocreditSingleComponent } from './views/pages/microcredit-single/microcredit-single.component';
+import { OfferArchiveComponent } from './views/pages/offer-archive/offer-archive.component';
+import { MicrocreditArchiveComponent } from './views/pages/microcredit-archive/microcredit-archive.component';
 
 const routes: Routes = [
 	{path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -38,6 +40,9 @@ const routes: Routes = [
 				path: 'coop/:id', component:CommunitySingleComponent
 			},
 			{
+				path: 'offers', component:OfferArchiveComponent
+			},
+			{
 				path: 'offer', component:OfferSingleComponent
 			},
 			{
@@ -48,6 +53,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'event/:id', component:EventSingleComponent
+			},
+			{
+				path: 'microcredits', component:MicrocreditArchiveComponent
 			},
 			{
 				path: 'microcredit', component:MicrocreditSingleComponent

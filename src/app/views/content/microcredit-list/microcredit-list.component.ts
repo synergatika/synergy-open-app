@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
-
+import { Router } from '@angular/router';
 import { OpenDataService } from '../../../core/services/open-data.service';
 import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.model';
 // RxJS
@@ -14,6 +14,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./microcredit-list.component.scss']
 })
 export class MicrocreditListComponent implements OnInit {
+	moved: boolean;
 	@Input() merchId?: string;
 	singleMerchant: boolean = false;
 	customOptions: OwlOptions = {
@@ -41,6 +42,7 @@ export class MicrocreditListComponent implements OnInit {
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
+		private router: Router,
 	) {
 		this.unsubscribe = new Subject();
 	}
@@ -97,4 +99,25 @@ export class MicrocreditListComponent implements OnInit {
 		this.unsubscribe.complete();
 		this.loading = false;
 	}
+	
+	mousedown() {
+	  this.moved = false;
+	}
+	
+	mousemove() {
+	  this.moved = true;
+	}
+
+	mouseup(mercId, offerId) {
+		if (this.moved) {
+			console.log('moved')
+		} else {
+			console.log('not moved');
+			console.log(mercId);
+			this.router.navigate(['/offer', {id: mercId , id2: offerId}]);
+
+		}
+		this.moved = false;
+	}
+
 }

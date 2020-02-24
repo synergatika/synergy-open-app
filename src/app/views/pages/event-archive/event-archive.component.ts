@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { LoadJsonService } from '../../../core/services/loadjson.service';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
+import { Subject } from 'rxjs';
+import { tap, takeUntil, finalize } from 'rxjs/operators';
+
+import { OpenDataService } from '../../../core/services/open-data.service';
+import { PostEvent } from '../../../core/models/post_event.model';
 // RxJS
 import { Observable, of } from 'rxjs';
 //import { LoadEventsService } from '../../../core/services/loadEvents.service';
@@ -10,25 +14,46 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./event-archive.component.scss']
 })
 export class EventArchiveComponent implements OnInit {
+	p:number = 1;
 	objectKeys = Object.keys;
 	list$: Observable<any>;
 	coops$: Observable<any>;
-	p: number = 1;
+	loading: boolean = false;
+	private unsubscribe: Subject<any>;
+	posts_events: PostEvent[];
 	
-	constructor(private loadData : LoadJsonService) { }
+	constructor (
+		private cdRef: ChangeDetectorRef,
+		private openDataService: OpenDataService,
+	) {
+		this.unsubscribe = new Subject();
+		}
 
 	ngOnInit() {
-		this.loadData.getJSON('events').subscribe(data => {			
-			//console.log('getJSON data - offers');
-		   // console.log(data);
-			this.list$ = of(data);
-			this.loadData.getJSON('coops').subscribe(coops => {			
-				//console.log('getJSON data - coops of offers');
-				//console.log(coops);
-				this.coops$ = of(coops);
-			});
-
-		});
+		this.fetchPostsEventsData();
+	}
+	ngOnDestroy() {
+		this.unsubscribe.next();
+		this.unsubscribe.complete();
+		this.loading = false;
 	}
 
+	fetchPostsEventsData() {
+		this.openDataService.readAllPublicPostsEvents()
+		  .pipe(
+			tap(
+			  data => {
+				this.posts_events = data;
+				console.log(this.posts_events)
+			  },
+			  error => {
+			  }),
+			takeUntil(this.unsubscribe),
+			finalize(() => {
+			  this.loading = false;
+			  this.cdRef.markForCheck();
+			})
+		  )
+		  .subscribe();
+	}
 }

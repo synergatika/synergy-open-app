@@ -1,19 +1,31 @@
-<app-card *ngIf="offer$ | async as offer;">
-	<div *ngIf="coop$ | async as coop;">
-		<h1>{{offer.title}}</h1>
-		<div class="offer row">
-			<div class="col-md-6 offer-content">
-				<div class="offer-logo">
-					<img [src]="coop.img" [alt]="coop.name" />
-				</div>
-				<div class="">
-					<div>{{coop.name}}</div>
-				</div>
-			</div>
-			<div class="col-md-6 offer-contact">
-				<div>Points: {{offer.points}}</div>
-				<div>Expires: {{offer.expires}}</div>
+<div *ngIf="offer" class="offer-wrapper single">
+	<div class="fullwidth-title">
+		<div class="container">
+			<div class="row">
 			</div>
 		</div>
 	</div>
-</app-card>
+	<div class="offer">
+		<div class="container">		
+			<div class="row">
+				<div class="col-md-8 offer-content">				
+					<div class="">
+						<h1 class="single-title">{{offer.title}}</h1>
+						<p>{{offer.description}}</p>
+						<div><span class="white mdi mdi-star"></span>Points: {{offer.cost}}</div>
+						<div><span class="white mdi mdi-clock"></span> Expires: {{offer.expiresAt | date: 'd.M'}}</div>
+						<div>
+							<img [src]="offer.merchant_imageURL" [alt]="offer.title" />
+							<div>{{offer.merchant_name}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 offer-image">
+					<div>
+						<img [src]="offer.offer_imageURL" [alt]="offer.title" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
