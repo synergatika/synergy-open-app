@@ -2,6 +2,16 @@
 	"HOME": {   
 		"community-title":  "Community"	
 	},
+	"MENU": {
+		"Home": "Home",
+		"About": "About",
+		"Events": "Events",
+		"Contact": "Contact",
+		"Explore": "Explore",
+		"Support": "Support",
+		"Join": "Join Us",
+		"Login": "Log in"
+	},
 	"PAGE_TITLES": {
 		"offers-title": "προσφορές",
 		"campaigns-title": "καμπάνιες",

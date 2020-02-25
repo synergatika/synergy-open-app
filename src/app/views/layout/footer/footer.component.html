@@ -10,7 +10,9 @@
 				<div class="row">
 					<div class="col-md-3">
 						<div class="footer-menu">
-							<a class="footer-menu-link link" href="javascript:;">About</a><a class="footer-menu-link link" href="javascript:;">Team</a><a class="footer-menu-link link" href="javascript:;">Contact</a>
+							<ng-container *ngFor="let item of menu">
+								<a class="footer-menu-link link" [routerLink]="['/'+item.link]">{{item.title | translate}}</a>
+							</ng-container>
 						</div>
 					</div>
 					<div class="col-md-9">
