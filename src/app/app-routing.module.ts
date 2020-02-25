@@ -5,6 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './views/layout/layout.component';
 import { HomeComponent } from './views/pages/home/home.component';
 import { AboutComponent } from './views/pages/about/about.component';
+import { JoinComponent } from './views/pages/join/join.component';
+import { ExploreComponent } from './views/pages/explore/explore.component';
+import { SupportComponent } from './views/pages/support/support.component';
 import { ContactComponent } from './views/pages/contact/contact.component';
 import { EventArchiveComponent } from './views/pages/event-archive/event-archive.component';
 import { OfferSingleComponent } from './views/pages/offer-single/offer-single.component';
@@ -25,7 +28,16 @@ const routes: Routes = [
 				path: 'home', component:HomeComponent
 			},
 			{
+				path: 'explore', component:ExploreComponent
+			},
+			{
+				path: 'support', component:SupportComponent
+			},
+			{
 				path: 'events', component:EventArchiveComponent
+			},
+			{
+				path: 'join-us', component:JoinComponent
 			},
 			{
 				path: 'about', component:AboutComponent
@@ -49,6 +61,9 @@ const routes: Routes = [
 				path: 'offer/:id', component:OfferSingleComponent
 			},
 			{
+				path: 'offer/:id/:id2', component:OfferSingleComponent
+			},
+			{
 				path: 'event', component:EventSingleComponent
 			},
 			{
@@ -62,6 +77,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'microcredit/:id', component:MicrocreditSingleComponent
+			},
+			{
+				path: 'microcredit/:id/:id2', component:MicrocreditSingleComponent
 			},
 			{
 				path: '**', component: NotFoundComponent

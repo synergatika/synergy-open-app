@@ -2,6 +2,16 @@
 	"HOME": {
 		"community-title":  "Κοινότητα"
 	},
+	"MENU": {
+		"Home": "Αρχική",
+		"About": "Ποιοι Είμαστε",
+		"Events": "Εκδηλώσεις",
+		"Contact": "Επικοινωνία",
+		"Explore": "Ανακάλυψε",
+		"Support": "Στήριξε",
+		"Join": "Γίνε Μέλος",
+		"Login": "Σύνδεση"
+	},
 	"PAGE_TITLES": {
 		"offers-title": "προσφορές",
 		"campaigns-title": "καμπάνιες",

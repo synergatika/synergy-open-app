@@ -51,6 +51,7 @@ import { ExploreComponent } from './views/pages/explore/explore.component';
 import { MicrocreditArchiveComponent } from './views/pages/microcredit-archive/microcredit-archive.component';
 import { OfferArchiveComponent } from './views/pages/offer-archive/offer-archive.component';
 import { CommunityArchiveComponent } from './views/pages/community-archive/community-archive.component';
+import { JoinComponent } from './views/pages/join/join.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -88,7 +89,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ExploreComponent,
     MicrocreditArchiveComponent,
     OfferArchiveComponent,
-    CommunityArchiveComponent
+    CommunityArchiveComponent,
+    JoinComponent
   ],
   imports: [
     BrowserModule,
