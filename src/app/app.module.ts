@@ -98,7 +98,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 	AppRoutingModule,
 	NgbModule,
 	AgmCoreModule.forRoot({
-		//apiKey: '33zaSyAvcDy5ZYc2ujCS6TTtI3RYX5QmuoV8Ffw'
+		apiKey: 'AIzaSyC8tI34nghyWlMaQhGluC9f6jG7E8swyVQ'
     }),
 	HttpClientModule,
 	TranslateModule.forRoot({

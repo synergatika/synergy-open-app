@@ -23,9 +23,9 @@ export class MapComponent implements OnInit {
 	@Input() merchId?: string;
 	singleMerchant: boolean = false;
 	list: any;
-	latitude: number = 38.262431;
-	longitude: number = 23.686613;
-	zoom: number = 8;
+	latitude: number = 37.978157;
+	longitude: number = 23.731748;
+	zoom: number = 12;
 	markers;
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
