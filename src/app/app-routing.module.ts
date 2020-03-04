@@ -17,6 +17,7 @@ import { EventSingleComponent } from './views/pages/event-single/event-single.co
 import { MicrocreditSingleComponent } from './views/pages/microcredit-single/microcredit-single.component';
 import { OfferArchiveComponent } from './views/pages/offer-archive/offer-archive.component';
 import { MicrocreditArchiveComponent } from './views/pages/microcredit-archive/microcredit-archive.component';
+import { CommunityArchiveComponent } from './views/pages/community-archive/community-archive.component';
 
 const routes: Routes = [
 	{path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -34,9 +35,6 @@ const routes: Routes = [
 				path: 'support', component:SupportComponent
 			},
 			{
-				path: 'events', component:EventArchiveComponent
-			},
-			{
 				path: 'join-us', component:JoinComponent
 			},
 			{
@@ -44,6 +42,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'contact', component:ContactComponent
+			},
+			{
+				path: 'coops', component:CommunityArchiveComponent
 			},
 			{
 				path: 'coop', component:CommunitySingleComponent
@@ -62,6 +63,9 @@ const routes: Routes = [
 			},
 			{
 				path: 'offer/:id/:id2', component:OfferSingleComponent
+			},
+			{
+				path: 'events', component:EventArchiveComponent
 			},
 			{
 				path: 'event', component:EventSingleComponent

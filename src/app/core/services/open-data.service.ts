@@ -78,12 +78,26 @@ export class OpenDataService {
   }
 
   readPublicPostsEventsByStore(merchant_id: string): Observable<PostEvent[]> {
-    return this.http.get<any>(`${environment.apiUrl}/community/public/${merchant_id}`)
+    return this.http.get<any>(`${environment.apiUrl}/community/public/${merchant_id}/0-0-0`)
       .pipe(map(response => {
         return response.data;
       }));
   }
   
+  readPublicPostEvent(merchant_id: string, post_id: string, post_type: string): Observable<PostEvent> {
+		if (post_type == 'post') {
+			return this.http.get<any>(`${environment.apiUrl}/posts/${merchant_id}/${post_id}`)
+				.pipe(map(response => {
+					return response.data;
+				}));
+		}
+		else {
+			 return this.http.get<any>(`${environment.apiUrl}/events/${merchant_id}/${post_id}`)
+				.pipe(map(response => {
+					return response.data;
+				}));
+		}
+  }  
    /** 
    * Microcredit Campaigns
    */
@@ -95,9 +109,17 @@ export class OpenDataService {
   }
   
   readAllMicrocreditCampaignsByStore(merchant_id: string): Observable<MicrocreditCampaign[]> {
-    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public/${merchant_id}`)
+    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public/${merchant_id}/0-0-0`)
       .pipe(map(response => {
         return response.data;
       }));
   }
+	
+	readMicrocreditCampaign(merchant_id: string, campaign_id: string): Observable<MicrocreditCampaign> {
+    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/${merchant_id}/${campaign_id}`)
+      .pipe(map(response => {
+        return response.data;
+      }));
+  }
+	
 }

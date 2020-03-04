@@ -124,12 +124,12 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 	  this.moved = true;
 	}
 
-	mouseup(data) {
+	mouseup(id) {
 		if (this.moved) {
 			console.log('moved')
 		} else {
 			console.log('not moved');
-			this.router.navigate(['/coop', data]);
+			this.router.navigate(['/coop', id]);
 
 		}
 		this.moved = false;

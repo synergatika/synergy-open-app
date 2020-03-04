@@ -2,6 +2,7 @@
 $primary: #e4509e;
 $secondary: #415daa;
 $tertiary: #fdca27;
+$tertiary-dark: #a07b04;
 $grey: #eee;
 $secondary-dark: #283a6b;
 
@@ -71,8 +72,7 @@ html {
 			width: 100%;
 		}
 		.fullwidth-title {
-			background-color: $primary;
-			
+			background-color: $primary;			
 			margin-bottom: 30px;
 			.row {
 				justify-content: flex-end;
@@ -86,10 +86,20 @@ html {
 				line-height: 1;
 				margin-bottom: 0;
 			}
+			.normal-text {
+				.row {
+					justify-content: flex-start;
+					h4 {
+						color: #fff;
+						font-size: 2rem;
+					}
+				}
+			}
 		}
 		.card {
 			h2 {
 				margin-bottom: 2rem;
+				font-weight: 700;
 			}
 		}
 		.carousel-card {
@@ -152,6 +162,12 @@ html {
 			opacity: 0.9;
 			box-shadow: 4px 8px 5px #dedbdb;	
 		}
+		&.tertiary-bck {
+			box-shadow: 1px 2px 5px #b09408;
+			&:hover {
+				box-shadow: 4px 8px 5px #b09408;	
+			}
+		}
 	}
 	.dropdown-toggle::after {
 		content: none;
@@ -179,8 +195,50 @@ html {
 	p {
 		font-size: 24px;
 	}
+	.campaign-support {
+		padding-bottom: 30px;
+	}
 }
-
+.offer, .campaign {
+	&-wrapper 
+	{
+		overflow: hidden;
+	}
+	position: relative;
+	//overflow: hidden;
+	height: 100%;
+	&-logo {
+		//position: absolute;
+		top: 0;
+		right: 0;
+		width: 50%;
+		img {
+			width: 100%;
+		}
+	}
+	&-image {
+		> div {
+			//position: absolute;
+			width: calc(50vw - 50%);
+			height: calc(100% + 130px);
+			position: relative;
+			top: -130px;
+			margin-bottom: -130px;	
+			img {
+				width: 100%;
+				border-bottom-left-radius: 50%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+	.merchant-img {
+		img {
+			max-width: 300px;
+			max-height: 150px;
+		}
+	}
+}
 //Full width offer/campaign Sections
 .two-part-section {
 	.narrow {
@@ -225,6 +283,21 @@ html {
 	}
 }
 
+.campaign-wrapper {
+	.fullwidth-title {
+		background-color: $secondary;
+	}
+	.single-title {
+		color: $secondary;
+	}
+}
+
+.coop-wrapper {
+	.fullwidth-title {
+		background-color: $tertiary;
+	}
+}
+	
 //News Section
 .news-title {
 	font-weight: 700;
@@ -262,10 +335,11 @@ html {
 		}
 	}
 	.owl-dots {
+		margin-top: 10px;
 		.owl-dot {
 			&.active,  &:hover {
 				span {
-					background: $tertiary;
+					background: $primary;
 				}
 			}
 		}

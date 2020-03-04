@@ -9,7 +9,7 @@
 	<div>		
 		<!--<div class="event row" *ngFor="let event of objectKeys(list)">-->
 		<div class="event row" >
-			<div class="col-md-4" *ngFor="let post of posts_events | paginate: { itemsPerPage: 3, currentPage: p }">
+			<div class="col-md-4" *ngFor="let post of posts_events | paginate: { itemsPerPage: 9, currentPage: p }" [routerLink]="['/event', {id: post.merchant_id, id2: post.post_event_id, type: post.type}]">
 				<mat-card class="item-card post-card" *ngIf="post">
 					  <mat-card-content>
 							<!--begin::Content-->

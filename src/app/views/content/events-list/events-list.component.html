@@ -3,7 +3,7 @@
 		<h2 class="news-title">{{ 'SECTIONS.news-title' | translate }}</h2>
 		<owl-carousel-o [options]="customOptions">
 			<ng-template carouselSlide *ngFor="let post of posts_events">
-				<mat-card class="item-card post-card" *ngIf="post">
+				<mat-card class="item-card post-card" (mousedown)="mousedown()" (mousemove)="mousemove()" (mouseup)="mouseup(post.merchant_id, post.post_event_id, post.type)">
 				  <mat-card-content>
 						<!--begin::Content-->
 						<div class="wallet_post_wrapper">
@@ -23,7 +23,7 @@
 										</div>
 									</div>
 									<div class="item-description">
-										{{post.content}}
+										{{post.subtitle}}
 									</div>
 									<div class="item-info">
 										<div class="">
@@ -44,8 +44,8 @@
 				</mat-card>
 			</ng-template>
 		</owl-carousel-o>
-		<div class="text-center mt-4">
-			<a class="btn btn-primary" href="#">Περισσότερα</a>
+		<div *ngIf="!singleMerchant" class="text-center mt-4">
+			<a class="btn btn-primary" [routerLink]="['/events']">Περισσότερα</a>
 		</div>
 	</app-container>	
 </div>

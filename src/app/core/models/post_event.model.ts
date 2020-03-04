@@ -5,7 +5,9 @@ export interface PostEvent {
     merchant_imageURL: string;
 
     post_event_id: string;
-    post_event_imageURL: string;
+    post_event_imageURL?: string;
+		post_imageURL?: string;
+		event_imageURL?: string;
     title: string;
     content: string;
     access: string;

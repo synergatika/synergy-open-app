@@ -14,10 +14,9 @@
 						</div>
 					</div>
 					<div class="col-md-6 coop-content">
-						<div>
+						<div *ngIf="coop.timetable">
 							<div>Ωράριο</div>
-							<div>{{coop.email}}</div>
-							<div>{{coop.contact.websiteURL}}</div>
+							<div [innerHTML]="coop.timetable"></div>
 						</div>
 					</div>
 				</div>
