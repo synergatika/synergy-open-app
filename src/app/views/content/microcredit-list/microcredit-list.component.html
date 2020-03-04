@@ -7,7 +7,7 @@
 						<div>
 							<owl-carousel-o [options]="customOptions">
 								<ng-template carouselSlide *ngFor="let item of campaigns">
-									<mat-card class="item-card microcredit-card" (mousedown)="mousedown()" (mousemove)="mousemove()" (mouseup)="mouseup(item.merchant_id, item.offer_id)">
+									<mat-card class="item-card microcredit-card" (mousedown)="mousedown()" (mousemove)="mousemove()" (mouseup)="mouseup(item.merchant_id, item.campaign_id)">
 									  <mat-card-content>
 											<!--begin::Content-->
 											<div class="item row" >
@@ -20,14 +20,17 @@
 												<div class="col-sm-12 item-details">				
 													<div class="item-heading">
 														<div class="item-title">{{item.title}}</div>
-														<div>
-															<span class="points">{{item.cost}}</span>
-														</div>
 													</div>
 													<div class="item-description">
-														{{item.description}}
+														{{item.subtitle}}
 													</div>
-													<!--<button mat-raised-button routerLink="edit/{{item.campaign_id}}"> Edit Campaign</button>-->
+													<div class="item-info">
+														<div class="">
+															<div *ngIf="!singleMerchant" class="item-subtitle">
+																<span class="mdi mdi-shopping"></span>{{item.merchant_name}}
+															</div>
+														</div>		
+													</div>
 												</div>
 											</div>
 											<!--end::Content-->
@@ -37,7 +40,7 @@
 							</owl-carousel-o>
 						</div>
 					</div>
-					<div class="section-link-to-all">
+					<div *ngIf="!singleMerchant" class="section-link-to-all">
 						<a [routerLink]="['/microcredits']" >
 							Δείτε όλες τις καμπάνιες
 						</a>

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { LoadJsonService } from '../../../core/services/loadjson.service';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
+import { Subject } from 'rxjs';
+import { tap, takeUntil, finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { OpenDataService } from '../../../core/services/open-data.service';
 import { ActivatedRoute } from '@angular/router';
-// RxJS
-import { Observable, of } from 'rxjs';
+import { PostEvent } from '../../../core/models/post_event.model';
 
 @Component({
   selector: 'app-event-single',
@@ -10,30 +12,64 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./event-single.component.scss']
 })
 export class EventSingleComponent implements OnInit {
-	eventId: any;
-	coopId: any;
-	event$: Observable<any>;
-	coop$: Observable<any>;
+	eventId: string;
+	merchId: string;
+	eventType: string;
+	loading: boolean = false;
+	private unsubscribe: Subject<any>;
+	postEvent: PostEvent;
+	img: string;
 	private routeSubscription: any;
 	
-	constructor(private route: ActivatedRoute, private loadData : LoadJsonService) { }
+	constructor(
+		private route: ActivatedRoute,
+		private cdRef: ChangeDetectorRef,
+		private openDataService: OpenDataService,
+	) {
+		this.unsubscribe = new Subject();
+	}
 
 	ngOnInit() {
 		this.routeSubscription = this.route.params.subscribe(params => {
-			this.eventId = params['id'];
+			this.merchId = params['id'];
 			console.log(this.eventId);
-			this.loadData.getJSON('events').subscribe(data => {			
-				//console.log('getJSON data - single event');
-				this.event$ = of(data[this.eventId]);
-				this.coopId = data[this.eventId]['coop_id'];
-				this.loadData.getJSON('coops').subscribe(coops => {			
-					//console.log('getJSON data');
-					//console.log(coops[this.coopId]);
-					this.coop$ = of(coops[this.coopId]);
-
-				});
-			});
+			this.eventId = params['id2'];
+			this.eventType = params['type'];
+			console.log(this.merchId);
+			console.log(this.eventType);
+			this.fetchEventData(this.merchId,this.eventId,this.eventType);
 		});
+	}
+	
+	fetchEventData(merch_id, event_id, event_type) {
+		this.openDataService.readPublicPostEvent(merch_id, event_id, event_type)
+			.pipe(
+				tap(
+					data => {
+						this.postEvent = data;
+						console.log(this.postEvent);
+						if(this.eventType=="post") {
+							this.img = data.post_imageURL;
+						}
+						else {
+							this.img = data.event_imageURL;
+						}
+					},
+					error => {
+					}),
+				takeUntil(this.unsubscribe),
+				finalize(() => {
+					this.loading = false;
+					this.cdRef.markForCheck();
+				})
+			)
+			.subscribe();
+	}
+	
+	ngOnDestroy() {
+		this.unsubscribe.next();
+		this.unsubscribe.complete();
+		this.loading = false;
 	}
 
 }

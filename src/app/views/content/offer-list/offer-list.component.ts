@@ -12,8 +12,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 	styleUrls: ['./offer-list.component.scss']
 })
 export class OfferListComponent implements OnInit {
-	moved: boolean;
 	@Input() merchId?: string;
+	moved: boolean;
 	singleMerchant: boolean = false;
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;

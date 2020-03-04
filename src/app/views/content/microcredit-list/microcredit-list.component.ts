@@ -4,8 +4,6 @@ import { tap, takeUntil, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { OpenDataService } from '../../../core/services/open-data.service';
 import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.model';
-// RxJS
-import { Observable, of } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -108,13 +106,13 @@ export class MicrocreditListComponent implements OnInit {
 	  this.moved = true;
 	}
 
-	mouseup(mercId, offerId) {
+	mouseup(mercId, campId) {
 		if (this.moved) {
 			console.log('moved')
 		} else {
 			console.log('not moved');
 			console.log(mercId);
-			this.router.navigate(['/offer', {id: mercId , id2: offerId}]);
+			this.router.navigate(['/microcredit', {id: mercId , id2: campId}]);
 
 		}
 		this.moved = false;

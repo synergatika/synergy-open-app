@@ -8,7 +8,7 @@
 <div *ngIf="campaigns?.length > 0" class="container">
 	<div>		
 		<div class="offer row" >
-			<div class="col-md-4" *ngFor="let item of campaigns | paginate: { itemsPerPage: 3, currentPage: p }">
+			<div class="col-md-4" *ngFor="let item of campaigns | paginate: { itemsPerPage: 9, currentPage: p }"[routerLink]="['/microcredit', {id: item.merchant_id, id2: item.campaign_id}]">
 				<mat-card class="item-card microcredit-card">
 				  <mat-card-content>
 						<!--begin::Content-->
@@ -27,7 +27,7 @@
 									</div>
 								</div>
 								<div class="item-description">
-									{{item.description}}
+									{{item.subtitle}}
 								</div>
 								<!--<button mat-raised-button routerLink="edit/{{item.campaign_id}}"> Edit Campaign</button>-->
 							</div>
@@ -37,5 +37,6 @@
 				</mat-card>				
 			</div>
 		</div>
+		<pagination-controls (pageChange)="p = $event"></pagination-controls>
 	</div>	
 </div>

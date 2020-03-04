@@ -54,7 +54,7 @@
 														</div>
 													</div>
 													<div class="item-description">
-														{{offer.description}}
+														{{offer.subtitle}}
 													</div>
 													<div *ngIf="!singleMerchant" class="item-info">
 														<div class="" >
@@ -72,7 +72,7 @@
 							</owl-carousel-o>
 						</div>
 					</div>
-					<div class="section-link-to-all">
+					<div *ngIf="!singleMerchant" class="section-link-to-all">
 						<a [routerLink]="['/offers']">
 							Δείτε όλες τις προσφορές
 						</a>
