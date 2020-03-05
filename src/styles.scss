@@ -428,6 +428,9 @@ html {
 			margin-right: 8px;
 			font-size: 16px;
 			color: $secondary;
+			&.white {
+        color: #fff;
+      }
 		}
 	}
 }
