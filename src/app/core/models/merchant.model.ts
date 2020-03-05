@@ -18,8 +18,9 @@ export interface Merchant {
     imageURL: string;
     sector: string;
 
-    contact: Contact
-    address: Address
+    contact: Contact;
+    address: Address;
+		timetable: string;
 
     createdAt?: Date;
 }

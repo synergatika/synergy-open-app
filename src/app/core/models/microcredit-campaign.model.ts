@@ -26,6 +26,7 @@ export interface MicrocreditCampaign {
 
     redeemStarts: number,
     redeemEnds: number,
+		startsAt: number,
     expiresAt: number,
 
     supports: {

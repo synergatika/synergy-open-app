@@ -1,0 +1,17 @@
+.not-found {
+	min-height: 70vh;
+	text-align: center;
+	h1 {
+		padding-top: 30px;
+	}
+	.text {
+		margin-bottom: 20px;
+		font-size: 22px;
+	}
+	.btn-primary {
+		font-size: 18px;
+	}
+	a:hover {
+	text-decoration: none;
+	}
+}
