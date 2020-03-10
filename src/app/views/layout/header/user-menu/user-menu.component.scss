@@ -3,3 +3,19 @@ button.log-in {
 	line-height: 1.1;
 	font-size: 18px;
 }
+
+	.menu-icon {
+		width: 45px;
+		padding: 2px 7px;
+		cursor: pointer;
+		transition: opacity 0.2s;
+		&:hover {
+			opacity: 0.6;
+		}
+	}
+	
+@media screen and (min-width: 1025px) {
+	.menu-icon {
+		display: none;
+	}
+}

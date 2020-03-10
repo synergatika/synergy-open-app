@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { menu } from '../../../../core/config/menu';
 
 @Component({
   selector: 'app-menu',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-	menu = [
+	private menu = menu;
+	/*menu = [
 		{
 			title: 'MENU.Home',
 			link: '/',
@@ -27,7 +29,7 @@ export class MenuComponent implements OnInit {
 			title: 'MENU.Contact',
 			link: 'contact',
 		},
-	];
+	];*/
 	constructor() { }
 
 	ngOnInit() {

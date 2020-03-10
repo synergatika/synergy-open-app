@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuService } from '../../core/services/menu.service';
 
 @Component({
   selector: 'app-layout',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private menuService : MenuService) { }
 
   ngOnInit() {
   }
+	
+	openNav() {
+		this.menuService.openNav();
+	}
+
+	closeNav() {
+		this.menuService.closeNav();
+
+	} 
 
 }

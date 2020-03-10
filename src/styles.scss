@@ -1,10 +1,4 @@
-//Variables
-$primary: #e4509e;
-$secondary: #415daa;
-$tertiary: #fdca27;
-$tertiary-dark: #a07b04;
-$grey: #eee;
-$secondary-dark: #283a6b;
+@import "variables.scss";
 
 
 //Fonts
@@ -434,7 +428,18 @@ html {
 		}
 	}
 }
-	
+//Sidebar
+.sidenav {
+	.nav-link {
+		opacity: 0;
+	}
+}
+.sidenav.menu-active {
+	.nav-link {
+		opacity: 1;
+	}
+}
+
 @media (min-width: 1200px) {
 	html {
 		body { 
