@@ -13,6 +13,7 @@ import { LayoutComponent } from './views/layout/layout.component';
 import { HeaderComponent } from './views/layout/header/header.component';
 import { TopbarComponent } from './views/layout/header/topbar/topbar.component';
 import { MenuComponent } from './views/layout/header/menu/menu.component';
+import { SideMenuComponent } from './views/layout/header/side-menu/side-menu.component';
 import { LanguageSwitcherComponent } from './views/layout/header/language-switcher/language-switcher.component';
 import { UserMenuComponent } from './views/layout/header/user-menu/user-menu.component';
 import { FooterComponent } from './views/layout/footer/footer.component';
@@ -27,6 +28,7 @@ import { LoadJsonService } from './core/services/loadjson.service';
 import { LoadEventsService } from './core/services/loadEvents.service';
 import { LoadCommunityService } from './core/services/loadCommunity.service';
 import { TranslationService } from './core/services/translation.service';
+import { MenuService } from './core/services/menu.service';
 
 import { NotFoundComponent } from './views/pages/not-found/not-found.component';
 import { OfferSingleComponent } from './views/pages/offer-single/offer-single.component';
@@ -61,6 +63,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     MenuComponent,
+		SideMenuComponent,
     LayoutComponent,
     HeaderComponent,
     TopbarComponent,
@@ -95,35 +98,36 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-	AppRoutingModule,
-	NgbModule,
-	AgmCoreModule.forRoot({
-		apiKey: 'AIzaSyC8tI34nghyWlMaQhGluC9f6jG7E8swyVQ'
-    }),
-	HttpClientModule,
-	TranslateModule.forRoot({
-		loader: {
-			provide: TranslateLoader,
-			useFactory: HttpLoaderFactory,
-			deps: [HttpClient]
-		}
-	}),
-	MatInputModule,
-	MatTableModule,
-	MatPaginatorModule,
-	MatSortModule,
-	MatProgressSpinnerModule,
-	MatCardModule,
-	NgxPaginationModule,
-	FormsModule,
-	ReactiveFormsModule,
-	CarouselModule,
+		AppRoutingModule,
+		NgbModule,
+		AgmCoreModule.forRoot({
+			apiKey: 'AIzaSyC8tI34nghyWlMaQhGluC9f6jG7E8swyVQ'
+			}),
+		HttpClientModule,
+		TranslateModule.forRoot({
+			loader: {
+				provide: TranslateLoader,
+				useFactory: HttpLoaderFactory,
+				deps: [HttpClient]
+			}
+		}),
+		MatInputModule,
+		MatTableModule,
+		MatPaginatorModule,
+		MatSortModule,
+		MatProgressSpinnerModule,
+		MatCardModule,
+		NgxPaginationModule,
+		FormsModule,
+		ReactiveFormsModule,
+		CarouselModule,
   ],
-  providers: [
-	LoadJsonService,
-	LoadEventsService,
-	LoadCommunityService,
-	TranslationService
+	providers: [
+		LoadJsonService,
+		LoadEventsService,
+		LoadCommunityService,
+		TranslationService,
+		MenuService
   ],
   bootstrap: [AppComponent]
 })

@@ -30,7 +30,7 @@
 											</div>
 										</div>
 										<div class="item-description">
-											{{post.content}}
+											{{post.subtitle}}
 										</div>
 										<div class="item-info">
 											<div class="">
@@ -51,7 +51,7 @@
 				</mat-card>
 			</div>
 		</div>
-		<pagination-controls (pageChange)="p = $event"></pagination-controls>
+		<pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
 	</div>
 </div>
 

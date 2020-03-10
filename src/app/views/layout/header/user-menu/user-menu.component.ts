@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuService } from '../../../../core/services/menu.service';
 
 @Component({
   selector: 'app-user-menu',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-menu.component.scss']
 })
 export class UserMenuComponent implements OnInit {
+	icon: string = './assets/media/images/menu.svg' ;
+	
+  constructor(private menuService : MenuService) { }
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit() {		
   }
+	
+	openNav() {
+		this.menuService.openNav();
+	}
 
 }
