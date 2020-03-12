@@ -101,6 +101,7 @@ html {
 			border-radius: 40px;			
 			padding: 20px;
 			overflow: hidden;
+			cursor: pointer;
 			&-logo {
 				position: relative;
 				height: auto;
@@ -180,6 +181,11 @@ html {
 
 //Single
 .single {
+	.campaign {
+		.mdi {
+			color: $secondary;
+		}
+	}
 	&-title {
 		font-size: 1.8rem;
 		font-weight: 700;
@@ -192,7 +198,19 @@ html {
 	.campaign-support {
 		padding-bottom: 30px;
 	}
+	&-info {
+		font-size: 22px;
+		font-weight: 700;
+		margin-bottom: 15px;
+		.mdi {
+			position: relative;
+			top: 2px;
+			font-size: 28px;
+			color: $primary;
+		}
+	}	
 }
+
 .offer, .campaign {
 	&-wrapper 
 	{
@@ -227,12 +245,24 @@ html {
 		}
 	}
 	.merchant-img {
+		display: flex;
+		align-items: center;
 		img {
 			max-width: 300px;
-			max-height: 150px;
+			max-height: 160px;
 		}
 	}
 }
+
+//Single Event
+.post-content, .description {
+	br {
+		display: block;
+		margin-bottom: 15px;
+		content: "";
+	}
+}
+
 //Full width offer/campaign Sections
 .two-part-section {
 	.narrow {
@@ -347,6 +377,7 @@ html {
 	border-radius: 9px;
 	overflow: hidden;
 	max-width: 400px;
+	cursor: pointer;
 	.item {
 		&-img {
 			position: relative;
@@ -389,13 +420,20 @@ html {
 			.points {
 				font-size: 1.1rem;
 			}
+			.coop-sector {
+				position: absolute;
+				top: -47px;
+				right: 0;
+				background-color: $tertiary;
+				color: #fff;
+				font-size: 18px;
+				padding: 10px 15px;
+			}
 		}
 		&-description {
 			font-size: 1.1rem;
 			color: #8b8b8b;
 			margin-bottom: 20px;
-			padding-bottom: 15px;
-			border-bottom: 1px solid #eee;
 		}
 		&-title {
 			font-size: 1.4rem;
@@ -414,6 +452,8 @@ html {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			border-top: 1px solid #eee;
+			padding-top: 15px;
 			.share {
 				cursor: pointer;
 			}

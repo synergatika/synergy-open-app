@@ -8,6 +8,10 @@
 			</div>
 			<div class="event-heading">
 				<h1>{{postEvent.title}}</h1>
+				<div class="post-meta" *ngIf="eventType=='post'">
+					<a [routerLink]="['/coop/'+ postEvent.merchant_id]">{{postEvent.merchant_name}}</a> | 
+					{{postEvent.createdAt | date: 'd/M/y'}}
+				</div>
 			</div>
 		</div>
 	</div>
@@ -28,7 +32,7 @@
 	</div>
 	<ng-template #single_post >
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 post-content">
 				<p [innerHTML]="postEvent.content">
 				</p>
 			</div>

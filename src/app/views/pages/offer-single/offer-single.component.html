@@ -8,16 +8,25 @@
 	<div class="offer">
 		<div class="container">		
 			<div class="row">
-				<div class="col-md-8 offer-content">				
-					<div class="">
-						<h1 class="single-title">{{offer.title}}</h1>
-						<p [innerHTML]="offer.description"></p>
-						<div><span class="white mdi mdi-star"></span>Points: {{offer.cost}}</div>
-						<div><span class="white mdi mdi-clock"></span> Expires: {{offer.expiresAt | date: 'd.M'}}</div>
-						<div class="merchant-img">
-							<img [src]="offer.merchant_imageURL" [alt]="offer.title" />
-							<div>{{offer.merchant_name}}</div>
+				<div class="col-md-8 offer-content">	
+					<div class="row">	
+						<div class="col-md-12">
+							<h1 class="single-title">{{offer.title}}</h1>
+							<p [innerHTML]="offer.description"></p>			
+						</div>								
+					</div>		
+					<div class="row">
+						<div class="col-md-6 merchant-img">
+							<div>
+								<img [src]="offer.merchant_imageURL" [alt]="offer.title" />
+							</div>
 						</div>
+						<div class="col-md-6 single-info">
+							<div><span class="mdi mdi-shopping"></span> {{offer.merchant_name}}</div>
+							<div><span class="mdi mdi-map"></span> {{offer.address.street}}, {{offer.address.postCode}}, {{offer.address.city}}</div>
+							<div><span class="mdi mdi-star"></span> Points: {{offer.cost}}</div>
+							<div><span class="mdi mdi-clock"></span> Expires: {{offer.expiresAt | date: 'd/M/y'}}</div>
+						</div>					
 					</div>
 				</div>
 				<div class="col-md-4 offer-image">

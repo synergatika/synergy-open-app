@@ -114,7 +114,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
 		} else {
 			console.log('not moved');
 			console.log(mercId);
-			this.router.navigate(['/event', {id: mercId , id2: offerId, type: type}]);
+			this.router.navigate(['/event/' + mercId + '/' + offerId + '/' + type]);
 
 		}
 		this.moved = false;

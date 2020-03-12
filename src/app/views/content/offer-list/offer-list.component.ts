@@ -113,7 +113,7 @@ export class OfferListComponent implements OnInit {
 		} else {
 			console.log('not moved');
 			console.log(mercId);
-			this.router.navigate(['/offer', {id: mercId , id2: offerId}]);
+			this.router.navigate(['/offer/' + mercId + '/' + offerId]);
 
 		}
 		this.moved = false;

@@ -8,17 +8,25 @@
 	<div class="campaign">
 		<div class="container">		
 			<div class="row">
-				<div class="col-md-8 campaign-content">				
-					<div class="">
-						<h1 class="single-title">{{campaign.title}}</h1>
-						<p [innerHTML]="campaign.description"></p>
-						<div *ngIf="campaign.minAllowed"><span class="white mdi mdi-star"></span>Minimum Amount: {{campaign.minAllowed}}</div>
-						<div><span class="white mdi mdi-clock"></span> Begins: {{campaign.startsAt | date: 'd/M/y'}}</div>
-						<div><span class="white mdi mdi-clock"></span> Expires: {{campaign.expiresAt | date: 'd/M/y'}}</div>
-						<div class="merchant-img">
-							<img [src]="campaign.merchant_imageURL" [alt]="campaign.title" />
-							<div>{{campaign.merchant_name}}</div>
+				<div class="col-md-8 campaign-content">		
+					<div class="row">	
+						<div class="col-md-12">
+							<h1 class="single-title">{{campaign.title}}</h1>
+							<p [innerHTML]="campaign.description"></p>
+						</div>								
+					</div>	
+					<div class="row">
+						<div class="col-md-6 merchant-img">
+							<div>
+								<img [src]="campaign.merchant_imageURL" [alt]="campaign.title" />
+							</div>
 						</div>
+						<div class="col-md-6 single-info">
+							<div><span class="mdi mdi-shopping"></span> {{campaign.merchant_name}}</div>
+							<div *ngIf="campaign.minAllowed"><span class="mdi mdi-star"></span> {{ 'SINGLE.CAMPAIGN.Minimum' | translate }}: {{campaign.minAllowed}}</div>
+							<div><span class="mdi mdi-clock"></span> {{ 'SINGLE.CAMPAIGN.Begins' | translate }}: {{campaign.startsAt | date: 'd/M/y'}}</div>
+							<div><span class="mdi mdi-clock"></span> {{ 'SINGLE.CAMPAIGN.Expires' | translate }}: {{campaign.expiresAt | date: 'd/M/y'}}</div>
+						</div>					
 					</div>
 				</div>
 				<div class="col-md-4 campaign-image">
@@ -33,7 +41,7 @@
 		<div class="container normal-text">
 			<div class="row">
 				<div class="col-md-12">
-					<h4>Do you wish to support this cause?</h4>
+					<h4>{{ 'SINGLE.CAMPAIGN.Support-title' | translate }}</h4>
 				</div>
 			</div>
 		</div>
@@ -44,7 +52,7 @@
 				
 			</div>
 			<div class="col-md-6 campaign-support">			
-				<p>Please complete the info</p>
+				<p>{{ 'SINGLE.CAMPAIGN.Form-title' | translate }}</p>
 				<form class="kt-form" [formGroup]="microcreditForm" autocomplete="off">
 					<div class="form-group">
 						<mat-form-field>

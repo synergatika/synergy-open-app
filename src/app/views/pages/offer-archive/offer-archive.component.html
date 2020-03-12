@@ -12,7 +12,7 @@
 				<mat-card class="item-card offer-card">
 				  <mat-card-content>
 						<!--begin::Content-->
-						<div class="item row" [routerLink]="['/offer', {id: offer.merchant_id , id2: offer.offer_id}]">
+						<a class="item row" [routerLink]="['/offer/'+ offer.merchant_slug + '/' + offer.offer_slug]">
 							<div class="col-sm-12 item-img-container">
 								<div class="item-img">
 									<img src={{offer.offer_imageURL}} alt={{offer.title}} />
@@ -38,7 +38,7 @@
 									
 								</div>
 							</div>
-						</div>
+						</a>
 						<!--end::Content-->
 				  </mat-card-content>
 				</mat-card>
