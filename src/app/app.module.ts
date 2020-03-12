@@ -32,7 +32,6 @@ import { MenuService } from './core/services/menu.service';
 
 import { NotFoundComponent } from './views/pages/not-found/not-found.component';
 import { OfferSingleComponent } from './views/pages/offer-single/offer-single.component';
-import { PostsListComponent } from './views/content/posts-list/posts-list.component';
 import { EventSingleComponent } from './views/pages/event-single/event-single.component';
 import { EventArchiveComponent } from './views/pages/event-archive/event-archive.component';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -79,7 +78,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommunitySingleComponent,
     NotFoundComponent,
     OfferSingleComponent,
-    PostsListComponent,
     EventSingleComponent,
     EventArchiveComponent,
     MapComponent,

@@ -20,7 +20,9 @@
 	},
 	"SECTIONS": {
 		"campaigns-title": "καμπανιες",
+		"campaigns-link-to-all": "Δείτε όλες τις καμπάνιες",
 		"offers-title": "προσφορες",
+		"offers-link-to-all": "Δείτε όλες τις προσφορές",
 		"news-title": "Νέα"
 	},
 	"offer-list": {
@@ -40,8 +42,23 @@
 		},
 		"GENERAL": {
 			"SUBMIT_BUTTON": "Υποβολή"
+		}		
+	},
+	"BUTTONS": {
+		"More": "Περισσότερα",
+		"Join": "Γίνε Μέλος"
+	},
+	"SINGLE": {
+		"COOP": {
+			"Timetable" : "Ωράριο"
+		},
+		"CAMPAIGN": {
+			"Support-title": "Επιθυμείτε να στηρίξετε την καμπάνια;",
+			"Begins": "Έναρξη",
+			"Expires": "Λήξη",
+			"Minimum": "Ελάχιστο Ποσό",
+			"Form-title": "Παρακαλούμε συμπληρώστε τα στοιχεία σας"
 		}
-		
 	}
 	
 }

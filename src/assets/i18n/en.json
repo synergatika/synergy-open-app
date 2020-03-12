@@ -20,7 +20,9 @@
 	},
 	"SECTIONS": {
 		"campaigns-title": "campaigns",
+		"campaigns-link-to-all": "View all campaigns",
 		"offers-title": "offers",
+		"offers-link-to-all": "View all offers",
 		"news-title": "News"
 	},
 	"offer-list": {
@@ -40,7 +42,22 @@
 		},
 		"GENERAL": {
 			"SUBMIT_BUTTON": "Submit"
+		}		
+	},
+	"BUTTONS": {
+		"More": "More",
+		"Join": "Join Us"
+	},
+	"SINGLE": {
+		"COOP": {
+			"Timetable" : "Timetable"
+		},
+		"CAMPAIGN": {
+			"Support-title": "Do you wish to support this cause?",
+			"Begins": "Begins",
+			"Expires": "Expires",
+			"Minimum": "Minimum Amount",
+			"Form-title": "Please complete the info"
 		}
-		
 	}
 }

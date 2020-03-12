@@ -9,11 +9,11 @@
 	<div *ngIf="merchants?.length > 0" class="container">
 		<div>		
 			<div class="offer row" >
-				<div class="col-md-4" *ngFor="let item of merchants | paginate: { itemsPerPage: 9, currentPage: p }"[routerLink]="['/coop', {id: item._id}]">
+				<div class="col-md-4" *ngFor="let item of merchants | paginate: { itemsPerPage: 9, currentPage: p }">
 					<mat-card class="item-card microcredit-card">
 						<mat-card-content>
 							<!--begin::Content-->
-							<div class="item row" >
+							<a class="item row" [routerLink]="['/coop/' + item.slug]">
 								<div class="col-sm-12 item-img-container">
 									<div class="item-img">
 										<img *ngIf="item.imageURL" src={{item.imageURL}} alt={{item.title}} />					
@@ -32,15 +32,15 @@
 									<div class="item-info">
 											<div class="">
 												<div class="item-subtitle">
-													<span class="mdi mdi-shopping"></span>{{item.contact.websiteURL}}
+													<span class="mdi mdi-web"></span>{{item.contact.websiteURL}}
 												</div>
 												<div class="item-subtitle">
-													<span class="mdi mdi-pin"></span>{{item.address.street}}, {{item.address.city}}
+													<span class="mdi mdi-map"></span>{{item.address.street}}, {{item.address.city}}
 												</div>
 											</div>
 										</div>
 								</div>
-							</div>
+							</a>
 							<!--end::Content-->
 						</mat-card-content>
 					</mat-card>				

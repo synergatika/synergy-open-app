@@ -8,11 +8,11 @@
 <div *ngIf="campaigns?.length > 0" class="container">
 	<div>		
 		<div class="offer row" >
-			<div class="col-md-4" *ngFor="let item of campaigns | paginate: { itemsPerPage: 9, currentPage: p }"[routerLink]="['/microcredit', {id: item.merchant_id, id2: item.campaign_id}]">
+			<div class="col-md-4" *ngFor="let item of campaigns | paginate: { itemsPerPage: 9, currentPage: p }">
 				<mat-card class="item-card microcredit-card">
 				  <mat-card-content>
 						<!--begin::Content-->
-						<div class="item row" >
+						<a class="item row" [routerLink]="['/microcredit/' + item.merchant_slug + '/' + item.campaign_slug]">
 							<div class="col-sm-12 item-img-container">
 								<div class="item-img">
 									<img *ngIf="item.campaign_imageURL" src={{item.campaign_imageURL}} alt={{item.title}} />	
@@ -29,9 +29,8 @@
 								<div class="item-description">
 									{{item.subtitle}}
 								</div>
-								<!--<button mat-raised-button routerLink="edit/{{item.campaign_id}}"> Edit Campaign</button>-->
 							</div>
-						</div>
+						</a>
 						<!--end::Content-->
 				  </mat-card-content>
 				</mat-card>				

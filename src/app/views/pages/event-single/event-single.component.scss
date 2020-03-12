@@ -30,6 +30,9 @@
 			h1 {
 				margin-bottom: 0;
 			}
+			.post-meta {
+				margin-top: 10px;
+			}
 		}
 		&-info {
 			font-size: 22px;
@@ -44,7 +47,15 @@
 		&-content {
 			p {
 				font-size: 22px;
+				line-height: 1.6;				
 			}
+		}
+	}
+	
+	.post-content {
+		p {
+			font-size: 20px;
+			line-height: 1.6;
 		}
 	}
 }

@@ -1,26 +1,3 @@
-<!--<app-card *ngIf="list$ | async as list;">
-<div *ngIf="coops$ | async as coops;">
-	<h2>{{ 'offer-list.title' | translate }}</h2>
-	
-	<div class="offer row" *ngFor="let offer of objectKeys(list)">
-		<div class="col-md-6 offer-content">
-			<div class="offer-logo">				
-				<img [src]="coops[list[offer]['coop_id']]['img']" [alt]="list[offer]['name']" />			
-			</div>
-			<div class="">
-				<a [routerLink]="['/offer', offer]">
-					{{list[offer]['title']}}
-				</a>
-			</div>			
-		</div>
-		<div class="col-md-6 offer-info">
-			<div>{{coops[list[offer]['coop_id']]['name']}}</div>
-			<div>{{ 'offer-list.points' | translate }}: {{list[offer]['points']}}</div>
-			<div>{{ 'offer-list.expires' | translate }}: {{list[offer]['expires']}}</div>
-		</div>
-	</div>
-	</div>
-</app-card>-->
 <div *ngIf="offers?.length > 0">
 	<div class="container-wrapper two-part-section bck-asymmetry primary">
 		<div class="container">
@@ -35,7 +12,7 @@
 						<div>
 							<owl-carousel-o [options]="customOptions">
 								<ng-template carouselSlide *ngFor="let offer of offers">
-									<mat-card class="item-card offer-card" (mousedown)="mousedown()" (mousemove)="mousemove()" (mouseup)="mouseup(offer.merchant_id, offer.offer_id)">
+									<mat-card class="item-card offer-card" (mousedown)="mousedown()" (mousemove)="mousemove()" (mouseup)="mouseup(offer.merchant_slug, offer.offer_slug)">
 									  <mat-card-content>
 											<!--begin::Content-->
 											<div class="item row" >
@@ -59,7 +36,7 @@
 													<div *ngIf="!singleMerchant" class="item-info">
 														<div class="" >
 															<div class="item-subtitle"><span class="mdi mdi-shopping"></span>{{offer.merchant_name}}</div>
-															<div class="item-subtitle"><span class="mdi mdi-pin"></span>{{offer.expiresAt}}</div>
+															<div class="item-subtitle"><span class="mdi mdi-pin"></span> {{offer.address.street}}, {{offer.address.city}}</div>
 														</div>
 														
 													</div>
@@ -74,7 +51,7 @@
 					</div>
 					<div *ngIf="!singleMerchant" class="section-link-to-all">
 						<a [routerLink]="['/offers']">
-							Δείτε όλες τις προσφορές
+							{{ 'SECTIONS.offers-link-to-all' | translate }}
 						</a>
 					</div>					
 				</div>

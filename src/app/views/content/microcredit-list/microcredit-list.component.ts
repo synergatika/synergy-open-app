@@ -112,7 +112,7 @@ export class MicrocreditListComponent implements OnInit {
 		} else {
 			console.log('not moved');
 			console.log(mercId);
-			this.router.navigate(['/microcredit', {id: mercId , id2: campId}]);
+			this.router.navigate(['/microcredit/' + mercId +  '/' + campId]);
 
 		}
 		this.moved = false;

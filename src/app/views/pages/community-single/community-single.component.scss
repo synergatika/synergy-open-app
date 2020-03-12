@@ -1,8 +1,21 @@
+@import "../../../../variables.scss";
+
 .coop {
 	&-info-container {
 		margin-bottom: 30px;
 		.coop-info-content > .row {
 			align-items: flex-end;
+		}
+		.description {
+			font-size: 20px;
+			margin-bottom: 10px;
+		}
+		.sector {
+			font-weight: 700;
+		}
+		.hours {
+			margin-left: 3px;
+			margin-top: 5px;
 		}
 	}
 	&-logo-container {
@@ -14,10 +27,11 @@
 			max-height: 400px;
 		}
 	}
-	&-offer {
-		.points {
-			color: #ee306e;
-			font-weight: 600;
-		}				
+	.mdi {
+		position: relative;
+		top: 4px;
+		font-size: 28px;
+		line-height: 32px;
+		color: $primary;
 	}
 }

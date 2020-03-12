@@ -71,7 +71,7 @@ const routes: Routes = [
 				path: 'event', component:EventSingleComponent
 			},
 			{
-				path: 'event/:id', component:EventSingleComponent
+				path: 'event/:id/:id2/:type', component:EventSingleComponent
 			},
 			{
 				path: 'microcredits', component:MicrocreditArchiveComponent

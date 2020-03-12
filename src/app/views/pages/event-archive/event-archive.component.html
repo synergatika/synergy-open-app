@@ -9,43 +9,41 @@
 	<div>		
 		<!--<div class="event row" *ngFor="let event of objectKeys(list)">-->
 		<div class="event row" >
-			<div class="col-md-4" *ngFor="let post of posts_events | paginate: { itemsPerPage: 9, currentPage: p }" [routerLink]="['/event', {id: post.merchant_id, id2: post.post_event_id, type: post.type}]">
+			<div class="col-md-4" *ngFor="let post of posts_events | paginate: { itemsPerPage: 9, currentPage: p }">
 				<mat-card class="item-card post-card" *ngIf="post">
 					  <mat-card-content>
 							<!--begin::Content-->
-							<div class="wallet_post_wrapper">
-								<div class="item row" >
-									<div class="col-sm-12 item-img-container">
-										<div class="item-img">
-											<img src={{post.post_event_imageURL}} alt={{post.title}} />
-											<div *ngIf="post.dateTime" class="item-expires"><span class="white mdi mdi-calendar"></span> {{post.dateTime | date: 'd.M'}}</div>
-										</div>
-										
+							<a class="item row" [routerLink]="['/event/' + post.merchant_id + '/' + post.post_event_id + '/' + post.type]">
+								<div class="col-sm-12 item-img-container">
+									<div class="item-img">
+										<img src={{post.post_event_imageURL}} alt={{post.title}} />
+										<div *ngIf="post.dateTime" class="item-expires"><span class="white mdi mdi-calendar"></span> {{post.dateTime | date: 'd.M'}}</div>
 									</div>
-									<div class="col-sm-12 item-amount">
-										<div class="item-heading">
-											<div class="item-title">{{post.title}}</div>
-											<div>
-												<span class="points">{{post.cost | currency:'EUR'}}</span>
+									
+								</div>
+								<div class="col-sm-12 item-amount">
+									<div class="item-heading">
+										<div class="item-title">{{post.title}}</div>
+										<div>
+											<span class="points">{{post.cost | currency:'EUR'}}</span>
+										</div>
+									</div>
+									<div class="item-description">
+										{{post.subtitle}}
+									</div>
+									<div class="item-info">
+										<div class="">
+											<div class="item-subtitle">
+												<span class="mdi mdi-shopping"></span>{{post.merchant_name}}
+											</div>
+											<div *ngIf="post.location" class="item-subtitle">
+												<span class="mdi mdi-pin"></span>{{post.location}}
 											</div>
 										</div>
-										<div class="item-description">
-											{{post.subtitle}}
-										</div>
-										<div class="item-info">
-											<div class="">
-												<div class="item-subtitle">
-													<span class="mdi mdi-shopping"></span>{{post.merchant_name}}
-												</div>
-												<div *ngIf="post.location" class="item-subtitle">
-													<span class="mdi mdi-pin"></span>{{post.location}}
-												</div>
-											</div>
-											<!--<app-share-icon></app-share-icon>-->
-										</div>
+										<!--<app-share-icon></app-share-icon>-->
 									</div>
 								</div>
-							</div>
+							</a>
 							<!--end::Content-->
 					  </mat-card-content>
 				</mat-card>

@@ -2,7 +2,7 @@
 	<owl-carousel-o [options]="customOptions">
 		<ng-template carouselSlide *ngFor="let coop of merchants">
 			<div class="carousel-card">
-				<div (mousedown)="mousedown()" (mousemove)="mousemove()" (mouseup)="mouseup(coop._id)">
+				<div (mousedown)="mousedown()" (mousemove)="mousemove()" (mouseup)="mouseup(coop.slug)">
 					<div class="carousel-card-logo">
 						<div class="carousel-card-logo-container">
 							<img src={{coop.imageURL}} />
@@ -14,12 +14,12 @@
 							<div class="card-content-coop-divider"><span></span><span></span><span></span></div>
 							<div class="coop-heading">
 								<div class="coop-title">{{coop.name}}</div>
-								<div class="coop-sector">{{coop.sector}}</div>
+								<div class="coop-sector"><span class="mdi mdi-view-dashboard-outline"></span> {{coop.sector}}</div>
 							</div>
 							<div class="coop-info">
 								<div class="">
 									<div class="coop-subtitle">
-										<span class="mdi mdi-pin"></span>
+										<span class="mdi mdi-map"></span>
 										{{coop.address.street}}, {{coop.address.city}}
 									</div>
 								</div>
@@ -32,28 +32,6 @@
 		</ng-template>
 	</owl-carousel-o>
 	<div class="text-center mt-4">
-		<a class="btn btn-primary tertiary-bck" [routerLink]="['/coops']">Περισσότερα</a>
+		<a class="btn btn-primary tertiary-bck" [routerLink]="['/coops']">{{ 'BUTTONS.More' | translate }}</a>
 	</div>
-<!--			
-	<div class="coop row" *ngFor="let coop of objectKeys(list)">
-		<div class="col-md-6 coop-content">
-			<div class="coop-logo">
-				<a [routerLink]="['/coop', coop]">
-					<img [src]="list[coop]['img']" [alt]="list[coop]['name']" />
-				</a>
-			</div>
-			<div class="">
-
-				<div>{{list[coop]['name']}}</div>
-				<div>{{list[coop]['sector']}}</div>
-				<div>Member Since: {{list[coop]['subscription_date']}}</div>
-			</div>
-		</div>
-		<div class="col-md-6 coop-contact">
-			<div>{{list[coop]['email']}}</div>
-			<div>{{list[coop]['phone']}}</div>
-			<div>{{list[coop]['address']}}</div>
-		</div>
-	</div>
-	-->
 </div>

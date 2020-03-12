@@ -1,10 +1,8 @@
+@import "../../../../variables.scss";
 .coop {
 	//border-bottom: 1px solid #eee;
 	padding: 40px 0 5px;
 	margin-bottom: 20px;
-	&-content {
-		display: flex;
-	}
 	&-logo {
 		img {
 			max-width: 100px;
@@ -15,6 +13,16 @@
 	}
 	.card-content-coop {
 		max-width: 80%;
+		text-align: center;
+		.coop-title {
+			font-size: 18px;
+		}
+		.mdi-map {
+			color: $tertiary;
+		}
+		.mdi-view-dashboard-outline {
+			color: $secondary;
+		}
 		&-divider {
 			text-align: center;
 			margin-bottom: 10px;
