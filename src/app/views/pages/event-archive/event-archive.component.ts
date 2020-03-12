@@ -16,8 +16,6 @@ import { Observable, of } from 'rxjs';
 export class EventArchiveComponent implements OnInit {
 	p:number = 1;
 	objectKeys = Object.keys;
-	list$: Observable<any>;
-	coops$: Observable<any>;
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
 	posts_events: PostEvent[];

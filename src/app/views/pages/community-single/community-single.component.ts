@@ -20,8 +20,6 @@ import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.m
 export class CommunitySingleComponent implements OnInit {
 	objectKeys = Object.keys;
 	coopId: string;
-	coop$: Observable<any>;
-	offers$: Observable<any>;
 	private routeSubscription: any;
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
@@ -68,16 +66,6 @@ export class CommunitySingleComponent implements OnInit {
 			this.coopId = params['id'];
 			console.log(this.coopId);
 			this.fetchMerchantData(this.coopId);
-			/*this.loadData.get('coops').subscribe(data => {			
-				console.log('getJSON data');
-				console.log(data[this.coopId]);
-				this.coop$ = of(data[this.coopId]);
-				this.loadData.get('offers').subscribe(offers => {
-					this.offers$ = of(offers);
-					console.log(offers);
-					this.dataSource = Object.values(offers);
-				});
-			});*/
 		});
 	}
 	
