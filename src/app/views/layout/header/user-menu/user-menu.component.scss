@@ -14,6 +14,12 @@ button.log-in {
 		}
 	}
 	
+@media screen and (max-width: 1024px) {
+	.log-in {
+		display: none;
+	}
+}	
+
 @media screen and (min-width: 1025px) {
 	.menu-icon {
 		display: none;
