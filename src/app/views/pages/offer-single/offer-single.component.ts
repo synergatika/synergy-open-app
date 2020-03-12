@@ -16,8 +16,6 @@ import { Observable, of } from 'rxjs';
 export class OfferSingleComponent implements OnInit {
 	offerId: string;
 	merchId: string;
-	//offer$: Observable<any>;
-	//coop$: Observable<any>;
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
 	offer: Offer;
@@ -38,14 +36,6 @@ export class OfferSingleComponent implements OnInit {
 			this.merchId = params['id2'];
 			console.log(this.merchId);
 			this.fetchOfferData(this.merchId,this.offerId);
-			/*this.loadData.getJSON('offers').subscribe(data => {			
-				this.offer$ = of(data[this.offerId]);
-				this.coopId = data[this.offerId]['coop_id'];
-				this.loadData.getJSON('coops').subscribe(coops => {			
-					this.coop$ = of(coops[this.coopId]);
-
-				});
-			});*/
 		});
 	}
 	

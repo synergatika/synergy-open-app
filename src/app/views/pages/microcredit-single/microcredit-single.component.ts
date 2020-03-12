@@ -19,11 +19,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class MicrocreditSingleComponent implements OnInit {
 	merchId: string;
 	campaignId: string;
-	microcredit$: Observable<any>;
-	coop$: Observable<any>;
 	microcreditForm: FormGroup;
 	private routeSubscription: any;
-	
 	campaign: MicrocreditCampaign;
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
@@ -44,14 +41,6 @@ export class MicrocreditSingleComponent implements OnInit {
 			this.campaignId = params['id2'];
 			console.log(this.campaignId);
 			this.fetchCampaignData(this.merchId,this.campaignId);
-			/*this.loadData.getJSON('microcredit').subscribe(data => {			
-				this.microcredit$ = of(data[this.microcreditId]);
-				this.coopId = data[this.microcreditId]['coop_id'];
-				this.loadData.getJSON('coops').subscribe(coops => {			
-					this.coop$ = of(coops[this.coopId]);
-
-				});
-			});*/
 		});
 	}
 	
