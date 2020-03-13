@@ -67,7 +67,6 @@ html {
 		}
 		.fullwidth-title {
 			background-color: $primary;			
-			margin-bottom: 30px;
 			.row {
 				justify-content: flex-end;
 				align-items: center;
@@ -228,22 +227,6 @@ html {
 			width: 100%;
 		}
 	}
-	&-image {
-		> div {
-			//position: absolute;
-			width: calc(50vw - 50%);
-			height: calc(100% + 130px);
-			position: relative;
-			top: -130px;
-			margin-bottom: -130px;	
-			img {
-				width: 100%;
-				border-bottom-left-radius: 50%;
-				height: 100%;
-				object-fit: cover;
-			}
-		}
-	}
 	.merchant-img {
 		display: flex;
 		align-items: center;
@@ -262,6 +245,28 @@ html {
 		content: "";
 	}
 }
+//Coop section
+.coop-section {
+	.owl-theme .owl-nav {
+		bottom: 50%;
+		.owl-prev {
+			margin-left: -8px;
+		}
+		.owl-next {
+			margin-right: -8px;
+		}
+	}
+}
+
+//Gallery
+.gallery {
+	.owl-theme .owl-nav {
+		bottom: 40%;
+		.owl-prev, .owl-next {
+			margin: 0;
+		}
+	}
+}
 
 //Full width offer/campaign Sections
 .two-part-section {
@@ -269,12 +274,11 @@ html {
 		display: flex;
 		align-items: center;
 		&-title {
-			font-size: 5rem;
+			font-size: 3rem;
 			font-weight: 700;
-			max-width: 150px;
 			word-break: break-word;
 			opacity: 0.3;
-			line-height: 0.8;
+			margin-bottom: 10px;
 		}
 	}
 	&.bck-asymmetry.primary {	
@@ -333,7 +337,7 @@ html {
 .owl-theme {
 	.owl-nav {
 		position: absolute;
-		bottom: 60%;
+		bottom: 61%;
 		display: flex;
 		width: 100%;
 		justify-content: space-between;
@@ -341,23 +345,29 @@ html {
 		[class*=owl-] {
 			font-size: 34px;
 			line-height: 1.1;
+			background-color: #687aae;
+			pointer-events: all;
+			transition: background-color 0.3s;
+			&:hover {
+				background-color: $secondary;
+			}
+		}
+		.owl-prev {
+			margin-left: -22px;		
+			&:before {
+				content:"\f141";
+				font-family: "Material Design Icons";
+			}
+		}
+		.owl-next {
+			margin-right: -22px;
+			&:before {
+				content:"\f142";
+				font-family: "Material Design Icons";
+			}
 		}
 	}
-	.owl-prev {
-		
-		pointer-events: all;
-		&:before {
-			content:"\f141";
-			font-family: "Material Design Icons";
-		}
-	}
-	.owl-next {
-		pointer-events: all;
-		&:before {
-			content:"\f142";
-			font-family: "Material Design Icons";
-		}
-	}
+
 	.owl-dots {
 		margin-top: 10px;
 		.owl-dot {
@@ -371,6 +381,7 @@ html {
 }
 //Material Card
 .mat-card.item-card {
+	font-family: NeutrafaceTwoTextGreek, "Helvetica Neue", sans-serif; 
 	margin-bottom: 30px;
 	padding-top: 0;
 	box-shadow: 0 6px 21px -2px #d1cbcb;
@@ -414,11 +425,19 @@ html {
 		}
 		&-heading {
 			display: flex;
-			align-items: center;
 			justify-content: space-between;
-			margin-bottom: 18px;
-			.points {
-				font-size: 1.1rem;
+			margin-bottom: 14px;
+			.points-container {
+				flex-shrink: 0;
+				.points {
+					font-size: 1.5rem;
+					margin-left: 5px;
+					line-height: 1.1;
+					img {
+						display: inline;
+						width: 24px;
+					}
+				}
 			}
 			.coop-sector {
 				position: absolute;
@@ -432,16 +451,18 @@ html {
 		}
 		&-description {
 			font-size: 1.1rem;
-			color: #8b8b8b;
-			margin-bottom: 20px;
+			color: #707070;
+			margin-bottom: 17px;
+			line-height: 1.3;
 		}
 		&-title {
-			font-size: 1.4rem;
+			font-size: 1.35rem;
+			line-height: 1.3;
 		}
 		&-subtitle {
 			font-size: 14px;
-			margin-bottom: 5px;	
-			color: #8b8b8b;
+			margin-bottom: 2px;	
+			color: #000;
 			img {
 				position: relative;
 				top: -2px;
@@ -477,6 +498,80 @@ html {
 .sidenav.menu-active {
 	.nav-link {
 		opacity: 1;
+	}
+}
+
+@media (max-width: 767px) {
+	.offer, .campaign {
+		> .container > .row {
+			flex-direction: column-reverse;
+		}
+		&-image {	
+			padding: 0;
+			margin-bottom: 30px;
+			> div {			
+				position: relative;
+				height: auto;
+				overflow: hidden;
+				padding-top: 60%;
+				background-position: 50% 50%;
+				background-size: cover;
+				img {
+					right: 0;
+					width: 100%;
+					height: 100%;
+					bottom: 0;
+					left: 0;
+					top: 0;
+					position: absolute;
+					object-position: 50% 50%;
+					object-fit: cover;
+				}
+			}
+		}
+	}
+	.two-part-section {
+		&.bck-asymmetry.primary {	
+			.wide {
+				&-container {
+					padding: 40px 0 30px;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.fullwidth-title {			
+		margin-bottom: 30px;
+		}
+	.offer, .campaign {
+		&-image {
+			> div {
+				//position: absolute;
+				width: calc(50vw - 50%);
+				height: calc(100% + 130px);
+				position: relative;
+				top: -130px;
+				margin-bottom: -130px;	
+				img {
+					width: 100%;
+					border-bottom-left-radius: 50%;
+					height: 100%;
+					object-fit: cover;
+				}
+			}
+		}
+	}
+	.two-part-section {
+		.narrow {
+			&-title {
+				font-size: 5rem;
+				max-width: 150px;
+				line-height: 0.8;
+				margin-bottom: 0;
+			}
+		}
 	}
 }
 

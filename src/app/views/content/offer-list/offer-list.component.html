@@ -26,8 +26,11 @@
 												<div class="col-sm-12 item-amount">
 													<div class="item-heading">
 														<div class="item-title">{{offer.title}}</div>
-														<div>
-															<span class="points">{{offer.cost}}</span>
+														<div class="points-container">
+															<span class="points">
+																<img src="../../../assets/media/images/Synergy-Icon.png" alt="Synergy" />
+																{{offer.cost}}
+															</span>
 														</div>
 													</div>
 													<div class="item-description">
@@ -36,7 +39,7 @@
 													<div *ngIf="!singleMerchant" class="item-info">
 														<div class="" >
 															<div class="item-subtitle"><span class="mdi mdi-shopping"></span>{{offer.merchant_name}}</div>
-															<div class="item-subtitle"><span class="mdi mdi-pin"></span> {{offer.address.street}}, {{offer.address.city}}</div>
+															<div class="item-subtitle"><span class="mdi mdi-pin"></span>{{offer.address.street}}, {{offer.address.city}}</div>
 														</div>
 														
 													</div>
