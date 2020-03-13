@@ -1,4 +1,4 @@
-<div class="coop" *ngIf="merchants">	
+<div class="coop coop-section" *ngIf="merchants">	
 	<owl-carousel-o [options]="customOptions">
 		<ng-template carouselSlide *ngFor="let coop of merchants">
 			<div class="carousel-card">
@@ -9,7 +9,7 @@
 							<!--<a [routerLink]="['/coop', coop]"></a>-->
 						</div>
 					</div>
-					<div class="carousel-card-content row justify-content-md-center">
+					<div class="carousel-card-content row justify-content-center">
 						<div class="card-content-coop">
 							<div class="card-content-coop-divider"><span></span><span></span><span></span></div>
 							<div class="coop-heading">
