@@ -26,7 +26,7 @@ const routes: Routes = [
 		component: LayoutComponent,
 		children: [
 			{
-				path: 'home', component:HomeComponent
+				path: 'home', component:HomeComponent, data: { title: 'MENU.Home' }
 			},
 			{
 				path: 'explore', component:ExploreComponent
@@ -53,7 +53,7 @@ const routes: Routes = [
 				path: 'coop/:id', component:CommunitySingleComponent
 			},
 			{
-				path: 'offers', component:OfferArchiveComponent
+				path: 'offers', component:OfferArchiveComponent, data: { title: 'PAGE_TITLES.offers-title' }
 			},
 			{
 				path: 'offer', component:OfferSingleComponent
@@ -65,7 +65,7 @@ const routes: Routes = [
 				path: 'offer/:id/:id2', component:OfferSingleComponent
 			},
 			{
-				path: 'events', component:EventArchiveComponent
+				path: 'events', component:EventArchiveComponent, data: { title: 'PAGE_TITLES.news-title' }
 			},
 			{
 				path: 'event', component:EventSingleComponent
