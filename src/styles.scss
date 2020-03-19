@@ -489,6 +489,7 @@ html {
 		}
 	}
 }
+
 //Sidebar
 .sidenav {
 	.nav-link {
@@ -498,6 +499,15 @@ html {
 .sidenav.menu-active {
 	.nav-link {
 		opacity: 1;
+	}
+}
+
+//Pagination
+.ngx-pagination {
+	li {
+		&.current {
+			background: $primary;
+		}
 	}
 }
 
