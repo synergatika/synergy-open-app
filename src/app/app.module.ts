@@ -29,6 +29,7 @@ import { LoadEventsService } from './core/services/loadEvents.service';
 import { LoadCommunityService } from './core/services/loadCommunity.service';
 import { TranslationService } from './core/services/translation.service';
 import { MenuService } from './core/services/menu.service';
+import { LoadWpContentService } from './core/services/load-wp-content.service';
 
 import { NotFoundComponent } from './views/pages/not-found/not-found.component';
 import { OfferSingleComponent } from './views/pages/offer-single/offer-single.component';
@@ -125,7 +126,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 		LoadEventsService,
 		LoadCommunityService,
 		TranslationService,
-		MenuService
+		MenuService,
+		LoadWpContentService
   ],
   bootstrap: [AppComponent]
 })
