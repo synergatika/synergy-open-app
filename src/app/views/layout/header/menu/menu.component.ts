@@ -7,7 +7,7 @@ import { menu } from '../../../../core/config/menu';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-	private menu = menu.desktop;
+	public menu = menu.desktop;
 	/*menu = [
 		{
 			title: 'MENU.Home',

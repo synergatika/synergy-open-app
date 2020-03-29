@@ -10,6 +10,7 @@ export interface PostEvent {
 		event_imageURL?: string;
     title: string;
     content: string;
+		description?: string;
     access: string;
     type: string;
 

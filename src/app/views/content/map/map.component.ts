@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
-import { LoadJsonService } from '../../../core/services/loadjson.service';
+//import { LoadJsonService } from '../../../core/services/loadjson.service';
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
 // RxJS
@@ -41,7 +41,7 @@ export class MapComponent implements OnInit {
 	mapStyle = [{"featureType":"all","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"},{"visibility":"off"}]},{"featureType":"administrative.neighborhood","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"visibility":"on"},{"color":"#e0dfe0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#a8a9a8"},{"visibility":"on"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#5b5b5a"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#ffffff"},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]}];
 	
 	constructor(
-		private loadData : LoadJsonService,
+		//private loadData : LoadJsonService,
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService
 	) {
@@ -86,6 +86,7 @@ export class MapComponent implements OnInit {
 							lng: parseFloat(this.merchants[0].address.coordinates[1]),
 							img: this.merchants[0].imageURL,
 							name: this.merchants[0].name,
+							slug: this.merchants[0].slug,
 							address: this.merchants[0].address.street + ", " + this.merchants[0].address.city,
 							//label: '0',
 							draggable: false
@@ -96,6 +97,7 @@ export class MapComponent implements OnInit {
 								lng: parseFloat(this.merchants[i].address.coordinates[1]),
 								img: this.merchants[i].imageURL,
 								name: this.merchants[i].name,
+								slug: this.merchants[i].slug,
 								address: this.merchants[i].address.street + ", " + this.merchants[i].address.city,
 								//label: i.toString(),
 								draggable: false

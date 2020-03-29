@@ -26,10 +26,11 @@
 					<div class="info-container">
 						<img src={{m.img}}>
 						<div>
-							<a [routerLink]="['/coop', m.name]">
-								<strong>{{m.name}}</strong>
-								<br>
-								<p>{{m.address}}</p>
+							<a [routerLink]="['/coop/', m.slug]">
+								<div class="coop-name">
+									<strong>{{m.name}}</strong>
+								</div>
+								<div>{{m.address}}</div>
 							</a>
 						</div>
 					</div>
