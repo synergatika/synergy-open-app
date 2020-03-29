@@ -1,3 +1,9 @@
+interface Address {
+    street: string;
+    city: string;
+    postCode: string;
+}
+
 export interface Offer {
 
     merchant_id: string;
@@ -11,4 +17,5 @@ export interface Offer {
     cost: number;
     expiresAt: number;
     createdAt: string;
+		address?: Address;
 }

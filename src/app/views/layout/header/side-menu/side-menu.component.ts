@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class SideMenuComponent implements OnInit {
 	currentRouteUrl: string = '';
-	private menu = menu.mobile;
+	public menu = menu.mobile;
 	/*menu = [
 		{
 			title: 'MENU.HOME',

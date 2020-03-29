@@ -15,12 +15,13 @@ export interface Merchant {
     email?: string;
 
     name: string;
+		slug: string;
     imageURL: string;
     sector: string;
 
     contact: Contact;
     address: Address;
 		timetable: string;
-
+		description?: string;
     createdAt?: Date;
 }
