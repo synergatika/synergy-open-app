@@ -21,8 +21,7 @@ export class HomeHeroComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.unsubscribe = new Subject();
-		
+		this.unsubscribe = new Subject();		
 		this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
 				console.log(event.lang);
 				if(event.lang == 'en') {
