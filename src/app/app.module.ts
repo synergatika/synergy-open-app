@@ -95,7 +95,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     JoinComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
 		AppRoutingModule,
 		NgbModule,

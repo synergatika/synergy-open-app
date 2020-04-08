@@ -1,7 +1,10 @@
 // Angular
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 // Tranlsation
 import { TranslateService } from '@ngx-translate/core';
+// For Angular Universal
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 
 export interface Locale {
 	lang: string;
@@ -21,7 +24,7 @@ export class TranslationService {
 	 *
 	 * @param translate: TranslateService
 	 */
-	constructor(private translate: TranslateService) {
+	constructor(@Inject(PLATFORM_ID) private platformId: Object, private translate: TranslateService) {
 		// add new langIds to the list
 		this.translate.addLangs(['en']);
 
@@ -58,7 +61,10 @@ export class TranslationService {
 		if (lang) {
 			this.translate.use(this.translate.getDefaultLang());
 			this.translate.use(lang);
-			localStorage.setItem('language', lang);
+			if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem('language', lang);
+			}
+			
 		}
 	}
 
@@ -66,6 +72,12 @@ export class TranslationService {
 	 * Returns selected language
 	 */
 	getSelectedLanguage(): any {
-		return localStorage.getItem('language') || this.translate.getDefaultLang();
+		if (isPlatformBrowser(this.platformId)) {
+			return localStorage.getItem('language') || this.translate.getDefaultLang();
+		}
+		else {
+			return this.translate.getDefaultLang();
+		}
+		
 	}
 }
