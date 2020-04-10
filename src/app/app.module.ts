@@ -55,6 +55,8 @@ import { OfferArchiveComponent } from './views/pages/offer-archive/offer-archive
 import { CommunityArchiveComponent } from './views/pages/community-archive/community-archive.component';
 import { JoinComponent } from './views/pages/join/join.component';
 
+import { environment } from '../environments/environment';
+
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
 }
@@ -100,7 +102,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		AppRoutingModule,
 		NgbModule,
 		AgmCoreModule.forRoot({
-			apiKey: 'AIzaSyC8tI34nghyWlMaQhGluC9f6jG7E8swyVQ'
+			apiKey: environment.mapApiKey
 			}),
 		HttpClientModule,
 		TranslateModule.forRoot({
