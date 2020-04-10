@@ -44,7 +44,7 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 	private unsubscribe: Subject<any>;
 
 	merchants: Merchant[];
-
+	/*
 	list = [
 		{
 			name: 'Commonspace',
@@ -73,7 +73,7 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 			phone: '2103606333',
 			address: 'Solonos 136, 10677, Athens'
 		},
-	]
+	]*/
 
 	constructor(
 		private cdRef: ChangeDetectorRef,
