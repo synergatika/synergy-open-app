@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 // Models
-import { Merchant } from '../models/merchant.model'
+import { Partner } from '../models/partner.model'
 import { Offer } from '../models/offer.model'
 import { PostEvent } from '../models/post_event.model'
 import { MicrocreditCampaign } from '../models/microcredit-campaign.model';
@@ -27,17 +27,17 @@ export class OpenDataService {
   ) { }
 
   /** 
-  * Merchants
+  * Partners
   */
-  readMerchants(): Observable<Merchant[]> {
-    return this.http.get<any>(`${environment.apiUrl}/merchants/public/0-0-0`)
+  readPartners(): Observable<Partner[]> {
+    return this.http.get<any>(`${environment.apiUrl}/partners/public/0-0-0`)
       .pipe(map(response => {
         return response.data;
       }));
   }
 
-  readMerchantInfo(merchant_id: string): Observable<Merchant> {
-    return this.http.get<any>(`${environment.apiUrl}/merchants/${merchant_id}`)
+  readPartnerInfo(partner_id: string): Observable<Partner> {
+    return this.http.get<any>(`${environment.apiUrl}/partners/${partner_id}`)
       .pipe(map(response => {
         return response.data;
       }));
@@ -53,15 +53,15 @@ export class OpenDataService {
       }));
   }
 
-  readOffersByStore(merchant_id: string): Observable<Offer[]> {
-    return this.http.get<any>(`${environment.apiUrl}/loyalty/offers/public/${merchant_id}/0-0-0`)
+  readOffersByStore(partner_id: string): Observable<Offer[]> {
+    return this.http.get<any>(`${environment.apiUrl}/loyalty/offers/public/${partner_id}/0-0-0`)
       .pipe(map(response => {
         return response.data;
       }));
   }
-  
-  readOffer(merchant_id: string, offer_id: string): Observable<Offer> {
-    return this.http.get<any>(`${environment.apiUrl}/loyalty/offers/${merchant_id}/${offer_id}`)
+
+  readOffer(partner_id: string, offer_id: string): Observable<Offer> {
+    return this.http.get<any>(`${environment.apiUrl}/loyalty/offers/${partner_id}/${offer_id}`)
       .pipe(map(response => {
         return response.data;
       }));
@@ -77,49 +77,49 @@ export class OpenDataService {
       }));
   }
 
-  readPublicPostsEventsByStore(merchant_id: string): Observable<PostEvent[]> {
-    return this.http.get<any>(`${environment.apiUrl}/community/public/${merchant_id}/0-0-0`)
+  readPublicPostsEventsByStore(partner_id: string): Observable<PostEvent[]> {
+    return this.http.get<any>(`${environment.apiUrl}/community/public/${partner_id}/0-0-0`)
       .pipe(map(response => {
         return response.data;
       }));
   }
-  
-  readPublicPostEvent(merchant_id: string, post_id: string, post_type: string): Observable<PostEvent> {
-		if (post_type == 'post') {
-			return this.http.get<any>(`${environment.apiUrl}/posts/${merchant_id}/${post_id}`)
-				.pipe(map(response => {
-					return response.data;
-				}));
-		}
-		else {
-			 return this.http.get<any>(`${environment.apiUrl}/events/${merchant_id}/${post_id}`)
-				.pipe(map(response => {
-					return response.data;
-				}));
-		}
-  }  
-   /** 
-   * Microcredit Campaigns
-   */
+
+  readPublicPostEvent(partner_id: string, post_id: string, post_type: string): Observable<PostEvent> {
+    if (post_type == 'post') {
+      return this.http.get<any>(`${environment.apiUrl}/posts/${partner_id}/${post_id}`)
+        .pipe(map(response => {
+          return response.data;
+        }));
+    }
+    else {
+      return this.http.get<any>(`${environment.apiUrl}/events/${partner_id}/${post_id}`)
+        .pipe(map(response => {
+          return response.data;
+        }));
+    }
+  }
+  /** 
+  * Microcredit Campaigns
+  */
   readAllPublicMicrocreditCampaigns(): Observable<MicrocreditCampaign[]> {
     return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public/0-0-0`)
       .pipe(map(response => {
         return response.data;
       }));
   }
-  
-  readAllMicrocreditCampaignsByStore(merchant_id: string): Observable<MicrocreditCampaign[]> {
-    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public/${merchant_id}/0-0-0`)
+
+  readAllMicrocreditCampaignsByStore(partner_id: string): Observable<MicrocreditCampaign[]> {
+    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public/${partner_id}/0-0-0`)
       .pipe(map(response => {
         return response.data;
       }));
   }
-	
-	readMicrocreditCampaign(merchant_id: string, campaign_id: string): Observable<MicrocreditCampaign> {
-    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/${merchant_id}/${campaign_id}`)
+
+  readMicrocreditCampaign(partner_id: string, campaign_id: string): Observable<MicrocreditCampaign> {
+    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/${partner_id}/${campaign_id}`)
       .pipe(map(response => {
         return response.data;
       }));
   }
-	
+
 }

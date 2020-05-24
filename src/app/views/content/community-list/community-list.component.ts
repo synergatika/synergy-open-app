@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
 
 import { OpenDataService } from '../../../core/services/open-data.service';
-import { Merchant } from '../../../core/models/merchant.model';
+import { Partner } from '../../../core/models/partner.model';
 
 //import { LoadJsonService } from '../../../core/services/loadjson.service';
 import { Router } from '@angular/router';
@@ -30,20 +30,20 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 		navSpeed: 700,
 		navText: ['', ''],
 		responsive: {
-		  0: {
-			items: 1
-		  },
-		  940: {
-			items: 3
-		  }
+			0: {
+				items: 1
+			},
+			940: {
+				items: 3
+			}
 		},
-		margin:30,
+		margin: 30,
 		nav: true
 	}
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
 
-	merchants: Merchant[];
+	partners: Partner[];
 	/*
 	list = [
 		{
@@ -78,14 +78,14 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
-		private router: Router, 
-	//	private loadData : LoadJsonService
+		private router: Router,
+		//	private loadData : LoadJsonService
 	) {
 		this.unsubscribe = new Subject();
 	}
 
 	ngOnInit() {
-		this.fetchMerchantsData();
+		this.fetchPartnersData();
 		/*this.loadData.getJSON('coops').subscribe(data => {			
 			this.list$ = of(data);
         });*/
@@ -97,13 +97,13 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 		this.loading = false;
 	}
 
-	fetchMerchantsData() {
-		this.openDataService.readMerchants()
+	fetchPartnersData() {
+		this.openDataService.readPartners()
 			.pipe(
 				tap(
 					data => {
-						this.merchants = data;
-						console.log(this.merchants)
+						this.partners = data;
+						console.log(this.partners)
 					},
 					error => {
 					}),
@@ -115,13 +115,13 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 			)
 			.subscribe();
 	}
-	
+
 	mousedown() {
-	  this.moved = false;
+		this.moved = false;
 	}
-	
+
 	mousemove() {
-	  this.moved = true;
+		this.moved = true;
 	}
 
 	mouseup(id) {
@@ -129,7 +129,7 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 			console.log('moved')
 		} else {
 			console.log('not moved');
-			this.router.navigate(['/coop/'+id]);
+			this.router.navigate(['/coop/' + id]);
 
 		}
 		this.moved = false;

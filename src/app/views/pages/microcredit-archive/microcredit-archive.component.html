@@ -12,7 +12,7 @@
 				<mat-card class="item-card microcredit-card">
 				  <mat-card-content>
 						<!--begin::Content-->
-						<a class="item row" [routerLink]="['/microcredit/' + item.merchant_slug + '/' + item.campaign_slug]">
+						<a class="item row" [routerLink]="['/microcredit/' + item.partner_slug + '/' + item.campaign_slug]">
 							<div class="col-sm-12 item-img-container">
 								<div class="item-img">
 									<img *ngIf="item.campaign_imageURL" src={{item.campaign_imageURL}} alt={{item.title}} />	

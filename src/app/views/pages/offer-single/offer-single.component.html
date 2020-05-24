@@ -1,40 +1,42 @@
 <div *ngIf="offer" class="offer-wrapper single">
-	<div class="fullwidth-title">
-		<div class="container">
-			<div class="row">
-			</div>
-		</div>
-	</div>
-	<div class="offer">
-		<div class="container">		
-			<div class="row">
-				<div class="col-md-8 offer-content">	
-					<div class="row">	
-						<div class="col-md-12">
-							<h1 class="single-title">{{offer.title}}</h1>
-							<p [innerHTML]="offer.description"></p>			
-						</div>								
-					</div>		
-					<div class="row">
-						<div class="col-md-6 merchant-img">
-							<div>
-								<img [src]="offer.merchant_imageURL" [alt]="offer.title" />
-							</div>
-						</div>
-						<div class="col-md-6 single-info">
-							<div><span class="mdi mdi-shopping"></span> {{offer.merchant_name}}</div>
-							<div><span class="mdi mdi-map"></span> {{offer.address.street}}, {{offer.address.postCode}}, {{offer.address.city}}</div>
-							<div><span class="mdi mdi-star"></span> Points: {{offer.cost}}</div>
-							<div><span class="mdi mdi-clock"></span> Expires: {{offer.expiresAt | date: 'd/M/y'}}</div>
-						</div>					
-					</div>
-				</div>
-				<div class="col-md-4 offer-image">
-					<div>
-						<img [src]="offer.offer_imageURL" [alt]="offer.title" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="fullwidth-title">
+    <div class="container">
+      <div class="row">
+      </div>
+    </div>
+  </div>
+  <div class="offer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offer-content">
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="single-title">{{offer.title}}</h1>
+              <p [innerHTML]="offer.description"></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 partner-img">
+              <div>
+                <img [src]="offer.partner_imageURL" [alt]="offer.title" />
+              </div>
+            </div>
+            <div class="col-md-6 single-info">
+              <div><span class="mdi mdi-shopping"></span> {{offer.partner_name}}</div>
+              <div *ngIf="offer.partner_address"><span class="mdi mdi-map"></span> {{offer.partner_address.street}},
+                {{offer.partner_address.postCode}},
+                {{offer.partner_address.city}}</div>
+              <div><span class="mdi mdi-star"></span> Points: {{offer.cost}}</div>
+              <div><span class="mdi mdi-clock"></span> Expires: {{offer.expiresAt | date: 'd/M/y'}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 offer-image">
+          <div>
+            <img [src]="offer.offer_imageURL" [alt]="offer.title" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

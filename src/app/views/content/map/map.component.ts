@@ -5,7 +5,7 @@ import { tap, takeUntil, finalize } from 'rxjs/operators';
 // RxJS
 import { Observable, of } from 'rxjs';
 import { OpenDataService } from '../../../core/services/open-data.service';
-import { Merchant } from '../../../core/models/merchant.model';
+import { Partner } from '../../../core/models/partner.model';
 
 export interface marker {
 	lat: number;
@@ -15,13 +15,13 @@ export interface marker {
 }
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+	selector: 'app-map',
+	templateUrl: './map.component.html',
+	styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
 	@Input() merchId?: string;
-	singleMerchant: boolean = false;
+	singlePartner: boolean = false;
 	list: any;
 	latitude: number = 37.978157;
 	longitude: number = 23.731748;
@@ -36,10 +36,10 @@ export class MapComponent implements OnInit {
 			height: 15
 		}
 	};
-	merchants: Merchant[];
-	merchant: Merchant;
-	mapStyle = [{"featureType":"all","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"},{"visibility":"off"}]},{"featureType":"administrative.neighborhood","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"visibility":"on"},{"color":"#e0dfe0"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#a8a9a8"},{"visibility":"on"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#5b5b5a"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#ffffff"},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]}];
-	
+	partners: Partner[];
+	partner: Partner;
+	mapStyle = [{ "featureType": "all", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "administrative", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "administrative", "elementType": "labels.text.fill", "stylers": [{ "color": "#444444" }, { "visibility": "off" }] }, { "featureType": "administrative.neighborhood", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "landscape", "elementType": "all", "stylers": [{ "visibility": "on" }, { "color": "#e0dfe0" }] }, { "featureType": "landscape", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi", "elementType": "all", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#a8a9a8" }, { "visibility": "on" }] }, { "featureType": "road", "elementType": "all", "stylers": [{ "saturation": -100 }, { "lightness": 45 }] }, { "featureType": "road", "elementType": "geometry.fill", "stylers": [{ "visibility": "on" }, { "color": "#5b5b5a" }] }, { "featureType": "road", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "road.highway", "elementType": "all", "stylers": [{ "visibility": "simplified" }] }, { "featureType": "road.highway", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "road.arterial", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "elementType": "all", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "elementType": "all", "stylers": [{ "color": "#ffffff" }, { "visibility": "on" }] }, { "featureType": "water", "elementType": "labels", "stylers": [{ "visibility": "off" }] }];
+
 	constructor(
 		//private loadData : LoadJsonService,
 		private cdRef: ChangeDetectorRef,
@@ -49,11 +49,11 @@ export class MapComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		if(this.merchId) {
-			this.fetchMerchantData(this.merchId);
-			this.singleMerchant = true;
+		if (this.merchId) {
+			this.fetchPartnerData(this.merchId);
+			this.singlePartner = true;
 		} else {
-			this.fetchMerchantsData();
+			this.fetchPartnersData();
 		}
 		/*this.loadData.getJSON('coops').subscribe(data => {
 			Object.keys(data).map((key, index) => {
@@ -64,41 +64,41 @@ export class MapComponent implements OnInit {
 			this.list = Object.values(data);
 			//console.log(this.list);
 		});*/
-	  
+
 	}
-	
+
 	ngOnDestroy() {
 		this.unsubscribe.next();
 		this.unsubscribe.complete();
 		this.loading = false;
 	}
 
-	fetchMerchantsData() {
-		this.openDataService.readMerchants()
+	fetchPartnersData() {
+		this.openDataService.readPartners()
 			.pipe(
 				tap(
 					data => {
-						this.merchants = data;
+						this.partners = data;
 						//let x: marker[];
 						let x;
 						this.markers = [{
-							lat: parseFloat(this.merchants[0].address.coordinates[0]),
-							lng: parseFloat(this.merchants[0].address.coordinates[1]),
-							img: this.merchants[0].imageURL,
-							name: this.merchants[0].name,
-							slug: this.merchants[0].slug,
-							address: this.merchants[0].address.street + ", " + this.merchants[0].address.city,
+							lat: (this.partners[0].address) ? parseFloat(this.partners[0].address.coordinates[0]) : 0.0,
+							lng: (this.partners[0].address) ? parseFloat(this.partners[0].address.coordinates[1]) : 0.0,
+							img: this.partners[0].imageURL,
+							name: this.partners[0].name,
+							slug: this.partners[0].slug,
+							address: (this.partners[0].address) ? (this.partners[0].address.street + ", " + this.partners[0].address.city) : '',
 							//label: '0',
 							draggable: false
 						}]
-						for (var i = 1; i < this.merchants.length; i++) {
+						for (var i = 1; i < this.partners.length; i++) {
 							let y = {
-								lat: parseFloat(this.merchants[i].address.coordinates[0]),
-								lng: parseFloat(this.merchants[i].address.coordinates[1]),
-								img: this.merchants[i].imageURL,
-								name: this.merchants[i].name,
-								slug: this.merchants[i].slug,
-								address: this.merchants[i].address.street + ", " + this.merchants[i].address.city,
+								lat: (this.partners[i].address) ? parseFloat(this.partners[i].address.coordinates[0]) : 0.0,
+								lng: (this.partners[i].address) ? parseFloat(this.partners[i].address.coordinates[1]) : 0.0,
+								img: this.partners[i].imageURL,
+								name: this.partners[i].name,
+								slug: this.partners[i].slug,
+								address: this.partners[i].address.street + ", " + this.partners[i].address.city,
 								//label: i.toString(),
 								draggable: false
 							}
@@ -118,21 +118,21 @@ export class MapComponent implements OnInit {
 			)
 			.subscribe();
 	}
-	
-	fetchMerchantData(id) {
-		this.openDataService.readMerchantInfo(id)
+
+	fetchPartnerData(id) {
+		this.openDataService.readPartnerInfo(id)
 			.pipe(
 				tap(
 					data => {
-						this.merchant = data;
+						this.partner = data;
 						//let x: marker[];
 						let x;
 						this.markers = [{
-							lat: parseFloat(this.merchant.address.coordinates[0]),
-							lng: parseFloat(this.merchant.address.coordinates[1]),
-							img: this.merchant.imageURL,
-							name: this.merchant.name,
-							address: this.merchant.address.street + ", " + this.merchant.address.city,
+							lat: parseFloat(this.partner.address.coordinates[0]),
+							lng: parseFloat(this.partner.address.coordinates[1]),
+							img: this.partner.imageURL,
+							name: this.partner.name,
+							address: this.partner.address.street + ", " + this.partner.address.city,
 							//label: '0',
 							draggable: false
 						}];
@@ -152,9 +152,9 @@ export class MapComponent implements OnInit {
 			)
 			.subscribe();
 	}
-	
+
 	getRandomInteger(num) {
-		return Math.random()/num;
+		return Math.random() / num;
 	}
 
 }

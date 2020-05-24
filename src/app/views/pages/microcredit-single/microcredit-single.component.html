@@ -16,13 +16,13 @@
 						</div>								
 					</div>	
 					<div class="row">
-						<div class="col-md-6 merchant-img">
+						<div class="col-md-6 partner-img">
 							<div>
-								<img [src]="campaign.merchant_imageURL" [alt]="campaign.title" />
+								<img [src]="campaign.partner_imageURL" [alt]="campaign.title" />
 							</div>
 						</div>
 						<div class="col-md-6 single-info">
-							<div><span class="mdi mdi-shopping"></span> {{campaign.merchant_name}}</div>
+							<div><span class="mdi mdi-shopping"></span> {{campaign.partner_name}}</div>
 							<div *ngIf="campaign.minAllowed"><span class="mdi mdi-star"></span> {{ 'SINGLE.CAMPAIGN.Minimum' | translate }}: {{campaign.minAllowed}}</div>
 							<div><span class="mdi mdi-clock"></span> {{ 'SINGLE.CAMPAIGN.Begins' | translate }}: {{campaign.startsAt | date: 'd/M/y'}}</div>
 							<div><span class="mdi mdi-clock"></span> {{ 'SINGLE.CAMPAIGN.Expires' | translate }}: {{campaign.expiresAt | date: 'd/M/y'}}</div>

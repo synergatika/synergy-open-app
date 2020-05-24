@@ -9,7 +9,7 @@
 			<div class="event-heading">
 				<h1>{{postEvent.title}}</h1>
 				<div class="post-meta" *ngIf="eventType=='post'">
-					<a [routerLink]="['/coop/'+ postEvent.merchant_id]">{{postEvent.merchant_name}}</a> | 
+					<a [routerLink]="['/coop/'+ postEvent.partner_id]">{{postEvent.partner_name}}</a> | 
 					{{postEvent.createdAt | date: 'd/M/y'}}
 				</div>
 			</div>
@@ -27,7 +27,7 @@
 			<div>
 				<div><span class="mdi mdi-map"></span> {{postEvent.location}}</div>
 			</div>
-			<div><span class="mdi mdi-shopping"></span> {{postEvent.merchant_name}}</div>
+			<div><span class="mdi mdi-shopping"></span> {{postEvent.partner_name}}</div>
 		</div>
 	</div>
 	<ng-template #single_post >
