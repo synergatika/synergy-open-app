@@ -1,11 +1,17 @@
 <app-container>
-	<app-home-hero></app-home-hero>
+  <app-home-hero></app-home-hero>
 </app-container>
 <app-container class="bck-light">
-	<h2 class="title-overlapping">{{ 'HOME.community-title' | translate }}</h2>
-	<app-community-list></app-community-list>
+  <h2 class="title-overlapping">{{ 'HOME.community-title' | translate }}</h2>
+  <app-community-list></app-community-list>
 </app-container>
-<app-offer-list></app-offer-list>
-<app-microcredit-list></app-microcredit-list>
-<app-events-list></app-events-list>
-<app-map></app-map>
+<app-offer-list *ngIf="configAccess[1]"></app-offer-list>
+<app-microcredit-list *ngIf="configAccess[2]"></app-microcredit-list>
+<app-events-list *ngIf="configAccess[0]"></app-events-list>
+<app-map *ngIf="configSubAccess[0]"></app-map>
+
+<div>
+  <p>
+    Version: {{version}}
+  </p>
+</div>

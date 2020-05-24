@@ -1,52 +1,52 @@
 <div class="coop-wrapper">
-	<div class="fullwidth-title">
-		<div class="container">
-			<div class="row">
-				<h1>{{ 'PAGE_TITLES.coops-title' | translate }}</h1>
-			</div>
-		</div>
-	</div>
-	<div *ngIf="merchants?.length > 0" class="container">
-		<div>		
-			<div class="offer row" >
-				<div class="col-md-4" *ngFor="let item of merchants | paginate: { itemsPerPage: 9, currentPage: p }">
-					<mat-card class="item-card microcredit-card">
-						<mat-card-content>
-							<!--begin::Content-->
-							<a class="item row" [routerLink]="['/coop/' + item.slug]">
-								<div class="col-sm-12 item-img-container">
-									<div class="item-img">
-										<img *ngIf="item.imageURL" src={{item.imageURL}} alt={{item.title}} />					
-									</div>				
-								</div>
-								<div class="col-sm-12 item-details">				
-									<div class="item-heading">
-										<div class="item-title">{{item.name}}</div>
-										<div>
-											<div class="coop-sector">{{item.sector}}</div>
-										</div>
-									</div>
-									<div class="item-description">
-										{{item.subtitle}}
-									</div>
-									<div class="item-info">
-											<div class="">
-												<div class="item-subtitle">
-													<span class="mdi mdi-web"></span>{{item.contact.websiteURL}}
-												</div>
-												<div class="item-subtitle">
-													<span class="mdi mdi-map"></span>{{item.address.street}}, {{item.address.city}}
-												</div>
-											</div>
-										</div>
-								</div>
-							</a>
-							<!--end::Content-->
-						</mat-card-content>
-					</mat-card>				
-				</div>
-			</div>
-			<pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
-		</div>	
-	</div>
+  <div class="fullwidth-title">
+    <div class="container">
+      <div class="row">
+        <h1>{{ 'PAGE_TITLES.coops-title' | translate }}</h1>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="partners?.length > 0" class="container">
+    <div>
+      <div class="offer row">
+        <div class="col-md-4" *ngFor="let item of partners | paginate: { itemsPerPage: 9, currentPage: p }">
+          <mat-card class="item-card microcredit-card">
+            <mat-card-content>
+              <!--begin::Content-->
+              <a class="item row" [routerLink]="['/coop/' + item.slug]">
+                <div class="col-sm-12 item-img-container">
+                  <div class="item-img">
+                    <img *ngIf="item.imageURL" src={{item.imageURL}} alt={{item.title}} />
+                  </div>
+                </div>
+                <div class="col-sm-12 item-details">
+                  <div class="item-heading">
+                    <div class="item-title">{{item.name}}</div>
+                    <div>
+                      <div class="coop-sector">{{item.sector}}</div>
+                    </div>
+                  </div>
+                  <div class="item-description">
+                    {{item.subtitle}}
+                  </div>
+                  <div class="item-info">
+                    <div class="">
+                      <div *ngIf="item.contact" class="item-subtitle">
+                        <span class="mdi mdi-web"></span>{{item.contact.websiteURL}}
+                      </div>
+                      <div *ngIf="item.address" class="item-subtitle">
+                        <span class="mdi mdi-map"></span>{{item.address.street}}, {{item.address.city}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <!--end::Content-->
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
 </div>

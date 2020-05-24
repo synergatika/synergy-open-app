@@ -1,37 +1,37 @@
-<div class="coop coop-section" *ngIf="merchants">	
-	<owl-carousel-o [options]="customOptions">
-		<ng-template carouselSlide *ngFor="let coop of merchants">
-			<div class="carousel-card">
-				<div (mousedown)="mousedown()" (mousemove)="mousemove()" (mouseup)="mouseup(coop.slug)">
-					<div class="carousel-card-logo">
-						<div class="carousel-card-logo-container">
-							<img src={{coop.imageURL}} />
-							<!--<a [routerLink]="['/coop', coop]"></a>-->
-						</div>
-					</div>
-					<div class="carousel-card-content row justify-content-center">
-						<div class="card-content-coop">
-							<div class="card-content-coop-divider"><span></span><span></span><span></span></div>
-							<div class="coop-heading">
-								<div class="coop-title">{{coop.name}}</div>
-								<div class="coop-sector"><span class="mdi mdi-view-dashboard-outline"></span> {{coop.sector}}</div>
-							</div>
-							<div class="coop-info">
-								<div class="">
-									<div class="coop-subtitle">
-										<span class="mdi mdi-map"></span>
-										{{coop.address.street}}, {{coop.address.city}}
-									</div>
-								</div>
-								<!--<app-share-icon></app-share-icon>-->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</ng-template>
-	</owl-carousel-o>
-	<div class="text-center mt-4">
-		<a class="btn btn-primary tertiary-bck" [routerLink]="['/coops']">{{ 'BUTTONS.More' | translate }}</a>
-	</div>
+<div class="coop coop-section" *ngIf="partners">
+  <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide *ngFor="let coop of partners">
+      <div class="carousel-card">
+        <div (mousedown)="mousedown()" (mousemove)="mousemove()" (mouseup)="mouseup(coop.slug)">
+          <div class="carousel-card-logo">
+            <div class="carousel-card-logo-container">
+              <img src={{coop.imageURL}} />
+              <!--<a [routerLink]="['/coop', coop]"></a>-->
+            </div>
+          </div>
+          <div class="carousel-card-content row justify-content-center">
+            <div class="card-content-coop">
+              <div class="card-content-coop-divider"><span></span><span></span><span></span></div>
+              <div class="coop-heading">
+                <div class="coop-title">{{coop.name}}</div>
+                <div class="coop-sector"><span class="mdi mdi-view-dashboard-outline"></span> {{coop.sector}}</div>
+              </div>
+              <div class="coop-info">
+                <div class="">
+                  <div *ngIf="coop.address" class="coop-subtitle">
+                    <span class="mdi mdi-map"></span>
+                    {{coop.address.street}}, {{coop.address.city}}
+                  </div>
+                </div>
+                <!--<app-share-icon></app-share-icon>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </owl-carousel-o>
+  <div class="text-center mt-4">
+    <a class="btn btn-primary tertiary-bck" [routerLink]="['/coops']">{{ 'BUTTONS.More' | translate }}</a>
+  </div>
 </div>

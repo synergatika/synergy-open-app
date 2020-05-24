@@ -1,9 +1,9 @@
 export interface MicrocreditCampaign {
 
-    merchant_id: string;
-    merchant_name: string;
-    merchant_imageURL: string;
-    merchant_payment: {
+    partner_id: string;
+    partner_name: string;
+    partner_imageURL: string;
+    partner_payment: {
         Paypal: string,
         NationalBank: string,
         Eurobank: string,
@@ -26,7 +26,7 @@ export interface MicrocreditCampaign {
 
     redeemStarts: number,
     redeemEnds: number,
-		startsAt: number,
+    startsAt: number,
     expiresAt: number,
 
     supports: {

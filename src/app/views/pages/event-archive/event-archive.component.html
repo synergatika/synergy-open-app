@@ -13,7 +13,7 @@
 				<mat-card class="item-card post-card" *ngIf="post">
 					  <mat-card-content>
 							<!--begin::Content-->
-							<a class="item row" [routerLink]="['/event/' + post.merchant_id + '/' + post.post_event_id + '/' + post.type]">
+							<a class="item row" [routerLink]="['/event/' + post.partner_id + '/' + post.post_event_id + '/' + post.type]">
 								<div class="col-sm-12 item-img-container">
 									<div class="item-img">
 										<img src={{post.post_event_imageURL}} alt={{post.title}} />
@@ -34,7 +34,7 @@
 									<div class="item-info">
 										<div class="">
 											<div class="item-subtitle">
-												<span class="mdi mdi-shopping"></span>{{post.merchant_name}}
+												<span class="mdi mdi-shopping"></span>{{post.partner_name}}
 											</div>
 											<div *ngIf="post.location" class="item-subtitle">
 												<span class="mdi mdi-pin"></span>{{post.location}}

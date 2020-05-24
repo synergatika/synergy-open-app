@@ -3,8 +3,9 @@ import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
 
 import { OpenDataService } from '../../../core/services/open-data.service';
-import { Merchant } from '../../../core/models/merchant.model';
+import { Partner } from '../../../core/models/partner.model';
 
+import { environment } from '../../../../environments/environment';
 
 @Component({
 	selector: 'app-home',
@@ -14,6 +15,12 @@ import { Merchant } from '../../../core/models/merchant.model';
 
 
 export class HomeComponent implements OnInit, OnDestroy {
+
+	public configAccess: Boolean[] = environment.access;
+	public configSubAccess: Boolean[] = environment.subAccess;
+
+	public version: string = `${environment.version}`;
+
 	latitude = 38.262431;
 	longitude = 23.686613;
 	//markers: marker[];
@@ -21,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
 
-	merchants: Merchant[];
+	partners: Partner[];
 
 	constructor(
 		private cdRef: ChangeDetectorRef,
@@ -31,7 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
-		//this.fetchMerchantsData();
+		//this.fetchPartnersData();
 	}
 
 	ngOnDestroy() {
@@ -40,24 +47,24 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.loading = false;
 	}
 
-	fetchMerchantsData() {
-		this.openDataService.readMerchants()
+	fetchPartnersData() {
+		this.openDataService.readPartners()
 			.pipe(
 				tap(
 					data => {
-						this.merchants = data;
+						this.partners = data;
 						//let x: marker[];
 						let x;
 						this.markers = [{
-							lat: parseFloat(this.merchants[0].address.coordinates[0]),
-							lng: parseFloat(this.merchants[0].address.coordinates[1]),
+							lat: (this.partners[0].address) ? parseFloat(this.partners[0].address.coordinates[0]) : 0.0,
+							lng: (this.partners[0].address) ? parseFloat(this.partners[0].address.coordinates[1]) : 0.0,
 							label: '0',
 							draggable: true
 						}]
-						for (var i = 1; i < this.merchants.length; i++) {
+						for (var i = 1; i < this.partners.length; i++) {
 							let y = {
-								lat: parseFloat(this.merchants[i].address.coordinates[0]),
-								lng: parseFloat(this.merchants[i].address.coordinates[1]),
+								lat: (this.partners[i].address) ? parseFloat(this.partners[i].address.coordinates[0]) : 0.0,
+								lng: (this.partners[i].address) ? parseFloat(this.partners[i].address.coordinates[1]) : 0.0,
 								label: i.toString(),
 								draggable: true
 							}

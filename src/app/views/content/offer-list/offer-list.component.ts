@@ -14,7 +14,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class OfferListComponent implements OnInit {
 	@Input() merchId?: string;
 	moved: boolean;
-	singleMerchant: boolean = false;
+	singlePartner: boolean = false;
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
 	offers: Offer[];
@@ -27,14 +27,14 @@ export class OfferListComponent implements OnInit {
 		navSpeed: 700,
 		navText: ['', ''],
 		responsive: {
-		  0: {
-			items: 1
-		  },
-		  940: {
-			items: 3
-		  }
+			0: {
+				items: 1
+			},
+			940: {
+				items: 3
+			}
 		},
-		margin:30,
+		margin: 30,
 		nav: true
 	}
 
@@ -47,9 +47,9 @@ export class OfferListComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		if(this.merchId){
-			this.fetchMerchantOffersData(this.merchId);
-			this.singleMerchant = true ;
+		if (this.merchId) {
+			this.fetchPartnerOffersData(this.merchId);
+			this.singlePartner = true;
 		} else {
 			this.fetchOffersData();
 		}
@@ -79,8 +79,8 @@ export class OfferListComponent implements OnInit {
 			)
 			.subscribe();
 	}
-	
-	fetchMerchantOffersData(id) {
+
+	fetchPartnerOffersData(id) {
 		this.openDataService.readOffersByStore(id)
 			.pipe(
 				tap(
@@ -98,13 +98,13 @@ export class OfferListComponent implements OnInit {
 			)
 			.subscribe();
 	}
-	
+
 	mousedown() {
-	  this.moved = false;
+		this.moved = false;
 	}
-	
+
 	mousemove() {
-	  this.moved = true;
+		this.moved = true;
 	}
 
 	mouseup(mercId, offerId) {

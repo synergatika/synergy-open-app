@@ -7,14 +7,14 @@ import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.m
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
-  selector: 'app-microcredit-list',
-  templateUrl: './microcredit-list.component.html',
-  styleUrls: ['./microcredit-list.component.scss']
+	selector: 'app-microcredit-list',
+	templateUrl: './microcredit-list.component.html',
+	styleUrls: ['./microcredit-list.component.scss']
 })
 export class MicrocreditListComponent implements OnInit {
 	moved: boolean;
 	@Input() merchId?: string;
-	singleMerchant: boolean = false;
+	singlePartner: boolean = false;
 	customOptions: OwlOptions = {
 		loop: true,
 		mouseDrag: true,
@@ -24,18 +24,18 @@ export class MicrocreditListComponent implements OnInit {
 		navSpeed: 700,
 		navText: ['', ''],
 		responsive: {
-		  0: {
-			items: 1
-		  },
-		  940: {
-			items: 3
-		  }
+			0: {
+				items: 1
+			},
+			940: {
+				items: 3
+			}
 		},
-		margin:30,
+		margin: 30,
 		nav: true
 	}
 	loading: boolean = false;
-	private unsubscribe: Subject<any>;	
+	private unsubscribe: Subject<any>;
 	campaigns: MicrocreditCampaign[];
 	constructor(
 		private cdRef: ChangeDetectorRef,
@@ -46,14 +46,14 @@ export class MicrocreditListComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		if(this.merchId){
-			this.fetchMerchantCampaignsData(this.merchId);
-			this.singleMerchant = true ;
+		if (this.merchId) {
+			this.fetchPartnerCampaignsData(this.merchId);
+			this.singlePartner = true;
 		} else {
 			this.fetchCampaignsData();
 		}
 	}
-	
+
 	fetchCampaignsData() {
 		this.openDataService.readAllPublicMicrocreditCampaigns()
 			.pipe(
@@ -72,8 +72,8 @@ export class MicrocreditListComponent implements OnInit {
 			)
 			.subscribe();
 	}
-	
-	fetchMerchantCampaignsData(id) {
+
+	fetchPartnerCampaignsData(id) {
 		this.openDataService.readAllMicrocreditCampaignsByStore(id)
 			.pipe(
 				tap(
@@ -90,20 +90,20 @@ export class MicrocreditListComponent implements OnInit {
 				})
 			)
 			.subscribe();
-	}	
-	
+	}
+
 	ngOnDestroy() {
 		this.unsubscribe.next();
 		this.unsubscribe.complete();
 		this.loading = false;
 	}
-	
+
 	mousedown() {
-	  this.moved = false;
+		this.moved = false;
 	}
-	
+
 	mousemove() {
-	  this.moved = true;
+		this.moved = true;
 	}
 
 	mouseup(mercId, campId) {
@@ -112,7 +112,7 @@ export class MicrocreditListComponent implements OnInit {
 		} else {
 			console.log('not moved');
 			console.log(mercId);
-			this.router.navigate(['/microcredit/' + mercId +  '/' + campId]);
+			this.router.navigate(['/microcredit/' + mercId + '/' + campId]);
 
 		}
 		this.moved = false;

@@ -1,50 +1,49 @@
 <div class="fullwidth-title">
-	<div class="container">
-		<div class="row">
-			<h1>{{ 'PAGE_TITLES.offers-title' | translate }}</h1>
-		</div>
-	</div>
+  <div class="container">
+    <div class="row">
+      <h1>{{ 'PAGE_TITLES.offers-title' | translate }}</h1>
+    </div>
+  </div>
 </div>
 <div *ngIf="offers?.length > 0" class="container">
-	<div>		
-		<div class="offer row" >
-			<div class="col-md-4" *ngFor="let offer of offers | paginate: { itemsPerPage: 3, currentPage: p }">
-				<mat-card class="item-card offer-card">
-				  <mat-card-content>
-						<!--begin::Content-->
-						<a class="item row" [routerLink]="['/offer/'+ offer.merchant_slug + '/' + offer.offer_slug]">
-							<div class="col-sm-12 item-img-container">
-								<div class="item-img">
-									<img src={{offer.offer_imageURL}} alt={{offer.title}} />
-									<div class="item-expires">έως {{offer.expiresAt | date: 'd.M'}}</div>
-								</div>
-								
-							</div>
-							<div class="col-sm-12 item-amount">
-								<div class="item-heading">
-									<div class="item-title">{{offer.title}}</div>
-									<div>
-										<span class="points">{{offer.cost}}</span>
-									</div>
-								</div>
-								<div class="item-description">
-									{{offer.description}}
-								</div>
-								<div class="item-info">
-									<div class="" >
-										<div class="item-subtitle"><span class="mdi mdi-shopping"></span>{{offer.merchant_name}}</div>
-										<div class="item-subtitle"><span class="mdi mdi-pin"></span>{{offer.expiresAt}}</div>
-									</div>
-									
-								</div>
-							</div>
-						</a>
-						<!--end::Content-->
-				  </mat-card-content>
-				</mat-card>
-			</div>
-		</div>
-		<pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
-	</div>	
-</div>
+  <div>
+    <div class="offer row">
+      <div class="col-md-4" *ngFor="let offer of offers | paginate: { itemsPerPage: 3, currentPage: p }">
+        <mat-card class="item-card offer-card">
+          <mat-card-content>
+            <!--begin::Content-->
+            <a class="item row" [routerLink]="['/offer/'+ offer.partner_slug + '/' + offer.offer_slug]">
+              <div class="col-sm-12 item-img-container">
+                <div class="item-img">
+                  <img src={{offer.offer_imageURL}} alt={{offer.title}} />
+                  <div class="item-expires">έως {{offer.expiresAt | date: 'd.M'}}</div>
+                </div>
 
+              </div>
+              <div class="col-sm-12 item-amount">
+                <div class="item-heading">
+                  <div class="item-title">{{offer.title}}</div>
+                  <div>
+                    <span class="points">{{offer.cost}}</span>
+                  </div>
+                </div>
+                <div class="item-description">
+                  {{offer.description}}
+                </div>
+                <div class="item-info">
+                  <div class="">
+                    <div class="item-subtitle"><span class="mdi mdi-shopping"></span>{{offer.partner_name}}</div>
+                    <!-- <div class="item-subtitle"><span class="mdi mdi-pin"></span>{{offer.expiresAt}}</div> -->
+                  </div>
+
+                </div>
+              </div>
+            </a>
+            <!--end::Content-->
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

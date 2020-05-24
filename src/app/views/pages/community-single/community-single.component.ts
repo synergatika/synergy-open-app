@@ -7,15 +7,15 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { OpenDataService } from '../../../core/services/open-data.service';
-import { Merchant } from '../../../core/models/merchant.model';
+import { Partner } from '../../../core/models/partner.model';
 import { Offer } from '../../../core/models/offer.model'
 import { PostEvent } from '../../../core/models/post_event.model'
 import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.model';
 
 @Component({
-  selector: 'app-community-single',
-  templateUrl: './community-single.component.html',
-  styleUrls: ['./community-single.component.scss']
+	selector: 'app-community-single',
+	templateUrl: './community-single.component.html',
+	styleUrls: ['./community-single.component.scss']
 })
 export class CommunitySingleComponent implements OnInit {
 	objectKeys = Object.keys;
@@ -24,10 +24,10 @@ export class CommunitySingleComponent implements OnInit {
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
 
-	coop: Merchant;
+	coop: Partner;
 	displayedColumns: string[] = ['description', 'date_from', 'date_to', 'points'];
 	dataSource = [];
-	gallery = ['gallery-1.jpg','gallery-2.jpg','gallery-1.jpg','gallery-2.jpg','gallery-1.jpg','gallery-2.jpg'];
+	gallery = ['gallery-1.jpg', 'gallery-2.jpg', 'gallery-1.jpg', 'gallery-2.jpg', 'gallery-1.jpg', 'gallery-2.jpg'];
 	customOptions: OwlOptions = {
 		loop: true,
 		mouseDrag: true,
@@ -37,40 +37,40 @@ export class CommunitySingleComponent implements OnInit {
 		navSpeed: 700,
 		navText: ['', ''],
 		responsive: {
-		  0: {
-			items: 3
-		  },
-		  940: {
-			items: 4
-		  },
-		  1600: {
-			items: 6
-		  }
+			0: {
+				items: 3
+			},
+			940: {
+				items: 4
+			},
+			1600: {
+				items: 6
+			}
 		},
-		margin:10,
+		margin: 10,
 		nav: true
 	}
-	
+
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
-		private route: ActivatedRoute, 
+		private route: ActivatedRoute,
 		private loadData: LoadCommunityService
-	) { 
+	) {
 		this.unsubscribe = new Subject();
 	}
 
 	ngOnInit() {
-		
+
 		this.routeSubscription = this.route.params.subscribe(params => {
 			this.coopId = params['id'];
 			console.log(this.coopId);
-			this.fetchMerchantData(this.coopId);
+			this.fetchPartnerData(this.coopId);
 		});
 	}
-	
-	fetchMerchantData(id) {
-		this.openDataService.readMerchantInfo(id)
+
+	fetchPartnerData(id) {
+		this.openDataService.readPartnerInfo(id)
 			.pipe(
 				tap(
 					data => {
@@ -87,7 +87,7 @@ export class CommunitySingleComponent implements OnInit {
 			)
 			.subscribe();
 	}
-	
+
 	ngOnDestroy() {
 		this.unsubscribe.next();
 		this.unsubscribe.complete();

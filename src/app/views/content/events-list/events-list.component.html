@@ -1,51 +1,53 @@
 <div *ngIf="posts_events?.length > 0">
-	<app-container class="event-container">
-		<h2 class="news-title">{{ 'SECTIONS.news-title' | translate }}</h2>
-		<owl-carousel-o [options]="customOptions">
-			<ng-template carouselSlide *ngFor="let post of posts_events">
-				<mat-card class="item-card post-card" (mousedown)="mousedown()" (mousemove)="mousemove()" (mouseup)="mouseup(post.merchant_slug, post.post_event_slug, post.type)">
-				  <mat-card-content>
-						<!--begin::Content-->
-						<div class="wallet_post_wrapper">
-							<div class="item row" >
-								<div class="col-sm-12 item-img-container">
-									<div class="item-img">
-										<img src={{post.post_event_imageURL}} alt={{post.title}} />
-										<div *ngIf="post.dateTime" class="item-expires"><span class="white mdi mdi-calendar"></span> {{post.dateTime | date: 'd.M'}}</div>
-									</div>
-									
-								</div>
-								<div class="col-sm-12 item-amount">
-									<div class="item-heading">
-										<div class="item-title">{{post.title}}</div>
-										<div>
-											<span class="points">{{post.cost | currency:'EUR'}}</span>
-										</div>
-									</div>
-									<div class="item-description">
-										{{post.subtitle}}
-									</div>
-									<div *ngIf="!singleMerchant || post.location" class="item-info">
-										<div class="">
-											<div *ngIf="!singleMerchant" class="item-subtitle">
-												<span class="mdi mdi-shopping"></span>{{post.merchant_name}}
-											</div>
-											<div *ngIf="post.location" class="item-subtitle">
-												<span class="mdi mdi-pin"></span>{{post.location}}
-											</div>
-										</div>
-										<!--<app-share-icon></app-share-icon>-->
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--end::Content-->
-				  </mat-card-content>
-				</mat-card>
-			</ng-template>
-		</owl-carousel-o>
-		<div *ngIf="!singleMerchant" class="text-center mt-4">
-			<a class="btn btn-primary" [routerLink]="['/events']">{{ 'BUTTONS.More' | translate }}</a>
-		</div>
-	</app-container>	
+  <app-container class="event-container">
+    <h2 class="news-title">{{ 'SECTIONS.news-title' | translate }}</h2>
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let post of posts_events">
+        <mat-card class="item-card post-card" (mousedown)="mousedown()" (mousemove)="mousemove()"
+          (mouseup)="mouseup(post.partner_slug, post.post_event_slug, post.type)">
+          <mat-card-content>
+            <!--begin::Content-->
+            <div class="wallet_post_wrapper">
+              <div class="item row">
+                <div class="col-sm-12 item-img-container">
+                  <div class="item-img">
+                    <img src={{post.post_event_imageURL}} alt={{post.title}} />
+                    <div *ngIf="post.dateTime" class="item-expires"><span class="white mdi mdi-calendar"></span>
+                      {{post.dateTime | date: 'd.M'}}</div>
+                  </div>
+
+                </div>
+                <div class="col-sm-12 item-amount">
+                  <div class="item-heading">
+                    <div class="item-title">{{post.title}}</div>
+                    <div>
+                      <span class="points">{{post.cost | currency:'EUR'}}</span>
+                    </div>
+                  </div>
+                  <div class="item-description">
+                    {{post.subtitle}}
+                  </div>
+                  <div *ngIf="!singlePartner || post.location" class="item-info">
+                    <div class="">
+                      <div *ngIf="!singlePartner" class="item-subtitle">
+                        <span class="mdi mdi-shopping"></span>{{post.partner_name}}
+                      </div>
+                      <div *ngIf="post.location" class="item-subtitle">
+                        <span class="mdi mdi-pin"></span>{{post.location}}
+                      </div>
+                    </div>
+                    <!--<app-share-icon></app-share-icon>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end::Content-->
+          </mat-card-content>
+        </mat-card>
+      </ng-template>
+    </owl-carousel-o>
+    <div *ngIf="!singlePartner" class="text-center mt-4">
+      <a class="btn btn-primary" [routerLink]="['/events']">{{ 'BUTTONS.More' | translate }}</a>
+    </div>
+  </app-container>
 </div>

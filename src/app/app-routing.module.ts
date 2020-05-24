@@ -19,86 +19,144 @@ import { OfferArchiveComponent } from './views/pages/offer-archive/offer-archive
 import { MicrocreditArchiveComponent } from './views/pages/microcredit-archive/microcredit-archive.component';
 import { CommunityArchiveComponent } from './views/pages/community-archive/community-archive.component';
 
+import { ConfigGuard } from './core/helpers/config.guard';
+
 const routes: Routes = [
-	{path: '', redirectTo: 'home', pathMatch: 'full'},
+	{ path: '', redirectTo: 'home', pathMatch: 'full' },
 	{
 		path: '',
 		component: LayoutComponent,
 		children: [
 			{
-				path: 'home', component:HomeComponent, data: { title: 'MENU.Home' }
+				path: 'home', component: HomeComponent,
+				data: {
+					title: 'MENU.Home'
+				}
 			},
 			{
-				path: 'explore', component:ExploreComponent
+				path: 'explore', component: ExploreComponent
 			},
 			{
-				path: 'support', component:SupportComponent
+				path: 'support', component: SupportComponent
 			},
 			{
-				path: 'join-us', component:JoinComponent
+				path: 'join-us', component: JoinComponent
 			},
 			{
-				path: 'about', component:AboutComponent
+				path: 'about', component: AboutComponent
 			},
 			{
-				path: 'contact', component:ContactComponent
+				path: 'contact', component: ContactComponent
 			},
 			{
-				path: 'coops', component:CommunityArchiveComponent
+				path: 'coops', component: CommunityArchiveComponent
 			},
 			{
-				path: 'coop', component:CommunitySingleComponent
+				path: 'coop', component: CommunitySingleComponent
 			},
 			{
-				path: 'coop/:id', component:CommunitySingleComponent
+				path: 'coop/:id', component: CommunitySingleComponent
 			},
 			{
-				path: 'offers', component:OfferArchiveComponent, data: { title: 'PAGE_TITLES.offers-title' }
+				path: 'offers',
+				component: OfferArchiveComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					title: 'PAGE_TITLES.offers-title', accessIndex: 1
+				}
 			},
 			{
-				path: 'offer', component:OfferSingleComponent
+				path: 'offer',
+				component: OfferSingleComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					accessIndex: 1
+				}
 			},
 			{
-				path: 'offer/:id', component:OfferSingleComponent
+				path: 'offer/:id',
+				component: OfferSingleComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					accessIndex: 1
+				}
 			},
 			{
-				path: 'offer/:id/:id2', component:OfferSingleComponent
+				path: 'offer/:id/:id2',
+				component: OfferSingleComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					accessIndex: 1
+				}
 			},
 			{
-				path: 'events', component:EventArchiveComponent, data: { title: 'PAGE_TITLES.news-title' }
+				path: 'events',
+				component: EventArchiveComponent,
+				canActivate: [ConfigGuard],
+				data: { title: 'PAGE_TITLES.news-title', accessIndex: 0 }
 			},
 			{
-				path: 'event', component:EventSingleComponent
+				path: 'event',
+				component: EventSingleComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					accessIndex: 0
+				}
 			},
 			{
-				path: 'event/:id/:id2/:type', component:EventSingleComponent
+				path: 'event/:id/:id2/:type',
+				component: EventSingleComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					accessIndex: 0
+				}
 			},
 			{
-				path: 'microcredits', component:MicrocreditArchiveComponent
+				path: 'microcredits',
+				component: MicrocreditArchiveComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					accessIndex: 2
+				}
 			},
 			{
-				path: 'microcredit', component:MicrocreditSingleComponent
+				path: 'microcredit',
+				component: MicrocreditSingleComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					accessIndex: 2
+				}
 			},
 			{
-				path: 'microcredit/:id', component:MicrocreditSingleComponent
+				path: 'microcredit/:id',
+				component: MicrocreditSingleComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					accessIndex: 2
+				}
 			},
 			{
-				path: 'microcredit/:id/:id2', component:MicrocreditSingleComponent
+				path: 'microcredit/:id/:id2',
+				component: MicrocreditSingleComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					accessIndex: 2
+				}
 			},
 			{
 				path: '**', component: NotFoundComponent
 			},
 		]
 	},
-	{path: '**', component: NotFoundComponent},
-	
+	{ path: '**', component: NotFoundComponent },
+
 ];
 
 @NgModule({
 	imports: [
 		RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled'
-})
+			initialNavigation: 'enabled'
+		})
 	],
 	exports: [RouterModule]
 })
