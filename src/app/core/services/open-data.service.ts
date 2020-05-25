@@ -16,6 +16,8 @@ import { Partner } from '../models/partner.model'
 import { Offer } from '../models/offer.model'
 import { PostEvent } from '../models/post_event.model'
 import { MicrocreditCampaign } from '../models/microcredit-campaign.model';
+import { OneClickToken } from '../models/one-click-token.model';
+import { PaymentDetails } from '../models/payment-details.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +27,18 @@ export class OpenDataService {
   constructor(
     private http: HttpClient
   ) { }
+
+
+  /**
+   * Authentication
+   */
+  oneClickRegistration(email: string): Observable<OneClickToken> {
+    return this.http.post<any>(`${environment.apiUrl}/auth/one-click/register`, { email: email })
+      .pipe(map(response => {
+        return response.data;
+      }));
+  }
+
 
   /** 
   * Partners
@@ -98,9 +112,20 @@ export class OpenDataService {
         }));
     }
   }
+
+
   /** 
   * Microcredit Campaigns
   */
+
+  oneClickSupport(partner_id: string, campaign_id: string, token: string, _amount: number, method: string): Observable<PaymentDetails> {
+    return this.http.post<any>(`${environment.apiUrl}/microcredit/one-click/${partner_id}/${campaign_id}/${token}`,
+      { _amount: _amount, method: method })
+      .pipe(map(response => {
+        return response.data;
+      }));
+  };
+
   readAllPublicMicrocreditCampaigns(): Observable<MicrocreditCampaign[]> {
     return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public/0-0-0`)
       .pipe(map(response => {

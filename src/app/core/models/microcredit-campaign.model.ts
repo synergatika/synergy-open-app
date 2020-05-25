@@ -1,15 +1,16 @@
+interface Bank {
+    bic: string;
+    name: string;
+    value: string;
+}
+
 export interface MicrocreditCampaign {
 
     partner_id: string;
     partner_name: string;
     partner_imageURL: string;
-    partner_payment: {
-        Paypal: string,
-        NationalBank: string,
-        Eurobank: string,
-        AlphaBank: string,
-        PireausBank: string
-    },
+    partner_payment: Bank[];
+    partner_payments: Bank[];
 
     campaign_id: string,
     campaign_imageURL: string,
@@ -20,6 +21,7 @@ export interface MicrocreditCampaign {
     access: string,
 
     quantitative: boolean,
+    stepAmount: number,
     minAllowed: number,
     maxAllowed: number,
     maxAmount: number,
