@@ -6,15 +6,15 @@
 		</div>
 	</div>
 	<div class="campaign">
-		<div class="container">		
+		<div class="container">
 			<div class="row">
-				<div class="col-md-8 campaign-content">		
-					<div class="row">	
+				<div class="col-md-8 campaign-content">
+					<div class="row">
 						<div class="col-md-12">
 							<h1 class="single-title">{{campaign.title}}</h1>
 							<p [innerHTML]="campaign.description"></p>
-						</div>								
-					</div>	
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-md-6 partner-img">
 							<div>
@@ -23,10 +23,13 @@
 						</div>
 						<div class="col-md-6 single-info">
 							<div><span class="mdi mdi-shopping"></span> {{campaign.partner_name}}</div>
-							<div *ngIf="campaign.minAllowed"><span class="mdi mdi-star"></span> {{ 'SINGLE.CAMPAIGN.Minimum' | translate }}: {{campaign.minAllowed}}</div>
-							<div><span class="mdi mdi-clock"></span> {{ 'SINGLE.CAMPAIGN.Begins' | translate }}: {{campaign.startsAt | date: 'd/M/y'}}</div>
-							<div><span class="mdi mdi-clock"></span> {{ 'SINGLE.CAMPAIGN.Expires' | translate }}: {{campaign.expiresAt | date: 'd/M/y'}}</div>
-						</div>					
+							<div *ngIf="campaign.minAllowed"><span class="mdi mdi-star"></span>
+								{{ 'SINGLE.CAMPAIGN.Minimum' | translate }}: {{campaign.minAllowed}}</div>
+							<div><span class="mdi mdi-clock"></span> {{ 'SINGLE.CAMPAIGN.Begins' | translate }}:
+								{{campaign.startsAt | date: 'd/M/y'}}</div>
+							<div><span class="mdi mdi-clock"></span> {{ 'SINGLE.CAMPAIGN.Expires' | translate }}:
+								{{campaign.expiresAt | date: 'd/M/y'}}</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4 campaign-image">
@@ -45,19 +48,21 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				
+
 			</div>
-			<div class="col-md-6 campaign-support">			
+			<div class="col-md-6 campaign-support">
 				<p>{{ 'SINGLE.CAMPAIGN.Form-title' | translate }}</p>
 				<form class="kt-form" [formGroup]="microcreditForm" autocomplete="off">
+
 					<div class="form-group">
 						<mat-form-field>
 							<mat-label>{{ 'AUTH.INPUT.EMAIL' | translate }}</mat-label>
-							<input matInput type="email" placeholder="{{ 'AUTH.INPUT.EMAIL' | translate }}" formControlName="email" autocomplete="off"/>
+							<input matInput type="email" placeholder="{{ 'AUTH.INPUT.EMAIL' | translate }}"
+								formControlName="email" autocomplete="off" />
 							<mat-error *ngIf="isControlHasError('email','required')">
 								<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
 							</mat-error>
@@ -72,9 +77,48 @@
 							</mat-error>
 						</mat-form-field>
 					</div>
+
+					<div class="form-group">
+						<label>{{'SUPPORT.AMOUNT' | translate}}</label>
+						<div class="input-group">
+							<span class="input-group-text">€</span>
+							<input [readonly]="campaign.quantitative==false||campaign.stepAmount>0" type="number"
+								class="form-control" name="amount" formControlName="amount" placeholder="Amount"
+								value="0">
+							<div class="amount-controller">
+								<button mat-mini-fab class="add" (click)="addStep()">
+									+
+								</button>
+								<button mat-mini-fab class="remove" (click)="removeStep()">
+									-
+								</button>
+							</div>
+						</div>
+						<span *ngIf="isControlHasError('amount','required')"
+							class="error text-danger">{{ 'FORM.VALIDATION.REQUIRED_FIELD' | translate }}</span>
+						<span *ngIf="isControlHasError('amount','min')"
+							class="error text-danger">{{ 'FORM.VALIDATION.MIN_VALUE_FIELD' | translate }}
+							{{ campaign.minAllowed | currency: 'EUR'}}</span>
+						<span *ngIf="isControlHasError('amount','max')"
+							class="error text-danger">{{ 'FORM.VALIDATION.MAX_VALUE_FIELD' | translate }}
+							{{ campaign.maxAllowed | currency: 'EUR'}}</span>
+					</div>
+					<div class="form-group">
+						<label>{{'SUPPORT.PAYMENT' | translate}}</label>
+						<select name="method" formControlName="method" class="form-control">
+							<option *ngFor="let payment of paymentsList" value="{{payment.bic}}">
+								{{payment.title | translate}}</option>
+						</select>
+						<span *ngIf="isControlHasError('method','required')"
+							class="error text-danger">{{ 'FORM.VALIDATION.REQUIRED_FIELD' | translate }}</span>
+					</div>
+
+
 					<!--begin::Action-->
 					<div class="kt-login__actions">
-						<button id="kt_login_signin_submit" class="btn btn-primary">{{ 'AUTH.GENERAL.SUBMIT_BUTTON' | translate }}</button>
+						<button (click)="onSubmit()" (keyup.enter)="onSubmit()" id="kt_login_signin_submit"
+							class="btn btn-primary"
+							[ngClass]="{'spinner spinner--right spinner--md spinner--light': loading}">{{ 'AUTH.GENERAL.SUBMIT_BUTTON' | translate }}</button>
 					</div>
 					<!--end::Action-->
 				</form>

@@ -1,6 +1,17 @@
 {
-	"HOME": {   
-		"community-title":  "Community"	
+	"HOME": {
+		"community-title": "Community"
+	},
+	"SUPPORT": {
+		"PAYMENT_CHOICES": {
+			"A": "Εθνική Τράπεζα",
+			"B": "Τράπεζα Πειραιώς",
+			"C": "Eurobank Ergasias",
+			"D": "Alpha Bank",
+			"E": "PayPal.Me"
+		},
+		"AMOUNT": "Amount",
+		"PAYMENT": "Payment Method"
 	},
 	"MENU": {
 		"Home": "Home",
@@ -38,11 +49,11 @@
 			"REQUIRED_FIELD": "This field is required",
 			"INVALID_FIELD": "Invalid Field",
 			"MIN_LENGTH_FIELD": "The minimum number of characters for the field is",
-			"MAX_LENGTH_FIELD": "The maximum number of characters for the field is"			
+			"MAX_LENGTH_FIELD": "The maximum number of characters for the field is"
 		},
 		"GENERAL": {
 			"SUBMIT_BUTTON": "Submit"
-		}		
+		}
 	},
 	"BUTTONS": {
 		"More": "More",
@@ -50,7 +61,7 @@
 	},
 	"SINGLE": {
 		"COOP": {
-			"Timetable" : "Timetable"
+			"Timetable": "Timetable"
 		},
 		"CAMPAIGN": {
 			"Support-title": "Do you wish to support this cause?",

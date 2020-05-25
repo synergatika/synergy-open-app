@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000',//'https://api.synergatika.gr', //'http://192.168.1.160:3000',//'http://192.168.1.9:3000', //'http://localhost:3000',//'http://localhost:3000'// 'http://localhost:3000'
+  //apiUrl: 'http://localhost:3000',//'http://192.168.1.160:3000',//'http://192.168.1.9:3000',
+  apiUrl: 'https://api.synergatika.gr',
   mapApiKey: 'AIzaSyC8tI34nghyWlMaQhGluC9f6jG7E8swyVQ',
 
   access: [true, true, true, false],// community, loyalty, microcredit, microfunding
