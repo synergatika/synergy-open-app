@@ -11,6 +11,8 @@ import { Observable, of } from 'rxjs';
 // Translate
 import { TranslateService } from '@ngx-translate/core';
 import { StaticDataService } from 'src/app/core/services/static-data.service';
+import Swal from 'sweetalert2';
+import { PaymentDetails } from 'src/app/core/models/payment-details.model';
 
 @Component({
 	selector: 'app-microcredit-single',
@@ -20,6 +22,7 @@ import { StaticDataService } from 'src/app/core/services/static-data.service';
 export class MicrocreditSingleComponent implements OnInit {
 
 	public paymentsList: any[];
+	paymentDetails: PaymentDetails;
 
 	oneClickToken: any;
 	tempAmount: number;
@@ -139,8 +142,37 @@ export class MicrocreditSingleComponent implements OnInit {
 				tap(
 					data => {
 						(data);
+						this.paymentDetails = data;
+						//this.support.how = data.how;
+
+						this.paymentDetails['how'] = (this.paymentDetails.method == 'store') ? { title: '', value: '' } : {
+							title: this.paymentsList.filter((el) => {
+								return el.bic == this.paymentDetails.method
+							})[0].title,
+							value: this.campaign.partner_payments.filter((el) => {
+								return el.bic == this.paymentDetails.method
+							})[0].value
+						}
+						Swal.fire({
+							title: this.translate.instant('SUPPORT.SUCCESS.TITLE'),
+							html:
+								"<p>{{'SUPPORT.SUCCESS.PAYMENT_ID' | translate}}: {{support.payment_id}}</p> " +
+								"<p *ngIf=\"support.method!='store'\">{{'SUPPORT.SUCCESS.INSTRUCTIONS' | translate}}: " +
+								"  {{'SUPPORT.PAYMENT.BANK' | translate}} || " +
+								"  {{support.how.title | translate}} : {{support.how.value}}</p> " +
+								"<p *ngIf=\"support.method=='store'\">{{'SUPPORT.SUCCESS.INSTRUCTIONS' | translate}}: " +
+								"  {{'SUPPORT.PAYMENT.STORE' | translate}} </p> ",
+							icon: 'success'
+						})
 					},
 					error => {
+						let message = 'SUPPORT.ERROR.SUPPORTING';
+						if (error.status === 404) message = 'SUPPORT.ERROR.' + error.error.message.split('Not Found: ')[1];
+						Swal.fire(
+							this.translate.instant('SUPPORT.ERROR.TITLE'),
+							this.translate.instant(message),
+							'error'
+						);
 						console.log('error');
 					}),
 				takeUntil(this.unsubscribe),
@@ -176,6 +208,11 @@ export class MicrocreditSingleComponent implements OnInit {
 						this.oneClickSupport(controls);
 					},
 					error => {
+						Swal.fire(
+							this.translate.instant('SUPPORT.ERROR.REGISTRATION'),
+							this.translate.instant(error),
+							'error'
+						);
 						console.log('error');
 					}),
 				takeUntil(this.unsubscribe),
