@@ -1,74 +1,95 @@
 {
-	"HOME": {
-		"community-title": "Κοινότητα"
-	},
-	"SUPPORT": {
-		"PAYMENT_CHOICES": {
-			"A": "Εθνική Τράπεζα",
-			"B": "Τράπεζα Πειραιώς",
-			"C": "Eurobank Ergasias",
-			"D": "Alpha Bank",
-			"E": "PayPal.Me"
-		},
-		"AMOUNT": "Ποσό",
-		"PAYMENT": "Μέθοδος Πληρωμής"
-	},
-	"MENU": {
-		"Home": "Αρχική",
-		"About": "Ποιοι Είμαστε",
-		"Events": "Εκδηλώσεις",
-		"Contact": "Επικοινωνία",
-		"Explore": "Ανακάλυψε",
-		"Support": "Στήριξε",
-		"Join": "Γίνε Μέλος",
-		"Login": "Σύνδεση"
-	},
-	"PAGE_TITLES": {
-		"coops-title": "συνεταιρισμοί",
-		"offers-title": "προσφορές",
-		"campaigns-title": "καμπάνιες",
-		"news-title": "νέα"
-	},
-	"SECTIONS": {
-		"campaigns-title": "καμπανιες",
-		"campaigns-link-to-all": "Δείτε όλες τις καμπάνιες",
-		"offers-title": "προσφορες",
-		"offers-link-to-all": "Δείτε όλες τις προσφορές",
-		"news-title": "Νέα"
-	},
-	"offer-list": {
-		"title": "Τρέχουσες Προσφορές",
-		"points": "Πόντοι",
-		"expires": "Λήγει"
-	},
-	"AUTH": {
-		"INPUT": {
-			"EMAIL": "E-mail"
-		},
-		"VALIDATION": {
-			"REQUIRED_FIELD": "Το πεδίο είναι απαραίτητο",
-			"INVALID_FIELD": "Το πεδίο δεν είναι έγκυρο",
-			"MIN_LENGTH_FIELD": "Ο ελάχιστος αριθμός χαρακτήρων για το πεδίο είναι",
-			"MAX_LENGTH_FIELD": "Ο μέγιστος αριθμός χαρακτήρων για το πεδίο είναι"
-		},
-		"GENERAL": {
-			"SUBMIT_BUTTON": "Υποβολή"
-		}
-	},
-	"BUTTONS": {
-		"More": "Περισσότερα",
-		"Join": "Γίνε Μέλος"
-	},
-	"SINGLE": {
-		"COOP": {
-			"Timetable": "Ωράριο"
-		},
-		"CAMPAIGN": {
-			"Support-title": "Επιθυμείτε να στηρίξετε την καμπάνια;",
-			"Begins": "Έναρξη",
-			"Expires": "Λήξη",
-			"Minimum": "Ελάχιστο Ποσό",
-			"Form-title": "Παρακαλούμε συμπληρώστε τα στοιχεία σας"
-		}
-	}
+  "HOME": {
+    "community-title": "Κοινότητα"
+  },
+  "SUPPORT": {
+    "PAYMENT_CHOICES": {
+      "A": "Εθνική Τράπεζα",
+      "B": "Τράπεζα Πειραιώς",
+      "C": "Eurobank Ergasias",
+      "D": "Alpha Bank",
+      "E": "PayPal.Me"
+    },
+    "AMOUNT": "Ποσό",
+    "PAYMENT": "Μέθοδος Πληρωμής",
+    "STORE": "Στο Κατάστημα",
+    "BANK": "Τραπεζική Κατάθεση",
+    "SUCCESS:": {
+      "TITLE": "Support is ok",
+      "PAYMENT_ID": "ID Πληρωμής",
+      "INSTRUCTIONS": "Οδηγίες"
+    },
+    "ERROR": {
+      "TITLE": "Κάτι πήγε λάθος",
+      "SUPPORTING": "Η συναλλαγή απέτυχε",
+      "REGISTRATION": "Πρόβλημα κατα την εγγραφή",
+
+      "CAMPAIGN_NOT_PUBLISHED": "Η Καμπάνια δεν έχει δημοσιευτεί ακόμα",
+      "CAMPAIGN_NOT_STARTED": "Η περίοδος υποστήριξης δεν έχει ξεκινήσει",
+      "CAMPAIGN_EXPIRED": "Η περίοδος υποστήριξης έχει παρέλθει",
+      "OVER_TOTAL_MAX": "Το συνολικό ποσό υποστήριξης δεν μπορεί να υπερβαίνει το μέγιστο όριο της Καμπάνιας",
+      "OVER_MAX_AMOUNT": "Το ποσό δεν μπορεί να υπερβαίνει το μέγιστο όριο",
+      "UNDER_MIN_AMOUNT": "Το πόσο δεν μπορεί να είναι μικρότερο από το ελάχιστο όριο",
+      "ZERO_AMOUNT": "Το ποσό δεν μπορεί να είναι μικρότερο ή ίσο του μηδενός",
+      "METHOD_INAVAILABLE": "Η μέθοδος πληρωμής που επιλέξατε δεν είναι διαθέσιμη"
+    }
+  },
+  "MENU": {
+    "Home": "Αρχική",
+    "About": "Ποιοι Είμαστε",
+    "Events": "Εκδηλώσεις",
+    "Contact": "Επικοινωνία",
+    "Explore": "Ανακάλυψε",
+    "Support": "Στήριξε",
+    "Join": "Γίνε Μέλος",
+    "Login": "Σύνδεση"
+  },
+  "PAGE_TITLES": {
+    "coops-title": "συνεταιρισμοί",
+    "offers-title": "προσφορές",
+    "campaigns-title": "καμπάνιες",
+    "news-title": "νέα"
+  },
+  "SECTIONS": {
+    "campaigns-title": "καμπανιες",
+    "campaigns-link-to-all": "Δείτε όλες τις καμπάνιες",
+    "offers-title": "προσφορες",
+    "offers-link-to-all": "Δείτε όλες τις προσφορές",
+    "news-title": "Νέα"
+  },
+  "offer-list": {
+    "title": "Τρέχουσες Προσφορές",
+    "points": "Πόντοι",
+    "expires": "Λήγει"
+  },
+  "AUTH": {
+    "INPUT": {
+      "EMAIL": "E-mail"
+    },
+    "VALIDATION": {
+      "REQUIRED_FIELD": "Το πεδίο είναι απαραίτητο",
+      "INVALID_FIELD": "Το πεδίο δεν είναι έγκυρο",
+      "MIN_LENGTH_FIELD": "Ο ελάχιστος αριθμός χαρακτήρων για το πεδίο είναι",
+      "MAX_LENGTH_FIELD": "Ο μέγιστος αριθμός χαρακτήρων για το πεδίο είναι"
+    },
+    "GENERAL": {
+      "SUBMIT_BUTTON": "Υποβολή"
+    }
+  },
+  "BUTTONS": {
+    "More": "Περισσότερα",
+    "Join": "Γίνε Μέλος"
+  },
+  "SINGLE": {
+    "COOP": {
+      "Timetable": "Ωράριο"
+    },
+    "CAMPAIGN": {
+      "Support-title": "Επιθυμείτε να στηρίξετε την καμπάνια;",
+      "Begins": "Έναρξη",
+      "Expires": "Λήξη",
+      "Minimum": "Ελάχιστο Ποσό",
+      "Form-title": "Παρακαλούμε συμπληρώστε τα στοιχεία σας"
+    }
+  }
 }
