@@ -14,7 +14,7 @@
     "PAYMENT": "Μέθοδος Πληρωμής",
     "STORE": "Στο Κατάστημα",
     "BANK": "Τραπεζική Κατάθεση",
-    "SUCCESS:": {
+    "SUCCESS": {
       "TITLE": "Support is ok",
       "PAYMENT_ID": "ID Πληρωμής",
       "INSTRUCTIONS": "Οδηγίες"

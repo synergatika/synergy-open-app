@@ -100,11 +100,11 @@ export class MicrocreditSingleComponent implements OnInit {
 	}
 
 	initRegistrationForm() {
-		//const currentMethodsArray = (this.campaign.partner_payment).map(a => a.bic);
-		const currentMethodsArray = ([{
-			bic: 'PIRBGRAA',
-			value: 'Gr;ljsdlfkjsdflksdflkdsjfls',
-		}]).map(a => a.bic);
+		const currentMethodsArray = (this.campaign.partner_payments).map(a => a.bic);
+		// const currentMethodsArray = ([{
+		// 	bic: 'PIRBGRAA',
+		// 	value: 'Gr;ljsdlfkjsdflksdflkdsjfls',
+		// }]).map(a => a.bic);
 		const validatePaymentList = this.paymentsList.filter(function (el) {
 			return currentMethodsArray.includes(el.bic);
 		});
@@ -153,17 +153,20 @@ export class MicrocreditSingleComponent implements OnInit {
 								return el.bic == this.paymentDetails.method
 							})[0].value
 						}
-						Swal.fire({
-							title: this.translate.instant('SUPPORT.SUCCESS.TITLE'),
-							html:
-								"<p>{{'SUPPORT.SUCCESS.PAYMENT_ID' | translate}}: {{support.payment_id}}</p> " +
-								"<p *ngIf=\"support.method!='store'\">{{'SUPPORT.SUCCESS.INSTRUCTIONS' | translate}}: " +
-								"  {{'SUPPORT.PAYMENT.BANK' | translate}} || " +
-								"  {{support.how.title | translate}} : {{support.how.value}}</p> " +
-								"<p *ngIf=\"support.method=='store'\">{{'SUPPORT.SUCCESS.INSTRUCTIONS' | translate}}: " +
-								"  {{'SUPPORT.PAYMENT.STORE' | translate}} </p> ",
-							icon: 'success'
-						})
+						Swal.fire(
+							this.translate.instant('SUPPORT.SUCCESS.TITLE'),
+							this.translate.instant('SUPPORT.SUCCESS.PAYMENT_ID') + ": " + this.paymentDetails.payment_id + "\n\n" +
+							this.translate.instant('SUPPORT.SUCCESS.INSTRUCTIONS') + ": " + this.translate.instant('SUPPORT.BANK') + "\n" + " || " +
+							this.translate.instant(this.paymentDetails.how['title']) + ": " + this.paymentDetails.how['value'],
+
+							// "<p>{{ 'SUPPORT.SUCCESS.PAYMENT_ID' | translate }}: {{paymentDetails.payment_id}}</p> " +
+							// "<p *ngIf=\"paymentDetails.method!='store'\">{{ 'SUPPORT.SUCCESS.INSTRUCTIONS' | translate }}: " +
+							// "  {{ 'SUPPORT.PAYMENT.BANK' | translate }} || " +
+							// "  {{paymentDetails.how.title | translate}} : {{paymentDetails.how.value}}</p> " +
+							// "<p *ngIf=\"paymentDetails.method=='store'\">{{ 'SUPPORT.SUCCESS.INSTRUCTIONS' | translate }}: " +
+							// "  {{ 'SUPPORT.PAYMENT.STORE' | translate }} </p> ",
+							'success'
+						)
 					},
 					error => {
 						let message = 'SUPPORT.ERROR.SUPPORTING';

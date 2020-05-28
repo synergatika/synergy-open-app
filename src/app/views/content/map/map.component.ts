@@ -98,7 +98,7 @@ export class MapComponent implements OnInit {
 								img: this.partners[i].imageURL,
 								name: this.partners[i].name,
 								slug: this.partners[i].slug,
-								address: this.partners[i].address.street + ", " + this.partners[i].address.city,
+								address: (this.partners[i].address) ? this.partners[i].address.street + ", " + this.partners[i].address.city : '',
 								//label: i.toString(),
 								draggable: false
 							}

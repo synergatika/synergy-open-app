@@ -4,12 +4,25 @@
 
 export const environment = {
   production: false,
-  //apiUrl: 'http://localhost:3000',//'http://192.168.1.160:3000',//'http://192.168.1.9:3000',
-  apiUrl: 'https://api.synergatika.gr',
+  apiUrl: 'http://localhost:3000',
+  // apiUrl: 'https://api.synergatika.gr',
+  // apiUrl: 'http://192.168.1.160:3000',
+  // apiUrl: 'http://192.168.1.9:3000',
   mapApiKey: 'AIzaSyC8tI34nghyWlMaQhGluC9f6jG7E8swyVQ',
 
-  access: [true, true, true, false],// community, loyalty, microcredit, microfunding
-  subAccess: [true, true, true], //partner_address, partner_contact,  partner_payments
+  access: [
+    true, // community,
+    true, // loyalty,
+    true, // microcredit,
+    false // microfunding
+  ],
+  subAccess: [
+    true, //partner_address,
+    true, // partner_contact,
+    true, // partner_payments, 
+    true, // partner_auto_registration, 
+    true  // partner_fixed_campaign
+  ],
 
   version: '0.5.0'
 };
