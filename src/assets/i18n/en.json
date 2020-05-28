@@ -14,7 +14,7 @@
     "PAYMENT": "Payment Method",
     "STORE": "At Store",
     "BANK": "Bank Deposit",
-    "SUCCESS:": {
+    "SUCCESS": {
       "TITLE": "Support is ok",
       "PAYMENT_ID": "Payment ID",
       "INSTRUCTIONS": "Instructions"
