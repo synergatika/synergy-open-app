@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http'; 
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -57,15 +57,18 @@ import { JoinComponent } from './views/pages/join/join.component';
 
 import { environment } from '../environments/environment';
 
+
+import { NgxPayPalModule } from 'ngx-paypal';
+
 export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http);
 }
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-		SideMenuComponent,
+    SideMenuComponent,
     LayoutComponent,
     HeaderComponent,
     TopbarComponent,
@@ -99,37 +102,38 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
-		AppRoutingModule,
-		NgbModule,
-		AgmCoreModule.forRoot({
-			apiKey: environment.mapApiKey
-			}),
-		HttpClientModule,
-		TranslateModule.forRoot({
-			loader: {
-				provide: TranslateLoader,
-				useFactory: HttpLoaderFactory,
-				deps: [HttpClient]
-			}
-		}),
-		MatInputModule,
-		MatTableModule,
-		MatPaginatorModule,
-		MatSortModule,
-		MatProgressSpinnerModule,
-		MatCardModule,
-		NgxPaginationModule,
-		FormsModule,
-		ReactiveFormsModule,
-		CarouselModule,
+    AppRoutingModule,
+    NgbModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.mapApiKey
+    }),
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CarouselModule,
+    NgxPayPalModule
   ],
-	providers: [
-		LoadJsonService,
-		LoadEventsService,
-		LoadCommunityService,
-		TranslationService,
-		MenuService,
-		LoadWpContentService
+  providers: [
+    LoadJsonService,
+    LoadEventsService,
+    LoadCommunityService,
+    TranslationService,
+    MenuService,
+    LoadWpContentService
   ],
   bootstrap: [AppComponent]
 })
