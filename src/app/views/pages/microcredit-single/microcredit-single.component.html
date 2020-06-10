@@ -51,10 +51,10 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
-
+			<div *ngIf="!canSupport" class="col-md-6 campaign-terms">
+				<p>{{'SUPPORT.CANNOT_SUPPORT' | translate}}</p>
 			</div>
-			<div class="col-md-6 campaign-support">
+			<div *ngIf="canSupport" class="col-md-6 campaign-support">
 				<p>{{ 'SINGLE.CAMPAIGN.Form-title' | translate }}</p>
 				<form class="kt-form" [formGroup]="microcreditForm" autocomplete="off">
 
