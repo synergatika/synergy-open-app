@@ -24,6 +24,8 @@ export class MicrocreditSingleComponent implements OnInit {
 	public paymentsList: any[];
 	paymentDetails: PaymentDetails;
 
+	public canSupport: boolean = false;
+
 	oneClickToken: any;
 	tempAmount: number;
 
@@ -57,11 +59,15 @@ export class MicrocreditSingleComponent implements OnInit {
 	}
 
 	fetchCampaignData(merch_id, campaign_id) {
+		const now = new Date();
+		const seconds = parseInt(now.getTime().toString());
+
 		this.openDataService.readMicrocreditCampaign(merch_id, campaign_id)
 			.pipe(
 				tap(
 					data => {
 						this.campaign = data;
+						this.canSupport = (this.campaign.startsAt < seconds) && (this.campaign.expiresAt > seconds);
 						console.log(this.campaign);
 						this.initRegistrationForm();
 					},

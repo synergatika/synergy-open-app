@@ -14,6 +14,7 @@
     "PAYMENT": "Payment Method",
     "STORE": "At Store",
     "BANK": "Bank Deposit",
+    "CANNOT_SUPPORT": "Cannot Support as Supporting Period is over",
     "SUCCESS": {
       "TITLE": "Support is ok",
       "PAYMENT_ID": "Payment ID",
@@ -23,7 +24,6 @@
       "TITLE": "Something went wrong",
       "SUPPORTING": "Transaction failed",
       "REGISTRATION": "Error during registration",
-
       "CAMPAIGN_NOT_PUBLISHED": "Campaign's has not been published yet",
       "CAMPAIGN_NOT_STARTED": "Campaign's supporting period has not yet started",
       "CAMPAIGN_EXPIRED": "Campaign's supporting period has expired",
@@ -32,7 +32,6 @@
       "UNDER_MIN_AMOUNT": "Support Fund cannot be less than min allowed amount",
       "ZERO_AMOUNT": "Amount cannot be equal or less than zero",
       "METHOD_INAVAILABLE": "Method you choose in inavailable"
-
     }
   },
   "MENU": {
