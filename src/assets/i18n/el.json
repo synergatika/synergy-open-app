@@ -8,12 +8,13 @@
       "B": "Τράπεζα Πειραιώς",
       "C": "Eurobank Ergasias",
       "D": "Alpha Bank",
-      "E": "PayPal.Me"
+      "E": "PayPal"
     },
     "AMOUNT": "Ποσό",
     "PAYMENT": "Μέθοδος Πληρωμής",
     "STORE": "Στο Κατάστημα",
     "BANK": "Τραπεζική Κατάθεση",
+    "PAYPAL": "Μέσω Paypal",
     "CANNOT_SUPPORT": "Η Υποστήριξη δεν είναι δυνατή αυτή την περίοδο",
     "SUCCESS": {
       "TITLE": "Support is ok",
@@ -45,17 +46,19 @@
     "Login": "Σύνδεση"
   },
   "PAGE_TITLES": {
-    "coops-title": "συνεταιρισμοί",
-    "offers-title": "προσφορές",
-    "campaigns-title": "καμπάνιες",
-    "news-title": "νέα"
+    "partners-title": "Συνεργάτες",
+    "offers-title": "Προσφορές",
+    "campaigns-title": "Kαμπάνιες",
+    "news-title": "Nέα"
   },
   "SECTIONS": {
-    "campaigns-title": "καμπανιες",
+    "partners-title": "συνεργάτες",
+    "campaigns-title": "καμπάνιες",
     "campaigns-link-to-all": "Δείτε όλες τις καμπάνιες",
-    "offers-title": "προσφορες",
+    "offers-title": "προσφορές",
     "offers-link-to-all": "Δείτε όλες τις προσφορές",
-    "news-title": "Νέα"
+    "news-title": "νέα",
+    "news-link-to-all": "Δείτε όλες τις αναρτήσεις"
   },
   "offer-list": {
     "title": "Τρέχουσες Προσφορές",

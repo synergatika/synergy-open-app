@@ -18,6 +18,7 @@ import {
 	IPayPalConfig,
 	ICreateOrderRequest
 } from 'ngx-paypal';
+import { Title } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-microcredit-single',
@@ -39,8 +40,8 @@ export class MicrocreditSingleComponent implements OnInit {
 	public step: boolean = false;
 	tempAmount: number = 0;
 
-	merchId: string;
-	campaignId: string;
+	partner_id: string;
+	campaign_id: string;
 	registrationForm: FormGroup;
 	supportingForm: FormGroup;
 	private routeSubscription: any;
@@ -51,9 +52,10 @@ export class MicrocreditSingleComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private cdRef: ChangeDetectorRef,
-		private openDataService: OpenDataService,
 		private translate: TranslateService,
 		private fb: FormBuilder,
+		private titleService: Title,
+		private openDataService: OpenDataService,
 		private staticDataService: StaticDataService,
 	) {
 		this.paymentsList = this.staticDataService.getPaymentsList;
@@ -64,10 +66,10 @@ export class MicrocreditSingleComponent implements OnInit {
 
 	ngOnInit() {
 		this.routeSubscription = this.route.params.subscribe(params => {
-			this.merchId = params['id'];
-			this.campaignId = params['id2'];
-			console.log(this.campaignId);
-			this.fetchCampaignData(this.merchId, this.campaignId);
+			this.partner_id = params['partner_id'];
+			this.campaign_id = params['campaign_id'];
+			console.log(this.campaign_id);
+			this.fetchCampaignData(this.partner_id, this.campaign_id);
 		});
 	}
 
@@ -77,16 +79,18 @@ export class MicrocreditSingleComponent implements OnInit {
 		this.loading = false;
 	}
 
-	fetchCampaignData(merch_id: string, campaign_id: string) {
+	fetchCampaignData(partner_id: string, campaign_id: string) {
 		const now = new Date();
 		const seconds = parseInt(now.getTime().toString());
 
-		this.openDataService.readMicrocreditCampaign(merch_id, campaign_id)
+		this.openDataService.readMicrocreditCampaign(partner_id, campaign_id)
 			.pipe(
 				tap(
 					data => {
 						this.campaign = data;
+						this.titleService.setTitle(this.campaign.title);
 						this.canSupport = (this.campaign.startsAt < seconds) && (this.campaign.expiresAt > seconds);
+						this.canSupport = true;
 						console.log(this.campaign);
 						this.initRegistrationForm();
 						this.initSupportingForm();
@@ -176,7 +180,6 @@ export class MicrocreditSingleComponent implements OnInit {
 					data => {
 						console.log(data);
 						if (parseInt(data.initialTokens) + this.campaign.minAllowed >= this.campaign.maxAmount) {
-							this.step = false;
 							let message = 'SUPPORT.ERROR.OVER_MAX_AMOUNT';
 							Swal.fire(
 								this.translate.instant('SUPPORT.ERROR.TITLE'),
@@ -184,6 +187,7 @@ export class MicrocreditSingleComponent implements OnInit {
 								'error'
 							);
 						} else if (this.campaign.maxAmount - parseInt(data.initialTokens) < this.campaign.maxAllowed) {
+							this.step = true;
 							const controls = this.supportingForm.controls;
 							controls["amount"].setValidators([
 								Validators.required,
@@ -191,6 +195,8 @@ export class MicrocreditSingleComponent implements OnInit {
 								(control: AbstractControl) => Validators.max(this.campaign.maxAmount - parseInt(data.initialTokens))(control)
 							]);
 							controls['amount'].updateValueAndValidity()
+						} else {
+							this.step = true;
 						}
 					},
 					error => {
@@ -222,20 +228,33 @@ export class MicrocreditSingleComponent implements OnInit {
 								return el.bic == this.paymentDetails.method
 							})[0].value
 						}
-						Swal.fire(
-							this.translate.instant('SUPPORT.SUCCESS.TITLE'),
-							this.translate.instant('SUPPORT.SUCCESS.PAYMENT_ID') + ": " + this.paymentDetails.payment_id + "\n\n" +
-							this.translate.instant('SUPPORT.SUCCESS.INSTRUCTIONS') + ": " + this.translate.instant('SUPPORT.BANK') + "\n" + " || " +
-							this.translate.instant(this.paymentDetails.how['title']) + ": " + this.paymentDetails.how['value'],
 
-							// "<p>{{ 'SUPPORT.SUCCESS.PAYMENT_ID' | translate }}: {{paymentDetails.payment_id}}</p> " +
-							// "<p *ngIf=\"paymentDetails.method!='store'\">{{ 'SUPPORT.SUCCESS.INSTRUCTIONS' | translate }}: " +
-							// "  {{ 'SUPPORT.PAYMENT.BANK' | translate }} || " +
-							// "  {{paymentDetails.how.title | translate}} : {{paymentDetails.how.value}}</p> " +
-							// "<p *ngIf=\"paymentDetails.method=='store'\">{{ 'SUPPORT.SUCCESS.INSTRUCTIONS' | translate }}: " +
-							// "  {{ 'SUPPORT.PAYMENT.STORE' | translate }} </p> ",
-							'success'
-						)
+						if (this.paymentDetails.method == 'store') {
+							Swal.fire({
+								title: this.translate.instant('SUPPORT.SUCCESS.TITLE'),
+								html: this.translate.instant('SUPPORT.SUCCESS.PAYMENT_ID') + ": " + this.paymentDetails.payment_id + "<br><br>" +
+									this.translate.instant('SUPPORT.SUCCESS.INSTRUCTIONS') + ": " + this.translate.instant('SUPPORT.STORE') + "<br>" +
+									this.campaign.partner_address.street + ", " + this.campaign.partner_address.postCode + " " + this.campaign.partner_address.city,
+								icon: 'success'
+							})
+						} else if (this.paymentDetails.method == 'PAYPAL') {
+							Swal.fire({
+								title: this.translate.instant('SUPPORT.SUCCESS.TITLE'),
+								html: this.translate.instant('SUPPORT.SUCCESS.PAYMENT_ID') + ": " + this.paymentDetails.payment_id + "<br><br>" +
+									this.translate.instant('SUPPORT.SUCCESS.INSTRUCTIONS') + ": " + this.translate.instant('SUPPORT.PAYPAL') + "<br>" +
+									this.translate.instant(this.paymentDetails.how['title']) + ": " + this.paymentDetails.how['value'],
+								icon: 'success'
+							})
+						} else {
+							Swal.fire({
+								title: this.translate.instant('SUPPORT.SUCCESS.TITLE'),
+								html: this.translate.instant('SUPPORT.SUCCESS.PAYMENT_ID') + ": " + this.paymentDetails.payment_id + "<br><br>" +
+									this.translate.instant('SUPPORT.SUCCESS.INSTRUCTIONS') + ": " + this.translate.instant('SUPPORT.BANK') + "<br>" +
+									this.translate.instant(this.paymentDetails.how['title']) + ": " + this.paymentDetails.how['value'],
+								icon: 'success'
+							})
+						}
+
 					},
 					error => {
 						let message = 'SUPPORT.ERROR.SUPPORTING';
@@ -270,7 +289,6 @@ export class MicrocreditSingleComponent implements OnInit {
 			return;
 		}
 
-		this.step = true;
 		this.oneClickRegistration();
 	}
 
@@ -351,9 +369,10 @@ export class MicrocreditSingleComponent implements OnInit {
 
 		const paymentDetails = {
 			amount: amount.toString(),
-			payee: payee
+			payee: 'member@synergy.io', //payee,
+			item_name: this.campaign.title,
+			item_quantity: (this.campaign.quantitative) ? amount.toString() : '1'
 		}
-		console.log(paymentDetails);
 		this.payPalConfig = {
 			currency: 'EUR',
 			clientId: 'AZTnZ-SdPrcXmAIWdQHEtOuCk1u8Y9CSAerEDxwkokKydC68Si2MdDk1kKzBkij0T1R8C78896SeCEKV',
@@ -377,7 +396,7 @@ export class MicrocreditSingleComponent implements OnInit {
 						},
 						items: [
 							{
-								name: this.campaign.title,
+								name: paymentDetails.item_name,
 								quantity: '1',
 								category: 'DIGITAL_GOODS',
 								unit_amount: {

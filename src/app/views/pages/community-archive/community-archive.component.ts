@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
 
+// Services & Models
 import { OpenDataService } from '../../../core/services/open-data.service';
 import { Partner } from '../../../core/models/partner.model';
 
@@ -12,9 +13,10 @@ import { Partner } from '../../../core/models/partner.model';
 })
 export class CommunityArchiveComponent implements OnInit {
 	p: number = 1;
+	public partners: Partner[];
+
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
-	partners: Partner[];
 
 	constructor(
 		private cdRef: ChangeDetectorRef,
@@ -27,8 +29,14 @@ export class CommunityArchiveComponent implements OnInit {
 		this.fetchPartnersData();
 	}
 
+	ngOnDestroy() {
+		this.unsubscribe.next();
+		this.unsubscribe.complete();
+		this.loading = false;
+	}
+
 	fetchPartnersData() {
-		this.openDataService.readPartners()
+		this.openDataService.readPartners(`0-0-0`)
 			.pipe(
 				tap(
 					data => {
@@ -45,11 +53,4 @@ export class CommunityArchiveComponent implements OnInit {
 			)
 			.subscribe();
 	}
-
-	ngOnDestroy() {
-		this.unsubscribe.next();
-		this.unsubscribe.complete();
-		this.loading = false;
-	}
-
 }

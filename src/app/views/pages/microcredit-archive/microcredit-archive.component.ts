@@ -2,20 +2,22 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
 
+// Services & Models
 import { OpenDataService } from '../../../core/services/open-data.service';
 import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.model';
 
 @Component({
-  selector: 'app-microcredit-archive',
-  templateUrl: './microcredit-archive.component.html',
-  styleUrls: ['./microcredit-archive.component.scss']
+	selector: 'app-microcredit-archive',
+	templateUrl: './microcredit-archive.component.html',
+	styleUrls: ['./microcredit-archive.component.scss']
 })
 export class MicrocreditArchiveComponent implements OnInit {
-	p:number = 1;
+	p: number = 1;
+	public campaigns: MicrocreditCampaign[];
+
 	loading: boolean = false;
-	private unsubscribe: Subject<any>;	
-	campaigns: MicrocreditCampaign[];
-	
+	private unsubscribe: Subject<any>;
+
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
@@ -26,9 +28,15 @@ export class MicrocreditArchiveComponent implements OnInit {
 	ngOnInit() {
 		this.fetchCampaignsData();
 	}
-	
+
+	ngOnDestroy() {
+		this.unsubscribe.next();
+		this.unsubscribe.complete();
+		this.loading = false;
+	}
+
 	fetchCampaignsData() {
-		this.openDataService.readAllPublicMicrocreditCampaigns()
+		this.openDataService.readAllPublicMicrocreditCampaigns(`0-0-0`)
 			.pipe(
 				tap(
 					data => {
@@ -45,10 +53,6 @@ export class MicrocreditArchiveComponent implements OnInit {
 			)
 			.subscribe();
 	}
-	
-	ngOnDestroy() {
-		this.unsubscribe.next();
-		this.unsubscribe.complete();
-		this.loading = false;
-	}
+
+
 }

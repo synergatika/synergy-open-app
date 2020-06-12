@@ -2,9 +2,12 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { OpenDataService } from '../../../core/services/open-data.service';
-import { Offer } from '../../../core/models/offer.model';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+
+// Services & Models
+import { OpenDataService } from '../../../core/services/open-data.service';
+import { StaticDataService } from 'src/app/core/services/static-data.service';
+import { Offer } from '../../../core/models/offer.model';
 
 @Component({
 	selector: 'app-offer-list',
@@ -12,43 +15,29 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 	styleUrls: ['./offer-list.component.scss']
 })
 export class OfferListComponent implements OnInit {
-	@Input() merchId?: string;
+	@Input() partner_id?: string;
 	moved: boolean;
 	singlePartner: boolean = false;
+	customOptions: OwlOptions;
+
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
-	offers: Offer[];
-	customOptions: OwlOptions = {
-		loop: true,
-		mouseDrag: true,
-		touchDrag: false,
-		pullDrag: false,
-		dots: true,
-		navSpeed: 700,
-		navText: ['', ''],
-		responsive: {
-			0: {
-				items: 1
-			},
-			940: {
-				items: 3
-			}
-		},
-		margin: 30,
-		nav: true
-	}
+
+	public offers: Offer[];
 
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
 		private router: Router,
+		private staticDataService: StaticDataService
 	) {
+		this.customOptions = staticDataService.getOwlOprions;
 		this.unsubscribe = new Subject();
 	}
 
 	ngOnInit() {
-		if (this.merchId) {
-			this.fetchPartnerOffersData(this.merchId);
+		if (this.partner_id) {
+			this.fetchPartnerOffersData(this.partner_id);
 			this.singlePartner = true;
 		} else {
 			this.fetchOffersData();
@@ -61,12 +50,29 @@ export class OfferListComponent implements OnInit {
 		this.loading = false;
 	}
 
+	shuffleArray(array: Offer[]) {
+		var m = array.length, t, i;
+
+		// While there remain elements to shuffle
+		while (m) {
+			// Pick a remaining element…
+			i = Math.floor(Math.random() * m--);
+
+			// And swap it with the current element.
+			t = array[m];
+			array[m] = array[i];
+			array[i] = t;
+		}
+
+		return array;
+	}
+
 	fetchOffersData() {
-		this.openDataService.readAllOffers()
+		this.openDataService.readAllOffers(`0-0-0`)
 			.pipe(
 				tap(
 					data => {
-						this.offers = data;
+						this.offers = this.shuffleArray(data);
 						console.log(this.offers)
 					},
 					error => {
@@ -80,8 +86,8 @@ export class OfferListComponent implements OnInit {
 			.subscribe();
 	}
 
-	fetchPartnerOffersData(id) {
-		this.openDataService.readOffersByStore(id)
+	fetchPartnerOffersData(partner_id: string) {
+		this.openDataService.readOffersByStore(partner_id, `0-0-0`)
 			.pipe(
 				tap(
 					data => {
@@ -107,13 +113,13 @@ export class OfferListComponent implements OnInit {
 		this.moved = true;
 	}
 
-	mouseup(mercId, offerId) {
+	mouseup(partner_id: string, offer_id: string) {
 		if (this.moved) {
 			console.log('moved')
 		} else {
 			console.log('not moved');
-			console.log(mercId);
-			this.router.navigate(['/offer/' + mercId + '/' + offerId]);
+			console.log(partner_id);
+			this.router.navigate([`/offer/${partner_id}/${offer_id}`]);
 
 		}
 		this.moved = false;

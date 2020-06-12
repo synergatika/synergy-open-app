@@ -44,7 +44,7 @@
       </div>
     </div>
   </div>
-  <div class="fullwidth-title">
+  <div *ngIf="canSupport" class="fullwidth-title">
     <div class="container normal-text">
       <div class="row">
         <div class="col-md-12">
@@ -53,7 +53,7 @@
       </div>
     </div>
   </div>
-  <div class="container">
+  <div *ngIf="canSupport" class="container">
     <div class="row">
       <div class="col-md-12">
 

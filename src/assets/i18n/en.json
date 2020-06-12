@@ -4,16 +4,17 @@
   },
   "SUPPORT": {
     "PAYMENT_CHOICES": {
-      "A": "Εθνική Τράπεζα",
-      "B": "Τράπεζα Πειραιώς",
+      "A": "National Bank of Greece",
+      "B": "Pireaus Bank",
       "C": "Eurobank Ergasias",
       "D": "Alpha Bank",
-      "E": "PayPal.Me"
+      "E": "PayPal"
     },
     "AMOUNT": "Amount",
     "PAYMENT": "Payment Method",
     "STORE": "At Store",
     "BANK": "Bank Deposit",
+    "PAYPAL": "Paypal",
     "CANNOT_SUPPORT": "Cannot Support as Supporting Period is over",
     "SUCCESS": {
       "TITLE": "Support is ok",
@@ -45,17 +46,19 @@
     "Login": "Log in"
   },
   "PAGE_TITLES": {
-    "coops-title": "cooperatives",
-    "offers-title": "προσφορές",
-    "campaigns-title": "καμπάνιες",
-    "news-title": "news"
+    "partners-title": "Partners",
+    "offers-title": "Offers",
+    "campaigns-title": "Campaigns",
+    "news-title": "News"
   },
   "SECTIONS": {
+    "partners-title": "partners",
     "campaigns-title": "campaigns",
     "campaigns-link-to-all": "View all campaigns",
     "offers-title": "offers",
     "offers-link-to-all": "View all offers",
-    "news-title": "News"
+    "news-title": "news",
+    "news-link-to-all": "View all news"
   },
   "offer-list": {
     "title": "Currrent Offers",

@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	fetchPartnersData() {
-		this.openDataService.readPartners()
+		this.openDataService.readPartners(`0-0-0`)
 			.pipe(
 				tap(
 					data => {

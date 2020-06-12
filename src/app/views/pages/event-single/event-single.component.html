@@ -1,41 +1,41 @@
-<div class="single-event container" *ngIf="postEvent;">	
+<div class="single-event container" *ngIf="post_event;">
 	<div class="event row">
 		<div class="col-md-12">
 			<div class="event-image-container">
 				<div class="event-image">
-					<img [src]="img" [alt]="postEvent.title" />
+					<img [src]="img" [alt]="post_event.title" />
 				</div>
 			</div>
 			<div class="event-heading">
-				<h1>{{postEvent.title}}</h1>
-				<div class="post-meta" *ngIf="eventType=='post'">
-					<a [routerLink]="['/coop/'+ postEvent.partner_id]">{{postEvent.partner_name}}</a> | 
-					{{postEvent.createdAt | date: 'd/M/y'}}
+				<h1>{{post_event.title}}</h1>
+				<div class="post-meta" *ngIf="post_event_type=='post'">
+					<a [routerLink]="['/partner/'+ post_event.partner_id]">{{post_event.partner_name}}</a> |
+					{{post_event.createdAt | date: 'd/M/y'}}
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row" *ngIf="eventType=='event'; else single_post">
+	<div class="row" *ngIf="post_event_type=='event'; else single_post">
 		<div class="col-md-8 event-content">
-			<p [innerHTML]="postEvent.description">
+			<p [innerHTML]="post_event.description">
 			</p>
 		</div>
 		<div class="col-md-4 event-info">
 			<div>
-				<div><span class="mdi mdi-calendar"></span> {{postEvent.dateTime | date: 'd/M/y, hh:mm'}}</div>	
-			</div>				
-			<div>
-				<div><span class="mdi mdi-map"></span> {{postEvent.location}}</div>
+				<div><span class="mdi mdi-calendar"></span> {{post_event.dateTime | date: 'd/M/y, hh:mm'}}</div>
 			</div>
-			<div><span class="mdi mdi-shopping"></span> {{postEvent.partner_name}}</div>
+			<div>
+				<div><span class="mdi mdi-map"></span> {{post_event.location}}</div>
+			</div>
+			<div><span class="mdi mdi-shopping"></span> {{post_event.partner_name}}</div>
 		</div>
 	</div>
-	<ng-template #single_post >
+	<ng-template #single_post>
 		<div class="row">
 			<div class="col-md-12 post-content">
-				<p [innerHTML]="postEvent.content">
+				<p [innerHTML]="post_event.content">
 				</p>
 			</div>
 		</div>
-	</ng-template>	
+	</ng-template>
 </div>

@@ -3,14 +3,15 @@ import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
 import { LoadCommunityService } from '../../../core/services/loadCommunity.service';
 import { ActivatedRoute } from '@angular/router';
-// RxJS
-import { Observable, of } from 'rxjs';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+//import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Title } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
+
+// Services & Models
 import { OpenDataService } from '../../../core/services/open-data.service';
+//import { StaticDataService } from 'src/app/core/services/static-data.service';
 import { Partner } from '../../../core/models/partner.model';
-import { Offer } from '../../../core/models/offer.model'
-import { PostEvent } from '../../../core/models/post_event.model'
-import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.model';
+
 
 @Component({
 	selector: 'app-community-single',
@@ -18,64 +19,59 @@ import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.m
 	styleUrls: ['./community-single.component.scss']
 })
 export class CommunitySingleComponent implements OnInit {
-	objectKeys = Object.keys;
-	coopId: string;
+
+	public configAccess: Boolean[] = environment.access;
+	public configSubAccess: Boolean[] = environment.subAccess;
+
+	//	objectKeys = Object.keys;
 	private routeSubscription: any;
+	displayedColumns: string[] = ['description', 'date_from', 'date_to', 'points'];
+	//dataSource = [];
+	//gallery = ['gallery-1.jpg', 'gallery-2.jpg', 'gallery-1.jpg', 'gallery-2.jpg', 'gallery-1.jpg', 'gallery-2.jpg'];
+	//customOptions: OwlOptions;
+
+	partner_id: string;
+	public partner: Partner;
+
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
-
-	coop: Partner;
-	displayedColumns: string[] = ['description', 'date_from', 'date_to', 'points'];
-	dataSource = [];
-	gallery = ['gallery-1.jpg', 'gallery-2.jpg', 'gallery-1.jpg', 'gallery-2.jpg', 'gallery-1.jpg', 'gallery-2.jpg'];
-	customOptions: OwlOptions = {
-		loop: true,
-		mouseDrag: true,
-		touchDrag: false,
-		pullDrag: false,
-		dots: false,
-		navSpeed: 700,
-		navText: ['', ''],
-		responsive: {
-			0: {
-				items: 3
-			},
-			940: {
-				items: 4
-			},
-			1600: {
-				items: 6
-			}
-		},
-		margin: 10,
-		nav: true
-	}
 
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
 		private route: ActivatedRoute,
-		private loadData: LoadCommunityService
+		private titleService: Title
+		//	private loadData: LoadCommunityService,
+		//	private staticDataService: StaticDataService
 	) {
+		//	this.customOptions = staticDataService.getOwlOprions;
 		this.unsubscribe = new Subject();
 	}
 
 	ngOnInit() {
-
 		this.routeSubscription = this.route.params.subscribe(params => {
-			this.coopId = params['id'];
-			console.log(this.coopId);
-			this.fetchPartnerData(this.coopId);
+			this.partner_id = params['partner_id'];
+
+			console.log("Partner ID: " + this.partner_id);
+			this.fetchPartnerData(this.partner_id);
 		});
 	}
 
-	fetchPartnerData(id) {
-		this.openDataService.readPartnerInfo(id)
+	ngOnDestroy() {
+		this.unsubscribe.next();
+		this.unsubscribe.complete();
+		this.loading = false;
+	}
+
+	fetchPartnerData(partner_id: string) {
+		this.openDataService.readPartnerInfo(partner_id)
 			.pipe(
 				tap(
 					data => {
-						this.coop = data;
-						console.log(this.coop)
+						this.partner = data;
+
+						console.log(this.partner)
+						this.titleService.setTitle(this.partner.name);
 					},
 					error => {
 					}),
@@ -87,12 +83,4 @@ export class CommunitySingleComponent implements OnInit {
 			)
 			.subscribe();
 	}
-
-	ngOnDestroy() {
-		this.unsubscribe.next();
-		this.unsubscribe.complete();
-		this.loading = false;
-	}
-
-
 }

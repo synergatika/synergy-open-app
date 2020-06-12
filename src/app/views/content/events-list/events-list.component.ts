@@ -2,9 +2,12 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { OpenDataService } from '../../../core/services/open-data.service';
-import { PostEvent } from '../../../core/models/post_event.model';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+
+// Services & Models
+import { OpenDataService } from '../../../core/services/open-data.service';
+import { StaticDataService } from 'src/app/core/services/static-data.service';
+import { PostEvent } from '../../../core/models/post_event.model';
 
 @Component({
 	selector: 'app-events-list',
@@ -12,44 +15,31 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 	styleUrls: ['./events-list.component.scss']
 })
 export class EventsListComponent implements OnInit, OnDestroy {
-	@Input() merchId?: string;
+	@Input() partner_id?: string;
+
 	moved: boolean;
 	singlePartner: boolean = false;
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
-	customOptions: OwlOptions = {
-		loop: true,
-		mouseDrag: true,
-		touchDrag: false,
-		pullDrag: false,
-		dots: true,
-		navSpeed: 700,
-		navText: ['', ''],
-		responsive: {
-			0: {
-				items: 1
-			},
-			940: {
-				items: 3
-			}
-		},
-		margin: 80,
-		nav: true
-	}
-	posts_events: PostEvent[];
+
+	customOptions: OwlOptions;
+
+	public posts_events: PostEvent[];
 
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
 		private router: Router,
+		private staticDataService: StaticDataService,
 	) {
+		this.customOptions = staticDataService.getOwlOprions;
 		this.unsubscribe = new Subject();
 	}
 
 	ngOnInit() {
-		if (this.merchId) {
+		if (this.partner_id) {
 			console.log('single');
-			this.fetchPartnerPostsEventsData(this.merchId);
+			this.fetchPartnerPostsEventsData(this.partner_id);
 			this.singlePartner = true;
 		} else {
 			console.log('single not');
@@ -64,7 +54,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
 	}
 
 	fetchPostsEventsData() {
-		this.openDataService.readAllPublicPostsEvents()
+		this.openDataService.readAllPublicPostsEvents(`0-0-0`)
 			.pipe(
 				tap(
 					data => {
@@ -82,8 +72,8 @@ export class EventsListComponent implements OnInit, OnDestroy {
 			.subscribe();
 	}
 
-	fetchPartnerPostsEventsData(id) {
-		this.openDataService.readPublicPostsEventsByStore(id)
+	fetchPartnerPostsEventsData(partner_id: string) {
+		this.openDataService.readPublicPostsEventsByStore(partner_id, `0-0-0`)
 			.pipe(
 				tap(
 					data => {
@@ -108,14 +98,13 @@ export class EventsListComponent implements OnInit, OnDestroy {
 		this.moved = true;
 	}
 
-	mouseup(mercId, offerId, type) {
+	mouseup(partner_id: string, post_event_id: string, type: string) {
 		if (this.moved) {
 			console.log('moved')
 		} else {
 			console.log('not moved');
-			console.log(mercId);
-			this.router.navigate(['/event/' + mercId + '/' + offerId + '/' + type]);
-
+			console.log(partner_id);
+			this.router.navigate([`/event/${partner_id}/${post_event_id}/${type}`]);
 		}
 		this.moved = false;
 	}
