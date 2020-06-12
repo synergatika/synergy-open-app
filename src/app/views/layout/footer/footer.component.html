@@ -1,32 +1,33 @@
 <div class="footer-wrapper">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6 footer-logo">
-				<div class="">
-					<img src="assets/media/images/logo-wh.png">
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="row">
-					<div class="col-md-3">
-						<div class="footer-menu">
-							<ng-container *ngFor="let item of menu">
-								<a class="footer-menu-link link" [routerLink]="['/'+item.link]">{{item.title | translate}}</a>
-							</ng-container>
-						</div>
-					</div>
-					<div class="col-md-9">
-						<div class="footer-text">
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-							Lorem ipsum dolor sit Lorem ipsum dolor sit amet, consectetuer
-							adipiscing elit, sed diam Lorem ipsum dolor sit
-						</div>
-						<div class="footer-copyright">
-							<span _ngcontent-kdv-c7="">&nbsp;©&nbsp;2020&nbsp;Synergy | Powered by Sociality CoOp</span>
-						</div>						
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 footer-logo">
+        <div class="">
+          <img src="assets/media/images/logo-wh.png">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="footer-menu">
+              <ng-container *ngFor="let item of menu">
+                <a class="footer-menu-link link" [routerLink]="['/'+item.link]">{{item.title | translate}}</a>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="footer-text">
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+              Lorem ipsum dolor sit Lorem ipsum dolor sit amet, consectetuer
+              adipiscing elit, sed diam Lorem ipsum dolor sit
+            </div>
+            <div class="footer-copyright">
+              <span _ngcontent-kdv-c7="">&nbsp;©&nbsp;2020&nbsp;Synergy (v{{version}}) | Powered by Sociality
+                CoOp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

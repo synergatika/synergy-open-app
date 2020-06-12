@@ -14,6 +14,11 @@ import { StaticDataService } from 'src/app/core/services/static-data.service';
 import Swal from 'sweetalert2';
 import { PaymentDetails } from 'src/app/core/models/payment-details.model';
 
+import {
+	IPayPalConfig,
+	ICreateOrderRequest
+} from 'ngx-paypal';
+
 @Component({
 	selector: 'app-microcredit-single',
 	templateUrl: './microcredit-single.component.html',
@@ -27,11 +32,17 @@ export class MicrocreditSingleComponent implements OnInit {
 	public canSupport: boolean = false;
 
 	oneClickToken: any;
-	tempAmount: number;
+	showPaypalButton: boolean = false;
+	showAddStep: boolean = true;
+	showSubStep: boolean = true;
+
+	public step: boolean = false;
+	tempAmount: number = 0;
 
 	merchId: string;
 	campaignId: string;
-	microcreditForm: FormGroup;
+	registrationForm: FormGroup;
+	supportingForm: FormGroup;
 	private routeSubscription: any;
 	campaign: MicrocreditCampaign;
 	loading: boolean = false;
@@ -49,6 +60,8 @@ export class MicrocreditSingleComponent implements OnInit {
 		this.unsubscribe = new Subject();
 	}
 
+
+
 	ngOnInit() {
 		this.routeSubscription = this.route.params.subscribe(params => {
 			this.merchId = params['id'];
@@ -58,7 +71,13 @@ export class MicrocreditSingleComponent implements OnInit {
 		});
 	}
 
-	fetchCampaignData(merch_id, campaign_id) {
+	ngOnDestroy() {
+		this.unsubscribe.next();
+		this.unsubscribe.complete();
+		this.loading = false;
+	}
+
+	fetchCampaignData(merch_id: string, campaign_id: string) {
 		const now = new Date();
 		const seconds = parseInt(now.getTime().toString());
 
@@ -70,6 +89,7 @@ export class MicrocreditSingleComponent implements OnInit {
 						this.canSupport = (this.campaign.startsAt < seconds) && (this.campaign.expiresAt > seconds);
 						console.log(this.campaign);
 						this.initRegistrationForm();
+						this.initSupportingForm();
 					},
 					error => {
 						console.log('error');
@@ -83,40 +103,8 @@ export class MicrocreditSingleComponent implements OnInit {
 			.subscribe();
 	}
 
-	ngOnDestroy() {
-		this.unsubscribe.next();
-		this.unsubscribe.complete();
-		this.loading = false;
-	}
-
-	addStep() {
-		const controls = this.microcreditForm.controls;
-		this.tempAmount = controls.amount.value + this.campaign.stepAmount;
-		if (this.tempAmount <= this.campaign.maxAllowed) {
-			controls['amount'].setValue(this.tempAmount);
-		}
-	}
-
-	removeStep() {
-		const controls = this.microcreditForm.controls;
-		this.tempAmount = controls.amount.value - this.campaign.stepAmount;
-		if (this.tempAmount >= this.campaign.minAllowed) {
-			controls['amount'].setValue(this.tempAmount);
-		}
-	}
-
 	initRegistrationForm() {
-		const currentMethodsArray = (this.campaign.partner_payments).map(a => a.bic);
-		// const currentMethodsArray = ([{
-		// 	bic: 'PIRBGRAA',
-		// 	value: 'Gr;ljsdlfkjsdflksdflkdsjfls',
-		// }]).map(a => a.bic);
-		const validatePaymentList = this.paymentsList.filter(function (el) {
-			return currentMethodsArray.includes(el.bic);
-		});
-		this.paymentsList = validatePaymentList;
-
-		this.microcreditForm = this.fb.group({
+		this.registrationForm = this.fb.group({
 			email: ['', Validators.compose([
 				Validators.required,
 				Validators.email,
@@ -124,6 +112,17 @@ export class MicrocreditSingleComponent implements OnInit {
 				Validators.maxLength(320) // https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
 			])
 			],
+		});
+	}
+
+	initSupportingForm() {
+		const currentMethodsArray = (this.campaign.partner_payments).map(a => a.bic);
+		const validatePaymentList = this.paymentsList.filter(function (el) {
+			return currentMethodsArray.includes(el.bic);
+		});
+		this.paymentsList = validatePaymentList;
+
+		this.supportingForm = this.fb.group({
 			amount: ['', Validators.compose([
 				Validators.required,
 				(control: AbstractControl) => Validators.min(this.campaign.minAllowed)(control),
@@ -136,12 +135,76 @@ export class MicrocreditSingleComponent implements OnInit {
 			]
 		});
 
-		const controls = this.microcreditForm.controls;
+		const controls = this.supportingForm.controls;
 		controls['amount'].setValue(this.campaign.minAllowed);
+		this.showSubStep = false;
 		controls['method'].setValue(this.paymentsList[0].bic);
+		this.tempAmount = this.campaign.minAllowed;
+		this.onPaymentChange(this.paymentsList[0].bic)
 	}
 
-	oneClickSupport(controls) {
+	oneClickRegistration() {
+		this.openDataService.oneClickRegistration(this.registrationForm.controls.email.value)
+			.pipe(
+				tap(
+					data => {
+						console.log(data);
+						this.oneClickToken = data;
+						this.oneClickBalance();
+					},
+					error => {
+						Swal.fire(
+							this.translate.instant('SUPPORT.ERROR.REGISTRATION'),
+							this.translate.instant(error),
+							'error'
+						);
+						console.log('error');
+					}),
+				takeUntil(this.unsubscribe),
+				finalize(() => {
+					this.loading = false;
+					this.cdRef.markForCheck();
+				})
+			)
+			.subscribe();
+	}
+
+	oneClickBalance() {
+		this.openDataService.oneClickBalance(this.campaign.partner_id, this.campaign.campaign_id, this.oneClickToken.oneClickToken)
+			.pipe(
+				tap(
+					data => {
+						console.log(data);
+						if (parseInt(data.initialTokens) + this.campaign.minAllowed >= this.campaign.maxAmount) {
+							this.step = false;
+							let message = 'SUPPORT.ERROR.OVER_MAX_AMOUNT';
+							Swal.fire(
+								this.translate.instant('SUPPORT.ERROR.TITLE'),
+								this.translate.instant(message),
+								'error'
+							);
+						} else if (this.campaign.maxAmount - parseInt(data.initialTokens) < this.campaign.maxAllowed) {
+							const controls = this.supportingForm.controls;
+							controls["amount"].setValidators([
+								Validators.required,
+								(control: AbstractControl) => Validators.min(this.campaign.minAllowed)(control),
+								(control: AbstractControl) => Validators.max(this.campaign.maxAmount - parseInt(data.initialTokens))(control)
+							]);
+							controls['amount'].updateValueAndValidity()
+						}
+					},
+					error => {
+					}),
+				takeUntil(this.unsubscribe),
+				finalize(() => {
+					this.loading = false;
+					this.cdRef.markForCheck();
+				})
+			)
+			.subscribe();
+	}
+
+	oneClickSupport(controls: { [x: string]: AbstractControl; amount?: any; method?: any; }) {
 		this.openDataService.oneClickSupport(this.campaign.partner_id, this.campaign.campaign_id, this.oneClickToken.oneClickToken,
 			controls.amount.value, controls.method.value)
 			.pipe(
@@ -193,46 +256,175 @@ export class MicrocreditSingleComponent implements OnInit {
 			.subscribe();
 	}
 
-	onSubmit() {
-
+	onSubmitRegistration() {
 		if (this.loading) return;
 		this.loading = true;
 
-		const controls = this.microcreditForm.controls;
+		const controls = this.registrationForm.controls;
 		/** check form */
-		if (this.microcreditForm.invalid) {
+		if (this.registrationForm.invalid) {
 			Object.keys(controls).forEach(controlName =>
 				controls[controlName].markAsTouched()
 			);
 			this.loading = false;
 			return;
 		}
-		console.log(controls)
-		this.openDataService.oneClickRegistration(controls.email.value)
-			.pipe(
-				tap(
-					data => {
-						this.oneClickToken = data;
-						console.log(data);
-						this.oneClickSupport(controls);
-					},
-					error => {
-						Swal.fire(
-							this.translate.instant('SUPPORT.ERROR.REGISTRATION'),
-							this.translate.instant(error),
-							'error'
-						);
-						console.log('error');
-					}),
-				takeUntil(this.unsubscribe),
-				finalize(() => {
-					this.loading = false;
-					this.cdRef.markForCheck();
-				})
-			)
-			.subscribe();
+
+		this.step = true;
+		this.oneClickRegistration();
+	}
+
+	onSubmitSupporting() {
+
+		if (this.loading) return;
+		this.loading = true;
+
+		const controls = this.supportingForm.controls;
+		/** check form */
+		if (this.supportingForm.invalid) {
+			Object.keys(controls).forEach(controlName =>
+				controls[controlName].markAsTouched()
+			);
+			this.loading = false;
+			return;
+		}
+
+		this.oneClickSupport(controls);
 
 	}
+
+	onChangeAmount(action: boolean) {
+		const controls = this.supportingForm.controls;
+		this.tempAmount = (action) ? (controls.amount.value + this.campaign.stepAmount) : (controls.amount.value - this.campaign.stepAmount);
+
+		this.showAddStep = (this.tempAmount >= this.campaign.maxAllowed) ? false : true;
+		this.showSubStep = (this.tempAmount <= this.campaign.minAllowed) ? false : true;
+
+		controls['amount'].setValue(this.tempAmount);
+		this.onPaymentChange(controls.method.value)
+	}
+
+	// addStep() {
+	// 	const controls = this.supportingForm.controls;
+	// 	this.tempAmount = controls.amount.value + this.campaign.stepAmount;
+	// 	if (this.tempAmount <= this.campaign.maxAllowed) {
+	// 		controls['amount'].setValue(this.tempAmount);
+	// 	}
+	// 	this.onPaymentChange(controls.method.value)
+	// }
+
+	// subStep() {
+	// 	const controls = this.supportingForm.controls;
+	// 	this.tempAmount = controls.amount.value - this.campaign.stepAmount;
+	// 	if (this.tempAmount >= this.campaign.minAllowed) {
+	// 		controls['amount'].setValue(this.tempAmount);
+	// 	}
+	// 	this.onPaymentChange(controls.method.value)
+	// }
+
+	onPreviousStep() {
+		this.step = false;
+	}
+
+	onPaymentChange(payment: string) {
+		if (payment === 'PAYPAL') {
+			this.showPaypalButton = true;
+			this.initConfig(this.tempAmount, this.campaign.partner_payments.filter((el) => {
+				return el.bic == payment
+			})[0].value);
+		} else {
+			this.showPaypalButton = false;
+		}
+	}
+
+	public payPalConfig?: IPayPalConfig;
+
+	private initConfig(amount: number, payee: string): void {
+
+		const controls = this.supportingForm.controls;
+		if (this.supportingForm.invalid) {
+			Object.keys(controls).forEach(controlName =>
+				controls[controlName].markAsTouched()
+			);
+			return;
+		}
+
+		const paymentDetails = {
+			amount: amount.toString(),
+			payee: payee
+		}
+		console.log(paymentDetails);
+		this.payPalConfig = {
+			currency: 'EUR',
+			clientId: 'AZTnZ-SdPrcXmAIWdQHEtOuCk1u8Y9CSAerEDxwkokKydC68Si2MdDk1kKzBkij0T1R8C78896SeCEKV',
+			createOrderOnClient: (data) => <ICreateOrderRequest>{
+				intent: 'CAPTURE',
+				purchase_units: [
+					{
+						amount: {
+							currency_code: 'EUR',
+							value: paymentDetails.amount,
+							breakdown: {
+								item_total: {
+									currency_code: 'EUR',
+									value: paymentDetails.amount,
+								}
+							}
+						},
+						payee: {
+							//merchant_id: 'JCE5DLUCP5L38',
+							email_address: paymentDetails.payee//'partner@synergy.io'
+						},
+						items: [
+							{
+								name: this.campaign.title,
+								quantity: '1',
+								category: 'DIGITAL_GOODS',
+								unit_amount: {
+									currency_code: 'EUR',
+									value: paymentDetails.amount,
+								},
+							}
+						]
+					}
+				]
+			},
+			advanced: {
+				commit: 'true'
+			},
+			style: {
+				label: 'paypal',
+				layout: 'horizontal',
+				size: 'responsive',
+			},
+			onApprove: (data, actions) => {
+				console.log('onApprove - transaction was approved, but not authorized', data, actions);
+				actions.order.get().then((details: any) => {
+					console.log('onApprove - you can get full order details inside onApprove: ', details);
+				});
+			},
+			onClientAuthorization: (data) => {
+				console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+				this.onSubmitSupporting();
+				//	this.showSuccess = true;
+			},
+			onCancel: (data, actions) => {
+				console.log('OnCancel', data, actions);
+			},
+			onError: err => {
+				console.log('OnError', err);
+			},
+			onClick: (data, actions) => {
+
+				console.log('onClick', data, actions);
+
+
+			},
+		};
+	}
+
+
+
 
 	/**
 	 * Checking control validation
@@ -240,8 +432,26 @@ export class MicrocreditSingleComponent implements OnInit {
 	 * @param controlName: string => Equals to formControlName
 	 * @param validationType: string => Equals to valitors name
 	 */
-	isControlHasError(controlName: string, validationType: string): boolean {
-		const control = this.microcreditForm.controls[controlName];
+	isRegistrationControlHasError(controlName: string, validationType: string): boolean {
+		const control = this.registrationForm.controls[controlName];
+		if (!control) {
+			return false;
+		}
+
+		const result =
+			control.hasError(validationType) &&
+			(control.dirty || control.touched);
+		return result;
+	}
+
+	/**
+	* Checking control validation
+	*
+	* @param controlName: string => Equals to formControlName
+	* @param validationType: string => Equals to valitors name
+	*/
+	isSupportingControlHasError(controlName: string, validationType: string): boolean {
+		const control = this.supportingForm.controls[controlName];
 		if (!control) {
 			return false;
 		}
