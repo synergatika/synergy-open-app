@@ -2,58 +2,66 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { OpenDataService } from '../../../core/services/open-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+
+// Services & Models
+import { OpenDataService } from '../../../core/services/open-data.service';
 import { PostEvent } from '../../../core/models/post_event.model';
 
 @Component({
-  selector: 'app-event-single',
-  templateUrl: './event-single.component.html',
-  styleUrls: ['./event-single.component.scss']
+	selector: 'app-event-single',
+	templateUrl: './event-single.component.html',
+	styleUrls: ['./event-single.component.scss']
 })
-export class EventSingleComponent implements OnInit {
-	eventId: string;
-	merchId: string;
-	eventType: string;
-	loading: boolean = false;
-	private unsubscribe: Subject<any>;
-	postEvent: PostEvent;
+export class EventSingleComponent implements OnInit, OnDestroy {
+	partner_id: string;
+	post_event_id: string;
+	post_event_type: string;
+	public post_event: PostEvent;
+
 	img: string;
 	private routeSubscription: any;
-	
+
+	loading: boolean = false;
+	private unsubscribe: Subject<any>;
+
 	constructor(
 		private route: ActivatedRoute,
 		private cdRef: ChangeDetectorRef,
-		private openDataService: OpenDataService,
+		private titleService: Title,
+		private openDataService: OpenDataService
 	) {
 		this.unsubscribe = new Subject();
 	}
 
 	ngOnInit() {
 		this.routeSubscription = this.route.params.subscribe(params => {
-			this.merchId = params['id'];
-			console.log(this.eventId);
-			this.eventId = params['id2'];
-			this.eventType = params['type'];
-			console.log(this.merchId);
-			console.log(this.eventType);
-			this.fetchEventData(this.merchId,this.eventId,this.eventType);
+			this.partner_id = params['partner_id'];
+			this.post_event_id = params['post_event_id'];
+			this.post_event_type = params['type'];
+
+			console.log("Partner ID: " + this.partner_id, "Post/Event ID:" + this.post_event_id, "Post/Event Type:" + this.post_event_type);
+			this.fetchEventData(this.partner_id, this.post_event_id, this.post_event_type);
 		});
 	}
-	
-	fetchEventData(merch_id, event_id, event_type) {
-		this.openDataService.readPublicPostEvent(merch_id, event_id, event_type)
+
+	ngOnDestroy() {
+		this.unsubscribe.next();
+		this.unsubscribe.complete();
+		this.loading = false;
+	}
+
+	fetchEventData(partner_id: string, post_event_id: string, post_event_type: string) {
+		this.openDataService.readPublicPostEvent(partner_id, post_event_id, post_event_type)
 			.pipe(
 				tap(
 					data => {
-						this.postEvent = data;
-						console.log(this.postEvent);
-						if(this.eventType=="post") {
-							this.img = data.post_imageURL;
-						}
-						else {
-							this.img = data.event_imageURL;
-						}
+						this.post_event = data;
+						this.img = (this.post_event_type == 'post') ? data.post_imageURL : data.event_imageURL;
+
+						console.log(this.post_event);
+						this.titleService.setTitle(this.post_event.title);
 					},
 					error => {
 					}),
@@ -65,11 +73,7 @@ export class EventSingleComponent implements OnInit {
 			)
 			.subscribe();
 	}
-	
-	ngOnDestroy() {
-		this.unsubscribe.next();
-		this.unsubscribe.complete();
-		this.loading = false;
-	}
+
+
 
 }

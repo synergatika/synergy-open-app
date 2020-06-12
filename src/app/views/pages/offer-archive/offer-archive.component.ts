@@ -4,12 +4,12 @@ import { tap, takeUntil, finalize } from 'rxjs/operators';
 import { OpenDataService } from '../../../core/services/open-data.service';
 import { Offer } from '../../../core/models/offer.model';
 @Component({
-  selector: 'app-offer-archive',
-  templateUrl: './offer-archive.component.html',
-  styleUrls: ['./offer-archive.component.scss']
+	selector: 'app-offer-archive',
+	templateUrl: './offer-archive.component.html',
+	styleUrls: ['./offer-archive.component.scss']
 })
 export class OfferArchiveComponent implements OnInit {
-	p:number = 1;
+	p: number = 1;
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
 	offers: Offer[];
@@ -20,12 +20,12 @@ export class OfferArchiveComponent implements OnInit {
 		this.unsubscribe = new Subject();
 	}
 
-	ngOnInit() {		
+	ngOnInit() {
 		this.fetchOffersData();
 	}
-	
+
 	fetchOffersData() {
-		this.openDataService.readAllOffers()
+		this.openDataService.readAllOffers(`0-0-0`)
 			.pipe(
 				tap(
 					data => {
@@ -42,7 +42,7 @@ export class OfferArchiveComponent implements OnInit {
 			)
 			.subscribe();
 	}
-	
+
 	ngOnDestroy() {
 		this.unsubscribe.next();
 		this.unsubscribe.complete();

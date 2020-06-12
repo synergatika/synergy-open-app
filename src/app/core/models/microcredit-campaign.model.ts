@@ -1,16 +1,14 @@
-interface Bank {
-    bic: string;
-    name: string;
-    value: string;
-}
+import { PartnerAddress } from './partner_address.model';
+import { PartnerPayment } from './partner_payment.model';
 
 export interface MicrocreditCampaign {
 
     partner_id: string;
     partner_name: string;
     partner_imageURL: string;
-    partner_payment: Bank[];
-    partner_payments: Bank[];
+    //partner_payment: Payments[];
+    partner_payments: PartnerPayment[];
+    partner_address: PartnerAddress;
 
     campaign_id: string,
     campaign_imageURL: string,

@@ -18,15 +18,14 @@ import { PostEvent } from '../models/post_event.model'
 import { MicrocreditCampaign } from '../models/microcredit-campaign.model';
 import { OneClickToken } from '../models/one-click-token.model';
 import { PaymentDetails } from '../models/payment-details.model';
+import { MicrocreditBalance } from '../models/microcredit-balance.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OpenDataService {
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
 
   /**
@@ -43,8 +42,8 @@ export class OpenDataService {
   /** 
   * Partners
   */
-  readPartners(): Observable<Partner[]> {
-    return this.http.get<any>(`${environment.apiUrl}/partners/public/0-0-0`)
+  readPartners(offset: string): Observable<Partner[]> {
+    return this.http.get<any>(`${environment.apiUrl}/partners/public/${offset}`)
       .pipe(map(response => {
         return response.data;
       }));
@@ -60,15 +59,15 @@ export class OpenDataService {
   /** 
   * Offers
   */
-  readAllOffers(): Observable<Offer[]> {
-    return this.http.get<any>(`${environment.apiUrl}/loyalty/offers/public/0-0-0`)
+  readAllOffers(offset: string): Observable<Offer[]> {
+    return this.http.get<any>(`${environment.apiUrl}/loyalty/offers/public/${offset}`)
       .pipe(map(response => {
         return response.data;
       }));
   }
 
-  readOffersByStore(partner_id: string): Observable<Offer[]> {
-    return this.http.get<any>(`${environment.apiUrl}/loyalty/offers/public/${partner_id}/0-0-0`)
+  readOffersByStore(partner_id: string, offset: string): Observable<Offer[]> {
+    return this.http.get<any>(`${environment.apiUrl}/loyalty/offers/public/${partner_id}/${offset}`)
       .pipe(map(response => {
         return response.data;
       }));
@@ -84,33 +83,33 @@ export class OpenDataService {
   /**
    * Post & Events
    */
-  readAllPublicPostsEvents(): Observable<PostEvent[]> {
-    return this.http.get<any>(`${environment.apiUrl}/community/public/0-0-0`)
+  readAllPublicPostsEvents(offset: string): Observable<PostEvent[]> {
+    return this.http.get<any>(`${environment.apiUrl}/community/public/${offset}`)
       .pipe(map(response => {
         return response.data;
       }));
   }
 
-  readPublicPostsEventsByStore(partner_id: string): Observable<PostEvent[]> {
-    return this.http.get<any>(`${environment.apiUrl}/community/public/${partner_id}/0-0-0`)
+  readPublicPostsEventsByStore(partner_id: string, offset: string): Observable<PostEvent[]> {
+    return this.http.get<any>(`${environment.apiUrl}/community/public/${partner_id}/${offset}`)
       .pipe(map(response => {
         return response.data;
       }));
   }
 
-  readPublicPostEvent(partner_id: string, post_id: string, post_type: string): Observable<PostEvent> {
-    if (post_type == 'post') {
-      return this.http.get<any>(`${environment.apiUrl}/posts/${partner_id}/${post_id}`)
-        .pipe(map(response => {
-          return response.data;
-        }));
-    }
-    else {
-      return this.http.get<any>(`${environment.apiUrl}/events/${partner_id}/${post_id}`)
-        .pipe(map(response => {
-          return response.data;
-        }));
-    }
+  readPublicPostEvent(partner_id: string, post_event_id: string, post_type: string): Observable<PostEvent> {
+    // if (post_type == 'post') {
+    //   return this.http.get<any>(`${environment.apiUrl}/posts/${partner_id}/${post_event_id}`)
+    //     .pipe(map(response => {
+    //       return response.data;
+    //     }));
+    // }
+    //    else {
+    return this.http.get<any>(`${environment.apiUrl}/${post_type}s/${partner_id}/${post_event_id}`)
+      .pipe(map(response => {
+        return response.data;
+      }));
+    //  }
   }
 
 
@@ -118,23 +117,15 @@ export class OpenDataService {
   * Microcredit Campaigns
   */
 
-  oneClickSupport(partner_id: string, campaign_id: string, token: string, _amount: number, method: string): Observable<PaymentDetails> {
-    return this.http.post<any>(`${environment.apiUrl}/microcredit/one-click/${partner_id}/${campaign_id}/${token}`,
-      { _amount: _amount, method: method })
-      .pipe(map(response => {
-        return response.data;
-      }));
-  };
-
-  readAllPublicMicrocreditCampaigns(): Observable<MicrocreditCampaign[]> {
-    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public/0-0-0`)
+  readAllPublicMicrocreditCampaigns(offset: string): Observable<MicrocreditCampaign[]> {
+    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public/${offset}`)
       .pipe(map(response => {
         return response.data;
       }));
   }
 
-  readAllMicrocreditCampaignsByStore(partner_id: string): Observable<MicrocreditCampaign[]> {
-    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public/${partner_id}/0-0-0`)
+  readAllMicrocreditCampaignsByStore(partner_id: string, offset: string): Observable<MicrocreditCampaign[]> {
+    return this.http.get<any>(`${environment.apiUrl}/microcredit/campaigns/public/${partner_id}/${offset}`)
       .pipe(map(response => {
         return response.data;
       }));
@@ -147,4 +138,23 @@ export class OpenDataService {
       }));
   }
 
+
+  /** 
+  * Microcredit Support
+  */
+
+  oneClickBalance(partner_id: string, campaign_id: string, token: string): Observable<MicrocreditBalance> {
+    return this.http.get<any>(`${environment.apiUrl}/microcredit/one-click-balance/${partner_id}/${campaign_id}/${token}`)
+      .pipe(map(response => {
+        return response.data;
+      }));
+  };
+
+  oneClickSupport(partner_id: string, campaign_id: string, token: string, _amount: number, method: string): Observable<PaymentDetails> {
+    return this.http.post<any>(`${environment.apiUrl}/microcredit/one-click/${partner_id}/${campaign_id}/${token}`,
+      { _amount: _amount, method: method })
+      .pipe(map(response => {
+        return response.data;
+      }));
+  };
 }

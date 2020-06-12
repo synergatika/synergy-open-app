@@ -1,14 +1,5 @@
-interface Address {
-  street: string;
-  city: string;
-  postCode: string;
-  coordinates: string[];
-}
-
-interface Contact {
-  phone: string;
-  websiteURL: string;
-}
+import { PartnerAddress } from './partner_address.model';
+import { PartnerContact } from './partner_contact.model';
 
 export interface Partner {
   _id: string;
@@ -19,8 +10,8 @@ export interface Partner {
   imageURL: string;
   sector: string;
 
-  contact: Contact;
-  address: Address;
+  address: PartnerAddress;
+  contact: PartnerContact;
   timetable: string;
   description?: string;
   createdAt?: Date;

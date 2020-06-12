@@ -2,9 +2,12 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { OpenDataService } from '../../../core/services/open-data.service';
-import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.model';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+
+// Services & Models
+import { OpenDataService } from '../../../core/services/open-data.service';
+import { StaticDataService } from 'src/app/core/services/static-data.service';
+import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.model';
 
 @Component({
 	selector: 'app-microcredit-list',
@@ -12,54 +15,58 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 	styleUrls: ['./microcredit-list.component.scss']
 })
 export class MicrocreditListComponent implements OnInit {
-	moved: boolean;
-	@Input() merchId?: string;
+	@Input() partner_id?: string;
 	singlePartner: boolean = false;
-	customOptions: OwlOptions = {
-		loop: true,
-		mouseDrag: true,
-		touchDrag: false,
-		pullDrag: false,
-		dots: true,
-		navSpeed: 700,
-		navText: ['', ''],
-		responsive: {
-			0: {
-				items: 1
-			},
-			940: {
-				items: 3
-			}
-		},
-		margin: 30,
-		nav: true
-	}
+	moved: boolean;
+	customOptions: OwlOptions;
+
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
-	campaigns: MicrocreditCampaign[];
+
+	public campaigns: MicrocreditCampaign[];
+
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
 		private router: Router,
+		private staticDataService: StaticDataService,
 	) {
+		this.customOptions = staticDataService.getOwlOprions;
 		this.unsubscribe = new Subject();
 	}
 
 	ngOnInit() {
-		if (this.merchId) {
-			this.fetchPartnerCampaignsData(this.merchId);
+		if (this.partner_id) {
+			this.fetchPartnerCampaignsData(this.partner_id);
 			this.singlePartner = true;
 		} else {
 			this.fetchCampaignsData();
 		}
 	}
 
+	shuffleArray(array: MicrocreditCampaign[]) {
+		var m = array.length, t, i;
+
+		// While there remain elements to shuffle
+		while (m) {
+			// Pick a remaining element…
+			i = Math.floor(Math.random() * m--);
+
+			// And swap it with the current element.
+			t = array[m];
+			array[m] = array[i];
+			array[i] = t;
+		}
+
+		return array;
+	}
+
 	fetchCampaignsData() {
-		this.openDataService.readAllPublicMicrocreditCampaigns()
+		this.openDataService.readAllPublicMicrocreditCampaigns(`0-0-0`)
 			.pipe(
 				tap(
 					data => {
-						this.campaigns = data;
+						this.campaigns = this.shuffleArray(data);
 						console.log(this.campaigns)
 					},
 					error => {
@@ -73,8 +80,8 @@ export class MicrocreditListComponent implements OnInit {
 			.subscribe();
 	}
 
-	fetchPartnerCampaignsData(id) {
-		this.openDataService.readAllMicrocreditCampaignsByStore(id)
+	fetchPartnerCampaignsData(partner_id: string) {
+		this.openDataService.readAllMicrocreditCampaignsByStore(partner_id, `0-0-0`)
 			.pipe(
 				tap(
 					data => {
@@ -106,14 +113,13 @@ export class MicrocreditListComponent implements OnInit {
 		this.moved = true;
 	}
 
-	mouseup(mercId, campId) {
+	mouseup(partner_id: string, campaign_id: string) {
 		if (this.moved) {
 			console.log('moved')
 		} else {
 			console.log('not moved');
-			console.log(mercId);
-			this.router.navigate(['/microcredit/' + mercId + '/' + campId]);
-
+			console.log(partner_id);
+			this.router.navigate([`/microcredit/${partner_id}/${campaign_id}`]);
 		}
 		this.moved = false;
 	}

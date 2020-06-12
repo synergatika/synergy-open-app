@@ -34,58 +34,50 @@ const routes: Routes = [
 				}
 			},
 			{
-				path: 'explore', component: ExploreComponent
+				path: 'explore', component: ExploreComponent,
+				data: {
+					title: 'MENU.explore'
+				}
 			},
 			{
-				path: 'support', component: SupportComponent
+				path: 'support', component: SupportComponent,
+				data: {
+					title: 'MENU.support'
+				}
 			},
 			{
-				path: 'join-us', component: JoinComponent
+				path: 'join', component: JoinComponent,
+				data: {
+					title: 'MENU.join'
+				}
 			},
 			{
-				path: 'about', component: AboutComponent
+				path: 'about', component: AboutComponent,
+				data: {
+					title: 'MENU.about'
+				}
 			},
 			{
-				path: 'contact', component: ContactComponent
+				path: 'contact', component: ContactComponent,
+				data: {
+					title: 'MENU.contact'
+				}
 			},
+
+
 			{
-				path: 'coops', component: CommunityArchiveComponent
-			},
-			{
-				path: 'coop', component: CommunitySingleComponent
-			},
-			{
-				path: 'coop/:id', component: CommunitySingleComponent
+				path: 'partners',
+				component: CommunityArchiveComponent,
+				data: {
+					title: 'PAGE_TITLES.partners-title',
+				}
 			},
 			{
 				path: 'offers',
 				component: OfferArchiveComponent,
 				canActivate: [ConfigGuard],
 				data: {
-					title: 'PAGE_TITLES.offers-title', accessIndex: 1
-				}
-			},
-			{
-				path: 'offer',
-				component: OfferSingleComponent,
-				canActivate: [ConfigGuard],
-				data: {
-					accessIndex: 1
-				}
-			},
-			{
-				path: 'offer/:id',
-				component: OfferSingleComponent,
-				canActivate: [ConfigGuard],
-				data: {
-					accessIndex: 1
-				}
-			},
-			{
-				path: 'offer/:id/:id2',
-				component: OfferSingleComponent,
-				canActivate: [ConfigGuard],
-				data: {
+					title: 'PAGE_TITLES.offers-title',
 					accessIndex: 1
 				}
 			},
@@ -93,21 +85,8 @@ const routes: Routes = [
 				path: 'events',
 				component: EventArchiveComponent,
 				canActivate: [ConfigGuard],
-				data: { title: 'PAGE_TITLES.news-title', accessIndex: 0 }
-			},
-			{
-				path: 'event',
-				component: EventSingleComponent,
-				canActivate: [ConfigGuard],
 				data: {
-					accessIndex: 0
-				}
-			},
-			{
-				path: 'event/:id/:id2/:type',
-				component: EventSingleComponent,
-				canActivate: [ConfigGuard],
-				data: {
+					title: 'PAGE_TITLES.news-title',
 					accessIndex: 0
 				}
 			},
@@ -116,11 +95,74 @@ const routes: Routes = [
 				component: MicrocreditArchiveComponent,
 				canActivate: [ConfigGuard],
 				data: {
+					title: 'PAGE_TITLES.microcredits-title',
 					accessIndex: 2
 				}
 			},
+
+
+			// {
+			// 	path: 'partner',
+			// 	component: CommunitySingleComponent
+			// },
 			{
-				path: 'microcredit',
+				path: 'partner/:partner_id',
+				component: CommunitySingleComponent
+			},
+
+			// {
+			// 	path: 'offer',
+			// 	component: OfferSingleComponent,
+			// 	canActivate: [ConfigGuard],
+			// 	data: {
+			// 		accessIndex: 1
+			// 	}
+			// },
+			{
+				path: 'offer/:partner_id',
+				component: OfferSingleComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					accessIndex: 1
+				}
+			},
+			{
+				path: 'offer/:partner_id/:offer_id',
+				component: OfferSingleComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					accessIndex: 1
+				}
+			},
+
+			// {
+			// 	path: 'event',
+			// 	component: EventSingleComponent,
+			// 	canActivate: [ConfigGuard],
+			// 	data: {
+			// 		accessIndex: 0
+			// 	}
+			// },
+			{
+				path: 'event/:partner_id/:post_event_id/:type',
+				component: EventSingleComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					accessIndex: 0
+				}
+			},
+
+
+			// {
+			// 	path: 'microcredit',
+			// 	component: MicrocreditSingleComponent,
+			// 	canActivate: [ConfigGuard],
+			// 	data: {
+			// 		accessIndex: 2
+			// 	}
+			// },
+			{
+				path: 'microcredit/:partner_id',
 				component: MicrocreditSingleComponent,
 				canActivate: [ConfigGuard],
 				data: {
@@ -128,15 +170,7 @@ const routes: Routes = [
 				}
 			},
 			{
-				path: 'microcredit/:id',
-				component: MicrocreditSingleComponent,
-				canActivate: [ConfigGuard],
-				data: {
-					accessIndex: 2
-				}
-			},
-			{
-				path: 'microcredit/:id/:id2',
+				path: 'microcredit/:partner_id/:campaign_id',
 				component: MicrocreditSingleComponent,
 				canActivate: [ConfigGuard],
 				data: {

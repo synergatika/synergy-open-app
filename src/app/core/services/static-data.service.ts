@@ -1,14 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
-
-interface Menu {
-    title: string,
-    link: string,
-    icon: string,
-    enable?: boolean
-}
-
 @Injectable({
     providedIn: 'root'
 })
@@ -54,5 +46,30 @@ export class StaticDataService {
 
     public get getPaymentsList() {
         return this.paymentsList;
+    };
+
+
+    owlOptions = {
+        loop: true,
+        mouseDrag: true,
+        touchDrag: false,
+        pullDrag: false,
+        dots: true,
+        navSpeed: 700,
+        navText: ['', ''],
+        responsive: {
+            0: {
+                items: 1
+            },
+            940: {
+                items: 3
+            }
+        },
+        margin: 30,
+        nav: true
+    }
+
+    public get getOwlOprions() {
+        return this.owlOptions;
     };
 }

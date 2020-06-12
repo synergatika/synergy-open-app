@@ -1,44 +1,46 @@
-<div *ngIf="coop">
-  <div class="container coop-info-container">
-    <div class="coop row">
-      <div class="col-md-8 coop-info-content">
+<div *ngIf="partner">
+  <div class="container partner-info-container">
+    <div class="partner row">
+      <div class="col-md-8 partner-info-content">
         <div class="row">
           <div class="col-md-12">
-            <h1 class="single-title">{{coop.name}}</h1>
-            <div class="description" [innerHTML]="coop.description"></div>
+            <h1 class="single-title">{{partner.name}}</h1>
+            <div class="description" [innerHTML]="partner.description"></div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
             <div>
-              <div class="sector"><span class="mdi mdi-view-dashboard-outline"></span> {{coop.sector}}</div>
-              <div><span class="mdi mdi-email"></span> {{coop.email}}</div>
-              <div *ngIf="coop.contact&&coop.contact.websiteURL"><span class="mdi mdi-web"></span> <a target="_blank"
-                  href="{{coop.contact.websiteURL}}">
-                  {{coop.contact.websiteURL}}</a></div>
-              <div *ngIf="coop.contact&&coop.contact.phone"><span class="mdi mdi-phone-classic"></span>
-                {{coop.contact.phone}}</div>
-              <div *ngIf="coop.address"><span class="mdi mdi-map"></span> {{coop.address.street}},
-                {{coop.address.postCode}},
-                {{coop.address.city}}</div>
+              <div class="sector"><span class="mdi mdi-view-dashboard-outline"></span> {{partner.sector}}</div>
+              <div><span class="mdi mdi-email"></span> {{partner.email}}</div>
+              <div *ngIf="configSubAccess[1]&&partner.contact&&partner.contact.websiteURL"><span
+                  class="mdi mdi-web"></span> <a target="_blank" href="{{partner.contact.websiteURL}}">
+                  {{partner.contact.websiteURL}}</a></div>
+              <div *ngIf="configSubAccess[1]&&partner.contact&&partner.contact.phone"><span
+                  class="mdi mdi-phone-classic"></span>
+                {{partner.contact.phone}}</div>
+              <div *ngIf="configSubAccess[0]&&partner.address"><span class="mdi mdi-map"></span>
+                {{partner.address.street}},
+                {{partner.address.postCode}},
+                {{partner.address.city}}</div>
             </div>
           </div>
-          <div class="col-md-6 coop-timetable">
-            <div *ngIf="coop.timetable">
+          <div class="col-md-6 partner-timetable">
+            <div *ngIf="configSubAccess[0]&&partner.timetable">
               <div><span class="mdi mdi-clock-outline"></span> {{ 'SINGLE.COOP.Timetable' | translate }}</div>
-              <div class="hours" [innerHTML]="coop.timetable"></div>
+              <div class="hours" [innerHTML]="partner.timetable"></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4 coop-logo-container">
-        <div class="coop-logo">
-          <img [src]="coop.imageURL" [alt]="coop.name" />
+      <div class="col-md-4 partner-logo-container">
+        <div class="partner-logo">
+          <img [src]="partner.imageURL" [alt]="partner.name" />
         </div>
       </div>
     </div>
   </div>
-  <div class="gallery">
+  <!-- <div class="gallery">
     <owl-carousel-o [options]="customOptions">
       <ng-template carouselSlide *ngFor="let galleryImg of gallery">
         <div class="carousel-logo">
@@ -48,15 +50,15 @@
         </div>
       </ng-template>
     </owl-carousel-o>
-  </div>
+  </div> -->
 
-  <app-offer-list [merchId]='coop._id'></app-offer-list>
+  <app-offer-list *ngIf="configAccess[1]" [partner_id]='partner._id'></app-offer-list>
 
-  <app-microcredit-list [merchId]='coop._id'></app-microcredit-list>
+  <app-microcredit-list *ngIf="configAccess[2]" [partner_id]='partner._id'></app-microcredit-list>
 
-  <app-events-list [merchId]='coop._id'></app-events-list>
+  <app-events-list *ngIf="configAccess[0]" [partner_id]='partner._id'></app-events-list>
 
-  <div *ngIf="coop.address">
-    <app-map [merchId]='coop._id'></app-map>
+  <div *ngIf="configSubAccess[0]&&partner.address">
+    <app-map [partner_id]='partner._id'></app-map>
   </div>
 </div>

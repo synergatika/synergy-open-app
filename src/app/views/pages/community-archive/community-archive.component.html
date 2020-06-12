@@ -1,8 +1,8 @@
-<div class="coop-wrapper">
+<div class="partner-wrapper">
   <div class="fullwidth-title">
     <div class="container">
       <div class="row">
-        <h1>{{ 'PAGE_TITLES.coops-title' | translate }}</h1>
+        <h1>{{ 'SECTIONS.partners-title' | translate }}</h1>
       </div>
     </div>
   </div>
@@ -13,7 +13,7 @@
           <mat-card class="item-card microcredit-card">
             <mat-card-content>
               <!--begin::Content-->
-              <a class="item row" [routerLink]="['/coop/' + item.slug]">
+              <a class="item row" [routerLink]="['/partner/' + item.slug]">
                 <div class="col-sm-12 item-img-container">
                   <div class="item-img">
                     <img *ngIf="item.imageURL" src={{item.imageURL}} alt={{item.title}} />
@@ -23,7 +23,7 @@
                   <div class="item-heading">
                     <div class="item-title">{{item.name}}</div>
                     <div>
-                      <div class="coop-sector">{{item.sector}}</div>
+                      <div class="partner-sector">{{item.sector}}</div>
                     </div>
                   </div>
                   <div class="item-description">

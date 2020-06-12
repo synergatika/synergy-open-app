@@ -1,15 +1,11 @@
-interface Address {
-    street: string;
-    city: string;
-    postCode: string;
-}
+import { PartnerAddress } from './partner_address.model';
 
 export interface Offer {
 
     partner_id: string;
     partner_name: string;
     partner_imageURL: string;
-    partner_address?: Address;
+    partner_address?: PartnerAddress;
 
     offer_id: string;
     offer_imageURL: string;

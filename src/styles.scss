@@ -1,46 +1,44 @@
 @import "variables.scss";
 
-
 //Fonts
 @font-face {
-  font-family: 'NeutrafaceTwoTextGreek';
-  src: url('assets/fonts/NeutrafaceTwoTextGreek.woff') format('woff');
+  font-family: "NeutrafaceTwoTextGreek";
+  src: url("assets/fonts/NeutrafaceTwoTextGreek.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'NeutrafaceTwoTextGreek';
-  src: url('assets/fonts/NeutrafaceTwoTextGreek-Bold.woff') format('woff');
+  font-family: "NeutrafaceTwoTextGreek";
+  src: url("assets/fonts/NeutrafaceTwoTextGreek-Bold.woff") format("woff");
   font-weight: bold;
 }
 
 @font-face {
-  font-family: 'NeutrafaceTwoTextGreek';
-  src: url('assets/fonts/NeutrafaceTwoTextGreek-Italic.woff') format('woff');
+  font-family: "NeutrafaceTwoTextGreek";
+  src: url("assets/fonts/NeutrafaceTwoTextGreek-Italic.woff") format("woff");
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'NeutrafaceTwoTextGreek';
-  src: url('assets/fonts/NeutrafaceTwoTextGreek-BoldItalic.woff') format('woff');
+  font-family: "NeutrafaceTwoTextGreek";
+  src: url("assets/fonts/NeutrafaceTwoTextGreek-BoldItalic.woff") format("woff");
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'PFDinTextCompPro';
-  src: url('assets/fonts/PFDinTextCompPro-Regular.woff') format('woff');
+  font-family: "PFDinTextCompPro";
+  src: url("assets/fonts/PFDinTextCompPro-Regular.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'PFDinTextCompPro';
-  src: url('assets/fonts/PFDinTextCompPro-Bold.woff') format('woff');
+  font-family: "PFDinTextCompPro";
+  src: url("assets/fonts/PFDinTextCompPro-Bold.woff") format("woff");
   font-weight: bold;
 }
 
 @font-face {
-  font-family: 'NeutraText-Bold';
-  src: url('assets/fonts/NeutraText-Bold.woff') format('woff');
-
+  font-family: "NeutraText-Bold";
+  src: url("assets/fonts/NeutraText-Bold.woff") format("woff");
 }
 
 html,
@@ -52,7 +50,7 @@ html {
   body {
     margin: 0;
     padding-top: 20px;
-    //font-family: Roboto, "Helvetica Neue", sans-serif; 
+    //font-family: Roboto, "Helvetica Neue", sans-serif;
     font-family: NeutrafaceTwoTextGreek, "Helvetica Neue", sans-serif;
 
     /*background-color: #0c1a33;*/
@@ -217,13 +215,11 @@ html {
   .dropdown-toggle::after {
     content: none;
   }
-
-
 }
 
 //Home
 .event-container {
-  .container-wrapper .container>.row {
+  .container-wrapper .container > .row {
     max-width: 1200px;
     margin: 0 auto 40px;
   }
@@ -317,8 +313,8 @@ html {
   }
 }
 
-//Coop section
-.coop-section {
+//Partner section
+.partner-section {
   .owl-theme .owl-nav {
     bottom: 50%;
 
@@ -393,7 +389,8 @@ html {
 .section-link-to-all {
   margin: 0 20px 30px;
 
-  a:hover {}
+  a:hover {
+  }
 }
 
 .campaign-wrapper {
@@ -406,7 +403,7 @@ html {
   }
 }
 
-.coop-wrapper {
+.partner-wrapper {
   .fullwidth-title {
     background-color: $tertiary;
   }
@@ -429,7 +426,7 @@ html {
     justify-content: space-between;
     pointer-events: none;
 
-    [class*=owl-] {
+    [class*="owl-"] {
       font-size: 34px;
       line-height: 1.1;
       background-color: #687aae;
@@ -464,7 +461,6 @@ html {
     margin-top: 10px;
 
     .owl-dot {
-
       &.active,
       &:hover {
         span {
@@ -544,7 +540,7 @@ html {
         }
       }
 
-      .coop-sector {
+      .partner-sector {
         position: absolute;
         top: -47px;
         right: 0;
@@ -626,10 +622,9 @@ html {
 }
 
 @media (max-width: 767px) {
-
   .offer,
   .campaign {
-    >.container>.row {
+    > .container > .row {
       flex-direction: column-reverse;
     }
 
@@ -637,7 +632,7 @@ html {
       padding: 0;
       margin-bottom: 30px;
 
-      >div {
+      > div {
         position: relative;
         height: auto;
         overflow: hidden;
@@ -679,7 +674,7 @@ html {
   .offer,
   .campaign {
     &-image {
-      >div {
+      > div {
         //position: absolute;
         width: calc(50vw - 50%);
         height: calc(100% + 130px);

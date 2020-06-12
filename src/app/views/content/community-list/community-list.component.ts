@@ -1,15 +1,14 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
-
-import { OpenDataService } from '../../../core/services/open-data.service';
-import { Partner } from '../../../core/models/partner.model';
-
-//import { LoadJsonService } from '../../../core/services/loadjson.service';
 import { Router } from '@angular/router';
-// RxJS
-import { Observable, of } from 'rxjs';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+//import { LoadJsonService } from '../../../core/services/loadjson.service';
+
+// Services & Models
+import { OpenDataService } from '../../../core/services/open-data.service';
+import { StaticDataService } from 'src/app/core/services/static-data.service';
+import { Partner } from '../../../core/models/partner.model';
 
 @Component({
 	selector: 'app-community-list',
@@ -21,29 +20,12 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 	moved: boolean;
 	//objectKeys = Object.keys;
 	//list$: Observable<any>;
-	customOptions: OwlOptions = {
-		loop: true,
-		mouseDrag: true,
-		touchDrag: false,
-		pullDrag: false,
-		dots: true,
-		navSpeed: 700,
-		navText: ['', ''],
-		responsive: {
-			0: {
-				items: 1
-			},
-			940: {
-				items: 3
-			}
-		},
-		margin: 30,
-		nav: true
-	}
+	customOptions: OwlOptions;
+
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
 
-	partners: Partner[];
+	public partners: Partner[];
 	/*
 	list = [
 		{
@@ -79,14 +61,16 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
 		private router: Router,
+		private staticDataService: StaticDataService,
 		//	private loadData : LoadJsonService
 	) {
+		this.customOptions = staticDataService.getOwlOprions;
 		this.unsubscribe = new Subject();
 	}
 
 	ngOnInit() {
 		this.fetchPartnersData();
-		/*this.loadData.getJSON('coops').subscribe(data => {			
+		/*this.loadData.getJSON('partners').subscribe(data => {			
 			this.list$ = of(data);
         });*/
 	}
@@ -97,12 +81,29 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 		this.loading = false;
 	}
 
+	shuffleArray(array: Partner[]) {
+		var m = array.length, t, i;
+
+		// While there remain elements to shuffle
+		while (m) {
+			// Pick a remaining element…
+			i = Math.floor(Math.random() * m--);
+
+			// And swap it with the current element.
+			t = array[m];
+			array[m] = array[i];
+			array[i] = t;
+		}
+
+		return array;
+	}
+
 	fetchPartnersData() {
-		this.openDataService.readPartners()
+		this.openDataService.readPartners(`0-0-0`)
 			.pipe(
 				tap(
 					data => {
-						this.partners = data;
+						this.partners = this.shuffleArray(data);
 						console.log(this.partners)
 					},
 					error => {
@@ -124,13 +125,12 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 		this.moved = true;
 	}
 
-	mouseup(id) {
+	mouseup(partner_id: string) {
 		if (this.moved) {
 			console.log('moved')
 		} else {
 			console.log('not moved');
-			this.router.navigate(['/coop/' + id]);
-
+			this.router.navigate([`/partner/${partner_id}`]);
 		}
 		this.moved = false;
 	}

@@ -1,29 +1,34 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { OpenDataService } from '../../../core/services/open-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+
+// Services & Models
+import { OpenDataService } from '../../../core/services/open-data.service';
 import { Offer } from '../../../core/models/offer.model';
-// RxJS
-import { Observable, of } from 'rxjs';
 
 @Component({
-  selector: 'app-offer-single',
-  templateUrl: './offer-single.component.html',
-  styleUrls: ['./offer-single.component.scss']
+	selector: 'app-offer-single',
+	templateUrl: './offer-single.component.html',
+	styleUrls: ['./offer-single.component.scss']
 })
-export class OfferSingleComponent implements OnInit {
-	offerId: string;
-	merchId: string;
+export class OfferSingleComponent implements OnInit, OnDestroy {
+
+	offer_id: string;
+	partner_id: string;
+	public offer: Offer;
+
+	private routeSubscription: any;
+
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
-	offer: Offer;
-	private routeSubscription: any;
-	
+
 	constructor(
 		private route: ActivatedRoute,
 		private cdRef: ChangeDetectorRef,
+		private titleService: Title,
 		private openDataService: OpenDataService,
 	) {
 		this.unsubscribe = new Subject();
@@ -31,20 +36,26 @@ export class OfferSingleComponent implements OnInit {
 
 	ngOnInit() {
 		this.routeSubscription = this.route.params.subscribe(params => {
-			this.offerId = params['id'];
-			console.log(this.offerId);
-			this.merchId = params['id2'];
-			console.log(this.merchId);
-			this.fetchOfferData(this.merchId,this.offerId);
+			this.partner_id = params['partner_id'];
+			this.offer_id = params['offer_id'];
+			console.log("Partner ID: " + this.partner_id, "Offer ID: " + this.offer_id);
+			this.fetchOfferData(this.partner_id, this.offer_id);
 		});
 	}
-	
-	fetchOfferData(merch_id, offer_id) {
-		this.openDataService.readOffer(offer_id, merch_id)
+
+	ngOnDestroy() {
+		this.unsubscribe.next();
+		this.unsubscribe.complete();
+		this.loading = false;
+	}
+
+	fetchOfferData(partner_id: string, offer_id: string) {
+		this.openDataService.readOffer(partner_id, offer_id)
 			.pipe(
 				tap(
 					data => {
 						this.offer = data;
+						this.titleService.setTitle(this.offer.title);
 						console.log(this.offer)
 					},
 					error => {
@@ -57,11 +68,4 @@ export class OfferSingleComponent implements OnInit {
 			)
 			.subscribe();
 	}
-	
-	ngOnDestroy() {
-		this.unsubscribe.next();
-		this.unsubscribe.complete();
-		this.loading = false;
-	}
-
 }

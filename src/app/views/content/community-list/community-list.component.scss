@@ -1,5 +1,5 @@
 @import "../../../../variables.scss";
-.coop {
+.partner {
 	//border-bottom: 1px solid #eee;
 	padding: 40px 0 5px;
 	margin-bottom: 20px;
@@ -11,10 +11,10 @@
 	&-contact {
 		text-align: right;
 	}
-	.card-content-coop {
+	.card-content-partner {
 		max-width: 80%;
 		text-align: center;
-		.coop-title {
+		.partner-title {
 			font-size: 18px;
 		}
 		.mdi-map {
@@ -44,7 +44,7 @@
 	}
 }
 @media (min-width: 1200px) {
-	.coop {
+	.partner {
 		padding: 80px 0 70px;
 	}
 }
