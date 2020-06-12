@@ -70,10 +70,13 @@
       "REQUIRED_FIELD": "This field is required",
       "INVALID_FIELD": "Invalid Field",
       "MIN_LENGTH_FIELD": "The minimum number of characters for the field is",
-      "MAX_LENGTH_FIELD": "The maximum number of characters for the field is"
+      "MAX_LENGTH_FIELD": "The maximum number of characters for the field is",
+      "MIN_VALUE_FIELD": "Min Field Value:",
+      "MAX_VALUE_FIELD": "Max Field Value:"
     },
     "GENERAL": {
-      "SUBMIT_BUTTON": "Submit"
+      "SUBMIT_BUTTON": "Submit",
+      "PREVIOUS_BUTTON": "Previous"
     }
   },
   "BUTTONS": {
@@ -89,6 +92,8 @@
       "Begins": "Begins",
       "Expires": "Expires",
       "Minimum": "Minimum Amount",
+      "Maximum": "Max Amount",
+      "Standard": "Amount",
       "Form-title": "Please complete the info"
     }
   }

@@ -5,7 +5,7 @@ import { tap, takeUntil, finalize } from 'rxjs/operators';
 import { OpenDataService } from '../../../core/services/open-data.service';
 import { Partner } from '../../../core/models/partner.model';
 
-import { environment } from '../../../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-home',
@@ -18,8 +18,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 	public configAccess: Boolean[] = environment.access;
 	public configSubAccess: Boolean[] = environment.subAccess;
-
-	public version: string = `${environment.version}`;
 
 	latitude = 38.262431;
 	longitude = 23.686613;
