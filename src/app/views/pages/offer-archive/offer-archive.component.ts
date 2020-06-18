@@ -25,7 +25,7 @@ export class OfferArchiveComponent implements OnInit {
 	}
 
 	fetchOffersData() {
-		this.openDataService.readAllOffers(`0-0-0`)
+		this.openDataService.readAllOffers(`0-0-1`)
 			.pipe(
 				tap(
 					data => {

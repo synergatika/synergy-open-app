@@ -6,7 +6,7 @@ import { LayoutComponent } from './views/layout/layout.component';
 import { HomeComponent } from './views/pages/home/home.component';
 import { AboutComponent } from './views/pages/about/about.component';
 import { JoinComponent } from './views/pages/join/join.component';
-import { ExploreComponent } from './views/pages/explore/explore.component';
+import { RedeemComponent } from './views/pages/redeem/redeem.component';
 import { SupportComponent } from './views/pages/support/support.component';
 import { ContactComponent } from './views/pages/contact/contact.component';
 import { EventArchiveComponent } from './views/pages/event-archive/event-archive.component';
@@ -33,34 +33,34 @@ const routes: Routes = [
 					title: 'MENU.Home'
 				}
 			},
-			{
-				path: 'explore', component: ExploreComponent,
-				data: {
-					title: 'MENU.explore'
-				}
-			},
-			{
-				path: 'support', component: SupportComponent,
-				data: {
-					title: 'MENU.support'
-				}
-			},
+			// {
+			// 	path: 'redeem', component: RedeemComponent,
+			// 	data: {
+			// 		title: 'MENU.offers'
+			// 	}
+			// },
+			// {
+			// 	path: 'support', component: SupportComponent,
+			// 	data: {
+			// 		title: 'MENU.support'
+			// 	}
+			// },
 			{
 				path: 'join', component: JoinComponent,
 				data: {
-					title: 'MENU.join'
+					title: 'MENU.Join'
 				}
 			},
 			{
 				path: 'about', component: AboutComponent,
 				data: {
-					title: 'MENU.about'
+					title: 'MENU.About'
 				}
 			},
 			{
 				path: 'contact', component: ContactComponent,
 				data: {
-					title: 'MENU.contact'
+					title: 'MENU.Contact'
 				}
 			},
 
@@ -91,7 +91,7 @@ const routes: Routes = [
 				}
 			},
 			{
-				path: 'microcredits',
+				path: 'support',
 				component: MicrocreditArchiveComponent,
 				canActivate: [ConfigGuard],
 				data: {

@@ -49,7 +49,7 @@ import { AboutComponent } from './views/pages/about/about.component';
 import { HomeHeroComponent } from './views/content/home-hero/home-hero.component';
 import { ContainerComponent } from './views/layout/container/container.component';
 import { SupportComponent } from './views/pages/support/support.component';
-import { ExploreComponent } from './views/pages/explore/explore.component';
+import { RedeemComponent } from './views/pages/redeem/redeem.component';
 import { MicrocreditArchiveComponent } from './views/pages/microcredit-archive/microcredit-archive.component';
 import { OfferArchiveComponent } from './views/pages/offer-archive/offer-archive.component';
 import { CommunityArchiveComponent } from './views/pages/community-archive/community-archive.component';
@@ -93,7 +93,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeHeroComponent,
     ContainerComponent,
     SupportComponent,
-    ExploreComponent,
+    RedeemComponent,
     MicrocreditArchiveComponent,
     OfferArchiveComponent,
     CommunityArchiveComponent,

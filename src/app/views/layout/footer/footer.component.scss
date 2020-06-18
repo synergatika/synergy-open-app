@@ -8,7 +8,6 @@
 		&:hover {
 			color: #fff;
 		}
-		
 	}
 	.footer-logo {
 		display: flex;
@@ -17,14 +16,35 @@
 	.footer-text {
 		margin-bottom: 30px;
 	}
+	img {
+		max-width: 250px;
+	}
+
+	.row {
+		max-width: 900px;
+		margin: 0 auto;
+
+		img {
+			max-width: 250px;
+		}
+
+		.eu-img-container {
+			text-align: center;
+
+			.eu-img {
+				max-width: 110px;
+				margin: 0 auto;
+			}
+		}
+	}
 }
 
 .footer__wrapper {
 	color: #ccc;
 	display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: .8rem 0;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.8rem 0;
 	a {
 		color: #eee;
 		padding: 0 3px;
