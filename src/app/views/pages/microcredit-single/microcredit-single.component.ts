@@ -90,7 +90,7 @@ export class MicrocreditSingleComponent implements OnInit {
 						this.campaign = data;
 						this.titleService.setTitle(this.campaign.title);
 						this.canSupport = (this.campaign.startsAt < seconds) && (this.campaign.expiresAt > seconds);
-						this.canSupport = true;
+						//this.canSupport = true;
 						console.log(this.campaign);
 						this.initRegistrationForm();
 						this.initSupportingForm();

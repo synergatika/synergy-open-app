@@ -36,7 +36,7 @@ export class MicrocreditArchiveComponent implements OnInit {
 	}
 
 	fetchCampaignsData() {
-		this.openDataService.readAllPublicMicrocreditCampaigns(`0-0-0`)
+		this.openDataService.readAllPublicMicrocreditCampaigns(`0-0-1`)
 			.pipe(
 				tap(
 					data => {

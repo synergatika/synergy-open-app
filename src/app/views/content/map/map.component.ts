@@ -121,9 +121,13 @@ export class MapComponent implements OnInit {
 								sumLong += (this.partners[i].address) ? parseFloat(this.partners[i].address.coordinates[1]) : 0.0;
 							}
 						}
-						this.latitude = sumLat / sumPins;
-						this.longitude = sumLong / sumPins;
-						console.log("Markers: " + this.markers, "Lat: " + this.latitude, "Long: " + this.longitude);
+						this.latitude = this.markers[0]['lat'];
+						this.longitude = this.markers[0]['long']
+						//	this.latitude = sumLat / sumPins;
+						//	this.longitude = sumLong / sumPins;
+						//	console.log("Markers: " + this.markers, "Lat: " + this.latitude, "Long: " + this.longitude);
+
+
 						// let y = {
 						// 	lat: (this.partners[i].address && this.partners[i].address.coordinates.length > 0) ? parseFloat(this.partners[i].address.coordinates[0]) : 0.0,
 						// 	lng: (this.partners[i].address && this.partners[i].address.coordinates.length > 1) ? parseFloat(this.partners[i].address.coordinates[1]) : 0.0,

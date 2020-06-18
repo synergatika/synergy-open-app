@@ -40,7 +40,7 @@
     "About": "Ποιοι Είμαστε",
     "Events": "Εκδηλώσεις",
     "Contact": "Επικοινωνία",
-    "Explore": "Ανακάλυψε",
+    "Offers": "Προσφορές",
     "Support": "Στήριξε",
     "Join": "Γίνε Μέλος",
     "Login": "Σύνδεση"
@@ -48,6 +48,7 @@
   "PAGE_TITLES": {
     "partners-title": "Συνεργάτες",
     "offers-title": "Προσφορές",
+    "microcredits-title": "Kαμπάνιες",
     "campaigns-title": "Kαμπάνιες",
     "news-title": "Nέα"
   },

@@ -40,7 +40,7 @@
     "About": "About",
     "Events": "Events",
     "Contact": "Contact",
-    "Explore": "Explore",
+    "Offers": "Offers",
     "Support": "Support",
     "Join": "Join Us",
     "Login": "Log in"
@@ -48,6 +48,7 @@
   "PAGE_TITLES": {
     "partners-title": "Partners",
     "offers-title": "Offers",
+    "microcredits-title": "Campaigns",
     "campaigns-title": "Campaigns",
     "news-title": "News"
   },

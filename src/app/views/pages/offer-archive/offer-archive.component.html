@@ -8,7 +8,7 @@
 <div *ngIf="offers?.length > 0" class="container">
   <div>
     <div class="offer row">
-      <div class="col-md-4" *ngFor="let offer of offers | paginate: { itemsPerPage: 3, currentPage: p }">
+      <div class="col-md-4" *ngFor="let offer of offers | paginate: { itemsPerPage: 9, currentPage: p }">
         <mat-card class="item-card offer-card">
           <mat-card-content>
             <!--begin::Content-->
