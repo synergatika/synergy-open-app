@@ -8,24 +8,23 @@ import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 
-const domino = require('domino');
 const fs = require('fs');
+const domino = require('domino');
 const path = require('path');
-//const template = fs.readFileSync(path.join(__dirname, '.', 'dist', 'index.html')).toString();
-const template = fs.readFileSync(path.join(__dirname, '..', 'index.html')).toString();
+
+const BROWSER_PATH = '..';
+
+const template = fs.readFileSync(path.join(__dirname, BROWSER_PATH, 'index.html')).toString();
 
 const win = domino.createWindow(template);
 global['window'] = win;
 global['document'] = win.document;
-
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/synergy-open-app/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
-
-
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({

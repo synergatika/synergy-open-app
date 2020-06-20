@@ -13,8 +13,8 @@ export const environment = {
   subAccess: [
     true, //partner_address,
     true, // partner_contact,
-    true, // partner_payments, 
-    true, // partner_auto_registration, 
+    true, // partner_payments,
+    true, // partner_auto_registration,
     true  // partner_fixed_campaign
   ],
 

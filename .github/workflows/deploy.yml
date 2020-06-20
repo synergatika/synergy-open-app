@@ -1,0 +1,57 @@
+name: publish
+
+on:
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - run: npm install
+      - name: set env
+        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
+      - name: update project version
+        run: |
+          RELEASE_VERSION=${RELEASE_VERSION#"v"}
+          echo $RELEASE_VERSION
+          sed -i -e "s/version:.*/version: '"$RELEASE_VERSION"',"/g src/environments/environment.prod.ts
+          sed -i -e "s/const BROWSER_PATH = '.*';/const BROWSER_PATH = '\.\.\/browser';"/g server.ts
+          echo ::set-env name=TAG_RELEASE_VERSION::$RELEASE_VERSION
+          echo $TAG_RELEASE_VERSION
+      - run: npx ng build --prod && npx ng run synergy-open-app:server:production
+      - name: deploy to server
+        uses: AEnterprise/rsync-deploy@v1.0
+        env:
+          ARGS: "-e -c -r --delete"
+          DEPLOY_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          FOLDER: "./dist/synergy-open-app/*"
+          USERNAME: ${{ secrets.USERNAME }}
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_PORT: ${{ secrets.SERVER_PORT }}
+          SERVER_DESTINATION: ${{ secrets.SERVER_PATH }}
+      - name: publish new open app version
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          registry: docker.pkg.github.com
+          name: docker.pkg.github.com/synergatika/synergy-open-app/synergy-open-app
+          username: synergatika
+          password: ${{ secrets.GITHUB_TOKEN }}
+          tags: "latest,${{ env.TAG_RELEASE_VERSION }}"
+          cache: true
+      - name: deploy it
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd ${{ secrets.SERVER_PATH }}
+            chmod +x update.sh
+            ./update.sh
+          host: ${{ secrets.SERVER_IP }}
+          user: root
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          args: "-tt -vvv"

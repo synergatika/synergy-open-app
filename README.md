@@ -1,1 +1,1 @@
-# synergy_open_app
+# Synergy Open APP
