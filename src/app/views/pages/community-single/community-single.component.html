@@ -13,16 +13,23 @@
             <div>
               <div class="sector"><span class="mdi mdi-view-dashboard-outline"></span> {{partner.sector}}</div>
               <div><span class="mdi mdi-email"></span> {{partner.email}}</div>
-              <div *ngIf="configSubAccess[1]&&partner.contact&&partner.contact.websiteURL"><span
+              <!-- <div *ngIf="configSubAccess[1]&&partner.contact&&partner.contact.websiteURL"><span
                   class="mdi mdi-web"></span> <a target="_blank" href="{{partner.contact.websiteURL}}">
-                  {{partner.contact.websiteURL}}</a></div>
-              <div *ngIf="configSubAccess[1]&&partner.contact&&partner.contact.phone"><span
+                  {{partner.contact.websiteURL}}</a></div> -->
+              <div *ngIf="configSubAccess[1]&&partner.phone"><span
                   class="mdi mdi-phone-classic"></span>
-                {{partner.contact.phone}}</div>
+                {{partner.phone}}</div>
               <div *ngIf="configSubAccess[0]&&partner.address"><span class="mdi mdi-map"></span>
                 {{partner.address.street}},
                 {{partner.address.postCode}},
                 {{partner.address.city}}</div>
+
+                <div *ngIf="contactsList">
+                  <div class="contacts" *ngFor="let contact of contactsList">
+                    <a *ngIf="contact.value" href="{{contact.prefix}}{{contact.value}}" target="_blank"><span
+                        class="mdi mdi-{{contact.icon}}"></span> </a>
+                  </div>
+                </div>
             </div>
           </div>
           <div class="col-md-6 partner-timetable">
