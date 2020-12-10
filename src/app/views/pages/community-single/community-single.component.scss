@@ -1,6 +1,10 @@
 @import "../../../../variables.scss";
 
 .partner {
+	.contacts {
+		display: inline;
+	  }
+	  
 	&-info-container {
 		margin-bottom: 30px;
 		.partner-info-content > .row {

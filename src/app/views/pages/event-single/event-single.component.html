@@ -33,8 +33,7 @@
 	<ng-template #single_post>
 		<div class="row">
 			<div class="col-md-12 post-content">
-				<p [innerHTML]="post_event.content">
-				</p>
+				<div class="editor-content" [innerHTML]="post_event.content"></div>
 			</div>
 		</div>
 	</ng-template>

@@ -9,9 +9,13 @@ import { environment } from 'src/environments/environment';
 
 // Services & Models
 import { OpenDataService } from '../../../core/services/open-data.service';
+import { StaticDataService } from '../../../core/services/static-data.service';
 //import { StaticDataService } from 'src/app/core/services/static-data.service';
 import { Partner } from '../../../core/models/partner.model';
+import { PaymentList } from '../../../core/interfaces/payment-list.interface';
+import { ContactList } from '../../../core/interfaces/contact-list.interface';
 
+import { GeneralList } from '../../../core/interfaces/general-list.interface';
 
 @Component({
 	selector: 'app-community-single',
@@ -23,6 +27,7 @@ export class CommunitySingleComponent implements OnInit {
 	public configAccess: Boolean[] = environment.access;
 	public configSubAccess: Boolean[] = environment.subAccess;
 
+	public contactsList: ContactList[] = [];
 	//	objectKeys = Object.keys;
 	private routeSubscription: any;
 	displayedColumns: string[] = ['description', 'date_from', 'date_to', 'points'];
@@ -40,11 +45,12 @@ export class CommunitySingleComponent implements OnInit {
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
 		private route: ActivatedRoute,
-		private titleService: Title
+		private titleService: Title,
 		//	private loadData: LoadCommunityService,
-		//	private staticDataService: StaticDataService
+			private staticDataService: StaticDataService
 	) {
-		//	this.customOptions = staticDataService.getOwlOprions;
+	    this.contactsList = this.staticDataService.getContactsList;
+	//	this.customOptions = staticDataService.getOwlOprions;
 		this.unsubscribe = new Subject();
 	}
 
@@ -69,6 +75,14 @@ export class CommunitySingleComponent implements OnInit {
 				tap(
 					data => {
 						this.partner = data;
+
+						            /**begin:Social Media*/
+									const currentContactsArray = (this.partner.contacts).map(a => a.slug);
+									const validateContactsList = this.contactsList.filter(function (el) {
+									  return currentContactsArray.includes(el.slug);
+									});
+									this.contactsList = validateContactsList.map(o => { return { ...o, value: (this.partner.contacts).filter(ob => { return ob.slug === o.slug })[0].value } });
+									/**end:Social Media*/
 
 						console.log(this.partner)
 						this.titleService.setTitle(this.partner.name);
