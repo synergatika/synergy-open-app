@@ -17,8 +17,7 @@
 	</div>
 	<div class="row" *ngIf="post_event_type=='event'; else single_post">
 		<div class="col-md-8 event-content">
-			<p [innerHTML]="post_event.description">
-			</p>
+			<div class="editor-content" [innerHTML]="post_event.content"></div>
 		</div>
 		<div class="col-md-4 event-info">
 			<div>
