@@ -1,9 +1,13 @@
 <div class="home-hero row">
 	<div class="col-md-6">
-		<h2>Μπες στην κοινότητα</h2>
-		<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
-		<div [innerHTML]="content" class="hero-content-container"></div>
-		<a class="btn btn-primary" href="{{appUrl}}">{{ 'BUTTONS.Join' | translate }}</a>
+		<h2>{{ 'HOME.Tagline' | translate }}</h2>
+		<div *ngIf="translate.currentLang == 'en'" class="hero-content-container">
+			<p [innerHTML]="content.en_content"></p>
+		</div>
+		<div *ngIf="translate.currentLang == 'el'" class="hero-content-container">
+			<p [innerHTML]="content.el_content"></p>
+		</div>
+		<a class="btn btn-primary" href="{{appUrl}}">{{ 'BUTTONS.LearnMore' | translate }}</a>
 	</div>
 	<div class="col-md-6">
 		<img src="assets/media/images/home-hero.png">

@@ -1,6 +1,7 @@
 {
   "HOME": {
-    "community-title": "Κοινότητα"
+    "community-title": "Η κοινότητα μας",
+    "Tagline":"Μπες στην κοινότητα"
   },
   "SUPPORT": {
     "PAYMENT_CHOICES": {
@@ -37,12 +38,15 @@
   },
   "MENU": {
     "Home": "Αρχική",
-    "About": "Ποιοι Είμαστε",
+    "About": "Σχετικά",
+    "HowTo": "Πως λειτουργεί",
     "Events": "Εκδηλώσεις",
     "Contact": "Επικοινωνία",
     "Offers": "Προσφορές",
     "Support": "Στήριξε",
+    "Partners": "Μέλη",
     "Join": "Γίνε Μέλος",
+    "LoginJoin": "Σύνδεση/Εγγραφή",
     "Login": "Σύνδεση"
   },
   "PAGE_TITLES": {
@@ -85,7 +89,8 @@
   },
   "BUTTONS": {
     "More": "Περισσότερα",
-    "Join": "Γίνε Μέλος"
+    "Join": "Γίνε Μέλος",
+    "LearnMore":"Μάθε πως λειτουργεί!"
   },
   "SINGLE": {
     "COOP": {
