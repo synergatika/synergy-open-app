@@ -22,7 +22,7 @@ export class HomeHeroComponent implements OnInit {
 	constructor(
 		private cdRef: ChangeDetectorRef, 
 		private loadContent: ContentService, 
-		private translate: TranslateService
+		public translate: TranslateService
 	) {
 		/*translate.onLangChange.subscribe(lang => {
 			this.browserLang = lang;
