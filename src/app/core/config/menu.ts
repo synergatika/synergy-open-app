@@ -4,10 +4,14 @@ export const menu = {
 			title: 'MENU.Home',
 			link: '/',
 		},
-		// {
-		// 	title: 'MENU.Join',
-		// 	link: 'join',
-		// },
+		{
+			title: 'MENU.HowTo',
+			link: 'howto',
+		},
+		{
+			title: 'MENU.Partners',
+			link: 'partners',
+		},
 		{
 			title: 'MENU.Offers',
 			link: 'offers',
@@ -26,10 +30,14 @@ export const menu = {
 			title: 'MENU.Home',
 			link: '/',
 		},
-		// {
-		// 	title: 'MENU.Join',
-		// 	link: 'join',
-		// },
+		{
+			title: 'MENU.HowTo',
+			link: 'howto',
+		},
+		{
+			title: 'MENU.Partners',
+			link: 'partners',
+		},
 		{
 			title: 'MENU.Offers',
 			link: 'offers',
@@ -41,10 +49,6 @@ export const menu = {
 		{
 			title: 'MENU.Contact',
 			link: 'contact',
-		},
-		{
-			title: 'MENU.Login',
-			link: '/',
 		}
 	]
 };

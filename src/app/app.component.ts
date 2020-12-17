@@ -22,29 +22,24 @@ export class AppComponent {
 			map(() => {
 				let route = this.activatedRoute;
 				while (route.firstChild) route = route.firstChild;
-				console.log('route');
 				return route;
 			}),
 			filter((route) => route.outlet === 'primary'),
 			mergeMap((route) => route.data),
 			map((data) => {
-				console.log(data);
 				if (data.title) {
 					return data.title;
 				}
 				else {
 					return this.router.url.split('/').reduce((acc, frag) => {
 						if (acc && frag) { acc += ' / '; }
-						console.log(acc, frag)
 						return acc + frag;
 					});
 				}
 				//
 			})
 		).subscribe(val => {
-			console.log(val);
 			translate.get(val).subscribe((translation: string) => {
-				console.log(translation);
 				this.titleService.setTitle(translation);
 			});
 
