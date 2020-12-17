@@ -14,9 +14,9 @@ export class AppComponent {
 
 	constructor(private titleService: Title, private router: Router, private activatedRoute: ActivatedRoute, translate: TranslateService) {
 		// this language will be used as a fallback when a translation isn't found in the current language
-		translate.setDefaultLang('en');
+		translate.setDefaultLang('el');
 		// the lang to use, if the lang isn't available, it will use the current loader to get them
-		translate.use('en');
+		translate.use('el');
 		this.router.events.pipe(
 			filter((event) => event instanceof NavigationEnd),
 			map(() => {
@@ -40,7 +40,7 @@ export class AppComponent {
 			})
 		).subscribe(val => {
 			translate.get(val).subscribe((translation: string) => {
-				this.titleService.setTitle(translation);
+				this.titleService.setTitle(translation+' | Εμπορική Κοινότητα Συνεργατικών');
 			});
 
 		});
