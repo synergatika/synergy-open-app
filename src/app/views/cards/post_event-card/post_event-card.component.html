@@ -1,31 +1,10 @@
 <div class="synergy-card" *ngIf="post_event">
-
 	<mat-card class="item-card">
 		<mat-card-content>
-
 			<!--begin::Content-->
 			<div class="wallet_post_wrapper s_archive_wrapper">
 				<div class="post s_archive row">
 					<div class="col-md-12">
-
-						<!-- <div *ngIf="post_event.post_event_imageURL" class="row">
-							<div class="col-sm-12 s_archive-img-container">
-								<div class="s_archive-img">
-									<img src={{post_event.post_event_imageURL}} alt={{post_event.title}} />
-									<div *ngIf="post_event.dateTime" class="s_archive-date">
-										<span class="white mdi mdi-calendar"></span> {{post_event.dateTime | date: 'd.M'}}</div>
-								</div>
-							</div>
-						</div>
-						<div *ngIf="post_event.post_imageURL" class="row">
-							<div class="col-sm-12 s_archive-img-container">
-								<div class="s_archive-img">
-									<img src={{post_event.post_imageURL}} alt={{post_event.title}} />
-									<div *ngIf="post_event.dateTime" class="s_archive-date">
-										<span class="white mdi mdi-calendar"></span> {{post_event.dateTime | date: 'd.M'}}</div>
-								</div>
-							</div>
-						</div> -->
 						<div class="row">
 							<div class="col-sm-12 s_archive-img-container">
 								<div class="s_archive-img">
@@ -37,7 +16,6 @@
 								</div>
 							</div>
 						</div>
-
 						<div class="s_archive-content container-fluid">
 							<div class="s_archive-heading row">
 								<h4 class="s_archive-title col-md-9">{{post_event.title}}</h4>
@@ -64,7 +42,6 @@
 				</div>
 			</div>
 			<!--end::Content-->
-
 		</mat-card-content>
 	</mat-card>
 </div>
