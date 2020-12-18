@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
-import { Subject } from 'rxjs';
+import { from, Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 // Services & Models
 import { OpenDataService } from '../../../core/services/open-data.service';
+import { StaticDataService } from '../../../core/services/static-data.service';
 import { Partner } from '../../../core/models/partner.model';
 
 @Component({
@@ -14,6 +16,9 @@ import { Partner } from '../../../core/models/partner.model';
 export class CommunityArchiveComponent implements OnInit {
 	p: number = 1;
 	public partners: Partner[];
+	public partnersSafe: Partner[];
+	public sectors: any[];
+	public selectedSector: string;
 
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
@@ -21,12 +26,15 @@ export class CommunityArchiveComponent implements OnInit {
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
+		private staticDataService: StaticDataService,
+		private router: Router,
 	) {
 		this.unsubscribe = new Subject();
 	}
 
 	ngOnInit() {
 		this.fetchPartnersData();
+		this.fecthPartnerSectors();
 	}
 
 	ngOnDestroy() {
@@ -40,10 +48,11 @@ export class CommunityArchiveComponent implements OnInit {
 			.pipe(
 				tap(
 					data => {
+						this.partnersSafe = data;
 						this.partners = data;
-						console.log(this.partners)
 					},
 					error => {
+						console.log("Can't load partners");
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {
@@ -53,4 +62,32 @@ export class CommunityArchiveComponent implements OnInit {
 			)
 			.subscribe();
 	}
+
+	clickPartner(partner_slug: string) {
+		this.router.navigate([`/partner/${partner_slug}`]);
+	}
+
+	//Filters
+	filterName(value) {
+		if (!value) {
+			this.partners = this.partnersSafe;
+		} // when nothing has typed
+		this.partners = this.partnersSafe.filter(
+			item => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+		)
+	}
+	fecthPartnerSectors() {
+		this.sectors = this.staticDataService.getSectorList;
+	}
+	sectorChange() {
+		if (this.selectedSector == "All" || this.selectedSector == undefined) {
+			this.partners = this.partnersSafe;
+		} else {
+			this.partners = this.partnersSafe.filter(
+				item => item.sector == this.selectedSector 
+			)
+		}
+	}
+
+
 }

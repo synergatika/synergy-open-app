@@ -6,13 +6,13 @@ import { ContactList } from '../interfaces/contact-list.interface';
 import { GeneralList } from '../interfaces/general-list.interface';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class StaticDataService {
 
-      /**
-   * Payments List
-   */
+  /**
+* Payments List
+*/
   paymentsList: PaymentList[] = [
     {
       bic: 'ETHNGRAA',
@@ -127,35 +127,77 @@ export class StaticDataService {
     },
   ];
 
-    public get getPaymentsList(): PaymentList[] {
-        return this.paymentsList;
-    };
+  /**
+ * Sectors List
+ */
+  sectorList: GeneralList[] = [
+    {
+      title: 'FIELDS.PROFILE.SECTOR_CHOICES.A',
+      value: 'B2B Services & Other Goods and Services',
+    },
+    {
+      title: 'FIELDS.PROFILE.SECTOR_CHOICES.B',
+      value: 'Durables',
+    },
+    {
+      title: 'FIELDS.PROFILE.SECTOR_CHOICES.C',
+      value: 'Durables (Technology)',
+    },
+    {
+      title: 'FIELDS.PROFILE.SECTOR_CHOICES.D',
+      value: 'Education',
+    },
+    {
+      title: 'FIELDS.PROFILE.SECTOR_CHOICES.E',
+      value: 'Food',
+    },
+    {
+      title: 'FIELDS.PROFILE.SECTOR_CHOICES.F',
+      value: 'Hotels, Cafés and Restaurants',
+    },
+    {
+      title: 'FIELDS.PROFILE.SECTOR_CHOICES.G',
+      value: 'Recreation and Culture',
+    },
+    {
+      title: 'FIELDS.PROFILE.SECTOR_CHOICES._',
+      value: 'Other',
+    },
+  ];
 
-    public get getContactsList(): ContactList[] {
-        return this.contactsList;
-    };
+  public get getSectorList() {
+    return this.sectorList;
+  }
 
-    owlOptions = {
-        loop: true,
-        mouseDrag: true,
-        touchDrag: false,
-        pullDrag: false,
-        dots: true,
-        navSpeed: 700,
-        navText: ['', ''],
-        responsive: {
-            0: {
-                items: 1
-            },
-            940: {
-                items: 3
-            }
-        },
-        margin: 30,
-        nav: true
-    }
+  public get getPaymentsList(): PaymentList[] {
+    return this.paymentsList;
+  };
 
-    public get getOwlOprions() {
-        return this.owlOptions;
-    };
+  public get getContactsList(): ContactList[] {
+    return this.contactsList;
+  };
+
+  owlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: false,
+    dots: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      940: {
+        items: 3
+      }
+    },
+    margin: 30,
+    nav: true
+  }
+
+  public get getOwlOprions() {
+    return this.owlOptions;
+  };
 }

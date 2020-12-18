@@ -1,0 +1,35 @@
+.partner {
+    &-wrapper {
+        min-height: 800px;
+    }
+    &-filter {
+        margin-top: 70px;
+        h5 {
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+        &-form {
+            padding: 10px;
+            padding-left: 30px;
+            padding-right: 30px;
+            background-color: var(--grey-back);
+            @media (min-width: 995px) {
+                .sector-filter {
+                    margin-left: 40px;
+                }  
+            }
+            @media (max-width: 995px) {
+                .sector-filter, .name-filter{
+                    display: block;
+                }
+            }
+        }
+    }
+    &-list {
+        margin-top: 80px;
+        margin-bottom: 60px;
+    }
+    &-col{
+        margin-bottom: 40px;
+    }
+}

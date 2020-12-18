@@ -19,10 +19,16 @@
 		margin: 0 9px;
 	}
 }
-
 @media screen and (max-width: 1024px) {
 	.nav {
 		display: none;
 	}
-
+}
+app-user-menu,
+app-language-switcher {
+  display: flex;
+  align-items: flex-end;
+  button {
+    margin-left: 15px;
+  }
 }

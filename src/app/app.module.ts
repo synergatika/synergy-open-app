@@ -74,7 +74,7 @@ import { ContentService } from './core/services/content-data.service';
 //Style & UX
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule, MatCardModule } from "@angular/material";
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule, MatCardModule, MatSelectModule, MatDialogModule, MatCheckboxModule } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPayPalModule } from 'ngx-paypal';
 
@@ -153,6 +153,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSortModule,
     MatProgressSpinnerModule,
     MatCardModule,
+    MatSelectModule, 
+    MatDialogModule, 
+    MatCheckboxModule,
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
