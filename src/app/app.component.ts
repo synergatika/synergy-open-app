@@ -40,7 +40,7 @@ export class AppComponent {
 			})
 		).subscribe(val => {
 			translate.get(val).subscribe((translation: string) => {
-				this.titleService.setTitle(translation+' | Εμπορική Κοινότητα Συνεργατικών');
+				this.titleService.setTitle(translation+' | Synergatika.gr - Εμπορική Κοινότητα Συνεργατικών');
 			});
 
 		});

@@ -12,10 +12,10 @@ export const menu = {
 			title: 'MENU.Partners',
 			link: 'partners',
 		},
-		{
+		/*{
 			title: 'MENU.Offers',
 			link: 'offers',
-		},
+		},*/
 		{
 			title: 'MENU.Support',
 			link: 'support',
