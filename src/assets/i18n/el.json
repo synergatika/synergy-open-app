@@ -1,7 +1,11 @@
 {
+  "GENERAL":{
+    "FROM":"από",
+    "UNTIL":"εώς"
+  },
   "HOME": {
     "community-title": "Η κοινότητα μας",
-    "Tagline":"Μπες στην κοινότητα"
+    "Tagline": "Μπες στην κοινότητα"
   },
   "SUPPORT": {
     "PAYMENT_CHOICES": {
@@ -90,7 +94,7 @@
   "BUTTONS": {
     "More": "Περισσότερα",
     "Join": "Γίνε Μέλος",
-    "LearnMore":"Μάθε πως λειτουργεί!"
+    "LearnMore": "Μάθε πως λειτουργεί!"
   },
   "SINGLE": {
     "COOP": {
@@ -114,8 +118,8 @@
       "ALL": "Όλες"
     }
   },
-  "FIELDS":{
-    "PROFILE":{
+  "FIELDS": {
+    "PROFILE": {
       "SECTOR_CHOICES": {
         "_": "Άλλο",
         "A": "Υπηρεσίες",
