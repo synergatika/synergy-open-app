@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 /**
  * Models & Interfaces
  */
 import { Partner } from '../../../core/models/partner.model';
+
+import { StaticDataService } from '../../../core/services/static-data.service';
+import { GeneralList } from '../../../core/interfaces/general-list.interface';
 
 @Component({
 	selector: 'sng-partner-card',
@@ -17,11 +19,16 @@ export class PartnerCardComponent implements OnInit {
    */
   @Input() partner: Partner;
 
-  constructor() {
-
+  public sectorsList: GeneralList[];
+  public sector: string;
+  constructor(private staticDataService: StaticDataService) {
+    this.sectorsList = this.staticDataService.getSectorList;
   }
 
   ngOnInit(): void {
+    this.sector = this.sectorsList.filter((el) => {
+      return el.value == this.partner.sector
+    })[0].title;
   }
 
 }
