@@ -1,7 +1,12 @@
 /*
 /* Variables
 */
+
+//Font
 $main-font:NeutrafaceTwoTextGreek, "Helvetica Neue", sans-serif;
+$main-font-color:rgb(36, 36, 36);
+$darker-font:#000;
+$grey-font: grey;
 //Colours
 $primary: #e4509e;
 $secondary: #415daa;
@@ -11,7 +16,11 @@ $grey: #eee;
 $secondary-dark: #283a6b;
 
 :root {
+    //Font
     --main-font:NeutrafaceTwoTextGreek, "Helvetica Neue", sans-serif;
+    --main-font-color:rgb(36, 36, 36);
+    --darker-font:#000;
+    --grey-font: grey;
     //Colours
     --primary: #e4509e;
     --secondary: #415daa;
@@ -19,7 +28,6 @@ $secondary-dark: #283a6b;
     --tertiary-dark: #a07b04;
     --grey: #eee;
     --secondary-dark: #283a6b;
-    --grey-font: grey;
     --grey-back:#f0f0f0;
 }
 

@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 /**
  * Models & Interfaces
  */
-import { PostEvent } from '../../../model';
+import { PostEvent } from '../../../core/models/post_event.model';
 
 @Component({
   selector: 'sng-post_event-card',

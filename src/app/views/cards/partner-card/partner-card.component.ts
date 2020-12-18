@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 /**
  * Models & Interfaces
  */
-import { Partner } from '../../../model';
+import { Partner } from '../../../core/models/partner.model';
 
 @Component({
 	selector: 'sng-partner-card',
@@ -22,7 +22,6 @@ export class PartnerCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
 }

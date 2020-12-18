@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Offer } from '../../../model';
+import { Offer } from '../../../core/models/offer.model';
 
 @Component({
   selector: 'sng-offer-card',
