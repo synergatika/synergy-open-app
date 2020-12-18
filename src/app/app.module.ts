@@ -32,6 +32,12 @@ import { OfferListComponent } from './views/content/offer-list/offer-list.compon
 import { MicrocreditListComponent } from './views/content/microcredit-list/microcredit-list.component';
 import { HomeHeroComponent } from './views/content/home-hero/home-hero.component';
 
+//Cards
+//import { MicrocreditCampaignCardComponent } from './views/cards/microcredit_campaign-card/microcredit_campaign-card.component';
+import { OfferCardComponent } from './views/cards/offer-card/offer-card.component';
+import { PartnerCardComponent } from './views/cards/partner-card/partner-card.component';
+import { PostEventCardComponent } from './views/cards/post_event-card/post_event-card.component';
+
 //Pages
 import { HomeComponent } from './views/pages/home/home.component';
 import { ContactComponent } from './views/pages/contact/contact.component';
@@ -52,6 +58,9 @@ import { CommunitySingleComponent } from './views/pages/community-single/communi
 import { OfferSingleComponent } from './views/pages/offer-single/offer-single.component';
 import { EventSingleComponent } from './views/pages/event-single/event-single.component';
 import { MicrocreditSingleComponent } from './views/pages/microcredit-single/microcredit-single.component';
+
+//Widgets
+import {ShareIconComponent} from './views/widgets/share-icon/share-icon.component';
 
 //Services
 import { LoadJsonService } from './core/services/loadjson.service';
@@ -104,6 +113,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     OfferListComponent,
     MapComponent,
     HomeHeroComponent,
+    //Cards
+    //MicrocreditCampaignCardComponent,
+    OfferCardComponent,
+    PartnerCardComponent,
+    PostEventCardComponent,
+    //Widgets
+    ShareIconComponent,
     //Singles
     CommunitySingleComponent,
     OfferSingleComponent,

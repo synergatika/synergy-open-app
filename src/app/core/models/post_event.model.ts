@@ -2,6 +2,7 @@ export interface PostEvent {
 
   partner_id: string;
   partner_name: string;
+  subtitle?: string;
   partner_imageURL: string;
 
   post_event_id: string;

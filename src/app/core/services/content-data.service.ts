@@ -23,7 +23,6 @@ export class ContentService {
   readContentById(content_id: string) {
     return this.http.get<any>(`${environment.apiUrl}/content/${content_id}`)
       .pipe(map(response => {
-        console.log(response.data);
         return response.data;
       }));
   }

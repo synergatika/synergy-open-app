@@ -23,11 +23,7 @@ export class HomeHeroComponent implements OnInit {
 		private cdRef: ChangeDetectorRef, 
 		private loadContent: ContentService, 
 		public translate: TranslateService
-	) {
-		/*translate.onLangChange.subscribe(lang => {
-			this.browserLang = lang;
-		})*/
-	}
+	) {	}
 
 	ngOnInit() {
 		this.unsubscribe = new Subject();
@@ -35,7 +31,6 @@ export class HomeHeroComponent implements OnInit {
 	}
 
 	fetchHeroContent(page_id) {
-		console.log(page_id);
 		this.loadContent.readContentById(page_id)
 			.pipe(
 				tap(

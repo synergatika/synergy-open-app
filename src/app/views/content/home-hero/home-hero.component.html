@@ -1,5 +1,5 @@
 <div class="home-hero row">
-	<div class="col-md-6">
+	<div class="col-md-6"  *ngIf="content">
 		<h2>{{ 'HOME.Tagline' | translate }}</h2>
 		<div *ngIf="translate.currentLang == 'en'" class="hero-content-container">
 			<p [innerHTML]="content.en_content"></p>
