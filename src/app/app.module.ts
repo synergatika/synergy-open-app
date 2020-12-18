@@ -33,7 +33,7 @@ import { MicrocreditListComponent } from './views/content/microcredit-list/micro
 import { HomeHeroComponent } from './views/content/home-hero/home-hero.component';
 
 //Cards
-//import { MicrocreditCampaignCardComponent } from './views/cards/microcredit_campaign-card/microcredit_campaign-card.component';
+import { MicrocreditCampaignCardComponent } from './views/cards/microcredit_campaign-card/microcredit_campaign-card.component';
 import { OfferCardComponent } from './views/cards/offer-card/offer-card.component';
 import { PartnerCardComponent } from './views/cards/partner-card/partner-card.component';
 import { PostEventCardComponent } from './views/cards/post_event-card/post_event-card.component';
@@ -114,7 +114,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MapComponent,
     HomeHeroComponent,
     //Cards
-    //MicrocreditCampaignCardComponent,
+    MicrocreditCampaignCardComponent,
     OfferCardComponent,
     PartnerCardComponent,
     PostEventCardComponent,
