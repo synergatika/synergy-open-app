@@ -1,4 +1,3 @@
-
 //Fonts
 @font-face {
   font-family: "NeutrafaceTwoTextGreek";
@@ -42,306 +41,54 @@
 
 @import "variables.scss";
 
+// Main Styles 
 html {
-  //Main Styles
   body {
     height: 100%;
     margin: 0;
     padding-top: 20px;
     font-family: $main-font;
-    color:$main-font-color;
+    color: $main-font-color;
     font-size: 1.2rem;
-    h1 {
-      margin-bottom: 2rem;
-    }
-    a {
-      color: $secondary-dark;
-      transition: color 0.3s;
-      &:hover {
-        color: #03050a;
-        text-decoration: none;
-      }
-    }
-
-    table {
-      width: 100%;
-    }
-
-    .fullwidth-title {
-      background-color: $primary;
-
-      .row {
-        justify-content: flex-end;
-        align-items: center;
-        min-height: 90px;
-      }
-
-      h1 {
-        font-size: 4rem;
-        font-weight: 700;
-        opacity: 0.3;
-        line-height: 1;
-        margin-bottom: 0;
-      }
-
-      .normal-text {
-        .row {
-          justify-content: flex-start;
-
-          h4 {
-            color: #fff;
-            font-size: 2rem;
-          }
-        }
-      }
-    }
-
-    .bck-light {
-      .container-wrapper {
-        background-color: $tertiary;
-      }
-    }
-
-    .bck-grey {
-      .container-wrapper {
-        background-color: $grey;
-      }
-    }
   }
-
-  app-user-menu,
-  app-language-switcher {
-    display: flex;
-    align-items: flex-end;
-
-    button {
-      margin-left: 15px;
-    }
+  h1 {
+    margin-bottom: 2rem;
   }
-
-  //Bootstrap
-  .btn-primary {
-    background-color: $secondary;
-    border-color: $secondary;
-    box-shadow: 1px 2px 5px #dedbdb;
-    transition: 0.3s;
-    font-size: 1.5rem;
-
+  a {
+    color: $secondary-dark;
+    transition: color 0.3s;
     &:hover {
-      background-color: #415daa;
-      border-color: #415daa;
-      opacity: 0.9;
-      box-shadow: 4px 8px 5px #dedbdb;
-    }
-
-    &.tertiary-bck {
-      box-shadow: 1px 2px 5px #b09408;
-
-      &:hover {
-        box-shadow: 4px 8px 5px #b09408;
-      }
+      color: #03050a;
+      text-decoration: none;
     }
   }
-
-  .btn-danger {
-    background-color: $primary;
-    border-color: $primary;
-    box-shadow: 1px 2px 5px #dedbdb;
-    transition: 0.3s;
-    font-size: 1.5rem;
-
-    &:hover {
-      background-color: #e4509e;
-      border-color: #e4509e;
-      opacity: 0.9;
-      box-shadow: 4px 8px 5px #dedbdb;
-    }
-
-    &.tertiary-bck {
-      box-shadow: 1px 2px 5px #b09408;
-
-      &:hover {
-        box-shadow: 4px 8px 5px #b09408;
-      }
-    }
+  table {
+    width: 100%;
   }
-
-  .dropdown-toggle::after {
-    content: none;
-  }
-}
-
-
-/** Cards */
-.synergy-card {
-  height: 100%;
-  padding-top: 0;
-
-  .item-card {
-    height: 100%;
-    padding-top: 0;
-  }
-  .s_archive {
-    &-img.partner-img {
-      background-color: #e9e9e9;
-      img {
-        max-width: 60%;
-        margin: auto;
-        display: block;
-        max-height: 75%;
-        width: auto !important;
-        height: auto !important;
-      }
-    }
-
-    &-img {
-      position: relative;
-      height: 230px;
-
-      @media (max-width: 768px) {
-        height: 280px;
-      }
-
-      &-container {
-        padding: 0;
-        margin-bottom: 20px;
-      }
-
-      img {
-        right: 0;
-        width: 100%;
-        height: 100%;
-        bottom: 0;
-        left: 0;
-        top: 0;
-        position: absolute;
-        object-position: 50% 50%;
-        object-fit: cover;
-      }
-    }
-
-    &-date {
-      position: absolute;
-      z-index: 1;
-      right: 0;
-      bottom: 0;
+  .bck-light {
+    .container-wrapper {
       background-color: $tertiary;
-      color: #fff;
-      padding: 10px;
-      padding-right: 20px;
-      font-size: 1.25rem;
-      @extend .light-shadow;
     }
-
-    &-category {
-      font-size: 0.8rem;
-      position: absolute;
-      z-index: 1;
-      right: 0;
-      bottom: 0;
-      background-color: $primary;
-      color: #fff;
-      padding: 10px;
-      padding-right: 20px;
-      text-transform: uppercase;
-    }
-
-    &-heading {
-      /*display: flex;
-      align-items: center;
-      justify-content: space-between;*/
-      margin-bottom: 10px;
-    }
-
-    &-title {
-      font-size: 1.40rem;
-      font-weight: normal;
-    }
-
-    &-points {
-      font-size: 1.5rem;
-      color: $main-font-color;
-      text-align: right;
-      padding-right: 5px;
-      padding-left: 0px;
-      margin-top: -4px;
-
-      .from {
-        font-size: 10px;
-        color: #000;
-        text-transform: uppercase;
-        margin-top: 13px;
-        display: block;
-        line-height: 3px;
-      }
-    }
-
-    &-subtitle {
-      color: $grey-font; 
-      margin-bottom: 10px;
-      border-bottom: 1px solid #eee;
-      font-size: 16px;
-    }
-
-    .amount {
-      img {
-        width: 24px;
-        display: inline;
-      }
-    }
-
-    &-info {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 15px;
-
-      .share {
-        cursor: pointer;
-      }
-    }
-
-    &-merch-phone {
-      a {
-        color: $darker-font;
-
-        &:hover {
-          color: $primary;
-        }
-      }
+  }
+  .bck-grey {
+    .container-wrapper {
+      background-color: $grey;
     }
   }
 }
 
-@media (min-width: 992px) {
-  body {
-    .mat-card {
-      padding: 25px;
+// Config Assets Styles 
+@import "assets/styles/mybootstrap.scss";
+@import "assets/styles/mymaterial.scss";
+@import "assets/styles/mycarousel.scss";
+//Custom Assets
+@import "assets/styles/myassets.scss";
 
-      .row {
-        margin-right: -25px;
-        margin-left: -25px;
-      }
-    }
-  }
-}
+// Site Areas 
 
-//Home
-.event-container {
-  .container-wrapper .container > .row {
-    max-width: 1200px;
-    margin: 0 auto 40px;
-  }
-}
 
-//Hero Section
-.hero-content-container {
-  margin-bottom: 25px;
 
-  p {
-    margin-bottom: 10px;
-  }
-}
+
 
 //Single
 .single {
@@ -426,79 +173,12 @@ html {
 .partner-section {
   .owl-theme .owl-nav {
     bottom: 50%;
-
     .owl-prev {
       margin-left: -8px;
     }
-
     .owl-next {
       margin-right: -8px;
     }
-  }
-}
-
-//Gallery
-.gallery {
-  .owl-theme .owl-nav {
-    bottom: 40%;
-
-    .owl-prev,
-    .owl-next {
-      margin: 0;
-    }
-  }
-}
-
-//Full width offer/campaign Sections
-.two-part-section {
-  .narrow {
-    display: flex;
-    align-items: center;
-
-    &-title {
-      font-size: 3rem;
-      font-weight: 700;
-      word-break: break-word;
-      opacity: 0.3;
-      margin-bottom: 10px;
-    }
-  }
-
-  &.bck-asymmetry.primary {
-    //background-color: #eee;
-    background-image: linear-gradient(to right, #e4509e, #e4509e 50%, #fff 50%, #fff);
-
-    .narrow {
-      background-color: #e4509e;
-    }
-
-    .wide {
-      background-color: #fff;
-
-      &-container {
-        padding: 40px 0 30px 20px;
-      }
-    }
-  }
-
-  &.bck-asymmetry.secondary {
-    //background-color: #eee;
-    background-image: linear-gradient(to right, #eee, #eee 50%, #415daa 50%, #415daa);
-
-    .narrow {
-      background-color: #415daa;
-    }
-
-    .wide {
-      background-color: #eee;
-    }
-  }
-}
-
-.section-link-to-all {
-  margin: 0 20px 30px;
-
-  a:hover {
   }
 }
 
@@ -525,196 +205,12 @@ html {
   padding: 10px 0 30px;
 }
 
-//Owl carousel
-.owl-theme {
-  .owl-nav {
-    position: absolute;
-    bottom: 61%;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    pointer-events: none;
-
-    [class*="owl-"] {
-      font-size: 34px;
-      line-height: 1.1;
-      background-color: #687aae;
-      pointer-events: all;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background-color: $secondary;
-      }
-    }
-
-    .owl-prev {
-      margin-left: -22px;
-
-      &:before {
-        content: "\f141";
-        font-family: "Material Design Icons";
-      }
-    }
-
-    .owl-next {
-      margin-right: -22px;
-
-      &:before {
-        content: "\f142";
-        font-family: "Material Design Icons";
-      }
-    }
-  }
-
-  .owl-dots {
-    margin-top: 10px;
-
-    .owl-dot {
-      &.active,
-      &:hover {
-        span {
-          background: $primary;
-        }
-      }
-    }
-  }
-}
-
-//Material Card
-.mat-card.item-card {
-  font-family: NeutrafaceTwoTextGreek, "Helvetica Neue", sans-serif;
-  margin-bottom: 30px;
-  padding-top: 0;
-  box-shadow: 0 6px 21px -2px #d1cbcb;
-  border-radius: 9px;
-  overflow: hidden;
-  max-width: 400px;
-  cursor: pointer;
-
-  .item {
-    &-img {
-      position: relative;
-      height: auto;
-      overflow: hidden;
-      padding-top: 60%;
-      background-position: 50% 50%;
-      background-size: cover;
-
-      &-container {
-        padding: 0;
-        margin-bottom: 20px;
-      }
-
-      img {
-        right: 0;
-        width: 100%;
-        height: 100%;
-        bottom: 0;
-        left: 0;
-        top: 0;
-        position: absolute;
-        object-position: 50% 50%;
-        object-fit: cover;
-      }
-    }
-
-    &-expires {
-      position: absolute;
-      z-index: 1;
-      right: 0;
-      bottom: 20%;
-      background-color: $tertiary;
-      color: #fff;
-      padding: 10px 22px;
-      font-size: 1.42rem;
-    }
-
-    &-heading {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 14px;
-
-      .points-container {
-        flex-shrink: 0;
-
-        .points {
-          font-size: 1.5rem;
-          margin-left: 5px;
-          line-height: 1.1;
-
-          img {
-            display: inline;
-            width: 24px;
-          }
-        }
-      }
-
-      .partner-sector {
-        position: absolute;
-        top: -47px;
-        right: 0;
-        background-color: $tertiary;
-        color: #fff;
-        font-size: 18px;
-        padding: 10px 15px;
-      }
-    }
-
-    &-description {
-      font-size: 1.1rem;
-      color: #707070;
-      margin-bottom: 17px;
-      line-height: 1.3;
-    }
-
-    &-title {
-      font-size: 1.35rem;
-      line-height: 1.3;
-    }
-
-    &-subtitle {
-      font-size: 14px;
-      margin-bottom: 2px;
-      color: #000;
-
-      img {
-        position: relative;
-        top: -2px;
-        margin-right: 5px;
-      }
-    }
-
-    &-info {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid #eee;
-      padding-top: 15px;
-
-      .share {
-        cursor: pointer;
-      }
-    }
-
-    .mdi {
-      margin-right: 8px;
-      font-size: 16px;
-      color: $secondary;
-
-      &.white {
-        color: #fff;
-      }
-    }
-  }
-}
-
 //Sidebar
 .sidenav {
   .nav-link {
     opacity: 0;
   }
 }
-
 .sidenav.menu-active {
   .nav-link {
     opacity: 1;

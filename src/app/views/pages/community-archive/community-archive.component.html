@@ -2,48 +2,42 @@
   <div class="fullwidth-title">
     <div class="container">
       <div class="row">
-        <h1>{{ 'SECTIONS.partners-title' | translate }}</h1>
+        <div class="col-md-12 fullwidth-title-content">
+          <h1>{{ 'SECTIONS.partners-title' | translate }}</h1>
+        </div>
       </div>
     </div>
   </div>
-  <div *ngIf="partners?.length > 0" class="container">
+  <div class="partner-filter container">
+    <div class="row">
+      <div class="col-md-12">
+        <h5>{{ 'FILTERS.TITLE' | translate }}</h5>
+          <div class="partner-filter-form ">
+            <mat-form-field  class="name-filter">
+              <mat-label>{{ 'FILTERS.NAME' | translate }}</mat-label>
+              <input #nameInput matInput type="text" (input)="filterName(nameInput.value)">
+            </mat-form-field>
+            <mat-form-field class="sector-filter">
+              <mat-label>{{ 'FILTERS.SECTORS.TITLE' | translate }}</mat-label>
+              <mat-select name="sector" [(ngModel)]="selectedSector" (ngModelChange)="sectorChange()">
+                <mat-option [value]="'All'">
+                  {{ 'FILTERS.SECTORS.ALL' | translate }}
+                </mat-option>
+                <mat-option *ngFor="let sector of sectors" [value]="sector.value">
+                  {{ sector.title | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="partners?.length > 0" class="partner-list container">
     <div>
-      <div class="offer row">
-        <div class="col-md-4" *ngFor="let item of partners | paginate: { itemsPerPage: 9, currentPage: p }">
-          <mat-card class="item-card microcredit-card">
-            <mat-card-content>
-              <!--begin::Content-->
-              <a class="item row" [routerLink]="['/partner/' + item.slug]">
-                <div class="col-sm-12 item-img-container">
-                  <div class="item-img">
-                    <img *ngIf="item.imageURL" src={{item.imageURL}} alt={{item.title}} />
-                  </div>
-                </div>
-                <div class="col-sm-12 item-details">
-                  <div class="item-heading">
-                    <div class="item-title">{{item.name}}</div>
-                    <div>
-                      <div class="partner-sector">{{item.sector}}</div>
-                    </div>
-                  </div>
-                  <div class="item-description">
-                    {{item.subtitle}}
-                  </div>
-                  <div class="item-info">
-                    <div class="">
-                      <div *ngIf="item.contact" class="item-subtitle">
-                        <span class="mdi mdi-web"></span>{{item.contact.websiteURL}}
-                      </div>
-                      <div *ngIf="item.address" class="item-subtitle">
-                        <span class="mdi mdi-map"></span>{{item.address.street}}, {{item.address.city}}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <!--end::Content-->
-            </mat-card-content>
-          </mat-card>
+      <div class="row">
+        <div class="col-sm-6 col-md-4 partner-col" *ngFor="let partner of partners | paginate: { itemsPerPage: 20, currentPage: p }"
+          (click)="clickPartner(partner.slug)">
+          <sng-partner-card [partner]="partner"></sng-partner-card>
         </div>
       </div>
       <pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>

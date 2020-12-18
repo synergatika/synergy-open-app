@@ -1,0 +1,60 @@
+//Gallery
+.gallery {
+    .owl-theme .owl-nav {
+        bottom: 40%;
+        .owl-prev,
+        .owl-next {
+            margin: 0;
+        }
+    }
+}
+
+//Owl carousel
+.owl-theme {
+    .owl-nav {
+        position: absolute;
+        bottom: 61%;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        pointer-events: none;
+        [class*="owl-"] {
+            font-size: 34px;
+            line-height: 1.1;
+            background-color: $primary;
+            pointer-events: all;
+            //transition: opacity 0.3s;
+            // opacity: 0.9;
+            &:hover {
+                background-color: $primary;
+                //opacity: 1;
+            }
+        }
+        .owl-prev {
+            margin-left: -22px;
+
+            &:before {
+                content: "\f141";
+                font-family: "Material Design Icons";
+            }
+        }
+        .owl-next {
+            margin-right: -22px;
+            &:before {
+                content: "\f142";
+                font-family: "Material Design Icons";
+            }
+        }
+    }
+    .owl-dots {
+        margin-top: 10px;
+        .owl-dot {
+            &.active,
+            &:hover {
+                span {
+                    background: $primary;
+                }
+            }
+        }
+    }
+}
