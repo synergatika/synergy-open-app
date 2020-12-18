@@ -30,7 +30,7 @@ const routes: Routes = [
 			{
 				path: '', component: HomeComponent,
 				data: {
-					title: 'MENU.Home' 
+					title: 'Αρχική' 
 				}
 			},
 			{
