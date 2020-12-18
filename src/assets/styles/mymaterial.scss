@@ -1,5 +1,6 @@
 //Material Fiels
 .mat-form-field,
+.mat-select,
 .mat-option {
     font-family: inherit;
 }
@@ -13,7 +14,7 @@
 .mat-card.item-card {
     font-family: var(--main-font);
     padding-top: 0;
-    box-shadow: 0 6px 21px -2px #d1cbcb;
+    box-shadow: 0 6px 18px -2px #ebe8e8;
     overflow: hidden;
     cursor: pointer;
     .mdi {

@@ -1,27 +1,12 @@
 //1. Fullwidth Page Title
 .fullwidth-title {
   background-color: $primary;
-  .row {
-      justify-content: flex-end;
-      align-items: center;
-      min-height: 90px;
-  }
   h1 {
       font-size: 4rem;
       font-weight: 700;
       opacity: 0.3;
-      line-height: 1;
-      margin-bottom: 0;
-  }
-  .normal-text {
-      .row {
-          justify-content: flex-start;
-
-          h4 {
-              color: #fff;
-              font-size: 2rem;
-          }
-      }
+      margin-top:40px;
+      margin-bottom: 50px;
   }
 }
 
