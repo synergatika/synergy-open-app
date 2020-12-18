@@ -22,7 +22,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
 
-	customOptions: OwlOptions;
+	customOptions: OwlOptions; 
 
 	public posts_events: PostEvent[];
 
@@ -38,11 +38,9 @@ export class EventsListComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		if (this.partner_id) {
-			console.log('single');
 			this.fetchPartnerPostsEventsData(this.partner_id);
 			this.singlePartner = true;
 		} else {
-			console.log('single not');
 			this.fetchPostsEventsData();
 		}
 	}

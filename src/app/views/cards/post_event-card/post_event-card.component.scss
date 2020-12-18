@@ -1,20 +1,8 @@
-// @import "../../../../../variables.scss";
-
-
- .synergy-card {
-margin-right: 20px;
+.s_archive {
+    &-date{
+        background-color: var(--primary);
+        .mdi{
+            color:#fff;
+        }
+    }
 }
-// 	height: calc(100% - 20px);
-// 	padding-top: 0;
-
-// 	.post-card {
-// 		padding-top: 0;
-// 		height: 100%;
-// 		.s_archive {
-// 			&-date {
-// 				background-color: $secondary;
-// 			}
-// 		}
-// 		cursor: pointer;
-// 	}
-// }

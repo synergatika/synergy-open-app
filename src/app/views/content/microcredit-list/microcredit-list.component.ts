@@ -67,7 +67,6 @@ export class MicrocreditListComponent implements OnInit {
 				tap(
 					data => {
 						this.campaigns = this.shuffleArray(data);
-						console.log(this.campaigns)
 					},
 					error => {
 					}),
@@ -86,7 +85,6 @@ export class MicrocreditListComponent implements OnInit {
 				tap(
 					data => {
 						this.campaigns = data;
-						console.log(this.campaigns)
 					},
 					error => {
 					}),
@@ -115,10 +113,7 @@ export class MicrocreditListComponent implements OnInit {
 
 	mouseup(partner_id: string, campaign_id: string) {
 		if (this.moved) {
-			console.log('moved')
 		} else {
-			console.log('not moved');
-			console.log(partner_id);
 			this.router.navigate([`/microcredit/${partner_id}/${campaign_id}`]);
 		}
 		this.moved = false;
