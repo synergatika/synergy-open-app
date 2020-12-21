@@ -57,9 +57,10 @@ export class EventsListComponent implements OnInit, OnDestroy {
 				tap(
 					data => {
 						this.posts_events = data;
-						console.log(this.posts_events)
 					},
 					error => {
+						console.log("Can't load events");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {
@@ -76,9 +77,10 @@ export class EventsListComponent implements OnInit, OnDestroy {
 				tap(
 					data => {
 						this.posts_events = data;
-						console.log(this.posts_events)
 					},
 					error => {
+						console.log("Can't load events");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {
@@ -98,10 +100,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
 
 	mouseup(partner_id: string, post_event_id: string, type: string) {
 		if (this.moved) {
-			console.log('moved')
 		} else {
-			console.log('not moved');
-			console.log(partner_id);
 			this.router.navigate([`/event/${partner_id}/${post_event_id}/${type}`]);
 		}
 		this.moved = false;

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 // Services & Models
 import { OpenDataService } from '../../../core/services/open-data.service';
@@ -21,6 +22,7 @@ export class MicrocreditArchiveComponent implements OnInit {
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
+		private router: Router,
 	) {
 		this.unsubscribe = new Subject();
 	}
@@ -54,5 +56,8 @@ export class MicrocreditArchiveComponent implements OnInit {
 			.subscribe();
 	}
 
+	clickMicrocredit(partner_id: string, campaign_id:string){
+		this.router.navigate([`/microcredit/${partner_id}/${campaign_id}`]);
+	}
 
 }
