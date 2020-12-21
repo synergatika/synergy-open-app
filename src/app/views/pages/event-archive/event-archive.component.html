@@ -5,51 +5,12 @@
 		</div>
 	</div>
 </div>
-<div *ngIf="posts_events?.length > 0" class="container">
-	<div>		
-		<!--<div class="event row" *ngFor="let event of objectKeys(list)">-->
-		<div class="event row" >
-			<div class="col-md-4" *ngFor="let post of posts_events | paginate: { itemsPerPage: 9, currentPage: p }">
-				<mat-card class="item-card post-card" *ngIf="post">
-					  <mat-card-content>
-							<!--begin::Content-->
-							<a class="item row" [routerLink]="['/event/' + post.partner_id + '/' + post.post_event_id + '/' + post.type]">
-								<div class="col-sm-12 item-img-container">
-									<div class="item-img">
-										<img src={{post.post_event_imageURL}} alt={{post.title}} />
-										<div *ngIf="post.dateTime" class="item-expires"><span class="white mdi mdi-calendar"></span> {{post.dateTime | date: 'd.M'}}</div>
-									</div>
-									
-								</div>
-								<div class="col-sm-12 item-amount">
-									<div class="item-heading">
-										<div class="item-title">{{post.title}}</div>
-										<div>
-											<span class="points">{{post.cost | currency:'EUR'}}</span>
-										</div>
-									</div>
-									<div class="item-description">
-										{{post.subtitle}}
-									</div>
-									<div class="item-info">
-										<div class="">
-											<div class="item-subtitle">
-												<span class="mdi mdi-shopping"></span>{{post.partner_name}}
-											</div>
-											<div *ngIf="post.location" class="item-subtitle">
-												<span class="mdi mdi-pin"></span>{{post.location}}
-											</div>
-										</div>
-										<!--<app-share-icon></app-share-icon>-->
-									</div>
-								</div>
-							</a>
-							<!--end::Content-->
-					  </mat-card-content>
-				</mat-card>
-			</div>
+<div *ngIf="posts_events?.length > 0" class="postevent-container container">
+	<div class="row">
+		<div class="col-md-4 postevent-item" *ngFor="let post_event of posts_events | paginate: { itemsPerPage: 9, currentPage: p }"
+			(click)="clickPostEvent(post_event.partner_slug, post_event.post_event_slug, post_event.type)">
+			<sng-post_event-card [post_event]="post_event" type="all"></sng-post_event-card>
 		</div>
-		<pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
 	</div>
+	<pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
 </div>
-
