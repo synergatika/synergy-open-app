@@ -4,7 +4,9 @@ import { tap, takeUntil, finalize } from 'rxjs/operators';
 
 // Services & Models
 import { OpenDataService } from '../../../core/services/open-data.service';
+import { StaticDataService } from '../../../core/services/static-data.service';
 import { Partner } from '../../../core/models/partner.model';
+import { GeneralList } from '../../../core/interfaces/general-list.interface';
 
 @Component({
 	selector: 'app-community-archive',
@@ -14,6 +16,7 @@ import { Partner } from '../../../core/models/partner.model';
 export class CommunityArchiveComponent implements OnInit {
 	p: number = 1;
 	public partners: Partner[];
+	public sectorsList: GeneralList[];
 
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
@@ -21,7 +24,9 @@ export class CommunityArchiveComponent implements OnInit {
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
-	) {
+		private staticDataService: StaticDataService
+		) {
+		this.sectorsList = this.staticDataService.getSectorsList;
 		this.unsubscribe = new Subject();
 	}
 
@@ -33,6 +38,12 @@ export class CommunityArchiveComponent implements OnInit {
 		this.unsubscribe.next();
 		this.unsubscribe.complete();
 		this.loading = false;
+	}
+
+	translateSector(partner: Partner) {
+		return this.sectorsList.filter((el) => {
+			return el.value == partner.sector
+		})[0].title;
 	}
 
 	fetchPartnersData() {

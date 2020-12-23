@@ -19,6 +19,7 @@ import { MicrocreditCampaign } from '../models/microcredit-campaign.model';
 import { OneClickToken } from '../models/one-click-token.model';
 import { PaymentDetails } from '../models/payment-details.model';
 import { MicrocreditBalance } from '../models/microcredit-balance.model';
+import { Message } from '../interfaces/message.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class OpenDataService {
    * Authentication
    */
   oneClickRegistration(email: string): Observable<OneClickToken> {
-    return this.http.post<any>(`${environment.apiUrl}/auth/one-click/register`, { email: email })
+    return this.http.post<any>(`${environment.apiUrl}/auth/register/one-click`, { email: email })
       .pipe(map(response => {
         return response.data;
       }));
@@ -157,4 +158,15 @@ export class OpenDataService {
         return response.data;
       }));
   };
+
+  /**
+   * Communicate
+   */
+  communicate(sender: string, content: string): Observable<Message> {
+    return this.http.post<any>(`${environment.apiUrl}/community/communicate`, { sender: sender, content: content })
+      .pipe(map(response => {
+        return response;
+      }));
+  };
+
 }

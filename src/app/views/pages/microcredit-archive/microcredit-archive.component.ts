@@ -5,6 +5,7 @@ import { tap, takeUntil, finalize } from 'rxjs/operators';
 // Services & Models
 import { OpenDataService } from '../../../core/services/open-data.service';
 import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-microcredit-archive',
@@ -15,12 +16,16 @@ export class MicrocreditArchiveComponent implements OnInit {
 	p: number = 1;
 	public campaigns: MicrocreditCampaign[];
 
+	public _text: string = '';
+	public _date: number = 0;
+
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
 
 	constructor(
 		private cdRef: ChangeDetectorRef,
-		private openDataService: OpenDataService,
+			private translate: TranslateService,
+	private openDataService: OpenDataService,
 	) {
 		this.unsubscribe = new Subject();
 	}
@@ -33,6 +38,25 @@ export class MicrocreditArchiveComponent implements OnInit {
 		this.unsubscribe.next();
 		this.unsubscribe.complete();
 		this.loading = false;
+	}
+
+	filterCampaign(campaign: MicrocreditCampaign) {
+		const now = new Date();
+		const seconds = parseInt(now.getTime().toString());
+
+		if (campaign.startsAt > seconds) {
+			this._date = campaign.startsAt;
+			return this.translate.instant('CAMPAIGN.STATUS.EXPECTED');
+			// this._text = this.translate.instant('CAMPAIGN.STATUS.EXPECTED');
+		} else if ((campaign.expiresAt > seconds) && (seconds > campaign.startsAt)) {
+			this._date = campaign.expiresAt;
+			return this.translate.instant('GENERAL.TO');
+			// this._text = this.translate.instant('GENERAL.TO');
+		} else if (seconds > campaign.expiresAt) {
+			this._date = campaign.redeemEnds;
+			return this.translate.instant('CAMPAIGN.STATUS.REDEEM_TO');
+			// this._text = this.translate.instant('CAMPAIGN.STATUS.REDEEM_TO');
+		}
 	}
 
 	fetchCampaignsData() {

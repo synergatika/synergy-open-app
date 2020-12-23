@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-md-6">
             <div>
-              <div class="sector"><span class="mdi mdi-view-dashboard-outline"></span> {{partner.sector}}</div>
+              <div class="sector"><span class="mdi mdi-view-dashboard-outline"></span> {{translateSector(partner) | translate}}</div>
               <div><span class="mdi mdi-email"></span> {{partner.email}}</div>
               <!-- <div *ngIf="configSubAccess[1]&&partner.contact&&partner.contact.websiteURL"><span
                   class="mdi mdi-web"></span> <a target="_blank" href="{{partner.contact.websiteURL}}">

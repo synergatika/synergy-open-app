@@ -6,13 +6,13 @@ import { ContactList } from '../interfaces/contact-list.interface';
 import { GeneralList } from '../interfaces/general-list.interface';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class StaticDataService {
 
-      /**
-   * Payments List
-   */
+  /**
+  * Payments List
+  */
   paymentsList: PaymentList[] = [
     {
       bic: 'ETHNGRAA',
@@ -64,10 +64,44 @@ export class StaticDataService {
     }
   ];
 
-
   /**
-   * Contacts List
+   * Sectors List
    */
+  sectorsList: GeneralList[] = [
+    {
+      title: 'PARTNER.SECTOR_CHOICES._',
+      value: 'Other',
+    },
+    {
+      title: 'PARTNER.SECTOR_CHOICES.A',
+      value: 'B2B Services & Other Goods and Services',
+    },
+    {
+      title: 'PARTNER.SECTOR_CHOICES.B',
+      value: 'Durables',
+    },
+    {
+      title: 'PARTNER.SECTOR_CHOICES.C',
+      value: 'Durables (Technology)',
+    },
+    {
+      title: 'PARTNER.SECTOR_CHOICES.D',
+      value: 'Education',
+    },
+    {
+      title: 'PARTNER.SECTOR_CHOICES.E',
+      value: 'Food',
+    },
+    {
+      title: 'PARTNER.SECTOR_CHOICES.F',
+      value: 'Hotels, Cafés and Restaurants',
+    },
+    {
+      title: 'PARTNER.SECTOR_CHOICES.G',
+      value: 'Recreation and Culture',
+    }
+  ];
+
   /**
    * Contacts List
    */
@@ -127,35 +161,59 @@ export class StaticDataService {
     },
   ];
 
-    public get getPaymentsList(): PaymentList[] {
-        return this.paymentsList;
-    };
-
-    public get getContactsList(): ContactList[] {
-        return this.contactsList;
-    };
-
-    owlOptions = {
-        loop: true,
-        mouseDrag: true,
-        touchDrag: false,
-        pullDrag: false,
-        dots: true,
-        navSpeed: 700,
-        navText: ['', ''],
-        responsive: {
-            0: {
-                items: 1
-            },
-            940: {
-                items: 3
-            }
-        },
-        margin: 30,
-        nav: true
+    /**
+   * Form Validators
+   */
+  validators = {
+    contact: {
+      sender: {
+        minLength: 4,
+        maxLength: 256
+      },
+      content: {
+        minLength: 6,
+        maxLength: 4096
+      },
     }
+  };
 
-    public get getOwlOprions() {
-        return this.owlOptions;
-    };
+  public get getPaymentsList(): PaymentList[] {
+    return this.paymentsList;
+  };
+
+  public get getSectorsList(): GeneralList[] {
+    return this.sectorsList;
+  };
+
+  public get getContactsList(): ContactList[] {
+    return this.contactsList;
+  };
+
+  public get getValidators() {
+    return this.validators;
+  }
+
+  owlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: false,
+    dots: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      940: {
+        items: 3
+      }
+    },
+    margin: 30,
+    nav: true
+  }
+
+  public get getOwlOprions() {
+    return this.owlOptions;
+  };
 }

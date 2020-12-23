@@ -68,7 +68,7 @@ export class OfferListComponent implements OnInit {
 	}
 
 	fetchOffersData() {
-		this.openDataService.readAllOffers(`0-0-0`)
+		this.openDataService.readAllOffers(`0-0-1`)
 			.pipe(
 				tap(
 					data => {
@@ -87,7 +87,7 @@ export class OfferListComponent implements OnInit {
 	}
 
 	fetchPartnerOffersData(partner_id: string) {
-		this.openDataService.readOffersByStore(partner_id, `0-0-0`)
+		this.openDataService.readOffersByStore(partner_id, `0-0-1`)
 			.pipe(
 				tap(
 					data => {
