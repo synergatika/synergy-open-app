@@ -9,6 +9,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { OpenDataService } from '../../../core/services/open-data.service';
 import { StaticDataService } from 'src/app/core/services/static-data.service';
 import { Partner } from '../../../core/models/partner.model';
+import { GeneralList } from '../../../core/interfaces/general-list.interface';
 
 @Component({
 	selector: 'app-community-list',
@@ -26,6 +27,7 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 	private unsubscribe: Subject<any>;
 
 	public partners: Partner[];
+	public sectorsList: GeneralList[];
 	/*
 	list = [
 		{
@@ -64,6 +66,7 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 		private staticDataService: StaticDataService,
 		//	private loadData : LoadJsonService
 	) {
+		this.sectorsList = this.staticDataService.getSectorsList;
 		this.customOptions = staticDataService.getOwlOprions;
 		this.unsubscribe = new Subject();
 	}
@@ -79,6 +82,18 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 		this.unsubscribe.next();
 		this.unsubscribe.complete();
 		this.loading = false;
+	}
+
+	translateSector(partner: Partner) {
+		console.log("Here")
+		console.log(partner);
+		console.log()
+		console.log(this.sectorsList.filter((el) => {
+			return el.value == partner.sector
+		}))
+		return this.sectorsList.filter((el) => {
+			return el.value == partner.sector
+		})[0].title;
 	}
 
 	shuffleArray(array: Partner[]) {

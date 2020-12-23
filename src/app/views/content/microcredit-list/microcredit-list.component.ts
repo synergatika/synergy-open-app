@@ -8,6 +8,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { OpenDataService } from '../../../core/services/open-data.service';
 import { StaticDataService } from 'src/app/core/services/static-data.service';
 import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-microcredit-list',
@@ -20,6 +21,9 @@ export class MicrocreditListComponent implements OnInit {
 	moved: boolean;
 	customOptions: OwlOptions;
 
+	public _text: string = '';
+	public _date: number = 0;
+
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
 
@@ -28,6 +32,7 @@ export class MicrocreditListComponent implements OnInit {
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
+		private translate: TranslateService,
 		private router: Router,
 		private staticDataService: StaticDataService,
 	) {
@@ -61,8 +66,27 @@ export class MicrocreditListComponent implements OnInit {
 		return array;
 	}
 
+	filterCampaign(campaign: MicrocreditCampaign) {
+		const now = new Date();
+		const seconds = parseInt(now.getTime().toString());
+
+		if (campaign.startsAt > seconds) {
+			this._date = campaign.startsAt;
+			return this.translate.instant('CAMPAIGN.STATUS.EXPECTED');
+			// this._text = this.translate.instant('CAMPAIGN.STATUS.EXPECTED');
+		} else if ((campaign.expiresAt > seconds) && (seconds > campaign.startsAt)) {
+			this._date = campaign.expiresAt;
+			return this.translate.instant('GENERAL.TO');
+			// this._text = this.translate.instant('GENERAL.TO');
+		} else if (seconds > campaign.expiresAt) {
+			this._date = campaign.redeemEnds;
+			return this.translate.instant('CAMPAIGN.STATUS.REDEEM_TO');
+			// this._text = this.translate.instant('CAMPAIGN.STATUS.REDEEM_TO');
+		}
+	}
+
 	fetchCampaignsData() {
-		this.openDataService.readAllPublicMicrocreditCampaigns(`0-0-0`)
+		this.openDataService.readAllPublicMicrocreditCampaigns(`0-0-1`)
 			.pipe(
 				tap(
 					data => {
@@ -81,7 +105,7 @@ export class MicrocreditListComponent implements OnInit {
 	}
 
 	fetchPartnerCampaignsData(partner_id: string) {
-		this.openDataService.readAllMicrocreditCampaignsByStore(partner_id, `0-0-0`)
+		this.openDataService.readAllMicrocreditCampaignsByStore(partner_id, `0-0-1`)
 			.pipe(
 				tap(
 					data => {

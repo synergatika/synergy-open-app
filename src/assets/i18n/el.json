@@ -2,19 +2,61 @@
   "HOME": {
     "community-title": "Κοινότητα"
   },
+  "GENERAL": {
+    "TO": "εώς"
+  },
+  "CAMPAIGN": {
+    "STATUS": {
+        "DRAFT": "Πρόχειρη",
+        "EXPECTED": "αναμένεται",
+        "EXPIRED": "Έχει Λήξει",
+        "REDEEM_TO": "Εξαργύρωση εώς"
+    }
+  },
+  "CONTACT": {
+    "TITLE": "Επικοινωνήστε μαζί μας",
+    "SENDER": {
+      "TITLE": "Email",
+      "PLACEHOLDER": "",
+      "DESC": ""
+    },
+    "CONTENT": {
+      "TITLE": "Το μήνυμα σας",
+      "PLACEHOLDER": "",
+      "DESC": ""
+    },
+    "SUCCESS": {
+      "TITLE": "OK",
+      "MESSAGE": "Το μήνυμα σας στάλθηκε επιτυχώς"
+    }
+  },
+  "PARTNER": {
+    "SECTOR_CHOICES": {
+      "_": "Άλλο",
+      "A": "Υπηρεσίες B2B και άλλα αγαθά και υπηρεσίες",
+      "B": "Αναλώσιμα",
+      "C": "Αναλώσιμα (Τεχνολογία)",
+      "D": "Εκπαίδευση",
+      "E": "Τρόφιμα",
+      "F": "Ξενοδοχεία, καφέ και εστιατόρια",
+      "G": "Αναψυχή και Πολιτισμός"
+    }
+  },
   "SUPPORT": {
     "PAYMENT_CHOICES": {
       "A": "Εθνική Τράπεζα",
       "B": "Τράπεζα Πειραιώς",
       "C": "Eurobank Ergasias",
       "D": "Alpha Bank",
-      "E": "PayPal"
+      "E": "PayPal",
+      "F": "PayPal.Me"
     },
     "AMOUNT": "Ποσό",
     "PAYMENT": "Μέθοδος Πληρωμής",
     "STORE": "Στο Κατάστημα",
     "BANK": "Τραπεζική Κατάθεση",
     "PAYPAL": "Μέσω Paypal",
+    "PAYPAL_ME": "Μέσω Paypal.me",
     "CANNOT_SUPPORT": "Η Υποστήριξη δεν είναι δυνατή αυτή την περίοδο",
     "SUCCESS": {
       "TITLE": "Support is ok",
