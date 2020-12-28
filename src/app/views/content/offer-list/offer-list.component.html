@@ -12,46 +12,8 @@
             <div>
               <owl-carousel-o [options]="customOptions">
                 <ng-template carouselSlide *ngFor="let offer of offers">
-                  <mat-card class="item-card offer-card" (mousedown)="mousedown()" (mousemove)="mousemove()"
-                    (mouseup)="mouseup(offer.partner_slug, offer.offer_slug)">
-                    <mat-card-content>
-                      <!--begin::Content-->
-                      <div class="item row">
-                        <div class="col-sm-12 item-img-container">
-                          <div class="item-img">
-                            <img src={{offer.offer_imageURL}} alt={{offer.title}} />
-                            <div class="item-expires">έως {{offer.expiresAt | date: 'd.M'}}</div>
-                          </div>
-
-                        </div>
-                        <div class="col-sm-12 item-amount">
-                          <div class="item-heading">
-                            <div class="item-title">{{offer.title}}</div>
-                            <div class="points-container">
-                              <span class="points">
-                                <img src="../../../assets/media/images/Synergy-Icon.png" alt="Synergy" />
-                                {{offer.cost}}
-                              </span>
-                            </div>
-                          </div>
-                          <div class="item-description">
-                            {{offer.subtitle}}
-                          </div>
-                          <div *ngIf="!singlePartner" class="item-info">
-                            <div class="">
-                              <div class="item-subtitle"><span class="mdi mdi-shopping"></span>{{offer.partner_name}}
-                              </div>
-                              <div *ngIf="offer.address" class="item-subtitle"><span
-                                  class="mdi mdi-pin"></span>{{offer.address.street}},
-                                {{offer.address.city}}</div>
-                            </div>
-
-                          </div>
-                        </div>
-                      </div>
-                      <!--end::Content-->
-                    </mat-card-content>
-                  </mat-card>
+                  <sng-offer-card [offer]="offer" type="all" (mousedown)="mousedown()" (mousemove)="mousemove()"
+                    (mouseup)="mouseup(offer.partner_slug, offer.offer_slug)"></sng-offer-card>
                 </ng-template>
               </owl-carousel-o>
             </div>
