@@ -1,71 +1,61 @@
-<div *ngIf="partner">
-  <div class="container partner-info-container">
-    <div class="partner row">
-      <div class="col-md-8 partner-info-content">
-        <div class="row">
-          <div class="col-md-12">
-            <h1 class="single-title">{{partner.name}}</h1>
-            <div class="description" [innerHTML]="partner.description"></div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div>
-              <div class="sector"><span class="mdi mdi-view-dashboard-outline"></span> {{partner.sector}}</div>
-              <div><span class="mdi mdi-email"></span> {{partner.email}}</div>
-              <!-- <div *ngIf="configSubAccess[1]&&partner.contact&&partner.contact.websiteURL"><span
-                  class="mdi mdi-web"></span> <a target="_blank" href="{{partner.contact.websiteURL}}">
-                  {{partner.contact.websiteURL}}</a></div> -->
-              <div *ngIf="configSubAccess[1]&&partner.phone"><span
-                  class="mdi mdi-phone-classic"></span>
-                {{partner.phone}}</div>
-              <div *ngIf="configSubAccess[0]&&partner.address"><span class="mdi mdi-map"></span>
-                {{partner.address.street}},
-                {{partner.address.postCode}},
-                {{partner.address.city}}</div>
-
-                <div *ngIf="contactsList">
-                  <div class="contacts" *ngFor="let contact of contactsList">
-                    <a *ngIf="contact.value" href="{{contact.prefix}}{{contact.value}}" target="_blank"><span
-                        class="mdi mdi-{{contact.icon}}"></span> </a>
-                  </div>
-                </div>
-            </div>
-          </div>
-          <div class="col-md-6 partner-timetable">
-            <div *ngIf="configSubAccess[0]&&partner.timetable">
-              <div><span class="mdi mdi-clock-outline"></span> {{ 'SINGLE.COOP.Timetable' | translate }}</div>
-              <div class="hours" [innerHTML]="partner.timetable"></div>
-            </div>
-          </div>
+<div class="partner single" *ngIf="partner">
+  <div class="container partner-container">
+    <div class="row">
+      <div class="col-md-12">
+        <a class="backlink" [routerLink]="['/partners']">
+          <span class="mdi mdi-arrow-left"></span>
+        </a>
+      </div>
+    </div>
+    <div class="row partner-header">
+      <div class="col-lg-3 partner-img-wrapper">
+        <div *ngIf="partner.imageURL" class="partner-img">
+          <img src="{{partner.imageURL}}" title="{{partner.name}}">
         </div>
       </div>
-      <div class="col-md-4 partner-logo-container">
-        <div class="partner-logo">
-          <img [src]="partner.imageURL" [alt]="partner.name" />
+      <div class="col-lg-9 partner-title-wrapper">
+        <h1 class="partner-title single-title">{{partner.name}}</h1>
+        <h4>{{ partner.sector | translate }}</h4>
+        <!--begin:Social Media -->
+        <div *ngIf="contactsList">
+          <div class="partner-contacts" *ngFor="let contact of contactsList">
+            <a *ngIf="contact.value" href="{{contact.prefix}}{{contact.value}}" target="_blank"><span
+                class="mdi mdi-{{contact.icon}}"></span> </a>
+          </div>
+        </div>
+        <!--end:Social Media -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 offset-md-1 partner-description-wrapper">
+        <div class="partner-description" [innerHTML]="partner.description"></div>
+      </div>
+      <div class="col-md-3 partner-info single-info">
+        <div>
+          <span class="mdi mdi-email"></span>
+          {{partner.email}}
+        </div>
+        <div *ngIf="partner.phone">
+          <span class="mdi mdi-phone-classic"></span>
+          {{partner.phone}}
+        </div>
+        <div *ngIf="partner.address">
+          <span class="mdi mdi-map"></span>
+          {{partner.address.street}},
+          {{partner.address.postCode}},
+          {{partner.address.city}}
+        </div>
+        <div class="partner-timetable" *ngIf="partner.timetable">
+          <div><span class="mdi mdi-clock-outline"></span> {{ 'SINGLE.COOP.Timetable' | translate }}</div>
+          <div class="hours" [innerHTML]="partner.timetable"></div>
         </div>
       </div>
     </div>
   </div>
-  <!-- <div class="gallery">
-    <owl-carousel-o [options]="customOptions">
-      <ng-template carouselSlide *ngFor="let galleryImg of gallery">
-        <div class="carousel-logo">
-          <div class="">
-            <img src="assets/media/images/{{galleryImg}}">
-          </div>
-        </div>
-      </ng-template>
-    </owl-carousel-o>
-  </div> -->
-
-  <app-offer-list *ngIf="configAccess[1]" [partner_id]='partner._id'></app-offer-list>
-
-  <app-microcredit-list *ngIf="configAccess[2]" [partner_id]='partner._id'></app-microcredit-list>
-
-  <app-events-list *ngIf="configAccess[0]" [partner_id]='partner._id'></app-events-list>
-
-  <div *ngIf="configSubAccess[0]&&partner.address">
+  <app-offer-list [partner_id]='partner._id'></app-offer-list>
+  <app-microcredit-list [partner_id]='partner._id'></app-microcredit-list>
+  <app-events-list [partner_id]='partner._id'></app-events-list>
+  <div *ngIf="partner.address">
     <app-map [partner_id]='partner._id'></app-map>
   </div>
 </div>
