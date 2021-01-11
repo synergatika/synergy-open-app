@@ -16,6 +16,8 @@ import { MicrocreditCampaign } from '../../../core/models/microcredit-campaign.m
 })
 export class MicrocreditListComponent implements OnInit {
 	@Input() partner_id?: string;
+
+	type:string;
 	singlePartner: boolean = false;
 	moved: boolean;
 	customOptions: OwlOptions;
@@ -39,25 +41,21 @@ export class MicrocreditListComponent implements OnInit {
 		if (this.partner_id) {
 			this.fetchPartnerCampaignsData(this.partner_id);
 			this.singlePartner = true;
+			this.type = "single";
 		} else {
 			this.fetchCampaignsData();
+			this.type = "all";
 		}
 	}
 
 	shuffleArray(array: MicrocreditCampaign[]) {
 		var m = array.length, t, i;
-
-		// While there remain elements to shuffle
 		while (m) {
-			// Pick a remaining element…
 			i = Math.floor(Math.random() * m--);
-
-			// And swap it with the current element.
 			t = array[m];
 			array[m] = array[i];
 			array[i] = t;
 		}
-
 		return array;
 	}
 
@@ -69,6 +67,8 @@ export class MicrocreditListComponent implements OnInit {
 						this.campaigns = this.shuffleArray(data);
 					},
 					error => {
+						console.log("Can't get microcredit");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {
@@ -87,6 +87,8 @@ export class MicrocreditListComponent implements OnInit {
 						this.campaigns = data;
 					},
 					error => {
+						console.log("Can't get partner microcredit");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {

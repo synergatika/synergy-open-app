@@ -115,7 +115,6 @@
       &-subtitle {
           color: $grey-font;
           margin-bottom: 10px;
-          border-bottom: 1px solid #eee;
           font-size: 16px;
       }
 
@@ -135,6 +134,12 @@
           .share {
               cursor: pointer;
           }
+      }
+
+      &-partner{
+        width: 100%;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
       }
 
       &-merch-phone {

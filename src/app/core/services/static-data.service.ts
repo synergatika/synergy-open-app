@@ -178,21 +178,13 @@ export class StaticDataService {
   };
 
   owlOptions = {
-    loop: true,
+    loop: false,
     mouseDrag: true,
     touchDrag: false,
     pullDrag: false,
     dots: true,
     navSpeed: 700,
     navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      940: {
-        items: 3
-      }
-    },
     margin: 30,
     nav: true
   }

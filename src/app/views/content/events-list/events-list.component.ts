@@ -20,6 +20,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
 	moved: boolean;
 	singlePartner: boolean = false;
 	loading: boolean = false;
+	type:string;
 	private unsubscribe: Subject<any>;
 
 	customOptions: OwlOptions; 
@@ -40,8 +41,11 @@ export class EventsListComponent implements OnInit, OnDestroy {
 		if (this.partner_id) {
 			this.fetchPartnerPostsEventsData(this.partner_id);
 			this.singlePartner = true;
+			this.type = 'single';
 		} else {
 			this.fetchPostsEventsData();
+			this.type = 'all';
+			console.log(this.type)
 		}
 	}
 
