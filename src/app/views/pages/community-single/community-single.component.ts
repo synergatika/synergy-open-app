@@ -28,15 +28,13 @@ export class CommunitySingleComponent implements OnInit {
 	public configSubAccess: Boolean[] = environment.subAccess;
 
 	public contactsList: ContactList[] = [];
-	//	objectKeys = Object.keys;
 	private routeSubscription: any;
-	displayedColumns: string[] = ['description', 'date_from', 'date_to', 'points'];
-	//dataSource = [];
-	//gallery = ['gallery-1.jpg', 'gallery-2.jpg', 'gallery-1.jpg', 'gallery-2.jpg', 'gallery-1.jpg', 'gallery-2.jpg'];
-	//customOptions: OwlOptions;
+
 
 	partner_id: string;
 	public partner: Partner;
+	public sectorsList: GeneralList[];
+	public sector: string;
 
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
@@ -46,19 +44,16 @@ export class CommunitySingleComponent implements OnInit {
 		private openDataService: OpenDataService,
 		private route: ActivatedRoute,
 		private titleService: Title,
-		//	private loadData: LoadCommunityService,
-			private staticDataService: StaticDataService
+		private staticDataService: StaticDataService
 	) {
-	    this.contactsList = this.staticDataService.getContactsList;
-	//	this.customOptions = staticDataService.getOwlOprions;
-		this.unsubscribe = new Subject();
+		this.contactsList = this.staticDataService.getContactsList;
+		this.sectorsList = this.staticDataService.getSectorList;
+		this.unsubscribe = new Subject();	
 	}
 
 	ngOnInit() {
 		this.routeSubscription = this.route.params.subscribe(params => {
 			this.partner_id = params['partner_id'];
-
-			console.log("Partner ID: " + this.partner_id);
 			this.fetchPartnerData(this.partner_id);
 		});
 	}
@@ -75,19 +70,22 @@ export class CommunitySingleComponent implements OnInit {
 				tap(
 					data => {
 						this.partner = data;
-
-						            /**begin:Social Media*/
-									const currentContactsArray = (this.partner.contacts).map(a => a.slug);
-									const validateContactsList = this.contactsList.filter(function (el) {
-									  return currentContactsArray.includes(el.slug);
-									});
-									this.contactsList = validateContactsList.map(o => { return { ...o, value: (this.partner.contacts).filter(ob => { return ob.slug === o.slug })[0].value } });
-									/**end:Social Media*/
-
-						console.log(this.partner)
+						/**begin:Social Media*/
+						const currentContactsArray = (this.partner.contacts).map(a => a.slug);
+						const validateContactsList = this.contactsList.filter(function (el) {
+							return currentContactsArray.includes(el.slug);
+						});
+						this.contactsList = validateContactsList.map(o => { return { ...o, value: (this.partner.contacts).filter(ob => { return ob.slug === o.slug })[0].value } });
+						/**end:Social Media*/
 						this.titleService.setTitle(this.partner.name);
+						//Set sector
+						this.sector = this.sectorsList.filter((el) => {
+							return el.value == this.partner.sector
+						  })[0].title;
 					},
 					error => {
+						console.log("Can't load Partner");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {

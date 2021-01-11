@@ -53,6 +53,7 @@ export class CommunityArchiveComponent implements OnInit {
 					},
 					error => {
 						console.log("Can't load partners");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {
