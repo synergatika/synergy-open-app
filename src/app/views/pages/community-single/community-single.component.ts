@@ -77,7 +77,7 @@ export class CommunitySingleComponent implements OnInit {
 						});
 						this.contactsList = validateContactsList.map(o => { return { ...o, value: (this.partner.contacts).filter(ob => { return ob.slug === o.slug })[0].value } });
 						/**end:Social Media*/
-						this.titleService.setTitle(this.partner.name);
+						this.titleService.setTitle(this.partner.name+this.staticDataService.getSiteTitle);
 						//Set sector
 						this.sector = this.sectorsList.filter((el) => {
 							return el.value == this.partner.sector
