@@ -34,9 +34,9 @@
                   <p [innerHTML]="campaign.subtitle"></p>
                 </div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="type!='single'">
                 <div class="col-md-12 s_archive-info">
-                  <div class="s_archive-partner" *ngIf="type!='single'">
+                  <div class="s_archive-partner" >
                     <div class="s_archive-merch-name">
                       <span class="mdi mdi-shopping"></span> {{campaign.partner_name}}
                     </div>
@@ -52,7 +52,6 @@
         </div>
       </div>
       <!--end::Content-->
-
     </mat-card-content>
   </mat-card>
 </div>

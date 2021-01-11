@@ -12,7 +12,7 @@
             <div>
               <owl-carousel-o [options]="customOptions">
                 <ng-template carouselSlide *ngFor="let offer of offers">
-                  <sng-offer-card [offer]="offer" type="all" (mousedown)="mousedown()" (mousemove)="mousemove()"
+                  <sng-offer-card [offer]="offer" [type]="type" (mousedown)="mousedown()" (mousemove)="mousemove()"
                     (mouseup)="mouseup(offer.partner_slug, offer.offer_slug)"></sng-offer-card>
                 </ng-template>
               </owl-carousel-o>

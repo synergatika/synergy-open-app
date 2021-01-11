@@ -18,6 +18,7 @@ import { Partner } from '../../../core/models/partner.model';
 export class CommunityListComponent implements OnInit, OnDestroy {
 	moved: boolean;
 	customOptions: OwlOptions;
+	
 
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
