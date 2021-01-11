@@ -10,9 +10,11 @@ import { GeneralList } from '../interfaces/general-list.interface';
 })
 export class StaticDataService {
 
+  siteTitle: string = " - Synergy.gr | Εμπορική Κοινότητα Συνεργατικών";
+
   /**
-* Payments List
-*/
+  * Payments List
+  */
   paymentsList: PaymentList[] = [
     {
       bic: 'ETHNGRAA',
@@ -65,9 +67,6 @@ export class StaticDataService {
   ];
 
 
-  /**
-   * Contacts List
-   */
   /**
    * Contacts List
    */
@@ -128,8 +127,8 @@ export class StaticDataService {
   ];
 
   /**
- * Sectors List
- */
+  * Sectors List
+  */
   sectorList: GeneralList[] = [
     {
       title: 'FIELDS.PROFILE.SECTOR_CHOICES.A',
@@ -165,18 +164,6 @@ export class StaticDataService {
     },
   ];
 
-  public get getSectorList() {
-    return this.sectorList;
-  }
-
-  public get getPaymentsList(): PaymentList[] {
-    return this.paymentsList;
-  };
-
-  public get getContactsList(): ContactList[] {
-    return this.contactsList;
-  };
-
   owlOptions = {
     loop: false,
     mouseDrag: true,
@@ -189,7 +176,25 @@ export class StaticDataService {
     nav: true
   }
 
+  
+  public get getSiteTitle() {
+    return this.siteTitle;
+  }
+
+  public get getPaymentsList(): PaymentList[] {
+    return this.paymentsList;
+  };
+
+  public get getContactsList(): ContactList[] {
+    return this.contactsList;
+  };
+
+  public get getSectorList() {
+    return this.sectorList;
+  }
+
   public get getOwlOprions() {
     return this.owlOptions;
   };
+
 }
