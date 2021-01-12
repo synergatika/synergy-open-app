@@ -40,8 +40,6 @@ export class EventSingleComponent implements OnInit, OnDestroy {
 			this.partner_id = params['partner_id'];
 			this.post_event_id = params['post_event_id'];
 			this.post_event_type = params['type'];
-
-			console.log("Partner ID: " + this.partner_id, "Post/Event ID:" + this.post_event_id, "Post/Event Type:" + this.post_event_type);
 			this.fetchEventData(this.partner_id, this.post_event_id, this.post_event_type);
 		});
 	}
@@ -59,11 +57,12 @@ export class EventSingleComponent implements OnInit, OnDestroy {
 					data => {
 						this.post_event = data;
 						this.img = (this.post_event_type == 'post') ? data.post_imageURL : data.event_imageURL;
-
-						console.log(this.post_event);
 						this.titleService.setTitle(this.post_event.title);
+						console.log(this.post_event);
 					},
 					error => {
+						console.log("Can't load post event");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {
