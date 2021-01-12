@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
 
 // Services & Models
 import { OpenDataService } from '../../../core/services/open-data.service';
+import { StaticDataService } from '../../../core/services/static-data.service';
 import { PostEvent } from '../../../core/models/post_event.model';
 
 @Component({
@@ -30,7 +31,8 @@ export class EventSingleComponent implements OnInit, OnDestroy {
 		private route: ActivatedRoute,
 		private cdRef: ChangeDetectorRef,
 		private titleService: Title,
-		private openDataService: OpenDataService
+		private openDataService: OpenDataService,
+		private staticDataService :StaticDataService 
 	) {
 		this.unsubscribe = new Subject();
 	}
@@ -57,8 +59,7 @@ export class EventSingleComponent implements OnInit, OnDestroy {
 					data => {
 						this.post_event = data;
 						this.img = (this.post_event_type == 'post') ? data.post_imageURL : data.event_imageURL;
-						this.titleService.setTitle(this.post_event.title);
-						console.log(this.post_event);
+						this.titleService.setTitle(this.post_event.title+this.staticDataService.getSiteTitle);
 					},
 					error => {
 						console.log("Can't load post event");
