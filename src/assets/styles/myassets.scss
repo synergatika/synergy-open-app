@@ -183,9 +183,9 @@
   }
   &.bck-asymmetry.primary {
       //background-color: #eee;
-      background-image: linear-gradient(to right, #e4509e, #e4509e 50%, #fff 50%, #fff);
+      background-image: linear-gradient(to right,var(--primary),var(--primary) 50%, #fff 50%, #fff);
       .narrow {
-          background-color: #e4509e;
+          background-color:var(--primary);
       }
       .wide {
           background-color: #fff;
@@ -197,9 +197,9 @@
   }
   &.bck-asymmetry.secondary {
       //background-color: #eee;
-      background-image: linear-gradient(to right, #eee, #eee 50%, #415daa 50%, #415daa);
+      background-image: linear-gradient(to right, #eee, #eee 50%, var(--secondary) 50%, var(--secondary));
       .narrow {
-          background-color: #415daa;
+          background-color: var(--secondary);
       }
       .wide {
           background-color: #eee;
@@ -210,4 +210,44 @@
   margin: 0 20px 30px;
   a:hover {
   }
+}
+
+
+//4. Single Items (Offer, Microcredit, Post Event)
+.s_item{
+    padding-bottom: 90px;
+    &-img{
+        margin-top:30px;
+        margin-bottom: 40px;
+        text-align: center;
+        img{
+            width: 80%;
+            border-radius:6px;
+        }
+    }
+    &-title{
+        text-align: center;
+        font-weight: bold;
+        color:var(--secondary);
+    }
+    &-info{
+        margin-bottom: 40px;
+        .mdi{
+            color:var(--primary);
+        }
+    }
+    &-partner{
+        padding-right:20px;
+        img{
+            margin-top: 10px;
+            width: 100%;
+        }
+    }
+    .archive-link{
+        text-align: center;
+        margin-top: 50px;
+        a{
+            color:var(--primary);
+        }
+    }
 }
