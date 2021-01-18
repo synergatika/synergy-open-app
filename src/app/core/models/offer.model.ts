@@ -5,6 +5,7 @@ export interface Offer {
     partner_id: string;
     partner_name: string;
     partner_imageURL: string;
+    partner_slug: string;
     partner_address?: PartnerAddress;
 
     offer_id: string;
