@@ -6,6 +6,34 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.single-campaign {
+  &-info {
+    margin-top: 20px;
+    .data {
+      label {
+        font-weight: bold;
+      }
+      &.terms {
+        margin-left: 20px;
+        margin-top: 20px;
+        padding-left: 15px;
+        border-left: 2px solid var(--tertiary);
+      }
+      &.price {
+        text-align: right;
+        label {
+          font-size: 18px;
+        }
+        span {
+          font-size: 40px;
+          line-height: 40px;
+          color: var(--primary);
+        }
+      }
+    }
+  }
 }

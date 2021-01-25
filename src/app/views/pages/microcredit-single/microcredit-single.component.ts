@@ -68,7 +68,6 @@ export class MicrocreditSingleComponent implements OnInit {
 		this.routeSubscription = this.route.params.subscribe(params => {
 			this.partner_id = params['partner_id'];
 			this.campaign_id = params['campaign_id'];
-			console.log(this.campaign_id);
 			this.fetchCampaignData(this.partner_id, this.campaign_id);
 		});
 	}
@@ -82,21 +81,20 @@ export class MicrocreditSingleComponent implements OnInit {
 	fetchCampaignData(partner_id: string, campaign_id: string) {
 		const now = new Date();
 		const seconds = parseInt(now.getTime().toString());
-
 		this.openDataService.readMicrocreditCampaign(partner_id, campaign_id)
 			.pipe(
 				tap(
 					data => {
 						this.campaign = data;
-						this.titleService.setTitle(this.campaign.title);
+						this.titleService.setTitle(this.campaign.title+this.staticDataService.getSiteTitle);
 						this.canSupport = (this.campaign.startsAt < seconds) && (this.campaign.expiresAt > seconds);
-						//this.canSupport = true;
 						console.log(this.campaign);
 						this.initRegistrationForm();
 						this.initSupportingForm();
 					},
 					error => {
-						console.log('error');
+						console.log("Can't load campaign");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {
@@ -113,7 +111,7 @@ export class MicrocreditSingleComponent implements OnInit {
 				Validators.required,
 				Validators.email,
 				Validators.minLength(3),
-				Validators.maxLength(320) // https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
+				Validators.maxLength(320) 
 			])
 			],
 		});
@@ -125,7 +123,6 @@ export class MicrocreditSingleComponent implements OnInit {
 			return currentMethodsArray.includes(el.bic);
 		});
 		this.paymentsList = validatePaymentList;
-
 		this.supportingForm = this.fb.group({
 			amount: ['', Validators.compose([
 				Validators.required,
@@ -138,7 +135,6 @@ export class MicrocreditSingleComponent implements OnInit {
 			])
 			]
 		});
-
 		const controls = this.supportingForm.controls;
 		controls['amount'].setValue(this.campaign.minAllowed);
 		this.showSubStep = false;
