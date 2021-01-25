@@ -83,6 +83,13 @@
       "EXPIRED": "Έχει Λήξει"
     }
   },
+  "CAMPAIGN":{
+    "Expires":"Ημερομηνία Λήξης",
+    "RedeemDates":"Περίοδος Εξαργύρωσης",
+    "Terms":"Τι παίρνω;",
+    "Price":"Τιμή",
+    "PriceFrom":"Από"
+  },
   "AUTH": {
   "INPUT": {
     "EMAIL": "E-mail"
