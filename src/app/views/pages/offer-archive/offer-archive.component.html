@@ -5,14 +5,25 @@
     </div>
   </div>
 </div>
-<div *ngIf="offers?.length > 0" class="container">
+<div *ngIf="offers?.length > 0" class="credit-container container">
   <div>
     <div class="offer row">
-      <div class="col-md-4" *ngFor="let offer of offers | paginate: { itemsPerPage: 9, currentPage: p }">
-        <mat-card class="item-card offer-card">
-          <mat-card-content>
-            <!--begin::Content-->
-            <a class="item row" [routerLink]="['/offer/'+ offer.partner_slug + '/' + offer.offer_slug]">
+      <div class="col-md-4 credit-item" *ngFor="let item of offers | paginate: { itemsPerPage: 9, currentPage: p }"
+        (click)="clickOffer(item.partner_slug, item.offer_slug)">
+        <sng-offer-card [offer]="item"></sng-offer-card>
+      </div>
+    </div>
+    <pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
+  </div>
+
+  <!-- <div>
+    <div class="offer row">
+      <div class="col-md-4" *ngFor="let offer of offers | paginate: { itemsPerPage: 9, currentPage: p }"> -->
+  <!-- <mat-card class="item-card offer-card">
+          <mat-card-content> -->
+
+  <!--begin::Content-->
+  <!-- <a class="item row" [routerLink]="['/offer/'+ offer.partner_slug + '/' + offer.offer_slug]">
               <div class="col-sm-12 item-img-container">
                 <div class="item-img">
                   <img src={{offer.offer_imageURL}} alt={{offer.title}} />
@@ -34,16 +45,17 @@
                   <div class="">
                     <div class="item-subtitle"><span class="mdi mdi-shopping"></span>{{offer.partner_name}}</div>
                     <!-- <div class="item-subtitle"><span class="mdi mdi-pin"></span>{{offer.expiresAt}}</div> -->
-                  </div>
+  <!-- </div>
 
-                </div>
-              </div>
-            </a>
-            <!--end::Content-->
-          </mat-card-content>
-        </mat-card>
-      </div>
     </div>
-    <pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
   </div>
+  </a> -->
+  <!--end::Content-->
+
+  <!-- </mat-card-content>
+  </mat-card>
 </div>
+</div> -->
+  <pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
+</div>
+<!-- </div> -->

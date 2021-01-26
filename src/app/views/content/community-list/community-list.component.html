@@ -3,31 +3,7 @@
     <ng-template carouselSlide *ngFor="let partner of partners">
       <div class="carousel-card">
         <div (mousedown)="mousedown()" (mousemove)="mousemove()" (mouseup)="mouseup(partner.slug)">
-          <div class="carousel-card-logo">
-            <div class="carousel-card-logo-container">
-              <img src={{partner.imageURL}} />
-              <!--<a [routerLink]="['/partner', partner]"></a>-->
-            </div>
-          </div>
-          <div class="carousel-card-content row justify-content-center">
-            <div class="card-content-partner">
-              <div class="card-content-partner-divider"><span></span><span></span><span></span></div>
-              <div class="partner-heading">
-                <div class="partner-title">{{partner.name}}</div>
-                <div class="partner-sector"><span class="mdi mdi-view-dashboard-outline"></span> {{translateSector(partner) | translate}}
-                </div>
-              </div>
-              <div class="partner-info">
-                <div class="">
-                  <div *ngIf="partner.address" class="partner-subtitle">
-                    <span class="mdi mdi-map"></span>
-                    {{partner.address.street}}, {{partner.address.city}}
-                  </div>
-                </div>
-                <!--<app-share-icon></app-share-icon>-->
-              </div>
-            </div>
-          </div>
+          <sng-partner-card [partner]="partner"></sng-partner-card>
         </div>
       </div>
     </ng-template>

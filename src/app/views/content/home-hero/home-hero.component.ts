@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
-import { LoadWpContentService } from '../../../core/services/load-wp-content.service';
+import { ContentService } from '../../../core/services/content-data.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 
@@ -16,34 +16,26 @@ export class HomeHeroComponent implements OnInit {
 
 	private unsubscribe: Subject<any>;
 	public browserLang: string;
+	public currentLang: string;
 	content: any;
 
-	constructor(private cdRef: ChangeDetectorRef, private loadContent: LoadWpContentService, private translate: TranslateService) {
-		translate.onLangChange.subscribe(lang => {
-			this.browserLang = lang;
-		})
-	}
+	constructor(
+		private cdRef: ChangeDetectorRef, 
+		private loadContent: ContentService, 
+		public translate: TranslateService
+	) {	}
 
 	ngOnInit() {
 		this.unsubscribe = new Subject();
-		this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-			console.log(event.lang);
-			if (event.lang == 'en') {
-				this.fetchHeroContent(21);
-			} else {
-				this.fetchHeroContent(18);
-			}
-			this.browserLang = event.lang
-		});
+		this.fetchHeroContent('homebanner');
 	}
 
 	fetchHeroContent(page_id) {
-		this.loadContent.getContent(page_id)
+		this.loadContent.readContentById(page_id)
 			.pipe(
 				tap(
 					data => {
 						this.content = data;
-						//console.log(this.content);
 					},
 					error => {
 					}),

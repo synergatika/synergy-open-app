@@ -1,14 +1,18 @@
 <div class="app-header container">
-	<div class="row header-wrapper">
-		<div>
-			<a href="javascript:;" routerLink="/">
-				<img src={{logo}}>
-			</a>
-		</div>		
-		<div class="header-wrapper-right">
-			<app-menu></app-menu>
-			<app-language-switcher></app-language-switcher>
-			<app-user-menu></app-user-menu>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="header-wrapper">
+				<div class="header-wrapper-left">
+					<a href="javascript:;" routerLink="/">
+						<img class="logo" src={{logo}}>
+					</a>
+				</div>
+				<div class="header-wrapper-right">
+					<app-menu></app-menu>
+					<!--<app-language-switcher></app-language-switcher>-->
+					<app-user-menu></app-user-menu>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
+</div> 

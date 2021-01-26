@@ -1,8 +1,11 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
 import { OpenDataService } from '../../../core/services/open-data.service';
 import { Offer } from '../../../core/models/offer.model';
+
 @Component({
 	selector: 'app-offer-archive',
 	templateUrl: './offer-archive.component.html',
@@ -16,6 +19,7 @@ export class OfferArchiveComponent implements OnInit {
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
+		private router: Router,
 	) {
 		this.unsubscribe = new Subject();
 	}
@@ -49,4 +53,7 @@ export class OfferArchiveComponent implements OnInit {
 		this.loading = false;
 	}
 
+	clickOffer(partner_id: string, offer_id: string) {
+		this.router.navigate([`/offer/${partner_id}/${offer_id}`]);
+	}
 }

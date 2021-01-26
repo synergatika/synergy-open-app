@@ -9,10 +9,14 @@ export interface MicrocreditCampaign {
     //partner_payment: Payments[];
     partner_payments: PartnerPayment[];
     partner_address: PartnerAddress;
+    partner_slug: string,
+    partner_phone:string,
+    partner_email:string,
 
     campaign_id: string,
     campaign_imageURL: string,
     title: string,
+    subtitle: string,
     terms: string,
     description: string,
     category: string,

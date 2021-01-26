@@ -7,43 +7,16 @@
             <div>
               <owl-carousel-o [options]="customOptions">
                 <ng-template carouselSlide *ngFor="let item of campaigns">
-                  <mat-card class="item-card microcredit-card" (mousedown)="mousedown()" (mousemove)="mousemove()"
+                  <div (mousedown)="mousedown()" (mousemove)="mousemove()"
                     (mouseup)="mouseup(item.partner_slug, item.campaign_slug)">
-                    <mat-card-content>
-                      <!--begin::Content-->
-                      <div class="item row">
-                        <div class="col-sm-12 item-img-container">
-                          <div class="item-img">
-                            <img *ngIf="item.campaign_imageURL" src={{item.campaign_imageURL}} alt={{item.title}} />
-                            <div class="item-expires">{{filterCampaign(item)}} <span *ngIf="_date">{{ _date | date: 'd.M'}}</span></div>
-                            <!-- <div class="item-expires">έως {{item.expiresAt | date: 'd.M'}}</div> -->
-                          </div>
-                        </div>
-                        <div class="col-sm-12 item-details">
-                          <div class="item-heading">
-                            <div class="item-title">{{item.title}}</div>
-                          </div>
-                          <div class="item-description">
-                            {{item.subtitle}}
-                          </div>
-                          <div *ngIf="!singlePartner" class="item-info">
-                            <div class="">
-                              <div class="item-subtitle">
-                                <span class="mdi mdi-shopping"></span>{{item.partner_name}}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!--end::Content-->
-                    </mat-card-content>
-                  </mat-card>
+                    <sng-microcredit_campaign-card [campaign]="item" [type]="type"></sng-microcredit_campaign-card>
+                  </div>
                 </ng-template>
               </owl-carousel-o>
             </div>
           </div>
           <div *ngIf="!singlePartner" class="section-link-to-all">
-            <a [routerLink]="['/microcredits']">
+            <a [routerLink]="['/support']">
               {{ 'SECTIONS.campaigns-link-to-all' | translate }}
             </a>
           </div>

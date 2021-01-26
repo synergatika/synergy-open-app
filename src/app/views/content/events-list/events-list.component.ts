@@ -20,9 +20,10 @@ export class EventsListComponent implements OnInit, OnDestroy {
 	moved: boolean;
 	singlePartner: boolean = false;
 	loading: boolean = false;
+	type:string;
 	private unsubscribe: Subject<any>;
 
-	customOptions: OwlOptions;
+	customOptions: OwlOptions; 
 
 	public posts_events: PostEvent[];
 
@@ -38,12 +39,13 @@ export class EventsListComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		if (this.partner_id) {
-			console.log('single');
 			this.fetchPartnerPostsEventsData(this.partner_id);
 			this.singlePartner = true;
+			this.type = 'single';
 		} else {
-			console.log('single not');
 			this.fetchPostsEventsData();
+			this.type = 'all';
+			console.log(this.type)
 		}
 	}
 
@@ -59,9 +61,10 @@ export class EventsListComponent implements OnInit, OnDestroy {
 				tap(
 					data => {
 						this.posts_events = data;
-						console.log(this.posts_events)
 					},
 					error => {
+						console.log("Can't load events");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {
@@ -78,9 +81,10 @@ export class EventsListComponent implements OnInit, OnDestroy {
 				tap(
 					data => {
 						this.posts_events = data;
-						console.log(this.posts_events)
 					},
 					error => {
+						console.log("Can't load events");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {
@@ -100,10 +104,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
 
 	mouseup(partner_id: string, post_event_id: string, type: string) {
 		if (this.moved) {
-			console.log('moved')
 		} else {
-			console.log('not moved');
-			console.log(partner_id);
 			this.router.navigate([`/event/${partner_id}/${post_event_id}/${type}`]);
 		}
 		this.moved = false;

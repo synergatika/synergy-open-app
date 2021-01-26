@@ -15,7 +15,10 @@ import { Offer } from '../../../core/models/offer.model';
 	styleUrls: ['./offer-list.component.scss']
 })
 export class OfferListComponent implements OnInit {
+	
 	@Input() partner_id?: string;
+	type:string;
+
 	moved: boolean;
 	singlePartner: boolean = false;
 	customOptions: OwlOptions;
@@ -39,8 +42,10 @@ export class OfferListComponent implements OnInit {
 		if (this.partner_id) {
 			this.fetchPartnerOffersData(this.partner_id);
 			this.singlePartner = true;
+			this.type = "single";
 		} else {
 			this.fetchOffersData();
+			this.type = "all";
 		}
 	}
 
@@ -52,18 +57,12 @@ export class OfferListComponent implements OnInit {
 
 	shuffleArray(array: Offer[]) {
 		var m = array.length, t, i;
-
-		// While there remain elements to shuffle
 		while (m) {
-			// Pick a remaining element…
 			i = Math.floor(Math.random() * m--);
-
-			// And swap it with the current element.
 			t = array[m];
 			array[m] = array[i];
 			array[i] = t;
 		}
-
 		return array;
 	}
 
@@ -73,9 +72,10 @@ export class OfferListComponent implements OnInit {
 				tap(
 					data => {
 						this.offers = this.shuffleArray(data);
-						console.log(this.offers)
 					},
 					error => {
+						console.log("Can't get offers");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {
@@ -92,9 +92,10 @@ export class OfferListComponent implements OnInit {
 				tap(
 					data => {
 						this.offers = data;
-						console.log(this.offers)
 					},
 					error => {
+						console.log("Can't get Partner offers");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {
@@ -115,12 +116,8 @@ export class OfferListComponent implements OnInit {
 
 	mouseup(partner_id: string, offer_id: string) {
 		if (this.moved) {
-			console.log('moved')
 		} else {
-			console.log('not moved');
-			console.log(partner_id);
 			this.router.navigate([`/offer/${partner_id}/${offer_id}`]);
-
 		}
 		this.moved = false;
 	}
