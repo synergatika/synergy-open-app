@@ -1,50 +1,10 @@
-@import "../../../../variables.scss";
-.partner {
-	//border-bottom: 1px solid #eee;
-	padding: 40px 0 5px;
-	margin-bottom: 20px;
-	&-logo {
-		img {
-			max-width: 100px;
-		}
-	}
-	&-contact {
-		text-align: right;
-	}
-	.card-content-partner {
-		max-width: 80%;
-		text-align: center;
-		.partner-title {
-			font-size: 18px;
-		}
-		.mdi-map {
-			color: $tertiary;
-		}
-		.mdi-view-dashboard-outline {
-			color: $secondary;
-		}
-		&-divider {
-			text-align: center;
-			margin-bottom: 10px;
-			span {
-				display: inline-block;
-				width: 10px;
-				height: 10px;
-				background-color: #e4509e;
-				margin-right: 3px;
-				border-radius: 50%;
-				&:nth-child(2) {
-					background-color: #415daa;
-				}
-				&:nth-child(3) {
-					background-color: #fdca27;
-				}
-			}
-		}
-	}
+.partner-section {
+	padding-top: 70px;
 }
-@media (min-width: 1200px) {
-	.partner {
-		padding: 80px 0 70px;
-	}
+.btn-primary {
+	font-size: 1.2rem;
+}
+
+.mat-card.item-card {
+	box-shadow: unset;
 }

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 // Services & Models
 import { OpenDataService } from '../../../core/services/open-data.service';
+import { StaticDataService } from '../../../core/services/static-data.service';
 import { Offer } from '../../../core/models/offer.model';
 
 @Component({
@@ -30,6 +31,7 @@ export class OfferSingleComponent implements OnInit, OnDestroy {
 		private cdRef: ChangeDetectorRef,
 		private titleService: Title,
 		private openDataService: OpenDataService,
+		private staticDataService: StaticDataService
 	) {
 		this.unsubscribe = new Subject();
 	}
@@ -38,7 +40,6 @@ export class OfferSingleComponent implements OnInit, OnDestroy {
 		this.routeSubscription = this.route.params.subscribe(params => {
 			this.partner_id = params['partner_id'];
 			this.offer_id = params['offer_id'];
-			console.log("Partner ID: " + this.partner_id, "Offer ID: " + this.offer_id);
 			this.fetchOfferData(this.partner_id, this.offer_id);
 		});
 	}
@@ -55,10 +56,12 @@ export class OfferSingleComponent implements OnInit, OnDestroy {
 				tap(
 					data => {
 						this.offer = data;
-						this.titleService.setTitle(this.offer.title);
-						console.log(this.offer)
+						console.log(this.offer);
+						this.titleService.setTitle(this.offer.title + this.staticDataService.getSiteTitle);
 					},
 					error => {
+						console.log("Can't load offer");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {

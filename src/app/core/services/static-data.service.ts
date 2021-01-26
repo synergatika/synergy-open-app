@@ -10,6 +10,8 @@ import { GeneralList } from '../interfaces/general-list.interface';
 })
 export class StaticDataService {
 
+  siteTitle: string = " - Synergy.gr | Εμπορική Κοινότητα Συνεργατικών";
+
   /**
   * Payments List
   */
@@ -161,9 +163,9 @@ export class StaticDataService {
     },
   ];
 
-    /**
-   * Form Validators
-   */
+  /**
+ * Form Validators
+ */
   validators = {
     contact: {
       sender: {
@@ -175,6 +177,10 @@ export class StaticDataService {
         maxLength: 4096
       },
     }
+  };
+
+  public get getSiteTitle(): string {
+    return this.siteTitle;
   };
 
   public get getPaymentsList(): PaymentList[] {

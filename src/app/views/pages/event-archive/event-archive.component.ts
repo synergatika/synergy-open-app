@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { tap, takeUntil, finalize } from 'rxjs/operators';
-//import { LoadEventsService } from '../../../core/services/loadEvents.service';
+import { Router } from '@angular/router';
 
 // Services & Models
 import { OpenDataService } from '../../../core/services/open-data.service';
@@ -13,7 +13,6 @@ import { PostEvent } from '../../../core/models/post_event.model';
 	styleUrls: ['./event-archive.component.scss']
 })
 export class EventArchiveComponent implements OnInit {
-	//objectKeys = Object.keys;
 
 	p: number = 1;
 	public posts_events: PostEvent[];
@@ -24,6 +23,7 @@ export class EventArchiveComponent implements OnInit {
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
+		private router: Router
 	) {
 		this.unsubscribe = new Subject();
 	}
@@ -43,9 +43,10 @@ export class EventArchiveComponent implements OnInit {
 				tap(
 					data => {
 						this.posts_events = data;
-						console.log(this.posts_events)
 					},
 					error => {
+						console.log("Can't load events");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {
@@ -55,4 +56,10 @@ export class EventArchiveComponent implements OnInit {
 			)
 			.subscribe();
 	}
+
+	clickPostEvent(partner_id: string, post_event_id: string, type: string){
+		this.router.navigate([`/event/${partner_id}/${post_event_id}/${type}`]);
+	}
+
+	
 }

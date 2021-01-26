@@ -1,0 +1,131 @@
+[1mdiff --git a/src/app/app-routing.module.ts b/src/app/app-routing.module.ts[m
+[1mindex d33ebdc..6053187 100644[m
+[1m--- a/src/app/app-routing.module.ts[m
+[1m+++ b/src/app/app-routing.module.ts[m
+[36m@@ -22,29 +22,17 @@[m [mimport { CommunityArchiveComponent } from './views/pages/community-archive/commu[m
+ import { ConfigGuard } from './core/helpers/config.guard';[m
+ [m
+ const routes: Routes = [[m
+[31m-	{ path: '', redirectTo: 'home', pathMatch: 'full' },[m
+ 	{[m
+ 		path: '',[m
+ 		component: LayoutComponent,[m
+ 		children: [[m
+[32m+[m			[32m//Main Pages[m
+ 			{[m
+[31m-				path: 'home', component: HomeComponent,[m
+[32m+[m				[32mpath: '', component: HomeComponent,[m
+ 				data: {[m
+[31m-					title: 'MENU.Home'[m
+[32m+[m					[32mtitle: 'Αρχική'[m[41m [m
+ 				}[m
+ 			},[m
+[31m-			// {[m
+[31m-			// 	path: 'redeem', component: RedeemComponent,[m
+[31m-			// 	data: {[m
+[31m-			// 		title: 'MENU.offers'[m
+[31m-			// 	}[m
+[31m-			// },[m
+[31m-			// {[m
+[31m-			// 	path: 'support', component: SupportComponent,[m
+[31m-			// 	data: {[m
+[31m-			// 		title: 'MENU.support'[m
+[31m-			// 	}[m
+[31m-			// },[m
+ 			{[m
+ 				path: 'join', component: JoinComponent,[m
+ 				data: {[m
+[36m@@ -53,7 +41,7 @@[m [mconst routes: Routes = [[m
+ 			},[m
+ 			{[m
+ 				path: 'about', component: AboutComponent,[m
+[31m-				data: {[m
+[32m+[m				[32mdata: {[m[41m [m
+ 					title: 'MENU.About'[m
+ 				}[m
+ 			},[m
+[36m@@ -63,8 +51,7 @@[m [mconst routes: Routes = [[m
+ 					title: 'MENU.Contact'[m
+ 				}[m
+ 			},[m
+[31m-[m
+[31m-[m
+[32m+[m			[32m//Archive[m
+ 			{[m
+ 				path: 'partners',[m
+ 				component: CommunityArchiveComponent,[m
+[36m@@ -99,25 +86,11 @@[m [mconst routes: Routes = [[m
+ 					accessIndex: 2[m
+ 				}[m
+ 			},[m
+[31m-[m
+[31m-[m
+[31m-			// {[m
+[31m-			// 	path: 'partner',[m
+[31m-			// 	component: CommunitySingleComponent[m
+[31m-			// },[m
+[32m+[m			[32m//Singles[m
+ 			{[m
+ 				path: 'partner/:partner_id',[m
+ 				component: CommunitySingleComponent[m
+ 			},[m
+[31m-[m
+[31m-			// {[m
+[31m-			// 	path: 'offer',[m
+[31m-			// 	component: OfferSingleComponent,[m
+[31m-			// 	canActivate: [ConfigGuard],[m
+[31m-			// 	data: {[m
+[31m-			// 		accessIndex: 1[m
+[31m-			// 	}[m
+[31m-			// },[m
+ 			{[m
+ 				path: 'offer/:partner_id',[m
+ 				component: OfferSingleComponent,[m
+[36m@@ -134,15 +107,6 @@[m [mconst routes: Routes = [[m
+ 					accessIndex: 1[m
+ 				}[m
+ 			},[m
+[31m-[m
+[31m-			// {[m
+[31m-			// 	path: 'event',[m
+[31m-			// 	component: EventSingleComponent,[m
+[31m-			// 	canActivate: [ConfigGuard],[m
+[31m-			// 	data: {[m
+[31m-			// 		accessIndex: 0[m
+[31m-			// 	}[m
+[31m-			// },[m
+ 			{[m
+ 				path: 'event/:partner_id/:post_event_id/:type',[m
+ 				component: EventSingleComponent,[m
+[36m@@ -151,16 +115,6 @@[m [mconst routes: Routes = [[m
+ 					accessIndex: 0[m
+ 				}[m
+ 			},[m
+[31m-[m
+[31m-[m
+[31m-			// {[m
+[31m-			// 	path: 'microcredit',[m
+[31m-			// 	component: MicrocreditSingleComponent,[m
+[31m-			// 	canActivate: [ConfigGuard],[m
+[31m-			// 	data: {[m
+[31m-			// 		accessIndex: 2[m
+[31m-			// 	}[m
+[31m-			// },[m
+ 			{[m
+ 				path: 'microcredit/:partner_id',[m
+ 				component: MicrocreditSingleComponent,[m
+[1mdiff --git a/src/app/app.component.ts b/src/app/app.component.ts[m
+[1mindex cfa56ff..02d5675 100644[m
+[1m--- a/src/app/app.component.ts[m
+[1m+++ b/src/app/app.component.ts[m
+[36m@@ -3,6 +3,7 @@[m [mimport { TranslateService } from '@ngx-translate/core';[m
+ import { Title } from '@angular/platform-browser';[m
+ import { filter, map, mergeMap } from 'rxjs/operators';[m
+ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';[m
+[32m+[m[32mimport { StaticDataService } from './core/services/static-data.service';[m
+ [m
+ @Component({[m
+ 	selector: 'app-root',[m
+[36m@@ -12,40 +13,36 @@[m [mimport { Router, NavigationEnd, ActivatedRoute } from '@angular/router';[m
+ export class AppComponent {[m
+ 	title

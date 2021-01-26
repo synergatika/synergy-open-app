@@ -1,40 +1,43 @@
-<div *ngIf="offer" class="offer-wrapper single">
-  <div class="fullwidth-title">
-    <div class="container">
+<div class="single single-offer s_item container" *ngIf="offer;">
+  <div class="row">
+    <div class="offset-md-1 col-md-10">
       <div class="row">
+        <div class="col-md-12 s_item-img">
+          <img [src]="offer.offer_imageURL" [alt]="offer.title" />
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="offer">
-    <div class="container">
       <div class="row">
-        <div class="col-md-8 offer-content">
-          <div class="row">
-            <div class="col-md-12">
-              <h1 class="single-title">{{offer.title}}</h1>
-              <p [innerHTML]="offer.description"></p>
+        <div class="col-md-12 s_item-info-container">
+          <h1 class="s_item-title">{{ offer.title }}</h1>
+          <div class="s_item-info">
+            <div class="amount">
+              {{'offer-list.points' | translate }}: {{offer.cost}}
+              <img src="../../../assets/media/images/Synergy-Icon.png" alt="Synergy" />
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 partner-img">
-              <div>
-                <img [src]="offer.partner_imageURL" [alt]="offer.title" />
-              </div>
-            </div>
-            <div class="col-md-6 single-info">
-              <div><span class="mdi mdi-shopping"></span> {{offer.partner_name}}</div>
-              <div *ngIf="offer.partner_address"><span class="mdi mdi-map"></span> {{offer.partner_address.street}},
-                {{offer.partner_address.postCode}},
-                {{offer.partner_address.city}}</div>
-              <div><span class="mdi mdi-star"></span> Points: {{offer.cost}}</div>
-              <div><span class="mdi mdi-clock"></span> Expires: {{offer.expiresAt | date: 'd/M/y'}}</div>
-            </div>
+            <div> {{'offer-list.expires' | translate }}: {{offer.expiresAt | date: 'd/M/y'}}</div>
           </div>
         </div>
-        <div class="col-md-4 offer-image">
-          <div>
-            <img [src]="offer.offer_imageURL" [alt]="offer.title" />
+      </div>
+      <div class="row">
+        <div class="col-md-3 s_item-partner">
+          <a [routerLink]="['/partner/'+offer.partner_slug]" title="{{offer.partner_name}}">
+            <h5>{{offer.partner_name}}</h5>
+          </a>
+          <a [routerLink]="['/partner/'+offer.partner_slug]" title="{{offer.partner_name}}">
+            <img src="{{offer.partner_imageURL}}" alt="{{offer.partner_name}}">
+          </a>
+          <div *ngIf="offer.partner_address">
+            <span class="mdi mdi-pin"></span> {{offer.partner_address.street}}, {{offer.partner_address.city}}
           </div>
+          <!--<div *ngIf="campaign.partner_phone" class="info-row"><span class="mdi mdi-phone"></span>{{campaign.partner_phone}}</div>
+          <div class="info-row"><span class="mdi mdi-email"></span>{{campaign.partner_email}}</div>-->
+        </div>
+        <div class="col-md-9 s_item-content" [innerHTML]="offer.description">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 archive-link">
+          <a [routerLink]="['/offers']">{{ 'SECTIONS.offers-link-to-all' | translate }}</a>
         </div>
       </div>
     </div>

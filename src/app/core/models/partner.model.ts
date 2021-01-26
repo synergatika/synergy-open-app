@@ -18,10 +18,11 @@ export interface Partner {
   email?: string;
 
   name: string;
+  subtitle?: string;
   slug: string;
   imageURL: string;
   sector: string;
-phone: string;
+  phone: string;
 
   address: PartnerAddress;
   contacts: Contact[];

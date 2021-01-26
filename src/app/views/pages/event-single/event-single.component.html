@@ -1,39 +1,48 @@
-<div class="single-event container" *ngIf="post_event;">
-	<div class="event row">
-		<div class="col-md-12">
-			<div class="event-image-container">
-				<div class="event-image">
+<div class="single-event s_item container" *ngIf="post_event;">
+	<div class="row">
+		<div class="offset-md-1 col-md-10">
+			<div class="row">
+				<div class="col-md-12 s_item-img">
 					<img [src]="img" [alt]="post_event.title" />
 				</div>
 			</div>
-			<div class="event-heading">
-				<h1>{{post_event.title}}</h1>
-				<div class="post-meta" *ngIf="post_event_type=='post'">
-					<a [routerLink]="['/partner/'+ post_event.partner_id]">{{post_event.partner_name}}</a> |
-					{{post_event.createdAt | date: 'd/M/y'}}
+			<div class="row">
+				<div class="col-md-12 s_item-info-container">
+					<h1 class="s_item-title">{{ post_event.title }}</h1>
+					<div class="s_item-info">
+						<div *ngIf="post_event_type=='event'" class="event">
+							<div>
+								<span class="mdi mdi-calendar"></span> {{post_event.dateTime | date: 'd/M/y, hh:mm'}}
+							</div>
+							<div>
+								<span class="mdi mdi-map"></span> {{post_event.location}}
+							</div>
+						</div>
+						<div *ngIf="post_event_type=='post'" class="post">
+							<div>
+								<span class="mdi mdi-clock"></span> {{post_event.createdAt | date: 'd/M/y, hh:mm'}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 s_item-partner">
+					<a [routerLink]="['/partner/'+post_event.partner_slug]" title="{{post_event.partner_name}}">
+						<h5>{{post_event.partner_name}}</h5>
+					</a>
+					<a [routerLink]="['/partner/'+post_event.partner_slug]" title="{{post_event.partner_name}}">
+						<img src="{{post_event.partner_imageURL}}" alt="{{post_event.partner_name}}">
+					</a>
+				</div>
+				<div class="col-md-9 s_item-content" [innerHTML]="post_event.content">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 archive-link">
+					<a [routerLink]="['/events']">{{ 'SECTIONS.news-link-to-all' | translate }}</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row" *ngIf="post_event_type=='event'; else single_post">
-		<div class="col-md-8 event-content">
-			<div class="editor-content" [innerHTML]="post_event.content"></div>
-		</div>
-		<div class="col-md-4 event-info">
-			<div>
-				<div><span class="mdi mdi-calendar"></span> {{post_event.dateTime | date: 'd/M/y, hh:mm'}}</div>
-			</div>
-			<div>
-				<div><span class="mdi mdi-map"></span> {{post_event.location}}</div>
-			</div>
-			<div><span class="mdi mdi-shopping"></span> {{post_event.partner_name}}</div>
-		</div>
-	</div>
-	<ng-template #single_post>
-		<div class="row">
-			<div class="col-md-12 post-content">
-				<div class="editor-content" [innerHTML]="post_event.content"></div>
-			</div>
-		</div>
-	</ng-template>
 </div>

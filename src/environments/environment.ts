@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:3000',
- // apiUrl: 'https://api.synergatika.gr',
+  // apiUrl: 'https://api.synergatika.gr',
   // apiUrl: 'http://192.168.1.160:3000',
   // apiUrl: 'http://192.168.1.9:3000',
   appUrl: 'https://app.synergatika.gr',

@@ -22,29 +22,17 @@ import { CommunityArchiveComponent } from './views/pages/community-archive/commu
 import { ConfigGuard } from './core/helpers/config.guard';
 
 const routes: Routes = [
-	{ path: '', redirectTo: 'home', pathMatch: 'full' },
 	{
 		path: '',
 		component: LayoutComponent,
 		children: [
+			//Main Pages
 			{
-				path: 'home', component: HomeComponent,
+				path: '', component: HomeComponent,
 				data: {
-					title: 'MENU.Home'
+					title: 'Αρχική' 
 				}
 			},
-			// {
-			// 	path: 'redeem', component: RedeemComponent,
-			// 	data: {
-			// 		title: 'MENU.offers'
-			// 	}
-			// },
-			// {
-			// 	path: 'support', component: SupportComponent,
-			// 	data: {
-			// 		title: 'MENU.support'
-			// 	}
-			// },
 			{
 				path: 'join', component: JoinComponent,
 				data: {
@@ -53,7 +41,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'about', component: AboutComponent,
-				data: {
+				data: { 
 					title: 'MENU.About'
 				}
 			},
@@ -63,8 +51,7 @@ const routes: Routes = [
 					title: 'MENU.Contact'
 				}
 			},
-
-
+			//Archive
 			{
 				path: 'partners',
 				component: CommunityArchiveComponent,
@@ -99,25 +86,11 @@ const routes: Routes = [
 					accessIndex: 2
 				}
 			},
-
-
-			// {
-			// 	path: 'partner',
-			// 	component: CommunitySingleComponent
-			// },
+			//Singles
 			{
 				path: 'partner/:partner_id',
 				component: CommunitySingleComponent
 			},
-
-			// {
-			// 	path: 'offer',
-			// 	component: OfferSingleComponent,
-			// 	canActivate: [ConfigGuard],
-			// 	data: {
-			// 		accessIndex: 1
-			// 	}
-			// },
 			{
 				path: 'offer/:partner_id',
 				component: OfferSingleComponent,
@@ -134,15 +107,6 @@ const routes: Routes = [
 					accessIndex: 1
 				}
 			},
-
-			// {
-			// 	path: 'event',
-			// 	component: EventSingleComponent,
-			// 	canActivate: [ConfigGuard],
-			// 	data: {
-			// 		accessIndex: 0
-			// 	}
-			// },
 			{
 				path: 'event/:partner_id/:post_event_id/:type',
 				component: EventSingleComponent,
@@ -151,16 +115,6 @@ const routes: Routes = [
 					accessIndex: 0
 				}
 			},
-
-
-			// {
-			// 	path: 'microcredit',
-			// 	component: MicrocreditSingleComponent,
-			// 	canActivate: [ConfigGuard],
-			// 	data: {
-			// 		accessIndex: 2
-			// 	}
-			// },
 			{
 				path: 'microcredit/:partner_id',
 				component: MicrocreditSingleComponent,

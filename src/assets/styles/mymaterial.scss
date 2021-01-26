@@ -1,0 +1,30 @@
+//Material Fiels
+.mat-form-field,
+.mat-select,
+.mat-option {
+    font-family: inherit;
+}
+.partner-filter {
+    .mat-form-field-infix {
+        width: 300px !important;
+    }
+}
+
+//Material Card
+.mat-card.item-card {
+    font-family: var(--main-font);
+    padding-top: 0;
+    box-shadow: 0 6px 18px -2px #ebe8e8;
+    overflow: hidden;
+    cursor: pointer;
+    .mdi {
+        color: var(--secondary);
+        font-size: 16px;
+        margin-right: 5px;
+    }
+}
+.bck-light {
+    .mat-card.item-card {
+        box-shadow: none;
+    }
+}

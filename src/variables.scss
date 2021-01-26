@@ -2,6 +2,12 @@
 /* Variables
 */
 
+//Font
+$main-font:NeutrafaceTwoTextGreek, "Helvetica Neue", sans-serif;
+$main-font-color:rgb(36, 36, 36);
+$darker-font:#000;
+$grey-font: grey;
+//Colours
 $primary: #e4509e;
 $secondary: #415daa;
 $tertiary: #fdca27;
@@ -9,4 +15,30 @@ $tertiary-dark: #a07b04;
 $grey: #eee;
 $secondary-dark: #283a6b;
 
+:root {
+    //Font
+    --main-font:NeutrafaceTwoTextGreek, "Helvetica Neue", sans-serif;
+    --main-font-color:rgb(36, 36, 36);
+    --darker-font:#000;
+    --grey-font: grey;
+    //Colours
+    --primary: #e4509e;
+    --secondary: #415daa;
+    --tertiary: #fdca27;
+    --tertiary-dark: #a07b04;
+    --grey: #eee;
+    --secondary-dark: #283a6b;
+    --grey-back:#f0f0f0;
+}
 
+//Shadow
+.light-shadow {
+    -webkit-box-shadow: 17px 22px 68px -2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 17px 22px 68px -2px rgba(0, 0, 0, 0.1);
+    box-shadow: 17px 22px 68px -2px rgba(0, 0, 0, 0.1);
+}
+.dark-shadow {
+    -webkit-box-shadow: 17px 22px 45px 8px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 17px 22px 45px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 17px 22px 45px 8px rgba(0, 0, 0, 0.2);
+}

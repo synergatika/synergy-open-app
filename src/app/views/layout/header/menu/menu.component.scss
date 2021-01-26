@@ -5,24 +5,30 @@
 	margin-right: 10px;
 	.nav-link {
 		color: #000;
-		font-size: 22px;
+		font-size: 18px;
 		padding: 0.5rem;
 		&:hover {
-			color: #415daa;
+			color: var(--secondary);
 		}
 	}
 	.menu-divider:not(:last-child) {
 		width: 7px;
 		height: 7px;
-		background-color: #e4509e;
+		background-color: var(--primary);
 		border-radius: 50%;
-		margin: 0 3px;
+		margin: 0 9px;
 	}
 }
-
 @media screen and (max-width: 1024px) {
 	.nav {
 		display: none;
 	}
-
+}
+app-user-menu,
+app-language-switcher {
+  display: flex;
+  align-items: flex-end;
+  button {
+    margin-left: 15px;
+  }
 }

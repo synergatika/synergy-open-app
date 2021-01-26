@@ -6,6 +6,66 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.single-campaign {
+  &-info {
+    margin-top: 20px;
+    .data {
+      label {
+        font-weight: bold;
+      }
+      &.terms {
+        margin-left: 20px;
+        margin-top: 20px;
+        padding-left: 15px;
+        border-left: 2px solid var(--tertiary);
+      }
+      &.price {
+        text-align: right;
+        label {
+          font-size: 18px;
+        }
+        span {
+          font-size: 40px;
+          line-height: 40px;
+          color: var(--primary);
+        }
+      }
+    }
+  }
+}
+
+.close-btn {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  width: 35px;
+  height: 35px;
+  font-size: 30px;
+  z-index: 1;
+
+  span {
+    position: relative;
+    top: -6px;
+  }
+}
+
+.support-button {
+  margin-top: 20px;
+}
+
+@media (max-width: 576px) {
+  .close-btn {
+    position: fixed;
+    z-index: 999;
+    top: 4px;
+    right: 20px;
+    font-size: 45px;
+    background: none;
+  }
 }

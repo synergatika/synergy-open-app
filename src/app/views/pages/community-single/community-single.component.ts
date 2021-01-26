@@ -28,17 +28,13 @@ export class CommunitySingleComponent implements OnInit {
 	public configSubAccess: Boolean[] = environment.subAccess;
 
 	public contactsList: ContactList[] = [];
-	public sectorsList: GeneralList[];
-
-	//	objectKeys = Object.keys;
 	private routeSubscription: any;
-	displayedColumns: string[] = ['description', 'date_from', 'date_to', 'points'];
-	//dataSource = [];
-	//gallery = ['gallery-1.jpg', 'gallery-2.jpg', 'gallery-1.jpg', 'gallery-2.jpg', 'gallery-1.jpg', 'gallery-2.jpg'];
-	//customOptions: OwlOptions;
+
 
 	partner_id: string;
 	public partner: Partner;
+	public sectorsList: GeneralList[];
+	public sector: string;
 
 	loading: boolean = false;
 	private unsubscribe: Subject<any>;
@@ -60,8 +56,6 @@ export class CommunitySingleComponent implements OnInit {
 	ngOnInit() {
 		this.routeSubscription = this.route.params.subscribe(params => {
 			this.partner_id = params['partner_id'];
-
-			console.log("Partner ID: " + this.partner_id);
 			this.fetchPartnerData(this.partner_id);
 		});
 	}
@@ -71,7 +65,7 @@ export class CommunitySingleComponent implements OnInit {
 		this.unsubscribe.complete();
 		this.loading = false;
 	}
-	
+
 	translateSector(partner: Partner) {
 		return this.sectorsList.filter((el) => {
 			return el.value == partner.sector
@@ -84,7 +78,6 @@ export class CommunitySingleComponent implements OnInit {
 				tap(
 					data => {
 						this.partner = data;
-
 						/**begin:Social Media*/
 						const currentContactsArray = (this.partner.contacts).map(a => a.slug);
 						const validateContactsList = this.contactsList.filter(function (el) {
@@ -92,11 +85,15 @@ export class CommunitySingleComponent implements OnInit {
 						});
 						this.contactsList = validateContactsList.map(o => { return { ...o, value: (this.partner.contacts).filter(ob => { return ob.slug === o.slug })[0].value } });
 						/**end:Social Media*/
-
-						console.log(this.partner)
-						this.titleService.setTitle(this.partner.name);
+						this.titleService.setTitle(this.partner.name + this.staticDataService.getSiteTitle);
+						//Set sector
+						this.sector = this.sectorsList.filter((el) => {
+							return el.value == this.partner.sector
+						})[0].title;
 					},
 					error => {
+						console.log("Can't load Partner");
+						console.log(error);
 					}),
 				takeUntil(this.unsubscribe),
 				finalize(() => {

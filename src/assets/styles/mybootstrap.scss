@@ -1,0 +1,42 @@
+//Bootstrap
+.btn-primary {
+    background-color: $secondary;
+    border-color: $secondary;
+    box-shadow: 1px 2px 5px #dedbdb;
+    transition: 0.3s;
+    font-size: 1.5rem;
+    &:hover {
+      background-color: #415daa;
+      border-color: #415daa;
+      opacity: 0.9;
+      box-shadow: 4px 8px 5px #dedbdb;
+    }
+    &.tertiary-bck {
+      box-shadow: 1px 2px 5px #b09408;
+      &:hover {
+        box-shadow: 4px 8px 5px #b09408;
+      }
+    }
+  }
+  .btn-danger {
+    background-color: $primary;
+    border-color: $primary;
+    box-shadow: 1px 2px 5px #dedbdb;
+    transition: 0.3s;
+    font-size: 1.5rem;
+    &:hover {
+      background-color: $primary;
+      border-color: $primary;
+      opacity: 0.9;
+      box-shadow: 4px 8px 5px #dedbdb;
+    }
+    &.tertiary-bck {
+      box-shadow: 1px 2px 5px $tertiary;
+      &:hover {
+        box-shadow: 4px 8px 5px $tertiary;
+      }
+    }
+  }
+  .dropdown-toggle::after {
+    content: none;
+  }
