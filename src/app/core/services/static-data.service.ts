@@ -10,11 +10,18 @@ import { GeneralList } from '../interfaces/general-list.interface';
 })
 export class StaticDataService {
 
+  /**
+   * Site Title
+   */
   siteTitle: string = " - Synergy.gr | Εμπορική Κοινότητα Συνεργατικών";
 
+  public get getSiteTitle(): string {
+    return this.siteTitle;
+  };
+
   /**
-  * Payments List
-  */
+    * Payments List
+    */
   paymentsList: PaymentList[] = [
     {
       bic: 'ETHNGRAA',
@@ -66,6 +73,10 @@ export class StaticDataService {
     }
   ];
 
+  public get getPaymentsList(): PaymentList[] {
+    return this.paymentsList;
+  };
+
   /**
    * Sectors List
    */
@@ -103,6 +114,10 @@ export class StaticDataService {
       value: 'Recreation and Culture',
     }
   ];
+
+  public get getSectorsList(): GeneralList[] {
+    return this.sectorsList;
+  };
 
   /**
    * Contacts List
@@ -163,10 +178,20 @@ export class StaticDataService {
     },
   ];
 
+  public get getContactsList(): ContactList[] {
+    return this.contactsList;
+  };
+
   /**
- * Form Validators
- */
+   * Form Validators
+   */
   validators = {
+    user: {
+      email: {
+        minLength: 4,
+        maxLength: 256
+      }
+    },
     contact: {
       sender: {
         minLength: 4,
@@ -179,26 +204,13 @@ export class StaticDataService {
     }
   };
 
-  public get getSiteTitle(): string {
-    return this.siteTitle;
-  };
-
-  public get getPaymentsList(): PaymentList[] {
-    return this.paymentsList;
-  };
-
-  public get getSectorsList(): GeneralList[] {
-    return this.sectorsList;
-  };
-
-  public get getContactsList(): ContactList[] {
-    return this.contactsList;
-  };
-
   public get getValidators() {
     return this.validators;
   }
 
+  /**
+   * Carousel Owl Options
+   */
   owlOptions = {
     loop: true,
     mouseDrag: true,
