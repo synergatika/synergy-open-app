@@ -15,15 +15,18 @@
     </div>
     <pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
   </div>
+  <pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
+</div>
 
-  <!-- <div>
+
+<!-- <div>
     <div class="offer row">
       <div class="col-md-4" *ngFor="let offer of offers | paginate: { itemsPerPage: 9, currentPage: p }"> -->
-  <!-- <mat-card class="item-card offer-card">
+<!-- <mat-card class="item-card offer-card">
           <mat-card-content> -->
 
-  <!--begin::Content-->
-  <!-- <a class="item row" [routerLink]="['/offer/'+ offer.partner_slug + '/' + offer.offer_slug]">
+<!--begin::Content-->
+<!-- <a class="item row" [routerLink]="['/offer/'+ offer.partner_slug + '/' + offer.offer_slug]">
               <div class="col-sm-12 item-img-container">
                 <div class="item-img">
                   <img src={{offer.offer_imageURL}} alt={{offer.title}} />
@@ -43,19 +46,18 @@
                 </div>
                 <div class="item-info">
                   <div class="">
-                    <div class="item-subtitle"><span class="mdi mdi-shopping"></span>{{offer.partner_name}}</div>
-                    <!-- <div class="item-subtitle"><span class="mdi mdi-pin"></span>{{offer.expiresAt}}</div> -->
-  <!-- </div>
+                    <div class="item-subtitle"><span class="mdi mdi-shopping"></span>{{offer.partner_name}}</div>-->
+<!-- <div class="item-subtitle"><span class="mdi mdi-pin"></span>{{offer.expiresAt}}</div> -->
+<!-- </div>
 
     </div>
   </div>
   </a> -->
-  <!--end::Content-->
+<!--end::Content-->
 
-  <!-- </mat-card-content>
+<!-- </mat-card-content>
   </mat-card>
 </div>
 </div> -->
-  <pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
-</div>
+
 <!-- </div> -->

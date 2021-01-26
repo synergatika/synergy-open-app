@@ -46,6 +46,8 @@ export class SupportWindowComponent {
   campaign_id: string;
   registrationForm: FormGroup;
   supportingForm: FormGroup;
+  validator: any;
+
   private routeSubscription: any;
   loading: boolean = false;
   private unsubscribe: Subject<any>;
@@ -59,6 +61,7 @@ export class SupportWindowComponent {
     private openDataService: OpenDataService,
     private staticDataService: StaticDataService,
   ) {
+    this.validator = this.staticDataService.getValidators.user;
     this.paymentsList = this.staticDataService.getPaymentsList;
     this.unsubscribe = new Subject();
   }
@@ -94,8 +97,8 @@ export class SupportWindowComponent {
       email: ['', Validators.compose([
         Validators.required,
         Validators.email,
-        Validators.minLength(3),
-        Validators.maxLength(320)
+        Validators.minLength(this.validator.email.minLength),
+        Validators.maxLength(this.validator.email.maxLength)
       ])
       ],
     });

@@ -1,21 +1,33 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
-import { Subject } from 'rxjs';
-import { tap, takeUntil, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-import { OpenDataService } from '../../../core/services/open-data.service';
+import { Subject } from 'rxjs';
+import { tap, takeUntil, finalize } from 'rxjs/operators';
+
+/**
+ * Models & Interfaces
+ */
 import { Offer } from '../../../core/models/offer.model';
+
+/**
+ * Services
+ */
+import { OpenDataService } from '../../../core/services/open-data.service';
 
 @Component({
 	selector: 'app-offer-archive',
 	templateUrl: './offer-archive.component.html',
 	styleUrls: ['./offer-archive.component.scss']
 })
-export class OfferArchiveComponent implements OnInit {
+export class OfferArchiveComponent implements OnInit, OnDestroy {
+
+	public offers: Offer[];
+
 	p: number = 1;
-	loading: boolean = false;
+
 	private unsubscribe: Subject<any>;
-	offers: Offer[];
+	loading: boolean = false;
+
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private openDataService: OpenDataService,
