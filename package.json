@@ -8,6 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "config": "npx ts-node -O '{\"module\": \"commonjs\"}' ./config.index.ts",
     "dev:ssr": "ng run synergy-open-app:serve-ssr",
     "serve:ssr": "node dist/synergy-open-app/server/main.js",
     "build:ssr": "ng build --prod && ng run synergy-open-app:server:production",

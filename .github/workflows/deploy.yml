@@ -22,13 +22,16 @@ jobs:
         run: |
           RELEASE_VERSION=${RELEASE_VERSION#"v"}
           echo $RELEASE_VERSION
-          sed -i -e "s/version:.*/version: '"$RELEASE_VERSION"',"/g src/environments/environment.prod.ts
           sed -i -e "s/const BROWSER_PATH = '.*';/const BROWSER_PATH = '\.\.\/browser';"/g server.ts
           echo ::set-env name=TAG_RELEASE_VERSION::$RELEASE_VERSION
           echo $TAG_RELEASE_VERSION
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-      - run: npx ng build --prod && npx ng run synergy-open-app:server:production
+      - run: npm run config && npx ng build --prod && npx ng run synergy-open-app:server:production
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          APP_URL: ${{ secrets.APP_URL }}
+          MAP_API_KEY: ${{ secrets.MAP_API_KEY }}
       - name: deploy to server
         uses: AEnterprise/rsync-deploy@v1.0
         env:
