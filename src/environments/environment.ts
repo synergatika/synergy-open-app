@@ -1,14 +1,15 @@
-import { secrets } from './secrets.environment.ts';
+import secrets from './secrets.environment';
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  production: false,
+
+  // Import Keys & Links
   ...secrets,
 
-  production: false,
-  
   access: [
     true, // community,
     true, // loyalty,
@@ -23,7 +24,7 @@ export const environment = {
     true  // partner_fixed_campaign
   ],
 
-  version: 'undefined'
+  version: 'demo'
 };
 
 /*

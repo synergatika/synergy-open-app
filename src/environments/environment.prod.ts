@@ -1,9 +1,11 @@
+import secrets from './secrets.environment';
+
 export const environment = {
     production: true,
-    apiUrl: 'undefined',
-    appUrl: 'undefined',
-    mapApiKey: 'undefined',
-  
+
+    // Import Keys & Links
+    ...secrets,
+
     access: [
         true, // community,
         true, // loyalty,
@@ -17,6 +19,6 @@ export const environment = {
         true, // partner_auto_registration,
         true  // partner_fixed_campaign
     ],
-  
+
     version: 'undefined'
 };
