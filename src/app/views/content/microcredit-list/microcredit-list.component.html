@@ -8,7 +8,7 @@
               <owl-carousel-o [options]="customOptions">
                 <ng-template carouselSlide *ngFor="let item of campaigns">
                   <div (mousedown)="mousedown()" (mousemove)="mousemove()"
-                    (mouseup)="mouseup(item.partner_slug, item.campaign_slug)">
+                    (mouseup)="mouseup(item.partner.slug, item.slug)">
                     <sng-microcredit_campaign-card [campaign]="item" [type]="type"></sng-microcredit_campaign-card>
                   </div>
                 </ng-template>

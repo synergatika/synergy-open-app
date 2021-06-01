@@ -15,7 +15,7 @@
       </div>
       <div class="col-lg-9 partner-title-wrapper">
         <h1 class="partner-title single-title">{{partner.name}}</h1>
-        <h4>{{ sector | translate }}</h4>
+        <h4>{{ partner.sector | sector_filter }}</h4>
         <!--begin:Social Media -->
         <div *ngIf="contactsList">
           <div class="partner-contacts" *ngFor="let contact of contactsList">

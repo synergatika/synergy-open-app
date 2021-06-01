@@ -57,8 +57,9 @@ export class EventSingleComponent implements OnInit, OnDestroy {
 			.pipe(
 				tap(
 					data => {
+						console.log(data)
 						this.post_event = data;
-						this.img = (this.post_event_type == 'post') ? data.post_imageURL : data.event_imageURL;
+						this.img = data.imageURL;
 						this.titleService.setTitle(this.post_event.title+this.staticDataService.getSiteTitle);
 					},
 					error => {

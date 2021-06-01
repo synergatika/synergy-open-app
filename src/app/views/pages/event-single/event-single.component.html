@@ -28,14 +28,15 @@
 			</div>
 			<div class="row">
 				<div class="col-md-3 s_item-partner">
-					<a [routerLink]="['/partner/'+post_event.partner_slug]" title="{{post_event.partner_name}}">
-						<h5>{{post_event.partner_name}}</h5>
+					<a [routerLink]="['/partner/'+post_event.partner.slug]" title="{{post_event.partner.name}}">
+						<h5>{{post_event.partner.name}}</h5>
 					</a>
-					<a [routerLink]="['/partner/'+post_event.partner_slug]" title="{{post_event.partner_name}}">
-						<img src="{{post_event.partner_imageURL}}" alt="{{post_event.partner_name}}">
+					<a [routerLink]="['/partner/'+post_event.partner.slug]" title="{{post_event.partner.name}}">
+						<img src="{{post_event.partner.imageURL}}" alt="{{post_event.partner.name}}">
 					</a>
 				</div>
-				<div class="col-md-9 s_item-content" [innerHTML]="post_event.content">
+				<div class="col-md-9 s_item-content">
+					<sng-rich-editor-view [description]="post_event.description"></sng-rich-editor-view>
 				</div>
 			</div>
 			<div class="row">

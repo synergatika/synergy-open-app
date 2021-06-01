@@ -33,7 +33,7 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 		private router: Router,
 		private staticDataService: StaticDataService,
 	) {
-		this.sectorsList = this.staticDataService.getSectorsList;
+	//	this.sectorsList = this.staticDataService.getSectorsList;
 		this.customOptions = staticDataService.getOwlOprions;
 		this.unsubscribe = new Subject();
 	}
@@ -50,15 +50,15 @@ export class CommunityListComponent implements OnInit, OnDestroy {
 	}
 
 	translateSector(partner: Partner) {
-		console.log("Here")
-		console.log(partner);
-		console.log()
-		console.log(this.sectorsList.filter((el) => {
-			return el.value == partner.sector
-		}))
-		return this.sectorsList.filter((el) => {
-			return el.value == partner.sector
-		})[0].title;
+		// console.log("Here")
+		// console.log(partner);
+		// console.log()
+		// console.log(this.sectorsList.filter((el) => {
+		// 	return el.value == partner.sector
+		// }))
+		// return this.sectorsList.filter((el) => {
+		// 	return el.value == partner.sector
+		// })[0].title;
 	}
 
 	shuffleArray(array: Partner[]) {

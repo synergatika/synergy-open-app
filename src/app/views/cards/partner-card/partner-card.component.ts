@@ -23,17 +23,17 @@ export class PartnerCardComponent implements OnInit {
    */
   @Input() partner: Partner;
 
-  public sectorsList: GeneralList[];
-  public sector: string;
+//  public sectorsList: GeneralList[];
+//  public sector: string;
   constructor(
     private staticDataService: StaticDataService
   ) {
-    this.sectorsList = this.staticDataService.getSectorsList;
+    // this.sectorsList = this.staticDataService.getSectorsList;
   }
 
   ngOnInit(): void {
-    this.sector = this.sectorsList.filter((el) => {
-      return el.value == this.partner.sector
-    })[0].title;
+    // this.sector = this.sectorsList.filter((el) => {
+    //   return el.value == this.partner.sector
+    // })[0].title;
   }
 }

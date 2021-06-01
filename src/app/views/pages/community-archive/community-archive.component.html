@@ -23,8 +23,8 @@
               <mat-option [value]="'All'">
                 {{ 'FILTERS.SECTORS.ALL' | translate }}
               </mat-option>
-              <mat-option *ngFor="let sector of sectorsList" [value]="sector.value">
-                {{ sector.title | translate }}
+              <mat-option *ngFor="let sector of sectorsList$ | async" value="{{sector._id}}">
+                {{sector | content_translate: 'title' }}
               </mat-option>
             </mat-select>
           </mat-form-field>

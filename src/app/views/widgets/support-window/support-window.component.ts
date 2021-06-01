@@ -105,7 +105,7 @@ export class SupportWindowComponent {
   }
 
   initSupportingForm() {
-    const currentMethodsArray = (this.campaign.partner_payments).map(a => a.bic);
+    const currentMethodsArray = (this.campaign.partner.payments).map(a => a.bic);
     const validatePaymentList = this.paymentsList.filter(function (el) {
       return currentMethodsArray.includes(el.bic);
     });
@@ -157,7 +157,7 @@ export class SupportWindowComponent {
   }
 
   oneClickBalance() {
-    this.openDataService.oneClickBalance(this.campaign.partner_id, this.campaign.campaign_id, this.oneClickToken.oneClickToken)
+    this.openDataService.oneClickBalance(this.campaign.partner._id, this.campaign._id, this.oneClickToken.oneClickToken)
       .pipe(
         tap(
           data => {
@@ -194,7 +194,7 @@ export class SupportWindowComponent {
   }
 
   oneClickSupport(controls: { [x: string]: AbstractControl; amount?: any; method?: any; }) {
-    this.openDataService.oneClickSupport(this.campaign.partner_id, this.campaign.campaign_id, this.oneClickToken.oneClickToken,
+    this.openDataService.oneClickSupport(this.campaign.partner._id, this.campaign._id, this.oneClickToken.oneClickToken,
       controls.amount.value, controls.method.value)
       .pipe(
         tap(
@@ -208,7 +208,7 @@ export class SupportWindowComponent {
               title: this.paymentsList.filter((el) => {
                 return el.bic == this.paymentDetails.method
               })[0].title,
-              value: this.campaign.partner_payments.filter((el) => {
+              value: this.campaign.partner.payments.filter((el) => {
                 return el.bic == this.paymentDetails.method
               })[0].value
             }
@@ -218,7 +218,7 @@ export class SupportWindowComponent {
                 title: this.translate.instant('SUPPORT.SUCCESS.TITLE'),
                 html: this.translate.instant('SUPPORT.SUCCESS.PAYMENT_ID') + ": " + this.paymentDetails.payment_id + "<br><br>" +
                   this.translate.instant('SUPPORT.SUCCESS.INSTRUCTIONS') + ": " + this.translate.instant('SUPPORT.STORE') + "<br>" +
-                  this.campaign.partner_address.street + ", " + this.campaign.partner_address.postCode + " " + this.campaign.partner_address.city,
+                  this.campaign.partner.address.street + ", " + this.campaign.partner.address.postCode + " " + this.campaign.partner.address.city,
                 icon: 'success'
               })
             } else if (this.paymentDetails.method == 'PAYPAL') {

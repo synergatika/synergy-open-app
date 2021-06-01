@@ -33,20 +33,20 @@ export class MicrocreditCampaignCardComponent implements OnInit {
   }
 
   filterCampaign(campaign: MicrocreditCampaign) {
-    const now = new Date();
-    const seconds = parseInt(now.getTime().toString());
-    if (campaign.startsAt > seconds) {
-      this._date = campaign.startsAt;
-      this._text = this.translate.instant('CAMPAIGN.STATUS.EXPECTED');
-      // this._text = this.translate.instant('CAMPAIGN.STATUS.EXPECTED');
-    } else if ((campaign.expiresAt > seconds) && (seconds > campaign.startsAt)) {
-      this._date = campaign.expiresAt;
-      this._text = this.translate.instant('GENERAL.TO');
-      // this._text = this.translate.instant('GENERAL.TO');
-    } else if (seconds > campaign.expiresAt) {
-      this._date = campaign.redeemEnds;
-      this._text = this.translate.instant('CAMPAIGN.STATUS.REDEEM_TO');
-      // this._text = this.translate.instant('CAMPAIGN.STATUS.REDEEM_TO');
-    }
+    // const now = new Date();
+    // const seconds = parseInt(now.getTime().toString());
+    // if (campaign.startsAt > seconds) {
+    //   this._date = campaign.startsAt;
+    //   this._text = this.translate.instant('CAMPAIGN.STATUS.EXPECTED');
+    //   // this._text = this.translate.instant('CAMPAIGN.STATUS.EXPECTED');
+    // } else if ((campaign.expiresAt > seconds) && (seconds > campaign.startsAt)) {
+    //   this._date = campaign.expiresAt;
+    //   this._text = this.translate.instant('GENERAL.TO');
+    //   // this._text = this.translate.instant('GENERAL.TO');
+    // } else if (seconds > campaign.expiresAt) {
+    //   this._date = campaign.redeemEnds;
+    //   this._text = this.translate.instant('CAMPAIGN.STATUS.REDEEM_TO');
+    //   // this._text = this.translate.instant('CAMPAIGN.STATUS.REDEEM_TO');
+    // }
   }
 }

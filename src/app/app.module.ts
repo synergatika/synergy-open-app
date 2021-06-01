@@ -81,6 +81,12 @@ import { NgxPayPalModule } from 'ngx-paypal';
 
 //Env
 import { environment } from '../environments/environment';
+import { SectorFilterPipe } from './core/pipes/sector_filter.pipe';
+import { ContentTranslatePipe } from './core/pipes/content_translate.pipe';
+import { CampaignStatusPipe } from './core/pipes/campaign_status.pipe';
+import { RichEditorViewComponent } from './views/widgets/rich-editor-view/rich-editor-view.component';
+
+//Pipes
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -131,7 +137,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     EventArchiveComponent,
     MicrocreditArchiveComponent,
     OfferArchiveComponent,
-    CommunityArchiveComponent
+    CommunityArchiveComponent,
+
+    SectorFilterPipe,
+    ContentTranslatePipe,
+    CampaignStatusPipe,
+
+    RichEditorViewComponent
   ],
   exports: [SupportWindowComponent],
   imports: [
@@ -142,6 +154,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AgmCoreModule.forRoot({
       apiKey: environment.mapApiKey
     }),
+    // CKEditorModule.fotRoot(),
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {

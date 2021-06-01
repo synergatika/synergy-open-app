@@ -3,7 +3,7 @@
     <div class="offset-md-1 col-md-10">
       <div class="row">
         <div class="col-md-12 s_item-img">
-          <img [src]="offer.offer_imageURL" [alt]="offer.title" />
+          <img [src]="offer.imageURL" [alt]="offer.title" />
         </div>
       </div>
       <div class="row">
@@ -20,14 +20,14 @@
       </div>
       <div class="row">
         <div class="col-md-3 s_item-partner">
-          <a [routerLink]="['/partner/'+offer.partner_slug]" title="{{offer.partner_name}}">
-            <h5>{{offer.partner_name}}</h5>
+          <a [routerLink]="['/partner/'+offer.partner.slug]" title="{{offer.partner.name}}">
+            <h5>{{offer.partner.name}}</h5>
           </a>
-          <a [routerLink]="['/partner/'+offer.partner_slug]" title="{{offer.partner_name}}">
-            <img src="{{offer.partner_imageURL}}" alt="{{offer.partner_name}}">
+          <a [routerLink]="['/partner/'+offer.partner.slug]" title="{{offer.partner.name}}">
+            <img src="{{offer.partner.imageURL}}" alt="{{offer.partner.name}}">
           </a>
-          <div *ngIf="offer.partner_address">
-            <span class="mdi mdi-pin"></span> {{offer.partner_address.street}}, {{offer.partner_address.city}}
+          <div *ngIf="offer.partner.address">
+            <span class="mdi mdi-pin"></span> {{offer.partner.address.street}}, {{offer.partner.address.city}}
           </div>
           <!--<div *ngIf="campaign.partner_phone" class="info-row"><span class="mdi mdi-phone"></span>{{campaign.partner_phone}}</div>
           <div class="info-row"><span class="mdi mdi-email"></span>{{campaign.partner_email}}</div>-->

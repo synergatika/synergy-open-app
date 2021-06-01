@@ -3,7 +3,7 @@
     <div class="offset-md-1 col-md-10">
       <div class="row">
         <div class="col-md-12 s_item-img">
-          <img [src]="campaign.campaign_imageURL" [alt]="campaign.title" />
+          <img [src]="campaign.imageURL" [alt]="campaign.title" />
         </div>
       </div>
       <div class="row">
@@ -14,7 +14,7 @@
               <div class="data">
                 <label>{{'CAMPAIGN.Expires' | translate}}:</label> {{campaign.expiresAt | date: 'd.M'}}
               </div>
-              <div class="data">
+              <div *ngIf="campaign.redeemable" class="data">
                 <label>{{'CAMPAIGN.RedeemDates' | translate}}:</label> {{campaign.redeemStarts | date: 'd.M.y'}} -
                 {{campaign.redeemEnds | date: 'd.M.y'}}
               </div>
@@ -26,7 +26,7 @@
               </div>
             </div>
             <div class="col-md-5">
-              <div class="data price">
+              <div class="data price" *ngIf="campaign.redeemable">
                 <label *ngIf="campaign.quantitative==true&&campaign.stepAmount>1">
                   {{'CAMPAIGN.Price' | translate}}
                 </label>
@@ -60,23 +60,24 @@
       </div>
       <div class="row">
         <div class="col-md-3 s_item-partner ">
-          <a [routerLink]="['/partner/'+campaign.partner_slug]" title="{{campaign.partner_name}}">
-            <h5>{{campaign.partner_name}}</h5>
+          <a [routerLink]="['/partner/'+campaign.partner.slug]" title="{{campaign.partner.name}}">
+            <h5>{{campaign.partner.name}}</h5>
           </a>
-          <a [routerLink]="['/partner/'+campaign.partner_slug]" title="{{campaign.partner_name}}">
-            <img src="{{campaign.partner_imageURL}}" alt="{{campaign.partner_name}}">
+          <a [routerLink]="['/partner/'+campaign.partner.slug]" title="{{campaign.partner.name}}">
+            <img src="{{campaign.partner.imageURL}}" alt="{{campaign.partner.name}}">
           </a>
-          <div *ngIf="campaign.partner_address">
-            <span class="mdi mdi-pin"></span> {{campaign.partner_address.street}}, {{campaign.partner_address.city}}
+          <div *ngIf="campaign.partner.address">
+            <span class="mdi mdi-pin"></span> {{campaign.partner.address.street}}, {{campaign.partner.address.city}}
           </div>
-          <div *ngIf="campaign.partner_phone">
-            <span class="mdi mdi-phone"></span>{{campaign.partner_phone}}
+          <div *ngIf="campaign.partner.phone">
+            <span class="mdi mdi-phone"></span>{{campaign.partner.phone}}
           </div>
           <div>
-            <span class="mdi mdi-email"></span>{{campaign.partner_email}}
+            <span class="mdi mdi-email"></span>{{campaign.partner.email}}
           </div>
         </div>
-        <div class="col-md-9 s_item-content" [innerHTML]="campaign.description">
+        <div class="col-md-9 s_item-content">
+          <sng-rich-editor-view [description]="campaign.description"></sng-rich-editor-view>
         </div>
       </div>
       <div class="row">

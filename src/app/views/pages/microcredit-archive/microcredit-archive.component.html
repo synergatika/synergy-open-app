@@ -18,7 +18,7 @@
 	<div>
 		<div class="offer row">
 			<div class="col-md-4 credit-item" *ngFor="let item of campaigns | paginate: { itemsPerPage: 9, currentPage: p }"
-				(click)="clickMicrocredit(item.partner_slug, item.campaign_slug)">
+				(click)="clickMicrocredit(item.partner.slug, item.slug)">
 				<sng-microcredit_campaign-card [campaign]="item"></sng-microcredit_campaign-card>
 			</div>
 		</div>
