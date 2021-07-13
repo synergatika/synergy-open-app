@@ -115,9 +115,10 @@ export class OfferListComponent implements OnInit {
 	}
 
 	mouseup(partner_id: string, offer_id: string) {
+		console.log(partner_id,  offer_id)
 		if (this.moved) {
 		} else {
-			this.router.navigate([`/offer/${partner_id}/${offer_id}`]);
+			this.router.navigate(['offer',`${partner_id}`,`${offer_id}`]);
 		}
 		this.moved = false;
 	}

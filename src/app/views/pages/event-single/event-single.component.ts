@@ -32,16 +32,18 @@ export class EventSingleComponent implements OnInit, OnDestroy {
 		private cdRef: ChangeDetectorRef,
 		private titleService: Title,
 		private openDataService: OpenDataService,
-		private staticDataService :StaticDataService 
+		private staticDataService: StaticDataService
 	) {
 		this.unsubscribe = new Subject();
 	}
 
 	ngOnInit() {
+
 		this.routeSubscription = this.route.params.subscribe(params => {
 			this.partner_id = params['partner_id'];
 			this.post_event_id = params['post_event_id'];
-			this.post_event_type = params['type'];
+			// this.post_event_type = params['type'];
+			this.post_event_type = this.route.snapshot.url[0].path;
 			this.fetchEventData(this.partner_id, this.post_event_id, this.post_event_type);
 		});
 	}
@@ -60,7 +62,7 @@ export class EventSingleComponent implements OnInit, OnDestroy {
 						console.log(data)
 						this.post_event = data;
 						this.img = data.imageURL;
-						this.titleService.setTitle(this.post_event.title+this.staticDataService.getSiteTitle);
+						this.titleService.setTitle(this.post_event.title + this.staticDataService.getSiteTitle);
 					},
 					error => {
 						console.log("Can't load post event");
