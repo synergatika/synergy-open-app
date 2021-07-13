@@ -51,6 +51,7 @@ export class OfferSingleComponent implements OnInit, OnDestroy {
 	}
 
 	fetchOfferData(partner_id: string, offer_id: string) {
+		console.log(partner_id, offer_id)
 		this.openDataService.readOffer(partner_id, offer_id)
 			.pipe(
 				tap(

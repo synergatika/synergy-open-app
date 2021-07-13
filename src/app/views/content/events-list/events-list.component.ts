@@ -105,7 +105,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
 	mouseup(partner_id: string, post_event_id: string, type: string) {
 		if (this.moved) {
 		} else {
-			this.router.navigate([`/event/${partner_id}/${post_event_id}/${type}`]);
+			this.router.navigate([`${type}/${partner_id}/${post_event_id}`]);
 		}
 		this.moved = false;
 	}

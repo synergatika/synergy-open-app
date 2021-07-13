@@ -87,9 +87,10 @@ export class CommunitySingleComponent implements OnInit {
 						/**end:Social Media*/
 						this.titleService.setTitle(this.partner.name + this.staticDataService.getSiteTitle);
 						//Set sector
-						this.sector = this.sectorsList.filter((el) => {
-							return el.value == this.partner.sector
-						})[0].title;
+						// console.log(this.sectorsList)
+						// this.sector = this.sectorsList.filter((el) => {
+						// 	return el.value == this.partner.sector
+						// })[0].title;
 					},
 					error => {
 						console.log("Can't load Partner");

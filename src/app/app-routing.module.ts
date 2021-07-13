@@ -108,7 +108,15 @@ const routes: Routes = [
 				}
 			},
 			{
-				path: 'event/:partner_id/:post_event_id/:type',
+				path: 'post/:partner_id/:post_event_id',
+				component: EventSingleComponent,
+				canActivate: [ConfigGuard],
+				data: {
+					accessIndex: 0
+				}
+			},
+			{
+				path: 'event/:partner_id/:post_event_id',
 				component: EventSingleComponent,
 				canActivate: [ConfigGuard],
 				data: {
