@@ -41,7 +41,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'about', component: AboutComponent,
-				data: { 
+				data: {
 					title: 'MENU.About'
 				}
 			},

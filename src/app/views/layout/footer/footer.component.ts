@@ -13,15 +13,23 @@ export class FooterComponent implements OnInit {
 
 	menu = [
 		{
-			title: 'MENU.Home',
-			link: '/',
-		},
-		{
 			title: 'MENU.About',
 			link: 'about',
 		},
 		{
-			title: 'MENU.Events',
+			title: 'MENU.Partners',
+			link: 'partners',
+		},
+		{
+			title: 'MENU.Offers',
+			link: 'offers',
+		},
+		{
+			title: 'MENU.Support',
+			link: 'support',
+		},
+		{
+			title: 'MENU.News',
 			link: 'events',
 		},
 		{

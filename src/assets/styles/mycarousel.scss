@@ -11,6 +11,11 @@
 
 //Owl carousel
 .owl-theme {
+  .owl-item{
+    .synergy-card{
+          max-width: 340px;
+        }
+    }
     .owl-nav {
         position: absolute;
         bottom: 61%;
