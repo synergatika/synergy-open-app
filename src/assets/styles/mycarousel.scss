@@ -13,9 +13,11 @@
 .owl-theme {
   .owl-item{
     .synergy-card{
-          max-width: 340px;
-        }
+      @media (min-width:992px) {
+        max-width: 400px;
+      }
     }
+  }
     .owl-nav {
         position: absolute;
         bottom: 61%;

@@ -15,3 +15,12 @@
 		text-align: right;
 	}
 }
+
+@media (max-width: 768px) {
+	.wide{
+		margin-top:30px;
+	}
+	.two-part-section.bck-asymmetry.secondary{
+		background-image: none;
+	}
+}
