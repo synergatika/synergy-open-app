@@ -41,7 +41,7 @@
 
 @import "variables.scss";
 
-// Main Styles 
+// Main Styles
 html {
   body {
     height: 100%;
@@ -77,14 +77,14 @@ html {
   }
 }
 
-// Config Assets Styles 
+// Config Assets Styles
 @import "assets/styles/mybootstrap.scss";
 @import "assets/styles/mymaterial.scss";
 @import "assets/styles/mycarousel.scss";
 //Custom Assets
 @import "assets/styles/myassets.scss";
 
-// Site Areas 
+// Site Areas
 
 //Single General
 .single {
@@ -204,6 +204,16 @@ html {
     &.current {
       background: $primary;
     }
+  }
+}
+
+//Page WP
+.wp-page{
+  margin-top:30px;
+  margin-bottom: 60px;
+  h1{
+    font-weight: bold;
+    color:$secondary;
   }
 }
 

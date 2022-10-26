@@ -1,1 +1,6 @@
-<p>about works!</p>
+<div class="wp-page container" *ngIf="content">
+  <div class="row">
+    <div class="offset-md-1 col-md-10" [innerHTML]="content">
+    </div>
+  </div>
+</div>
