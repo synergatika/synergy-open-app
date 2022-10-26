@@ -40,6 +40,8 @@ export class MapComponent implements OnInit {
   public partner: Partner;
   public partners: Partner[];
 
+  public infoWindowOpened: any;
+
   loading: boolean = false;
   private unsubscribe: Subject<any>;
 
@@ -62,6 +64,7 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
+
     if (this.partner_id) {
       this.fetchPartnerData(this.partner_id);
       this.singlePartner = true;
@@ -77,6 +80,7 @@ export class MapComponent implements OnInit {
 			this.list = Object.values(data);
 			//console.log(this.list);
 		});*/
+    this.infoWindowOpened = null;
   }
 
   ngOnDestroy() {
@@ -194,14 +198,8 @@ export class MapComponent implements OnInit {
     return Math.random() / num;
   }
 
-  infoWindowOpened = null;
-
-  filter() {
-    infoWindowOpened = null;
-    // redraw the map with filtered markers
-  }
-
   showInfoWindow(infoWindow, index) {
+
     if (this.infoWindowOpened === infoWindow) {
       return;
     }

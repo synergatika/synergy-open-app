@@ -1,5 +1,5 @@
 <div class="home-hero row">
-	<div class="col-md-6"  *ngIf="content">
+	<div class="col-md-6" *ngIf="content['homebanner']&&content['homebanner_title']">
 		<h2 [innerHTML]="content['homebanner_title'].el_content"></h2>
 		<div *ngIf="translate.currentLang == 'en'" class="hero-content-container">
 			<p [innerHTML]="content['homebanner'].en_content"></p>

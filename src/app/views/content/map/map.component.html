@@ -20,7 +20,7 @@
 				</agm-info-window>
 			</agm-marker>-->
 			<agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [iconUrl]="pin"
-				[markerDraggable]="m.draggable" (markerClick)="gm.lastOpen?.close(); gm.lastOpen = infoWindow">
+				[markerDraggable]="m.draggable" (markerClick)="showInfoWindow(infoWindow, i)">
 
 				<agm-info-window  #infoWindow>
 					<div class="info-container">

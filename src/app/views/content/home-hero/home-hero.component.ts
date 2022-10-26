@@ -30,7 +30,6 @@ export class HomeHeroComponent implements OnInit {
 		this.content = [];
 		this.fetchHeroContent('homebanner');
  		this.fetchHeroContent('homebanner_title');
-		console.log(this.content);
 	}
 
 	fetchHeroContent(page_id) {
