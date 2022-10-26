@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { menu } from '../../../../core/config/menu';
 
 @Component({
   selector: 'app-menu',
@@ -7,19 +6,18 @@ import { menu } from '../../../../core/config/menu';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-	public menu = menu.desktop;
-	/*menu = [
+	menu = [
 		{
 			title: 'MENU.Home',
 			link: '/',
 		},
 		{
-			title: 'MENU.Join',
-			link: 'join',
+			title: 'MENU.HowTo',
+			link: 'howto',
 		},
 		{
-			title: 'MENU.Explore',
-			link: 'explore',
+			title: 'MENU.Partners',
+			link: 'partners',
 		},
 		{
 			title: 'MENU.Support',
@@ -29,7 +27,7 @@ export class MenuComponent implements OnInit {
 			title: 'MENU.Contact',
 			link: 'contact',
 		},
-	];*/
+	];
 	constructor() { }
 
 	ngOnInit() {

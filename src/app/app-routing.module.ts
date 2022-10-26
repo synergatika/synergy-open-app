@@ -6,6 +6,7 @@ import { LayoutComponent } from './views/layout/layout.component';
 import { HomeComponent } from './views/pages/home/home.component';
 import { AboutComponent } from './views/pages/about/about.component';
 import { JoinComponent } from './views/pages/join/join.component';
+import { HowtoComponent } from './views/pages/howto/howto.component';
 import { RedeemComponent } from './views/pages/redeem/redeem.component';
 import { SupportComponent } from './views/pages/support/support.component';
 import { ContactComponent } from './views/pages/contact/contact.component';
@@ -30,13 +31,19 @@ const routes: Routes = [
 			{
 				path: '', component: HomeComponent,
 				data: {
-					title: 'Αρχική' 
+					title: 'Αρχική'
 				}
 			},
 			{
 				path: 'join', component: JoinComponent,
 				data: {
 					title: 'MENU.Join'
+				}
+			},
+			{
+				path: 'howto', component: HowtoComponent,
+				data: {
+					title: 'MENU.HowTo'
 				}
 			},
 			{

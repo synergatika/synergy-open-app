@@ -1,18 +1,23 @@
 <div class="footer-wrapper">
   <div class="container">
     <div class="row footer-main">
-      <div class="col-md-4">
+      <div *ngIf="content['footer']" class="col-md-4">
         <a [routerLink]="['/']+'/'"><img class="logo-wh" src="assets/media/images/logo-wh.png"></a>
-        <p>{{'FOOTER.TEXT' | translate}}</p>
+        <p [innerHTML]="content['footer'].el_content"></p>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2 offset-md-1">
         <div class="footer-menu">
-          <ng-container *ngFor="let item of menu">
+          <ng-container *ngFor="let item of menu1">
             <a class="footer-menu-link link" [routerLink]="['/'+item.link]">{{item.title | translate}}</a>
           </ng-container>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2">
+        <div class="footer-menu">
+          <ng-container *ngFor="let item of menu2">
+            <a class="footer-menu-link link" [routerLink]="['/'+item.link]">{{item.title | translate}}</a>
+          </ng-container>
+        </div>
       </div>
     </div>
     <div class="row footer-bottom">
