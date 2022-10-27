@@ -28,7 +28,7 @@ export class FooterComponent implements OnInit {
 			link: 'howto',
 		},
 		{
-			title: 'MENU.Join',
+			title: 'MENU.JoinCoop',
 			link: 'join',
 		},
     {

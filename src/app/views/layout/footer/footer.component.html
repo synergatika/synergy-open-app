@@ -14,6 +14,7 @@
       </div>
       <div class="col-md-2">
         <div class="footer-menu">
+          <a class="footer-menu-link link" href="https://app.synergatika.gr/auth/register" target="_blank">{{ 'MENU.Join' | translate}}</a>
           <ng-container *ngFor="let item of menu2">
             <a class="footer-menu-link link" [routerLink]="['/'+item.link]">{{item.title | translate}}</a>
           </ng-container>
