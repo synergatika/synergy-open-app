@@ -3,45 +3,37 @@
   font-family: "NeutrafaceTwoTextGreek";
   src: url("assets/fonts/NeutrafaceTwoTextGreek.woff") format("woff");
 }
-
 @font-face {
   font-family: "NeutrafaceTwoTextGreek";
   src: url("assets/fonts/NeutrafaceTwoTextGreek-Bold.woff") format("woff");
   font-weight: bold;
 }
-
 @font-face {
   font-family: "NeutrafaceTwoTextGreek";
   src: url("assets/fonts/NeutrafaceTwoTextGreek-Italic.woff") format("woff");
   font-style: italic;
 }
-
 @font-face {
   font-family: "NeutrafaceTwoTextGreek";
   src: url("assets/fonts/NeutrafaceTwoTextGreek-BoldItalic.woff") format("woff");
   font-weight: bold;
   font-style: italic;
 }
-
 @font-face {
   font-family: "PFDinTextCompPro";
   src: url("assets/fonts/PFDinTextCompPro-Regular.woff") format("woff");
 }
-
 @font-face {
   font-family: "PFDinTextCompPro";
   src: url("assets/fonts/PFDinTextCompPro-Bold.woff") format("woff");
   font-weight: bold;
 }
-
 @font-face {
   font-family: "NeutraText-Bold";
   src: url("assets/fonts/NeutraText-Bold.woff") format("woff");
 }
+@import "variables.scss"; // Main Styles
 
-@import "variables.scss";
-
-// Main Styles
 html {
   body {
     height: 100%;
@@ -51,41 +43,43 @@ html {
     color: $main-font-color;
     font-size: 1.2rem;
   }
+
   h1 {
     margin-bottom: 2rem;
   }
+
   a {
     color: $secondary-dark;
     transition: color 0.3s;
+
     &:hover {
       color: #03050a;
       text-decoration: none;
     }
   }
+
   table {
     width: 100%;
   }
+
   .bck-light {
     .container-wrapper {
       background-color: $tertiary;
     }
   }
+
   .bck-grey {
     .container-wrapper {
       background-color: $grey;
     }
   }
 }
-
 // Config Assets Styles
 @import "assets/styles/mybootstrap.scss";
 @import "assets/styles/mymaterial.scss";
-@import "assets/styles/mycarousel.scss";
-//Custom Assets
+@import "assets/styles/mycarousel.scss"; //Custom Assets
 @import "assets/styles/myassets.scss";
-
 // Site Areas
-
 //Single General
 .single {
   &-title {
@@ -94,26 +88,24 @@ html {
     color: $primary;
     margin-bottom: 10px;
   }
+
   &-info {
-    div{
+    div {
       margin-bottom: 10px;
     }
   }
+
   .mdi {
     margin-right: 5px;
     color: $primary;
   }
 }
 
-
-
-
-.offer,
-.campaign {
+.campaign,
+.offer {
   &-wrapper {
     overflow: hidden;
   }
-
   position: relative;
   //overflow: hidden;
   height: 100%;
@@ -139,24 +131,26 @@ html {
     }
   }
 }
-
 //Single Event
-.post-content,
-.description {
+
+.description,
+.post-content {
   br {
     display: block;
     margin-bottom: 15px;
     content: "";
   }
 }
-
 //Partner section
+
 .partner-section {
   .owl-theme .owl-nav {
     bottom: 50%;
+
     .owl-prev {
       margin-left: -8px;
     }
+
     .owl-next {
       margin-right: -8px;
     }
@@ -178,27 +172,28 @@ html {
     background-color: $tertiary;
   }
 }
-
 //News Section
+
 .news-title {
   font-weight: 700;
   text-align: center;
   padding: 10px 0 30px;
 }
-
 //Sidebar
+
 .sidenav {
   .nav-link {
     opacity: 0;
   }
 }
+
 .sidenav.menu-active {
   .nav-link {
     opacity: 1;
   }
 }
-
 //Pagination
+
 .ngx-pagination {
   li {
     &.current {
@@ -206,20 +201,34 @@ html {
     }
   }
 }
-
 //Page WP
-.wp-page{
-  margin-top:30px;
+
+.wp-page {
+  margin-top: 30px;
   margin-bottom: 60px;
-  h1{
+
+  h1 {
     font-weight: bold;
-    color:$secondary;
+    color: $secondary;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    color: $primary;
+
+    &:hover {
+      color: $primary;
+      font-weight: bold;
+    }
   }
 }
-
 @media (max-width: 767px) {
-  .offer,
-  .campaign {
+  .campaign,
+  .offer {
     > .container > .row {
       flex-direction: column-reverse;
     }
@@ -261,14 +270,13 @@ html {
     }
   }
 }
-
 @media (min-width: 768px) {
   .fullwidth-title {
     margin-bottom: 30px;
   }
 
-  .offer,
-  .campaign {
+  .campaign,
+  .offer {
     &-image {
       > div {
         //position: absolute;
@@ -299,7 +307,6 @@ html {
     }
   }
 }
-
 @media (min-width: 1200px) {
   html {
     body {

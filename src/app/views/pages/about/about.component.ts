@@ -21,6 +21,7 @@ export class AboutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.unsubscribe = new Subject();
     this.content = null;
     this.fetchContent('68');
   }

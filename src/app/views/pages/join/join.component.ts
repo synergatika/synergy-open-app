@@ -21,6 +21,7 @@ export class JoinComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.unsubscribe = new Subject();
     this.content = null;
     this.fetchContent('75');
   }
@@ -28,7 +29,21 @@ export class JoinComponent implements OnInit {
   fetchContent(page_id) {
     this.loadWPContent.getContent(page_id).subscribe((data) => {
       this.content = data.content.rendered;
+      this.cdRef.markForCheck();
     });
+    /*.pipe(
+        tap(
+          data => {
+              this.content = data;
+          },
+          error => {
+          }),
+        takeUntil(this.unsubscribe),
+        finalize(() => {
+          this.cdRef.markForCheck();
+        })
+      )
+      .subscribe();*/
   }
 
   ngOnDestroy() {

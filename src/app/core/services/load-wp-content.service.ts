@@ -14,6 +14,10 @@ export class LoadWpContentService {
 
   getContent(pageId): Observable<any> {
     return this.http.get<any>(this.resolveUrl + "pages/" + pageId);
+    /*return this.http.get<any>(this.resolveUrl +"pages/"+ pageId)
+      .pipe(map(response => {
+        return response.data;
+      }));*/
   }
 
 }
