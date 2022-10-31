@@ -46,6 +46,7 @@ import { NotFoundComponent } from './views/pages/not-found/not-found.component';
 import { SupportComponent } from './views/pages/support/support.component';
 import { RedeemComponent } from './views/pages/redeem/redeem.component';
 import { JoinComponent } from './views/pages/join/join.component';
+import { HowtoComponent } from './views/pages/howto/howto.component';
 
 //Archives
 import { CommunityArchiveComponent } from './views/pages/community-archive/community-archive.component';

@@ -6,8 +6,7 @@
       <div class="col-md-12 form-group">
         <mat-form-field class="col-md-12">
           <mat-label>{{ 'AUTH.INPUT.EMAIL' | translate }}</mat-label>
-          <input matInput type=" email" placeholder="{{ 'AUTH.INPUT.EMAIL' | translate }}" formControlName="email"
-            autocomplete="off" />
+          <input matInput type=" email" placeholder="{{ 'AUTH.INPUT.EMAIL' | translate }}" formControlName="email" autocomplete="off" />
           <mat-error *ngIf="isRegistrationControlHasError('email','required')">
             <strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
           </mat-error>
@@ -25,10 +24,8 @@
 
 
       <div class="col-md-12 kt-login__actions" style="padding: 0 0 0 0">
-        <button (click)="onSubmitRegistration()" (keyup.enter)="onSubmitRegistration()" id="kt_login_signin_submit"
-          class="col-md-12 btn btn-primary"
-          [ngClass]="{'spinner spinner--right spinner--md spinner--light': loading}">{{
-          'AUTH.GENERAL.SUBMIT_BUTTON'
+        <button (click)="onSubmitRegistration()" (keyup.enter)="onSubmitRegistration()" id="kt_login_signin_submit" class="col-md-12 btn btn-primary" [ngClass]="{'spinner spinner--right spinner--md spinner--light': loading}">{{
+          'AUTH.GENERAL.NEXT_BUTTON'
           | translate }}</button>
       </div>
 
@@ -41,11 +38,11 @@
         <label>{{'SUPPORT.AMOUNT' | translate}}</label>
         <div class="input-group">
           <span class="input-group-text">€</span>
-          <input [readonly]="!campaign.quantitative||campaign.stepAmount" type="number" class="form-control"
-            name="amount" formControlName="amount" placeholder="Amount" value="0">
-          <div *ngIf="campaign.quantitative" class="amount-controller">
-            <button [disabled]="!showAddStep" mat-mini-fab class="add" (click)="onChangeAmount(true)"> + </button>
-            <button [disabled]="!showSubStep" mat-mini-fab class="sub" (click)="onChangeAmount(false)"> - </button>
+          <input [readonly]="!campaign.quantitative||campaign.stepAmount" type="number" class="form-control" name="amount" formControlName="amount" placeholder="{{'SUPPORT.AMOUNT' | translate}}" value="0">
+          <div *ngIf="campaign.stepAmount>0" class="amount-controller">
+            <button [disabled]="!showSubStep" class="mat-focus-indicator remove mat-mini-fab mat-button-base mat-accent" (click)="onChangeAmount(false)"> - </button>
+            <button [disabled]="!showAddStep" class="mat-focus-indicator add mat-mini-fab mat-button-base mat-accent" (click)="onChangeAmount(true)"> + </button>
+
           </div>
         </div>
         <span *ngIf="isSupportingControlHasError('amount','required')" class="error text-danger">{{
@@ -59,28 +56,26 @@
       </div>
       <div class="form-group">
         <label>{{'SUPPORT.PAYMENT' | translate}}</label>
-        <select name="method" formControlName="method" class="form-control"
-          (change)="onPaymentChange($event.target.value)">
+        <select name="method" formControlName="method" class="form-control" (change)="onPaymentChange($event.target.value)">
           <option *ngFor="let payment of paymentsList" value="{{payment.bic}}">
-            {{payment.title | translate}}</option>
+            {{payment.title | translate}}
+          </option>
         </select>
         <span *ngIf="isSupportingControlHasError('method','required')" class="error text-danger">{{
           'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</span>
       </div>
 
 
-      <div class="col-md-12 kt-login__actions" style="padding: 0 0 0 0">
-        <button (click)="onPreviousStep()" (keyup.enter)="onPreviousStep()" id="kt_login_signin_submit"
-          class="col-md-12 btn btn-danger" [ngClass]="{'spinner spinner--right spinner--md spinner--light': loading}">{{
-          'AUTH.GENERAL.PREVIOUS_BUTTON' | translate }}</button>
-      </div>
       <div *ngIf="!showPaypalButton" class="col-md-12 kt-login__actions" style="padding: 0 0 0 0">
-        <button (click)="onSubmitSupporting()" (keyup.enter)="onSubmitSupporting()" id="kt_login_signin_submit"
-          class="col-md-12 btn btn-primary"
-          [ngClass]="{'spinner spinner--right spinner--md spinner--light': loading}">{{
+        <button (click)="onSubmitSupporting()" (keyup.enter)="onSubmitSupporting()" id="kt_login_signin_submit" class="col-md-12 btn btn-primary" [ngClass]="{'spinner spinner--right spinner--md spinner--light': loading}">{{
           'AUTH.GENERAL.SUBMIT_BUTTON'
           | translate }}</button>
       </div>
+      <div class="col-md-12 kt-login__actions" style="padding: 0 0 0 0">
+        <button (click)="onPreviousStep()" (keyup.enter)="onPreviousStep()" id="kt_login_signin_submit" class="col-md-12 btn" [ngClass]="{'spinner spinner--right spinner--md spinner--light': loading}">{{
+          'AUTH.GENERAL.PREVIOUS_BUTTON' | translate }}</button>
+      </div>
+
       <!-- <ngx-paypal *ngIf="showPaypalButton" [config]="payPalConfig"></ngx-paypal> -->
 
 

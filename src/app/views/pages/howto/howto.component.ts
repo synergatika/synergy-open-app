@@ -6,11 +6,11 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  selector: 'app-howto',
+  templateUrl: './howto.component.html',
+  styleUrls: ['./howto.component.scss']
 })
-export class AboutComponent implements OnInit {
+export class HowtoComponent implements OnInit {
 
   private unsubscribe: Subject<any>;
   content: any;
@@ -21,9 +21,9 @@ export class AboutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.unsubscribe = new Subject();
+  	this.unsubscribe = new Subject();
     this.content = null;
-    this.fetchContent('68');
+    this.fetchContent('72');
   }
 
   fetchContent(page_id) {

@@ -5,68 +5,81 @@
     </div>
   </div>
 </div>
-
-
-<mat-card>
-  <mat-card-content>
-
-    <!--begin::Form-->
-    <form class="form container single-form" [formGroup]="submitForm">
-
-      <!--begin::Form Group "Sender"-->
-      <div class="form-group">
-        <mat-form-field>
-          <mat-label>{{'CONTACT.SENDER.TITLE' | translate}}</mat-label>
-          <input matInput type="text" name="Sender" formControlName="sender"
-            placeholder="{{'CONTACT.SENDER.PLACEHOLDER' | translate}}">
-          <mat-error *ngIf="isControlHasError('sender','required')" class="error text-danger">
-            {{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
-          </mat-error>
-          <mat-error *ngIf="isControlHasError('sender','email')" class="error text-danger">
-            {{ 'AUTH.VALIDATION.INVALID_FIELD' | translate }}
-          </mat-error>
-          <mat-error *ngIf="isControlHasError('sender','minlength')" class="error text-danger">
-            {{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }}: {{validator.sender.minLength}}
-          </mat-error>
-          <mat-error *ngIf="isControlHasError('sender','maxlength')" class="error text-danger">
-            {{ 'AUTH.VALIDATION.MAX_LENGTH_FIELD' | translate }}: {{validator.sender.maxLength}}
-          </mat-error>
-          <mat-hint class="form-text text-muted">{{'CONTACT.SENDER.DESC' | translate}}</mat-hint>
-        </mat-form-field>
+<div class="container contact-area">
+  <div class="row">
+    <div class="offset-md-2 col-md-8">
+      <div class="row">
+        <div class="col-md-12 contact-text">
+          <p>{{'CONTACT.TEXT' | translate}}
+          <p>
+        </div>
       </div>
-      <!--end::Form Group "Sender"-->
+      <div class="row">
+        <div class="col-md-12">
+          <mat-card>
+            <mat-card-content>
 
-      <!--begin::Form Group "Content"-->
-      <div class="form-group">
-        <mat-form-field>
-          <mat-label>{{'CONTACT.CONTENT.TITLE' | translate}}</mat-label>
-          <textarea matInput rows="8" name="Content" formControlName="content"
-            placeholder="{{'CONTACT.CONTENT.PLACEHOLDER' | translate}}">
-                </textarea>
-          <mat-error *ngIf="isControlHasError('content','required')" class="error text-danger">
-            {{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
-          </mat-error>
-          <mat-error *ngIf="isControlHasError('content','minlength')" class="error text-danger">
-            {{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }}: {{validator.content.minLength}}
-          </mat-error>
-          <mat-error *ngIf="isControlHasError('content','maxlength')" class="error text-danger">
-            {{ 'AUTH.VALIDATION.MAX_LENGTH_FIELD' | translate }}: {{validator.content.maxLength}}
-          </mat-error>
-          <mat-hint class="form-text text-muted">
-            {{'CONTACT.CONTENT.DESC' | translate}}
-          </mat-hint>
-        </mat-form-field>
+              <!--begin::Form-->
+              <form class="form container single-form" [formGroup]="submitForm">
+                <h3>{{'CONTACT.FORMTITLE' | translate}}</h3>
+
+                <!--begin::Form Group "Sender"-->
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-label>{{'CONTACT.SENDER.TITLE' | translate}}</mat-label>
+                    <input matInput type="text" name="Sender" formControlName="sender" placeholder="{{'CONTACT.SENDER.PLACEHOLDER' | translate}}">
+                    <mat-error *ngIf="isControlHasError('sender','required')" class="error text-danger">
+                      {{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="isControlHasError('sender','email')" class="error text-danger">
+                      {{ 'AUTH.VALIDATION.INVALID_FIELD' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="isControlHasError('sender','minlength')" class="error text-danger">
+                      {{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }}: {{validator.sender.minLength}}
+                    </mat-error>
+                    <mat-error *ngIf="isControlHasError('sender','maxlength')" class="error text-danger">
+                      {{ 'AUTH.VALIDATION.MAX_LENGTH_FIELD' | translate }}: {{validator.sender.maxLength}}
+                    </mat-error>
+                    <mat-hint class="form-text text-muted">{{'CONTACT.SENDER.DESC' | translate}}</mat-hint>
+                  </mat-form-field>
+                </div>
+                <!--end::Form Group "Sender"-->
+
+                <!--begin::Form Group "Content"-->
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-label>{{'CONTACT.CONTENT.TITLE' | translate}}</mat-label>
+                    <textarea matInput rows="8" name="Content" formControlName="content" placeholder="{{'CONTACT.CONTENT.PLACEHOLDER' | translate}}">
+                    </textarea>
+                    <mat-error *ngIf="isControlHasError('content','required')" class="error text-danger">
+                      {{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="isControlHasError('content','minlength')" class="error text-danger">
+                      {{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }}: {{validator.content.minLength}}
+                    </mat-error>
+                    <mat-error *ngIf="isControlHasError('content','maxlength')" class="error text-danger">
+                      {{ 'AUTH.VALIDATION.MAX_LENGTH_FIELD' | translate }}: {{validator.content.maxLength}}
+                    </mat-error>
+                    <mat-hint class="form-text text-muted">
+                      {{'CONTACT.CONTENT.DESC' | translate}}
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
+                <!--end::Form Group "Content"-->
+
+
+                <div class="form-actions row col-md-4 offset-md-8">
+                  <button mat-raised-button (click)="onSubmit()" (keyup.enter)="onSubmit()" class="btn btn-block btn-primary">
+                    {{ 'AUTH.GENERAL.SUBMIT_BUTTON' | translate }}
+                  </button>
+                </div>
+
+              </form>
+
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
-      <!--end::Form Group "Content"-->
-
-
-      <div class="form-actions row col-md-4 offset-md-8">
-        <button mat-raised-button (click)="onSubmit()" (keyup.enter)="onSubmit()" class="btn btn-block btn-primary">
-          {{ 'AUTH.GENERAL.SUBMIT_BUTTON' | translate }}
-        </button>
-      </div>
-
-    </form>
-
-  </mat-card-content>
-</mat-card>
+    </div>
+  </div>
+</div>

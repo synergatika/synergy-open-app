@@ -20,14 +20,16 @@ export class HomeHeroComponent implements OnInit {
 	content: any;
 
 	constructor(
-		private cdRef: ChangeDetectorRef, 
-		private loadContent: ContentService, 
+		private cdRef: ChangeDetectorRef,
+		private loadContent: ContentService,
 		public translate: TranslateService
 	) {	}
 
 	ngOnInit() {
 		this.unsubscribe = new Subject();
+		this.content = [];
 		this.fetchHeroContent('homebanner');
+ 		this.fetchHeroContent('homebanner_title');
 	}
 
 	fetchHeroContent(page_id) {
@@ -35,7 +37,7 @@ export class HomeHeroComponent implements OnInit {
 			.pipe(
 				tap(
 					data => {
-						this.content = data;
+							this.content[page_id] = data;
 					},
 					error => {
 					}),

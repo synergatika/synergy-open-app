@@ -9,7 +9,7 @@
   <div>
     <div class="offer row">
       <div class="col-md-4 credit-item" *ngFor="let item of offers | paginate: { itemsPerPage: 9, currentPage: p }"
-        (click)="clickOffer(item.partner_slug, item.offer_slug)">
+        (click)="clickOffer(item.partner.slug, item.slug)">
         <sng-offer-card [offer]="item"></sng-offer-card>
       </div>
     </div>

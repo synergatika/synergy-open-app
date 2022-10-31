@@ -1,15 +1,27 @@
-.single-form {
-padding-left: 30px;
-padding-right: 30px;
+.contact-area{
+  .contact-text{
+    margin-top: 40px;
+  }
+  .mat-card{
+        margin: 40px;
+  }
 
-.form-group {
-  width: 100%;
+  .single-form {
 
-  mat-form-field {
+  padding-left: 30px;
+  padding-right: 30px;
+  .btn-primary{
+    font-size: 1rem;
+  }
+
+  .form-group {
     width: 100%;
+
+    mat-form-field {
+      width: 100%;
+
+    }
+  }
 
   }
 }
-
-}
-

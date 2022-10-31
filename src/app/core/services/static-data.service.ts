@@ -13,7 +13,7 @@ export class StaticDataService {
   /**
    * Site Title
    */
-  siteTitle: string = " - Synergy.gr | Εμπορική Κοινότητα Συνεργατικών";
+  siteTitle: string = " - Synergatika.gr | Εμπορική Κοινότητα Συνεργατικών";
 
   public get getSiteTitle(): string {
     return this.siteTitle;
