@@ -43,7 +43,7 @@ jobs:
           SERVER_PORT: ${{ secrets.SERVER_PORT }}
           SERVER_DESTINATION: ${{ secrets.SERVER_PATH }}
       - name: publish new open app version
-        uses: elgohr/Publish-Docker-Github-Action@master
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           registry: docker.pkg.github.com
           name: docker.pkg.github.com/synergatika/synergy-open-app/synergy-open-app
