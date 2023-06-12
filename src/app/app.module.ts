@@ -85,6 +85,7 @@ import { SectorFilterPipe } from './core/pipes/sector_filter.pipe';
 import { ContentTranslatePipe } from './core/pipes/content_translate.pipe';
 import { CampaignStatusPipe } from './core/pipes/campaign_status.pipe';
 import { RichEditorViewComponent } from './views/widgets/rich-editor-view/rich-editor-view.component';
+import { MaintenanceComponent } from './views/pages/maintenance/maintenance.component';
 
 //Pipes
 
@@ -109,6 +110,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     ContactComponent,
     NotFoundComponent,
+    MaintenanceComponent,
     AboutComponent,
     SupportComponent,
     RedeemComponent,

@@ -60,6 +60,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
 			.pipe(
 				tap(
 					data => {
+						console.log(data)
 						this.posts_events = data;
 					},
 					error => {

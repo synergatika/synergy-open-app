@@ -6,6 +6,8 @@ export const environment = {
     // Import Keys & Links
     ...secrets,
 
+    maintenance: false,
+
     access: [
         true, // community,
         true, // loyalty,

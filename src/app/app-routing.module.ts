@@ -20,11 +20,18 @@ import { MicrocreditArchiveComponent } from './views/pages/microcredit-archive/m
 import { CommunityArchiveComponent } from './views/pages/community-archive/community-archive.component';
 
 import { ConfigGuard } from './core/helpers/config.guard';
+import { MaintenanceGuard } from './core/guards/maintenance.guard';
+import { MaintenanceComponent } from './views/pages/maintenance/maintenance.component';
 
 const routes: Routes = [
 	{
+		path: 'maintenance',
+		component: MaintenanceComponent
+	},
+	{
 		path: '',
 		component: LayoutComponent,
+		canActivate: [MaintenanceGuard],
 		children: [
 			//Main Pages
 			{
